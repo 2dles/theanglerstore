@@ -53,15 +53,16 @@ export default function Image() {
         />
 
         <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              borderRadius: 14,
-              background: "linear-gradient(135deg,#38bdf8,#2dd4bf)",
-              display: "flex",
-            }}
-          />
+          <svg width="52" height="52" viewBox="0 0 32 32">
+              <defs>
+                <linearGradient id="ogm" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#38bdf8" />
+                  <stop offset="100%" stopColor="#2dd4bf" />
+                </linearGradient>
+              </defs>
+              <path d="M4 16 c 5 -7.5 14.5 -7.5 19.5 0 c -5 7.5 -14.5 7.5 -19.5 0 z" fill="url(#ogm)" />
+              <path d="M23.5 16 l4.6 -4.8 v9.6 z" fill="url(#ogm)" />
+            </svg>
           <div style={{ display: "flex", fontSize: 34, fontWeight: 600 }}>
             <span style={{ color: "#e9f2fb" }}>The</span>
             <span style={{ color: "#38bdf8" }}>Angler</span>

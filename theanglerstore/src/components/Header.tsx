@@ -16,21 +16,11 @@ function Logo() {
           </linearGradient>
         </defs>
         <path
-          d="M4 20 c 5 -3, 8 1, 13 -1 s 8 -4, 11 -2"
-          fill="none"
-          stroke="url(#tas-logo)"
-          strokeWidth="2.4"
-          strokeLinecap="round"
+          d="M4 16 c 5 -7.5 14.5 -7.5 19.5 0 c -5 7.5 -14.5 7.5 -19.5 0 z"
+          fill="url(#tas-logo)"
         />
-        <path
-          d="M16 6 v9 c 0 5, -6 6.5, -6 2.5 c 0 -2.4, 3 -3, 4.4 -1.2"
-          fill="none"
-          stroke="url(#tas-logo)"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="16" cy="6" r="2.2" fill="url(#tas-logo)" />
+        <path d="M23.5 16 l4.6 -4.8 v9.6 z" fill="url(#tas-logo)" />
+        <circle cx="9.6" cy="14.4" r="1.5" fill="#04101d" />
       </svg>
       <span className="text-[0.95rem] font-semibold tracking-tight">
         The<span className="text-gradient">Angler</span>Store
