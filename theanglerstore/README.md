@@ -13,6 +13,7 @@ Setting it up properly? → **[RUNBOOK.md](./RUNBOOK.md)** (click by click)
 Deploying? → **[DEPLOY.md](./DEPLOY.md)**
 Placing a supplier order? → **[SOURCING.md](./SOURCING.md)**
 Product photos? → **[IMAGES.md](./IMAGES.md)**
+Admin panel? → **[ADMIN.md](./ADMIN.md)**
 
 ---
 
@@ -43,6 +44,7 @@ The only recurring cost is Stripe's 2.9% + 30¢. Vercel Hobby, Resend free tier,
 | `/checkout/success` | Confirmation, clears the cart |
 | `/api/checkout` | Creates the embedded session, prices server-side |
 | `/api/webhooks/stripe` | `checkout.session.completed` → order email |
+| `/admin` | Traffic (Vercel Analytics API) + orders (Stripe), password-gated |
 | `/sitemap.xml`, `/robots.txt` | Generated |
 
 Plus `/about`, `/shipping`, `/returns`, `/contact`, `/privacy`, `/terms`.

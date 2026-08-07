@@ -10,6 +10,14 @@ import type { Attribution } from "@/lib/attribution";
 
 export const runtime = "nodejs";
 
+/**
+ * Identifies this storefront inside a Stripe account that is shared with other
+ * sites. Written into every session's metadata, and checked by the webhook so
+ * we only send order emails for OUR orders. Do not change without changing the
+ * matching constant in src/app/api/webhooks/stripe/route.ts.
+ */
+export const STORE_ID = "theanglerstore";
+
 interface Body {
   lines?: { key: string; qty: number }[];
   attribution?: Attribution;
@@ -104,6 +112,7 @@ export async function POST(req: Request) {
       // Attribution rides into the payment record so revenue traces back to the
       // exact USTideCharts surface that produced it.
       metadata: {
+        store: STORE_ID,
         utm_source: attribution.utm_source ?? "direct",
         utm_medium: attribution.utm_medium ?? "",
         utm_campaign: attribution.utm_campaign ?? "",
@@ -112,6 +121,13 @@ export async function POST(req: Request) {
         product_keys: lines.map((l) => l.key).join(","),
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
+      // What the customer sees on their card statement. Without this they see
+      // the Stripe account's legal name, don't recognise it, and file a
+      // chargeback — the single most common avoidable dispute for a new store.
+      payment_intent_data: {
+        statement_descriptor_suffix: "ANGLERSTORE",
+        description: `TheAnglerStore order — ${lines.length} item${lines.length === 1 ? "" : "s"}`,
+      },
       automatic_tax: { enabled: false },
       shipping_address_collection: { allowed_countries: ["US"] },
       shipping_options: [

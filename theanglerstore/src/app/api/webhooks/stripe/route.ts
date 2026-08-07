@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import { sendOrderEmail } from "@/lib/notify";
+import { STORE_ID } from "@/app/api/checkout/route";
 
 export const runtime = "nodejs";
 // Stripe signature verification needs the raw body — never cache this route.
@@ -51,6 +52,16 @@ export async function POST(req: Request) {
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
+
+  // This Stripe account is shared with other sites. Stripe delivers every
+  // matching event to every registered endpoint, so without this check we'd
+  // email an "order" for someone else's site with nonsense line items.
+  if (session.metadata?.store !== STORE_ID) {
+    console.info(
+      `[webhook] ignoring session ${session.id} from store "${session.metadata?.store ?? "unknown"}"`,
+    );
+    return NextResponse.json({ received: true, ignored: true });
+  }
 
   try {
     const stripe = getStripe();

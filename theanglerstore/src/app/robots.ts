@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         // Cart and checkout carry no crawlable value and can generate
         // near-infinite parameterised URLs. Keep them out of the index.
-        disallow: ["/cart", "/checkout/", "/api/"],
+        disallow: ["/cart", "/checkout/", "/api/", "/admin"],
       },
     ],
     sitemap: "https://theanglerstore.com/sitemap.xml",
