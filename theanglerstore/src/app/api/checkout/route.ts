@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { getProduct } from "@/lib/products";
+import { getProduct, isSourced } from "@/lib/products";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import {
   rateFor,
@@ -101,6 +101,18 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    // Placeholder products with no supplier behind them can never be paid for,
+    // no matter how the request reaches us. Belt and braces: the UI hides them
+    // and removes the buy button, and this refuses them anyway.
+    if (!isSourced(product)) {
+      return NextResponse.json(
+        {
+          error: `${product.name} isn't available to order yet. Take it out of your cart and the rest will go through.`,
+        },
+        { status: 400 },
+      );
+    }
+
     if (!shippableToZone(product, zone)) {
       return NextResponse.json(
         {

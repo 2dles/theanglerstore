@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { Prose, Section } from "@/components/Prose";
-import { PRODUCTS } from "@/lib/products";
+import { listed } from "@/lib/products";
 import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ZONES, shipsInternationally } from "@/lib/shipping-zones";
 
 export const metadata = {
   title: "Shipping",
   description:
-    "Free US shipping over $49. Most orders arrive in 2–7 business days, shipped from US warehouses. Exact delivery estimate on every product page.",
+    "Free US shipping over $49. Most orders arrive in 3–7 business days, shipped from US warehouses. Exact delivery estimate on every product page.",
   alternates: { canonical: "/shipping" },
 };
 
 export default function ShippingPage() {
   // Anything quoted beyond 7 business days gets called out by name rather than
   // hidden behind an average.
-  const slower = PRODUCTS.filter((p) => {
+  const slower = listed().filter((p) => {
     const max = Number(p.shipsIn.split("–")[1]?.split(" ")[0] ?? 0);
     return max > 7;
   });
@@ -26,7 +26,7 @@ export default function ShippingPage() {
     <Prose
       title="Shipping"
       updated="August 2026"
-      intro="Most US orders arrive in 2–7 business days. Free over $49, $5.95 below that. Everything ships from a US warehouse — nothing on this site comes from overseas."
+      intro={`Most US orders arrive in 3–7 business days. Free over $${FREE_SHIPPING_OVER}, $${FLAT_SHIPPING.toFixed(2)} below that. Everything ships from a US warehouse — nothing on this site comes from overseas.`}
     >
       <Section heading="Rates">
         <ul className="space-y-2 text-ink-dim">
@@ -49,7 +49,7 @@ export default function ShippingPage() {
       <Section heading="Delivery time">
         <p>
           <strong className="text-ink">
-            Our standard is 2–7 business days from order to doorstep, anywhere in
+            Our standard is 3–7 business days from order to doorstep, anywhere in
             the contiguous US.
           </strong>{" "}
           That covers both the time we take to get your order to the warehouse
@@ -120,7 +120,7 @@ export default function ShippingPage() {
             United States today, including Alaska and Hawaii.
           </strong>{" "}
           Orders to Alaska and Hawaii are accepted but transit runs longer than
-          the 2–7 day standard, and a few of the bulkier items can&rsquo;t be
+          the 3–7 day standard, and a few of the bulkier items can&rsquo;t be
           sent there at all — we&rsquo;ll contact you before charging if that
           applies to something in your cart.
         </p>

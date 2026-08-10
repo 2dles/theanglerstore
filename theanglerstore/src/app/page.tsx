@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIES, PRODUCTS, featured, getProduct } from "@/lib/products";
+import { CATEGORIES, listed, featured, getProduct } from "@/lib/products";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
@@ -52,7 +52,7 @@ export default function HomePage() {
               <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 text-sm">
                 <div>
                   <dt className="text-ink-faint">Products</dt>
-                  <dd className="tnum mt-0.5 text-xl font-semibold">{PRODUCTS.length}</dd>
+                  <dd className="tnum mt-0.5 text-xl font-semibold">{listed().length}</dd>
                 </div>
                 <div>
                   <dt className="text-ink-faint">Ships from</dt>

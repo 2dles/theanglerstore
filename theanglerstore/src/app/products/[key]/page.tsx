@@ -6,6 +6,7 @@ import {
   allKeys,
   formatPrice,
   getProduct,
+  isSourced,
   related,
 } from "@/lib/products";
 import { withParams } from "@/lib/attribution";
@@ -85,6 +86,7 @@ export default async function ProductPage({
 
   const alsoBuy = related(product);
   const walkthrough = getWalkthrough(product.key);
+  const sourced = isSourced(product);
 
   // NOTE: no aggregateRating / review here, deliberately. Search Console asks
   // for them, but we have never taken an order — inventing ratings would be
@@ -105,7 +107,9 @@ export default async function ProductPage({
       price: product.price.toFixed(2),
       priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
       itemCondition: "https://schema.org/NewCondition",
-      availability: "https://schema.org/InStock",
+      availability: sourced
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
       seller: { "@id": "https://theanglerstore.com/#org" },
       shippingDetails: shippingDetails(product),
       hasMerchantReturnPolicy: returnPolicy(),
@@ -208,11 +212,13 @@ export default async function ProductPage({
             </div>
 
             <p className="mt-2 text-sm text-ink-faint">
-              {product.price >= FREE_SHIPPING_OVER
-                ? "Ships free"
-                : `Free shipping over $${FREE_SHIPPING_OVER}`}
-              {" · ships in "}
-              {product.shipsIn}
+              {!sourced
+                ? "Pricing shown is indicative until we confirm a supplier."
+                : product.price >= FREE_SHIPPING_OVER
+                  ? "Ships free"
+                  : `Free shipping over $${FREE_SHIPPING_OVER}`}
+              {sourced && " · ships in "}
+              {sourced && product.shipsIn}
             </p>
 
             {product.role === "add-on" && (
@@ -228,7 +234,26 @@ export default async function ProductPage({
             <p className="mt-6 leading-relaxed text-ink-dim">{product.blurb}</p>
 
             <div className="mt-7">
-              <AddToCart productKey={product.key} />
+              {sourced ? (
+                <AddToCart productKey={product.key} />
+              ) : (
+                <div className="rounded-xl border border-line bg-card/60 p-4">
+                  <p className="font-semibold text-ink">Not available yet</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-dim">
+                    We haven&rsquo;t settled a supplier for this one, so we
+                    won&rsquo;t take your money for it. We&rsquo;d rather tell
+                    you that than sell you something and then explain why it
+                    hasn&rsquo;t shipped.{" "}
+                    <Link href="/contact" className="text-tide hover:text-teal">
+                      Tell us you want it
+                    </Link>{" "}
+                    and you&rsquo;ll be the first to know when it lands.
+                  </p>
+                  <Link href="/products" className="btn btn-primary mt-4">
+                    See what we do have
+                  </Link>
+                </div>
+              )}
             </div>
 
             <div className="card mt-7 p-5">

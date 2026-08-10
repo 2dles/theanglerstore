@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { activeCategories, listed } from "@/lib/products";
 
 const BASE = "https://theanglerstore.com";
 
@@ -17,14 +17,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
   ];
 
-  const collections: MetadataRoute.Sitemap = CATEGORIES.map((c) => ({
+  const collections: MetadataRoute.Sitemap = activeCategories().map((c) => ({
     url: `${BASE}/collections/${c.slug}`,
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.7,
   }));
 
-  const products: MetadataRoute.Sitemap = PRODUCTS.map((p) => ({
+  // Only sourced products are submitted for discovery. The unsourced keys
+  // still resolve for inbound USTideCharts links, but we do not ask Google to
+  // index a page nobody can buy from.
+  const products: MetadataRoute.Sitemap = listed().map((p) => ({
     url: `${BASE}/products/${p.key}`,
     lastModified: now,
     changeFrequency: "weekly",

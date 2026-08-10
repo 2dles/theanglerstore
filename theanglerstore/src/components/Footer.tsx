@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIES } from "@/lib/products";
+import { activeCategories } from "@/lib/products";
 
 const HELP = [
   { href: "/shipping", label: "Shipping" },
@@ -39,7 +39,7 @@ export function Footer() {
               Shop
             </p>
             <ul className="mt-3 space-y-2 text-sm">
-              {CATEGORIES.map((c) => (
+              {activeCategories().map((c) => (
                 <li key={c.slug}>
                   <Link href={`/collections/${c.slug}`} className="link-quiet">
                     {c.name}

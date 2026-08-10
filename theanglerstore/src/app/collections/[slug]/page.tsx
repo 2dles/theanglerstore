@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { CATEGORIES, byCategory, categoryBySlug } from "@/lib/products";
+import { CATEGORIES, activeCategories, byCategory, categoryBySlug } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 type Params = { slug: string };
@@ -96,14 +96,28 @@ export default async function CollectionPage({
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{cat.name}</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">{cat.blurb}</p>
 
-        <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((p, i) => (
-            <ProductCard key={p.key} product={p} priority={i < 3} />
-          ))}
-        </div>
+        {items.length > 0 ? (
+          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {items.map((p, i) => (
+              <ProductCard key={p.key} product={p} priority={i < 3} />
+            ))}
+          </div>
+        ) : (
+          <div className="card mt-9 p-8">
+            <h2 className="text-lg font-semibold">Nothing here yet</h2>
+            <p className="mt-2 max-w-xl leading-relaxed text-ink-dim">
+              We&rsquo;d rather show you an empty shelf than list something we
+              can&rsquo;t actually ship you. This category opens as soon as we
+              have a supplier we trust for it.
+            </p>
+            <Link href="/products" className="btn btn-primary mt-5">
+              See what we do have
+            </Link>
+          </div>
+        )}
 
         <div className="mt-12 flex flex-wrap gap-2">
-          {CATEGORIES.filter((c) => c.slug !== cat.slug).map((c) => (
+          {activeCategories().filter((c) => c.slug !== cat.slug).map((c) => (
             <Link
               key={c.slug}
               href={`/collections/${c.slug}`}

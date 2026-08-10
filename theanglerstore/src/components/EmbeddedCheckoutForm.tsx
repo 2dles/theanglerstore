@@ -71,13 +71,18 @@ function CheckoutFrame({ initialLines }: { initialLines: CartLine[] }) {
     <div className="mt-8">
       {/* Stripe renders its own light-on-white form here. Keeping it on a plain
           white surface is deliberate — a recoloured payment form reads as less
-          trustworthy, and trust is the only thing that matters at this step. */}
-      <div className="overflow-hidden rounded-[1.25rem] bg-white p-1">
+          trustworthy, and trust is the only thing that matters at this step.
+          What we can do is make the slab feel like part of the page rather
+          than pasted onto it: same corner radius and border treatment as our
+          cards, a ring instead of a hard edge, and no wasted padding.
+          Everything inside the frame is Stripe's; set the accent colour and
+          logo under Settings → Business → Branding in the dashboard. */}
+      <div className="overflow-hidden rounded-[1.25rem] bg-white px-1 py-2 shadow-[0_1px_0_rgba(148,197,255,.12),0_18px_50px_-12px_rgba(0,0,0,.6)] ring-1 ring-[rgba(148,197,255,.14)]">
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options={{ fetchClientSecret }}
         >
-          <EmbeddedCheckout className="min-h-[600px]" />
+          <EmbeddedCheckout className="min-h-[620px]" />
         </EmbeddedCheckoutProvider>
       </div>
 

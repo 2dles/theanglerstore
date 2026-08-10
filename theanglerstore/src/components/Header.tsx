@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CATEGORIES } from "@/lib/products";
+import { activeCategories } from "@/lib/products";
 import { useCart } from "./CartProvider";
 
 function Logo() {
@@ -39,7 +39,7 @@ export function Header() {
         <Logo />
 
         <nav className="hidden items-center gap-5 text-sm md:flex">
-          {CATEGORIES.map((c) => (
+          {activeCategories().map((c) => (
             <Link key={c.slug} href={`/collections/${c.slug}`} className="link-quiet">
               {c.name}
             </Link>
@@ -89,7 +89,7 @@ export function Header() {
       {open && (
         <nav className="hairline mx-auto max-w-6xl px-4 py-3 md:hidden">
           <ul className="grid gap-1">
-            {CATEGORIES.map((c) => (
+            {activeCategories().map((c) => (
               <li key={c.slug}>
                 <Link
                   href={`/collections/${c.slug}`}

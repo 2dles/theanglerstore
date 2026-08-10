@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { activeCategories, listed } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 export const metadata = {
   title: "All Gear — Surf & Inshore Fishing Tackle",
   description:
-    "Every product we carry: surf and inshore combos, braid and leader, rigs, lures, nets, spikes, pliers, bags, and light.",
+    "Every product we carry: braid and fluorocarbon leader, jigs, landing nets, pliers, tackle packs and coolers. Real gear from US distributors, shipped in 3-7 business days.",
   alternates: { canonical: "/products" },
 };
 
@@ -17,8 +17,8 @@ export default function AllProductsPage() {
     url: "https://theanglerstore.com/products",
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: PRODUCTS.length,
-      itemListElement: PRODUCTS.map((p, i) => ({
+      numberOfItems: listed().length,
+      itemListElement: listed().map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.name,
@@ -36,13 +36,13 @@ export default function AllProductsPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">All gear</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
-          {PRODUCTS.length} products. Everything here is something we&rsquo;d
+          {listed().length} products. Everything here is something we&rsquo;d
           actually carry down the beach &mdash; and where we think a product is a
           bad buy, we say so on its page instead of quietly not selling it.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {CATEGORIES.map((c) => (
+          {activeCategories().map((c) => (
             <Link
               key={c.slug}
               href={`/collections/${c.slug}`}
@@ -53,8 +53,8 @@ export default function AllProductsPage() {
           ))}
         </div>
 
-        {CATEGORIES.map((c) => {
-          const items = PRODUCTS.filter((p) => p.category === c.name);
+        {activeCategories().map((c) => {
+          const items = listed().filter((p) => p.category === c.name);
           if (items.length === 0) return null;
           return (
             <section key={c.slug} className="mt-14">

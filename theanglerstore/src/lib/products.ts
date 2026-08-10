@@ -99,7 +99,7 @@ export const CATEGORIES: { slug: string; name: Category; blurb: string }[] = [
     slug: "rods-combos",
     name: "Rods & Combos",
     blurb:
-      "Two setups, chosen rather than assembled: a 10-foot heavy for the open beach and a 7-foot medium for bays and jetties. Both ship free and both are real PENN tackle, not house-brand filler.",
+      "Rods and combos are coming. We're not listing any until we have a supplier who can ship a 7-foot blank to the West Coast at a price that isn't absurd — see the shipping page for why that's harder than it sounds.",
   },
   {
     slug: "line-leader",
@@ -111,25 +111,25 @@ export const CATEGORIES: { slug: string; name: Category; blurb: string }[] = [
     slug: "terminal-tackle",
     name: "Terminal Tackle",
     blurb:
-      "Hooks and rigs — the small metal that decides whether a bite becomes a fish. Everything here is plated or coated, because untreated hardware rusts out in one salt session.",
+      "Hooks and rigs — the small metal that decides whether a bite becomes a fish. Nothing listed yet: our current distributor is a marine house and doesn't stock fishing hooks. Being sorted.",
   },
   {
     slug: "lures",
     name: "Lures",
     blurb:
-      "Soft plastics and bucktails in the sizes and colors that work on this coast — halibut, surfperch, calico, and spotted bay bass.",
+      "Metal that gets down and stays down. Jigs built to rotate and flash on the fall, which is when most fish decide.",
   },
   {
     slug: "accessories",
     name: "Accessories",
     blurb:
-      "The gear that makes a dawn session pleasant instead of miserable: nets, spikes, pliers, a bag that survives wet sand, and light that doesn't wreck your night vision.",
+      "The gear that makes a dawn session pleasant instead of miserable: a net that folds away, pliers that survive salt, and a pack you can walk a beach in.",
   },
   {
     slug: "coolers",
     name: "Coolers",
     blurb:
-      "Cold storage that actually ships well. We looked hard at big rotomolded hard coolers and decided against them — the explanation is on the product page.",
+      "Cold storage that actually ships well. We looked hard at big rotomolded hard coolers and decided against them: they cost more to freight than they do to make.",
   },
 ];
 
@@ -586,24 +586,74 @@ export function getProduct(key: string): Product | undefined {
   return BY_KEY.get(key);
 }
 
+/**
+ * Keys with no supplier behind them yet.
+ *
+ * These are the seven placeholders CWR cannot fill — see the sourcing note at
+ * the top of this file. Their pages still resolve, because USTideCharts links
+ * to every one of them and breaking those links loses attribution we can't
+ * get back. But they are:
+ *
+ *   · hidden from every browsing surface (home, /products, collections,
+ *     "pairs with", sitemap)
+ *   · not purchasable — AddToCart is replaced, the Offer says OutOfStock,
+ *     and /api/checkout rejects them server-side
+ *
+ * Delete a key from this set the moment a real supplier product replaces it.
+ * Nothing else needs changing.
+ */
+export const UNSOURCED: ReadonlySet<string> = new Set([
+  "surf-rod",
+  "inshore-combo",
+  "circle-hooks",
+  "carolina-kit",
+  "swimbait-kit",
+  "sand-spike",
+  "headlamp",
+]);
+
+/** Can a customer actually buy this today? */
+export function isSourced(p: Product | string): boolean {
+  return !UNSOURCED.has(typeof p === "string" ? p : p.key);
+}
+
+/** Everything we're willing to show a browsing customer. */
+export function listed(): Product[] {
+  return PRODUCTS.filter(isSourced);
+}
+
 export function allKeys(): string[] {
   return PRODUCTS.map((p) => p.key);
 }
 
 export function byCategory(name: Category): Product[] {
-  return PRODUCTS.filter((p) => p.category === name);
+  return listed().filter((p) => p.category === name);
 }
 
 export function categoryBySlug(slug: string) {
   return CATEGORIES.find((c) => c.slug === slug);
 }
 
+/**
+ * Categories that currently contain something a customer can buy.
+ *
+ * Empty categories keep their pages — the slugs are linked from elsewhere and
+ * they explain themselves honestly — but they drop out of the nav, the
+ * footer, and the /products index, because a menu item leading to nothing is
+ * a small betrayal.
+ */
+export function activeCategories() {
+  return CATEGORIES.filter((c) => byCategory(c.name).length > 0);
+}
+
 export function featured(): Product[] {
-  return PRODUCTS.filter((p) => p.featured);
+  return listed().filter((p) => p.featured);
 }
 
 export function related(p: Product): Product[] {
-  return p.pairsWith.map(getProduct).filter((x): x is Product => Boolean(x));
+  return p.pairsWith
+    .map(getProduct)
+    .filter((x): x is Product => Boolean(x) && isSourced(x!));
 }
 
 export function formatPrice(amount: number): string {
