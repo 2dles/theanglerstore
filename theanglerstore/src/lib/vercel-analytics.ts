@@ -101,7 +101,7 @@ export async function aggregate(
   const { days = 30, limit = 20 } = opts;
 
   const data = await call<{
-    data?: { key?: string; pageviews?: number; visitors?: number }[];
+    data?: Record<string, unknown>[];
   }>("visits/aggregate", {
     by,
     limit,
@@ -111,13 +111,52 @@ export async function aggregate(
   });
 
   if (!data?.data) return [];
+
+  // One-time shape probe. Vercel has renamed response fields before and the
+  // dimension label is the thing we can't hardcode safely; if labelOf() ever
+  // starts guessing wrong again this line is what tells us the real key names.
+  if (data.data.length && process.env.NODE_ENV !== "test") {
+    console.log(
+      `[analytics] by=${by} row keys: ${Object.keys(data.data[0]).join(",")}`,
+    );
+  }
+
   return data.data
     .map((d) => ({
-      key: d.key || "(direct)",
-      pageviews: d.pageviews ?? 0,
-      visitors: d.visitors ?? 0,
+      key: labelOf(d, by),
+      pageviews: num(d.pageviews),
+      visitors: num(d.visitors),
     }))
     .sort((a, b) => b.pageviews - a.pageviews);
+}
+
+function num(v: unknown): number {
+  return typeof v === "number" ? v : Number(v) || 0;
+}
+
+/**
+ * Resolve the dimension label out of an aggregate row.
+ *
+ * The counts in these rows have always been right; the label field is what
+ * moves. Rather than hardcode one property name and silently render
+ * "(direct)" for everything when it changes, try the dimension name itself
+ * first, then the usual generic names, then any remaining string value.
+ *
+ * An genuinely empty referrer means direct traffic, which is real data — but
+ * an empty *path* means we failed to read it, and those should look different
+ * in the UI so a bug never again masquerades as a finding.
+ */
+function labelOf(row: Record<string, unknown>, by: string): string {
+  const candidates = [by, "key", "value", "name", "label", "path", by.toLowerCase()];
+  for (const k of candidates) {
+    const v = row[k];
+    if (typeof v === "string" && v.trim()) return v;
+  }
+  for (const [k, v] of Object.entries(row)) {
+    if (k === "pageviews" || k === "visitors" || k === "devices") continue;
+    if (typeof v === "string" && v.trim()) return v;
+  }
+  return by === "referrerHostname" ? "(direct)" : "(unknown)";
 }
 
 /** Site-wide totals for a window. */

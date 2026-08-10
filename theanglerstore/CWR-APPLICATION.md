@@ -2,7 +2,8 @@
 
 Everything you need to submit, in the order you'll be asked for it.
 
-**Seller's permit:** `149-149904` — issued 09 Aug 2026, annual filing (period ends 31 Dec 2026)
+**Seller's permit:** `215727328-00001` — issued 09 Aug 2026, annual filing (period ends 30 Jun 2027)
+**CDTFA ID number:** `149-149904` — taxpayer ID, NOT the permit number. Do not put this on a resale certificate.
 **CDTFA confirmation:** `0-059-117-470`
 
 ---
@@ -27,7 +28,7 @@ Fill it exactly like this:
 
 | Field | What to put |
 |---|---|
-| Seller's permit number | `149-149904` |
+| Seller's permit number | `215727328-00001` |
 | I certify that I hold a valid seller's permit... | tick it |
 | Purchaser's name | `AUGUSTUS J. MUSE, DBA THEANGLERSTORE` |
 | Business address | `8892 Cider Springs Rd, Sebastopol, CA 95472` |
@@ -59,8 +60,8 @@ Answers that are ready to paste:
 | Address | 8892 Cider Springs Rd, Sebastopol, CA 95472 |
 | Phone | 707-508-7118 |
 | Email | ajbmuse@gmail.com |
-| Resale / seller's permit number | `149-149904` |
-| Federal Tax ID / EIN | *(see note below)* |
+| Resale / seller's permit number | `215727328-00001` |
+| Federal Tax ID / EIN | see FBN-FILING.md in the Tides folder — deliberately not stored in this repo |
 | Sales venue | `Own e-commerce website — theanglerstore.com` |
 | Website | `https://theanglerstore.com` |
 | Years in business | Be accurate — new. Don't inflate it. |
