@@ -9,6 +9,11 @@ import {
   related,
 } from "@/lib/products";
 import { withParams } from "@/lib/attribution";
+import {
+  productImages,
+  returnPolicy,
+  shippingDetails,
+} from "@/lib/product-schema";
 import { ProductArt } from "@/components/ProductArt";
 import { ProductCard } from "@/components/ProductCard";
 import { AddToCart } from "@/components/AddToCart";
@@ -81,6 +86,9 @@ export default async function ProductPage({
   const alsoBuy = related(product);
   const walkthrough = getWalkthrough(product.key);
 
+  // NOTE: no aggregateRating / review here, deliberately. Search Console asks
+  // for them, but we have never taken an order — inventing ratings would be
+  // fabricated review content. They go in when real customers write them.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -88,14 +96,19 @@ export default async function ProductPage({
     description: product.blurb,
     category: product.category,
     sku: product.key,
+    image: productImages(product),
     brand: { "@type": "Brand", name: "TheAnglerStore" },
     offers: {
       "@type": "Offer",
       url: `https://theanglerstore.com/products/${product.key}`,
       priceCurrency: "USD",
       price: product.price.toFixed(2),
+      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+      itemCondition: "https://schema.org/NewCondition",
       availability: "https://schema.org/InStock",
       seller: { "@id": "https://theanglerstore.com/#org" },
+      shippingDetails: shippingDetails(product),
+      hasMerchantReturnPolicy: returnPolicy(),
     },
   };
 

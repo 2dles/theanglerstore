@@ -12,6 +12,7 @@ npm run dev        # http://localhost:3000
 Setting it up properly? → **[RUNBOOK.md](./RUNBOOK.md)** (click by click)
 Deploying? → **[DEPLOY.md](./DEPLOY.md)**
 Placing a supplier order? → **[SOURCING.md](./SOURCING.md)**
+**Need real products to sell? → [GETTING-REAL-PRODUCTS.md](./GETTING-REAL-PRODUCTS.md)**
 Product photos? → **[IMAGES.md](./IMAGES.md)**
 Admin panel? → **[ADMIN.md](./ADMIN.md)**
 
@@ -113,6 +114,18 @@ export const FLAT_SHIPPING = 5.95;
 ```
 
 These are not arbitrary. Manual dropship carries roughly $4.29 of fixed drag per order (cheapest verified inbound freight + Stripe's 30¢). On a $12.99 item that is a third of revenue. $5.95 below $49 covers it; above $49 the basket absorbs it. Changing these numbers without reading the math in SOURCING.md will quietly sell several SKUs at a loss.
+
+---
+
+## Structured data
+
+`src/lib/product-schema.ts` builds the Product JSON-LD offer fields from the same constants the cart and checkout use, so the schema can't drift from what we actually charge:
+
+- **`image`** — the per-product OG card (`/products/<key>/opengraph-image`), a real 1200×630 PNG generated at build. When `product.image` is set to licensed photography, that becomes primary and the OG card stays as a fallback.
+- **`shippingDetails`** — per-product rate (free at or above the threshold, flat below), US destination, handling 0–1 days plus transit parsed from `shipsIn`.
+- **`hasMerchantReturnPolicy`** — 30 days, by mail, customer covers return postage. Mirrors `/returns`.
+
+**We deliberately omit `aggregateRating` and `review`.** Search Console asks for them; adding them before real customers have written any would be fabricated review content — against Google's policy and dishonest in the SERP. Add them when there are genuine reviews to show.
 
 ---
 

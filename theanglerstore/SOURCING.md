@@ -4,6 +4,8 @@
 
 This is the operational document. When an order email arrives, open this file, place each line with its supplier, ship to the customer's address.
 
+> ⚠️ **Read `GETTING-REAL-PRODUCTS.md` first.** This document is a researched *shopping list* priced at consumer retail. It is not a supply chain — there is no supplier account behind it, and the margins below assume retail purchase. Two distributors referenced in the industry notes (Big Rock Sports, Maurice) went bankrupt in early 2026. Once a wholesale account is approved, this whole table gets rebuilt from the real price file.
+
 **Prices move.** Re-verify anything before a big push, and re-check the flagged rows monthly.
 
 **Sales tax is not handled and is flagged, not solved** — see RUNBOOK.md § Sales tax. `automatic_tax` is off; get advice from a CPA before volume builds.
