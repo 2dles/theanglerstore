@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Prose, Section } from "@/components/Prose";
 import { PRODUCTS } from "@/lib/products";
 import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
+import { ZONES, shipsInternationally } from "@/lib/shipping-zones";
 
 export const metadata = {
   title: "Shipping",
@@ -18,11 +19,14 @@ export default function ShippingPage() {
     return max > 7;
   });
 
+  const pending = ZONES.filter((z) => !z.enabled);
+  const international = shipsInternationally();
+
   return (
     <Prose
       title="Shipping"
       updated="August 2026"
-      intro="Most orders arrive in 2–7 business days. Free over $49, $5.95 below that. Everything ships from a US warehouse — nothing on this site comes from overseas."
+      intro="Most US orders arrive in 2–7 business days. Free over $49, $5.95 below that. Everything ships from a US warehouse — nothing on this site comes from overseas."
     >
       <Section heading="Rates">
         <ul className="space-y-2 text-ink-dim">
@@ -54,10 +58,17 @@ export default function ShippingPage() {
         </p>
         <p>
           Every product page shows that item&rsquo;s own estimate, because they
-          genuinely differ — a spool of braid leaves a Wisconsin warehouse the
-          next morning, while a rod travels further and takes longer. We&rsquo;d
+          genuinely differ — a spool of braid leaves the warehouse the next
+          morning, while a rod travels further and takes longer. We&rsquo;d
           rather show you the real number per item than quote one average that is
           wrong for half the catalog.
+        </p>
+        <p>
+          One thing worth being straight about: our distributors are on the East
+          Coast. If you&rsquo;re fishing the Atlantic or the Gulf you&rsquo;ll
+          usually see the fast end of that range. On the West Coast you should
+          expect the slow end. We&rsquo;d rather tell you that up front than let
+          you discover it from a tracking page.
         </p>
 
         {slower.length > 0 && (
@@ -105,11 +116,94 @@ export default function ShippingPage() {
 
       <Section heading="Where we ship">
         <p>
-          United States only for now. Orders to Alaska and Hawaii are accepted
-          but transit runs longer than the 2–7 day standard, and some bulkier
-          items can&rsquo;t be sent there at all — we&rsquo;ll contact you before
-          charging if that applies. We don&rsquo;t ship internationally yet.
+          <strong className="text-ink">
+            United States today, including Alaska and Hawaii.
+          </strong>{" "}
+          Orders to Alaska and Hawaii are accepted but transit runs longer than
+          the 2–7 day standard, and a few of the bulkier items can&rsquo;t be
+          sent there at all — we&rsquo;ll contact you before charging if that
+          applies to something in your cart.
         </p>
+
+        {!international && (
+          <>
+            <p>
+              <strong className="text-ink">
+                We don&rsquo;t ship internationally yet, and we&rsquo;d rather
+                say why than just say no.
+              </strong>{" "}
+              Tackle is the problem, not the ambition. Rods, nets and coolers are
+              light but enormous, and international carriers charge by the space
+              a parcel occupies rather than its weight — a 7-foot surf rod can
+              cost more to send abroad than the rod itself. Our distributors are
+              domestic, so there is no honest way to quote you a rate we could
+              actually honour.
+            </p>
+            <p>
+              Apparel is a different story, and that&rsquo;s where international
+              opens first. It&rsquo;s printed regionally rather than shipped from
+              the US, so an order in Berlin is a local delivery instead of a
+              transatlantic one. These are the regions queued up:
+            </p>
+            <ul className="space-y-2 text-ink-dim">
+              {pending.map((z) => (
+                <li key={z.id}>
+                  ▸ <strong className="text-ink">{z.label}</strong> —{" "}
+                  {z.blockedReason}
+                </li>
+              ))}
+            </ul>
+            <p>
+              If you&rsquo;re outside the US and want something from the
+              catalog,{" "}
+              <Link href="/contact" className="text-tide hover:text-teal">
+                email us
+              </Link>{" "}
+              — for a small item we can sometimes quote it manually, and it tells
+              us where to open next.
+            </p>
+          </>
+        )}
+
+        {international && (
+          <>
+            <p>
+              We ship to these regions. Rates and windows are per region and
+              shown at checkout before you pay:
+            </p>
+            <ul className="space-y-2 text-ink-dim">
+              {ZONES.filter((z) => z.enabled).map((z) => (
+                <li key={z.id}>
+                  ▸ <strong className="text-ink">{z.label}</strong> —{" "}
+                  {z.freeOver !== null
+                    ? `free over $${z.freeOver}, otherwise $${z.flat.toFixed(2)}`
+                    : `$${z.flat.toFixed(2)}`}
+                  , {z.transit.min}–{z.transit.max} business days
+                </li>
+              ))}
+            </ul>
+            <p>
+              <strong className="text-ink">
+                Outside the US, tackle stays home.
+              </strong>{" "}
+              Apparel ships to every region listed above; rods, nets, coolers and
+              hard tackle are US-only because our distributors are. If your cart
+              mixes the two, checkout will tell you which item is the problem
+              rather than failing silently.
+            </p>
+            <p>
+              <strong className="text-ink">
+                Customs, duty and import VAT are not included
+              </strong>{" "}
+              and are the recipient&rsquo;s responsibility. Your country may
+              charge them before releasing the parcel. We declare the true value
+              of every shipment — we won&rsquo;t mark an order as a gift or
+              under-declare it, and we&rsquo;d encourage you to check your own
+              import thresholds before ordering so the bill isn&rsquo;t a
+              surprise.
+            </p>
+          </>
+        )}
       </Section>
 
       <Section heading="Address accuracy">

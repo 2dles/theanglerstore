@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
+import type Stripe from "stripe";
 import { getProduct } from "@/lib/products";
+import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import {
-  getStripe,
-  isStripeConfigured,
-  FREE_SHIPPING_OVER,
-  FLAT_SHIPPING,
-} from "@/lib/stripe";
+  rateFor,
+  shippableToZone,
+  zoneForCountry,
+} from "@/lib/shipping-zones";
 import type { Attribution } from "@/lib/attribution";
 
 export const runtime = "nodejs";
@@ -21,6 +22,8 @@ export const STORE_ID = "theanglerstore";
 interface Body {
   lines?: { key: string; qty: number }[];
   attribution?: Attribution;
+  /** ISO-3166-1 alpha-2 destination. Defaults to US. */
+  country?: string;
 }
 
 function siteUrl(req: Request): string {
@@ -58,6 +61,22 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
   }
 
+  // ── Destination. The zone decides the rate, the transit estimate, and which
+  //    countries Stripe will accept an address for. Resolved here rather than
+  //    inside the Stripe frame because embedded Checkout fixes shipping options
+  //    at session creation — we have to know the zone before we build it.
+  const requested = String(body.country ?? "US");
+  const zone = zoneForCountry(requested);
+  if (!zone) {
+    return NextResponse.json(
+      {
+        error:
+          "We can't ship to that country yet. Right now we deliver within the United States only.",
+      },
+      { status: 400 },
+    );
+  }
+
   // ── Price server-side from our own catalog. A price from the client is
   //    never trusted; the client only ever sends keys and quantities.
   const items: {
@@ -82,6 +101,15 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
+    if (!shippableToZone(product, zone)) {
+      return NextResponse.json(
+        {
+          error: `${product.name} can only be shipped within the United States. Our tackle suppliers are US distributors; apparel travels, tackle doesn't.`,
+        },
+        { status: 400 },
+      );
+    }
+
     const qty = Math.min(Math.max(Math.floor(Number(line.qty) || 0), 1), 99);
     subtotal += product.price * qty;
 
@@ -99,7 +127,7 @@ export async function POST(req: Request) {
     });
   }
 
-  const shipping = subtotal >= FREE_SHIPPING_OVER ? 0 : FLAT_SHIPPING;
+  const shipping = rateFor(zone, subtotal);
   const attribution = body.attribution ?? {};
   const base = siteUrl(req);
 
@@ -119,6 +147,7 @@ export async function POST(req: Request) {
         landing_path: attribution.landing_path ?? "",
         referrer: (attribution.referrer ?? "").slice(0, 400),
         product_keys: lines.map((l) => l.key).join(","),
+        ship_zone: zone.id,
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       // What the customer sees on their card statement. Without this they see
@@ -129,7 +158,12 @@ export async function POST(req: Request) {
         description: `TheAnglerStore order — ${lines.length} item${lines.length === 1 ? "" : "s"}`,
       },
       automatic_tax: { enabled: false },
-      shipping_address_collection: { allowed_countries: ["US"] },
+      // Only the resolved zone's countries are accepted, so a buyer can correct
+      // a typo in their address without escaping the rate they were quoted.
+      shipping_address_collection: {
+        allowed_countries:
+          zone.countries as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection["allowed_countries"],
+      },
       shipping_options: [
         {
           shipping_rate_data: {
@@ -141,8 +175,8 @@ export async function POST(req: Request) {
               currency: "usd",
             },
             delivery_estimate: {
-              minimum: { unit: "business_day", value: 3 },
-              maximum: { unit: "business_day", value: 9 },
+              minimum: { unit: "business_day", value: zone.transit.min },
+              maximum: { unit: "business_day", value: zone.transit.max },
             },
           },
         },

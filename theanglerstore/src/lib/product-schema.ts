@@ -1,5 +1,9 @@
 import type { Product } from "@/lib/products";
-import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
+import {
+  enabledZones,
+  rateFor,
+  shippableToZone,
+} from "@/lib/shipping-zones";
 
 /**
  * Structured-data helpers for Product JSON-LD.
@@ -54,43 +58,60 @@ function transitDays(shipsIn: string): { min: number; max: number } {
 }
 
 /**
- * OfferShippingDetails.
+ * OfferShippingDetails — one entry per live zone this product can reach.
  *
- * Rate is per-product and truthful: anything at or above the free-shipping
- * threshold ships free on its own, anything below carries the flat rate if
- * bought alone. That is exactly what the cart charges.
+ * Driven by src/lib/shipping-zones.ts, the same table the checkout prices
+ * from, so the schema cannot advertise a destination we would refuse at
+ * checkout. Today that resolves to the US only; the day an apparel SKU and a
+ * live international zone exist, apparel products emit both automatically and
+ * tackle keeps emitting one.
+ *
+ * Returns a single object rather than a one-element array when there's only
+ * one zone — Google accepts either, and the flat form is easier to read in
+ * the Rich Results test.
  */
 export function shippingDetails(product: Product) {
-  const rate = product.price >= FREE_SHIPPING_OVER ? 0 : FLAT_SHIPPING;
   const transit = transitDays(product.shipsIn);
 
-  return {
-    "@type": "OfferShippingDetails",
-    shippingRate: {
-      "@type": "MonetaryAmount",
-      value: rate,
-      currency: "USD",
-    },
-    shippingDestination: {
-      "@type": "DefinedRegion",
-      addressCountry: "US",
-    },
-    deliveryTime: {
-      "@type": "ShippingDeliveryTime",
-      handlingTime: {
-        "@type": "QuantitativeValue",
-        minValue: 0,
-        maxValue: 1,
-        unitCode: "DAY",
-      },
-      transitTime: {
-        "@type": "QuantitativeValue",
-        minValue: transit.min,
-        maxValue: transit.max,
-        unitCode: "DAY",
-      },
-    },
-  };
+  const entries = enabledZones()
+    .filter((zone) => shippableToZone(product, zone))
+    .map((zone) => {
+      const rate = rateFor(zone, product.price);
+      // The US zone's transit is per-product (parsed from shipsIn); other
+      // zones are supplier-regional, so the zone's own window is the honest one.
+      const window =
+        zone.id === "us" ? transit : { min: zone.transit.min, max: zone.transit.max };
+
+      return {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: rate,
+          currency: "USD",
+        },
+        shippingDestination: zone.countries.map((cc) => ({
+          "@type": "DefinedRegion",
+          addressCountry: cc,
+        })),
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: window.min,
+            maxValue: window.max,
+            unitCode: "DAY",
+          },
+        },
+      };
+    });
+
+  return entries.length === 1 ? entries[0] : entries;
 }
 
 /**
