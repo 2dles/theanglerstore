@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CATEGORIES, listed, featured, getProduct } from "@/lib/products";
+import { activeCategories, isSourced, listed, featured, getProduct } from "@/lib/products";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
@@ -11,13 +11,27 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-const STARTER_KEYS = ["surf-rod", "braided-line", "carolina-kit", "sand-spike"];
+/**
+ * The starter bundle.
+ *
+ * Filtered through isSourced() on purpose. This block used to name a PENN
+ * combo, Carolina rigs and sand spikes — none of which we can actually
+ * supply — and it kept advertising them for hours after the rest of the
+ * catalog had been cleaned up, because the keys were hardcoded here and
+ * nowhere else. Anything unsourced now drops out silently, and if fewer than
+ * two survive the whole section disappears rather than showing a "bundle" of
+ * one item.
+ */
+const STARTER_KEYS = ["braided-line", "fluoro-leader", "pliers", "landing-net"];
 
 export default function HomePage() {
   const picks = featured();
-  const starter = STARTER_KEYS.map(getProduct).filter(Boolean);
-  const starterTotal = starter.reduce((s, p) => s + (p?.price ?? 0), 0);
+  const starter = STARTER_KEYS.map(getProduct).filter(
+    (p): p is NonNullable<typeof p> => Boolean(p) && isSourced(p!),
+  );
+  const starterTotal = starter.reduce((s, p) => s + p.price, 0);
   const bundlePrice = Math.round(starterTotal * 0.88 * 100) / 100;
+  const showBundle = starter.length >= 2;
 
   return (
     <>
@@ -89,7 +103,7 @@ export default function HomePage() {
       {/* ---------------- Categories ---------------- */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <div className="flex flex-wrap gap-2">
-          {CATEGORIES.map((c) => (
+          {activeCategories().map((c) => (
             <Link
               key={c.slug}
               href={`/collections/${c.slug}`}
@@ -125,6 +139,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------------- Starter bundle ---------------- */}
+      {showBundle && (
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
         <div className="card overflow-hidden">
           <div className="grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
@@ -134,22 +149,20 @@ export default function HomePage() {
                 The Surf Starter
               </h2>
               <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
-                A 10-foot PENN combo, 300 yards of 30 lb braid, three hand-tied
-                Carolina rigs, and two sand spikes. That is a complete, genuinely
-                capable beach setup &mdash; rod in the sand, bait in the water,
-                nothing else to buy.
+                Braid, leader, pliers and a net. Bring your own rod and this is
+                everything else a session actually needs &mdash; the line that
+                connects you to the fish, the tool that gets the hook out, and
+                something to land it in.
               </p>
               <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2">
-                {starter.map((p) =>
-                  p ? (
-                    <li key={p.key} className="flex items-baseline gap-2 text-ink-dim">
-                      <span className="text-teal">▸</span>
-                      <Link href={`/products/${p.key}`} className="hover:text-tide">
-                        {p.name}
-                      </Link>
-                    </li>
-                  ) : null,
-                )}
+                {starter.map((p) => (
+                  <li key={p.key} className="flex items-baseline gap-2 text-ink-dim">
+                    <span className="text-teal">▸</span>
+                    <Link href={`/products/${p.key}`} className="hover:text-tide">
+                      {p.name}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -166,6 +179,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ---------------- Cross-promo ---------------- */}
       <section className="mx-auto max-w-6xl px-4 pb-8 sm:px-6">
