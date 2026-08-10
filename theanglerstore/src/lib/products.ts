@@ -224,7 +224,7 @@ export const PRODUCTS: Product[] = [
     key: "braided-line",
     name: "Sufix 832 Advanced Superline Braid — 20 lb, 300 yd",
     category: "Line & Leader",
-    price: 40.99,
+    price: 34.99,
     tagline: "8 fibers, 32 weaves per inch, Coastal Camo",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber, braided at 32 picks per inch. The GORE fiber is what makes this line quiet through the guides and stubborn against sand and shell — the two things that end a surf session early. Coastal Camo is the colour to run when the water is clear and the fish have seen everything.",
@@ -256,7 +256,7 @@ export const PRODUCTS: Product[] = [
     key: "fluoro-leader",
     name: "Sufix Wind-On Fluorocarbon Leader — 50 lb, 11 yd",
     category: "Line & Leader",
-    price: 22.49,
+    price: 15.49,
     tagline: "Knotless loop-to-loop, winds through the guides",
     blurb:
       "A braided loop on one end means you connect to your main line without a knot or a swivel, and the leader winds straight through the guides onto the reel. That last part is the reason to buy it: you can fight a fish right to the rod tip without a hard connection banging through every guide on the way.",
@@ -377,7 +377,7 @@ export const PRODUCTS: Product[] = [
     key: "jig-assort",
     name: "Williamson Vortex Speed 300 Jig — 10.5 oz",
     category: "Lures",
-    price: 31.99,
+    price: 24.99,
     tagline: "Rotates on the fall, pre-rigged with a VMC assist hook",
     blurb:
       "One side convex, the other concave, so the jig spins as it drops rather than falling dead. Each face is finished differently, which turns that rotation into a strobing flash on the way down — and the drop is when most fish commit. Comes pre-rigged with a ball-bearing swivel and a VMC assist hook, so it's ready to tie on.",
@@ -409,7 +409,7 @@ export const PRODUCTS: Product[] = [
     key: "landing-net",
     name: "Attwood Fold-N-Stow Fishing Net — Medium",
     category: "Accessories",
-    price: 19.99,
+    price: 19.24,
     tagline: "Folds flat, locks open with a flip",
     blurb:
       "A flip of the handle opens it and locks it; pull the trigger and it collapses back down to something you can stow under a seat or strap to a pack. Knotless netting, which is gentler on a fish you intend to release and far less likely to tangle a treble hook than the old knotted mesh.",
@@ -501,7 +501,7 @@ export const PRODUCTS: Product[] = [
     key: "tackle-bag",
     name: "Rapala Venture 13 Backpack",
     category: "Accessories",
-    price: 76.99,
+    price: 70.49,
     tagline: "13 L, holds three 3700 boxes, hands-free",
     blurb:
       "Built for people who fish on foot. Thirteen litres of main compartment that swallows three 3700-size tackle boxes, three zippered pockets, tool attachment points, and a water-resistant base for when you set it down on wet sand. Padded shoulder straps with a chest belt, and a ventilated back panel that matters on a long walk to the mark.",
@@ -594,7 +594,7 @@ export const PRODUCTS: Product[] = [
     key: "braid-hivis",
     name: "Sufix 832 Braid — 20 lb, Hi-Vis Yellow, 300 yd",
     category: "Line & Leader",
-    price: 40.99,
+    price: 38.99,
     tagline: "The same braid, in a colour you can see",
     blurb:
       "Identical line to the Coastal Camo — eight fibres, 32 picks, one GORE strand — but yellow enough to watch. Worth it at night, mending line in current, or teaching someone else to feel a bite: you see the tick before they feel it. Run a fluorocarbon leader and the fish never see the colour anyway.",
@@ -625,7 +625,7 @@ export const PRODUCTS: Product[] = [
     key: "braid-light",
     name: "Sufix 832 Braid — 8 lb, Ghost, 300 yd",
     category: "Line & Leader",
-    price: 40.99,
+    price: 29.99,
     tagline: "Light line for clear water and small baits",
     blurb:
       "Eight-pound test in Ghost, the near-translucent finish. This is the spool for finesse work — surfperch on small plastics, bay bass on light jigs, anywhere heavier line kills the action of a two-inch bait. The diameter is closer to 2 lb mono, so it casts a long way for very little effort.",
@@ -687,7 +687,7 @@ export const PRODUCTS: Product[] = [
     key: "rapstack-tray",
     name: "Rapala RapStack 3700 Deep Tackle Tray",
     category: "Accessories",
-    price: 25.99,
+    price: 23.49,
     tagline: "Deep 3700 for bulkier baits",
     blurb:
       "A deeper 3700 for the things that do not lie flat — jigs, big soft plastics, spools of leader, a spare reel. Same footprint as a standard 3700, so it drops into the same bag slot without reorganising everything else.",
@@ -718,7 +718,7 @@ export const PRODUCTS: Product[] = [
     key: "tool-holder",
     name: "Rapala Angler’s Magnetic Tool Holder",
     category: "Accessories",
-    price: 36.99,
+    price: 31.99,
     tagline: "Pliers stay put, and stay reachable",
     blurb:
       "A magnet strong enough to hold pliers or a gripper against a gunwale, a tackle bag or a cooler lid, and release them one-handed. The problem it solves is small and constant: tools you put down while unhooking a fish are tools you eventually kick into the water.",
@@ -780,7 +780,7 @@ export const PRODUCTS: Product[] = [
     key: "crab-net",
     name: "Shurhold Shur-LOK Crab Net — 12″ × 13″ × 15″",
     category: "Accessories",
-    price: 31.14,
+    price: 22.98,
     tagline: "Quick-release head for the telescoping handle",
     blurb:
       "A compact net head on the Shur-LOK quick-release fitting, so it swaps onto the telescoping handle in a second. Sized for crab and small fish — the sort of net that lives in the car and gets used far more often than the big one.",
@@ -811,7 +811,7 @@ export const PRODUCTS: Product[] = [
     key: "rod-rack",
     name: "Sea-Dog 3-Rod Storage Rack",
     category: "Accessories",
-    price: 26.95,
+    price: 22.99,
     tagline: "Three rods, off the floor",
     blurb:
       "A simple three-rod rack for a garage wall, a shed, or a boat bulkhead. Rods stored leaning in a corner get stepped on, and guides bent against a wall are the most common damage a rod ever takes. This is the cheapest fix for that.",
@@ -842,7 +842,7 @@ export const PRODUCTS: Product[] = [
     key: "jig-box",
     name: "Plano EDGE Micro Jig Box",
     category: "Lures",
-    price: 44.99,
+    price: 39.99,
     tagline: "Jigs held individually, not in a heap",
     blurb:
       "The EDGE range holds each jig in its own slot rather than letting them tangle into a single mass of hooks. Rustrictor coating inside genuinely slows the corrosion that turns a box of jig heads into scrap after one salt season.",
@@ -873,7 +873,7 @@ export const PRODUCTS: Product[] = [
     key: "flasher",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Rainbow Crush",
     category: "Lures",
-    price: 31.99,
+    price: 22.99,
     tagline: "Attractor for trolled salmon rigs",
     blurb:
       "An eleven-inch rolling flasher for trolling. It does not catch fish itself — it makes the bait behind it findable from much further away. Standard kit for West Coast salmon, and the reason a slow troll works at all in coloured water.",
@@ -904,7 +904,7 @@ export const PRODUCTS: Product[] = [
     key: "jig-mid",
     name: "Williamson Kensaki 220 Jig — 7¾ oz, Blue Lagoon",
     category: "Lures",
-    price: 26.99,
+    price: 20.99,
     tagline: "Lighter Kensaki for shallower water",
     blurb:
       "The same Kensaki profile as the 300, at 7¾ ounces instead of 10½ — the size to reach for in eighty feet rather than two hundred, or when the current is slack and a heavier jig drops too fast to get looked at.",
@@ -935,7 +935,7 @@ export const PRODUCTS: Product[] = [
     key: "flush-mount-0",
     name: "C.E. Smith Screwless Flush Mount Rod Holder — 0°",
     category: "Rod Holders",
-    price: 159.99,
+    price: 44.99,
     tagline: "No visible screws, straight up",
     blurb:
       "A flush mount that installs without exposed fasteners, so there is nothing on the deck to catch a line, a knee or a fish. Zero degrees means the rod sits vertical — the setup for storage and for baits you want hanging straight down rather than trolled.",
@@ -966,7 +966,7 @@ export const PRODUCTS: Product[] = [
     key: "flush-mount-70",
     name: "C.E. Smith 70 Series Screwless Flush Mount — 0°",
     category: "Rod Holders",
-    price: 179.99,
+    price: 124.99,
     tagline: "Deeper 70 Series body, screwless",
     blurb:
       "The 70 Series is the deeper body, which matters more than it sounds: the further down the butt sits, the less leverage a big fish gets on the holder when it runs. Same screwless install as the standard mount.",
@@ -997,7 +997,7 @@ export const PRODUCTS: Product[] = [
     key: "flush-mount-ss",
     name: "C.E. Smith Stainless Steel Flush Mount — 15°",
     category: "Rod Holders",
-    price: 214.99,
+    price: 159.99,
     tagline: "Stainless, angled back 15 degrees",
     blurb:
       "Stainless rather than composite, angled fifteen degrees back. The angle is the trolling angle — it takes the rod tip away from the boat and stops the line running back into the hull. Stainless costs more and lasts longer in salt than anything else here.",
@@ -1028,7 +1028,7 @@ export const PRODUCTS: Product[] = [
     key: "track-holder",
     name: "Sea-Dog Triple Threat Rod Holder — Track Mount",
     category: "Rod Holders",
-    price: 43.45,
+    price: 33.49,
     tagline: "Slides onto a track, moves when you do",
     blurb:
       "A track-mounted holder rather than a drilled one, so it slides along the rail and comes off entirely when you want the space back. The right answer for a kayak or a small boat where nothing has a permanent home.",
@@ -1059,7 +1059,7 @@ export const PRODUCTS: Product[] = [
     key: "three-pole-holder",
     name: "Sea-Dog Triple Threat Three-Pole Rod Holder",
     category: "Rod Holders",
-    price: 31.50,
+    price: 22.99,
     tagline: "Three rods in the footprint of one",
     blurb:
       "Holds three rods where a single holder holds one. Useful when you are fishing more lines than hands — bait rods out while you work a lure, or three rigs staged and ready so a re-tie is a swap rather than a job.",
@@ -1090,7 +1090,7 @@ export const PRODUCTS: Product[] = [
     key: "flush-mount-ss-top",
     name: "Sea-Dog Flush Mount Rod Holder w/Stainless Top",
     category: "Rod Holders",
-    price: 43.50,
+    price: 29.99,
     tagline: "Composite body, stainless rim",
     blurb:
       "A composite holder with a stainless top ring, which is the sensible compromise — the rim is the part that takes every knock from a rod butt going in, and that is the part made of metal. Cheaper than full stainless, far tougher than plain plastic.",
@@ -1121,7 +1121,7 @@ export const PRODUCTS: Product[] = [
     key: "clamp-on-holder",
     name: "C.E. Smith Aluminium Clamp-On Rod Holder — Horizontal",
     category: "Rod Holders",
-    price: 124.99,
+    price: 93.15,
     tagline: "Clamps to a 1.315″ rail, no drilling",
     blurb:
       "Clamps onto a horizontal rail of 1.315 inch outside diameter — the standard pipe size on most boat rails and dock structures. Aluminium, so it will not rust into the rail and become permanent by accident.",
@@ -1152,7 +1152,7 @@ export const PRODUCTS: Product[] = [
     key: "net-handle-5",
     name: "Shurhold 5ft Fixed Length Handle — Fishing Series",
     category: "Accessories",
-    price: 105.98,
+    price: 97.99,
     tagline: "Sixty inches, nothing to slip",
     blurb:
       "Five feet, fixed. A telescoping handle can slip under load; a fixed one cannot. If you always fish the same height above the water, the fixed handle is the stronger and cheaper answer.",
@@ -1183,7 +1183,7 @@ export const PRODUCTS: Product[] = [
     key: "curved-adapter",
     name: "Shurhold Shur-LOK 10″ Curved Adapter",
     category: "Accessories",
-    price: 24.98,
+    price: 23.99,
     tagline: "Puts the net head at a working angle",
     blurb:
       "A ten-inch curved adapter between handle and head. It sounds fussy until you have tried to scoop a fish with a net that is dead in line with a six-foot pole — the curve puts the hoop where the fish is instead of where the handle points.",
@@ -1214,7 +1214,7 @@ export const PRODUCTS: Product[] = [
     key: "tool-holder-3",
     name: "Rapala Magnetic Tool Holder — 3-Place",
     category: "Accessories",
-    price: 36.99,
+    price: 29.99,
     tagline: "Three tools, one strip",
     blurb:
       "The three-place version of the magnetic holder. Pliers, cutters and a gripper in a row, all within reach of one hand, all released without looking. Once you are carrying three tools, one holder each stops making sense.",
@@ -1245,7 +1245,7 @@ export const PRODUCTS: Product[] = [
     key: "cup-holder-box",
     name: "Deep Blue Marine Double Cup Holder / Storage Box",
     category: "Accessories",
-    price: 28.99,
+    price: 28.95,
     tagline: "Two drinks and somewhere for the small stuff",
     blurb:
       "Two cup holders over a small storage box. Unglamorous and genuinely useful: somewhere for a drink that is not the floor, and a lidded space for keys, a phone and the leader spool you keep putting down.",
@@ -1276,7 +1276,7 @@ export const PRODUCTS: Product[] = [
     key: "lead-core",
     name: "Sufix Performance Lead Core — 18 lb, 200 yd",
     category: "Line & Leader",
-    price: 43.99,
+    price: 31.99,
     tagline: "Colour changes every ten yards, so you know your depth",
     blurb:
       "Lead core sinks, and it changes colour every ten yards so you can count exactly how much you have out. That is the whole trick: depth becomes a number you control rather than a guess, and you can repeat the depth that just produced a fish.",
@@ -1307,7 +1307,7 @@ export const PRODUCTS: Product[] = [
     key: "braid-10",
     name: "Sufix 832 Braid — 10 lb, Hi-Vis Yellow, 300 yd",
     category: "Line & Leader",
-    price: 40.99,
+    price: 36.99,
     tagline: "Light line you can still see",
     blurb:
       "Ten-pound test in hi-vis yellow — light enough for finesse work, visible enough to watch. The combination people usually have to choose between, which is why it is worth stocking as its own spool rather than a compromise.",
@@ -1338,7 +1338,7 @@ export const PRODUCTS: Product[] = [
     key: "braid-15",
     name: "Sufix 832 Braid — 15 lb, Fire Tiger, 300 yd",
     category: "Line & Leader",
-    price: 40.99,
+    price: 28.99,
     tagline: "The middle weight, in the loudest colour",
     blurb:
       "Fifteen pound sits between the finesse spool and the surf spool, which makes it the one line that will do most things adequately. Fire Tiger is aggressively visible — useful in low light, and the reason to run a leader.",
@@ -1369,7 +1369,7 @@ export const PRODUCTS: Product[] = [
     key: "fluoro-100",
     name: "Sufix Wind-On Fluorocarbon Leader — 100 lb, 11 yd",
     category: "Line & Leader",
-    price: 38.99,
+    price: 34.99,
     tagline: "Heavy wind-on for big fish",
     blurb:
       "The hundred-pound version of the wind-on leader. Same knotless loop connection, same ability to wind through the guides — but rated for fish that would part the fifty. This is the leader for tuna, big halibut, and anything that goes near structure.",
@@ -1400,7 +1400,7 @@ export const PRODUCTS: Product[] = [
     key: "xrap-magnum",
     name: "Rapala X-Rap Magnum 15 — Hot Pink UV",
     category: "Lures",
-    price: 29.99,
+    price: 21.99,
     tagline: "Dives to 15 feet on the troll",
     blurb:
       "A trolling minnow that runs at fifteen feet without weight or a downrigger — the lip does the work. Hot Pink UV is a colour that reads as bright to fish in water where everything else has gone grey.",
@@ -1431,7 +1431,7 @@ export const PRODUCTS: Product[] = [
     key: "side-mount-rack",
     name: "Rod Saver Side Mount 6-Rod Holder",
     category: "Rod Holders",
-    price: 42.99,
+    price: 37.75,
     tagline: "Six rods along a bulkhead",
     blurb:
       "Six rods held along a vertical surface rather than standing in a corner. Rod Saver make the strapping systems most boat owners already use; this is the same idea for a garage wall or a cabin bulkhead.",
@@ -1462,7 +1462,7 @@ export const PRODUCTS: Product[] = [
     key: "rod-hanger",
     name: "TACO 2-Rod Hanger w/Poly Rack — Polished Stainless",
     category: "Rod Holders",
-    price: 202.99,
+    price: 164.94,
     tagline: "Polished stainless, for a boat you care about",
     blurb:
       "Polished stainless with a poly rack that holds the rod without marking it. TACO make the outrigger hardware serious boats are rigged with, and this is that build quality applied to something as simple as hanging two rods.",
@@ -1555,7 +1555,7 @@ export const PRODUCTS: Product[] = [
     key: "xrap-30",
     name: "Rapala X-Rap Magnum 30 — Bunker",
     category: "Lures",
-    price: 35.99,
+    price: 30.99,
     tagline: "Thirty feet down on the lip alone",
     blurb:
       "The deep one. Thirty feet without weight, a downrigger or lead core — the lip drags it down and holds it there. Bunker is a baitfish pattern, which is what you want when the fish are on schools rather than hunting anything that moves.",
@@ -1586,7 +1586,7 @@ export const PRODUCTS: Product[] = [
     key: "xrap-20",
     name: "Rapala X-Rap Magnum 20 — Glass Ghost",
     category: "Lures",
-    price: 31.99,
+    price: 28.99,
     tagline: "Twenty feet, translucent finish",
     blurb:
       "The middle depth of the Magnum range, in a translucent finish that reads as a real baitfish rather than a painted one. Glass Ghost is the colour for clear water and bright days, when a solid pattern looks like exactly what it is.",
@@ -1617,7 +1617,7 @@ export const PRODUCTS: Product[] = [
     key: "xplode-170",
     name: "Rapala X-Rap Magnum Xplode 170 — Dorado",
     category: "Lures",
-    price: 37.99,
+    price: 29.99,
     tagline: "Surface bait for fish that come up",
     blurb:
       "The Xplode works the surface rather than diving — for the moments when fish are pushing bait up and a deep-diving plug swims straight under the action. Dorado is the high-contrast colour for blue water.",
@@ -1648,7 +1648,7 @@ export const PRODUCTS: Product[] = [
     key: "tuna-catcher",
     name: "Williamson High-Speed Tuna Catcher Rigged 8″ — Mahi",
     category: "Lures",
-    price: 40.99,
+    price: 35.25,
     tagline: "Rigged and ready for a fast troll",
     blurb:
       "A skirted trolling lure built for speed — it holds together and keeps swimming at the pace you cover water looking for tuna, where slower lures blow out and spin. Arrives rigged, so it goes straight in the spread.",
@@ -1741,7 +1741,7 @@ export const PRODUCTS: Product[] = [
     key: "angled-system",
     name: "Plano Guide Series Angled Tackle System w/5 StowAways",
     category: "Accessories",
-    price: 129.99,
+    price: 98.99,
     tagline: "Five boxes, angled so you can see them",
     blurb:
       "A hard system that holds five 3700 boxes at an angle, so you can read the contents without pulling each one out. That sounds trivial until you have hunted through a stack of identical boxes in the dark for one specific hook.",
@@ -1772,7 +1772,7 @@ export const PRODUCTS: Product[] = [
     key: "side-mount-4",
     name: "Rod Saver Side Mount 4-Rod Holder",
     category: "Rod Holders",
-    price: 37.99,
+    price: 32.99,
     tagline: "Four rods, smaller footprint",
     blurb:
       "The four-rod version of the side mount, for a smaller wall or a boat where six would be greedy. Same idea: rods held horizontally along a vertical surface, tips out of the walkway.",
@@ -1834,7 +1834,7 @@ export const PRODUCTS: Product[] = [
     key: "tool-holder-2",
     name: "Rapala Magnetic Tool Holder — Two Place",
     category: "Accessories",
-    price: 28.99,
+    price: 24.99,
     tagline: "Two tools, the common case",
     blurb:
       "Two places rather than three, which covers what most people actually carry: pliers and cutters. Same magnets, same one-handed release, less strip to mount.",
@@ -1865,7 +1865,7 @@ export const PRODUCTS: Product[] = [
     key: "mag-spring-pliers",
     name: "Rapala Mag Spring Pliers — 4″",
     category: "Accessories",
-    price: 38.99,
+    price: 30.99,
     tagline: "Short pliers for fine work",
     blurb:
       "Four inches, for the jobs eight-inch pliers are clumsy at — small hooks, split rings, crimps and anything needing your fingers close to the work. The magnetic spring keeps them shut in a pocket and open in your hand.",
@@ -1896,7 +1896,7 @@ export const PRODUCTS: Product[] = [
     key: "gripper-scale",
     name: "Rapala 50 lb Digital Fish Gripper Scale",
     category: "Accessories",
-    price: 97.99,
+    price: 74.99,
     tagline: "Grips and weighs in one motion",
     blurb:
       "A lip gripper with a digital scale built into the handle, so the fish is controlled and weighed in one movement instead of two. Fifty pounds covers essentially everything you will land from shore or a small boat.",
@@ -1927,7 +1927,7 @@ export const PRODUCTS: Product[] = [
     key: "cull-tags",
     name: "Rapala Lip-Grip Cull Tags",
     category: "Accessories",
-    price: 46.99,
+    price: 35.99,
     tagline: "Keep track of which fish is which",
     blurb:
       "Numbered tags for keeping fish identifiable in a live well — tournament kit, but useful to anyone holding several fish and deciding what to keep. Clip on the lip, read the number, no guessing which one was the good one.",
@@ -1958,7 +1958,7 @@ export const PRODUCTS: Product[] = [
     key: "leader-spool-holder",
     name: "Deep Blue Marine Spool King Leader Line Holder",
     category: "Accessories",
-    price: 32.99,
+    price: 30.99,
     tagline: "Leader spools that do not unravel",
     blurb:
       "Holds leader spools so they pay out one at a time instead of unwinding into a bird nest in the bottom of a bag. A small problem, but one that costs you five minutes every time it happens.",
@@ -1989,7 +1989,7 @@ export const PRODUCTS: Product[] = [
     key: "downrigger",
     name: "Scotty 1060 Depthking Manual Downrigger w/Rod Holder",
     category: "Accessories",
-    price: 285.99,
+    price: 230.99,
     tagline: "Precise depth, no batteries",
     blurb:
       "A manual downrigger with a rod holder built in. It puts your bait at an exact depth and keeps it there — the difference between fishing where you hope the fish are and fishing where you know they are. Manual means nothing to fail electrically.",
@@ -2020,7 +2020,7 @@ export const PRODUCTS: Product[] = [
     key: "weight-retriever",
     name: "Scotty 3025 Downrigger Weight Retriever",
     category: "Accessories",
-    price: 28.49,
+    price: 24.99,
     tagline: "Gets the ball up without your hands on the cable",
     blurb:
       "Retrieves the downrigger weight without you hauling on the cable by hand. Downrigger cable under load will cut a finger open, and this is the tool that means it never gets the chance.",
@@ -2051,7 +2051,7 @@ export const PRODUCTS: Product[] = [
     key: "pulley-kit",
     name: "Scotty 1014 Downrigger Pulley Replacement Kit",
     category: "Accessories",
-    price: 33.49,
+    price: 29.95,
     tagline: "The part that wears out first",
     blurb:
       "The terminal pulley is the component doing the most work on a downrigger and the one that wears out first. Replacing it is cheap and quick; discovering it has seized mid-season is neither.",
@@ -2082,7 +2082,7 @@ export const PRODUCTS: Product[] = [
     key: "downrigger-cable",
     name: "Scotty 200 ft Premium Stainless Downrigger Cable",
     category: "Accessories",
-    price: 38.49,
+    price: 33.99,
     tagline: "Two hundred feet of replacement cable",
     blurb:
       "Downrigger cable kinks, frays and eventually parts, usually with a ball on the end of it. Two hundred feet of premium stainless is a spare you keep rather than a repair you make in a hurry.",
@@ -2113,7 +2113,7 @@ export const PRODUCTS: Product[] = [
     key: "aerator-floating",
     name: "Rapala Floating Aerator",
     category: "Bait & Live Wells",
-    price: 43.99,
+    price: 39.99,
     tagline: "Drop it in the bucket and forget it",
     blurb:
       "A floating aerator that goes straight into a bait bucket with no plumbing and no mounting. Bait that stays lively catches disproportionately more than bait that is merely alive, and this is the cheapest way to keep it that way.",
@@ -2144,7 +2144,7 @@ export const PRODUCTS: Product[] = [
     key: "bait-bucket",
     name: "Frabill Dual Fish Bait Bucket w/Built-In Aerator",
     category: "Bait & Live Wells",
-    price: 37.99,
+    price: 27.49,
     tagline: "Bucket and aerator in one",
     blurb:
       "A two-chamber bait bucket with the aerator built in rather than clipped on. The inner chamber lifts out, so you can get at bait without emptying the whole thing over the deck.",

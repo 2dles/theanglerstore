@@ -38,8 +38,21 @@ export function isStripeConfigured(): boolean {
  * below the threshold. Across 995 in-stock fishing SKUs, moving to $9.95
  * takes the count clearing 25% margin at honest retail from 228 to 471.
  *
- * Above $49 the basket absorbs the freight; below it the customer pays what
- * shipping actually costs. See SOURCING-REALITY.md §3 for the full maths.
+ * REVISED AGAIN 10 Aug 2026, after auditing real street prices for all 60
+ * products. CWR's List Price field turned out to be fiction on marine
+ * hardware — the flush-mount rod holder listed at $159.99 sells for $44.99 —
+ * so the catalog was repriced to what customers actually pay. At those
+ * prices, gross margin before freight is a healthy 29.6% median and nothing
+ * is loss-making, but the $9.95 inbound freight was eating all of it:
+ *
+ *   basket    old policy ($9.95 under $49)    new ($12.95 under $75)
+ *   1 item              20.7%                        25.6%
+ *   2 items             13.6%                        26.8%
+ *
+ * The 2-item hole was self-inflicted: a $69 order cleared the old $49
+ * threshold, so we shipped it free and absorbed the whole $9.95. $12.95 is
+ * the real freight plus Stripe's fixed 30c, and $75 is where a basket can
+ * actually carry it.
  */
-export const FREE_SHIPPING_OVER = 49;
-export const FLAT_SHIPPING = 9.95;
+export const FREE_SHIPPING_OVER = 75;
+export const FLAT_SHIPPING = 12.95;
