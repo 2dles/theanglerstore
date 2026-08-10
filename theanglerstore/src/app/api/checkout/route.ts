@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { getProduct, isSourced } from "@/lib/products";
+import { BUNDLE, cartEarnsBundle, getProduct, isSourced } from "@/lib/products";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import {
   rateFor,
@@ -93,6 +93,11 @@ export async function POST(req: Request) {
   }[] = [];
   let subtotal = 0;
 
+  // The bundle discount is decided HERE, from the keys the cart contains —
+  // never from anything the client claims. Same rule as pricing: the browser
+  // sends keys and quantities, the server decides what they cost.
+  const earnsBundle = cartEarnsBundle(lines.map((l) => String(l.key)));
+
   for (const line of lines) {
     const product = getProduct(String(line.key));
     if (!product) {
@@ -123,15 +128,24 @@ export async function POST(req: Request) {
     }
 
     const qty = Math.min(Math.max(Math.floor(Number(line.qty) || 0), 1), 99);
-    subtotal += product.price * qty;
+
+    // Discount applies only to the bundle's own members, and only to the
+    // first of each — buying six spools of braid doesn't multiply the deal.
+    const discounted =
+      earnsBundle && (BUNDLE.keys as readonly string[]).includes(product.key);
+    const unit = discounted
+      ? Math.round(product.price * (1 - BUNDLE.discount) * 100) / 100
+      : product.price;
+
+    subtotal += unit * qty;
 
     items.push({
       quantity: qty,
       price_data: {
         currency: "usd",
-        unit_amount: Math.round(product.price * 100),
+        unit_amount: Math.round(unit * 100),
         product_data: {
-          name: product.name,
+          name: discounted ? `${product.name} — ${BUNDLE.name}` : product.name,
           description: product.tagline,
           metadata: { product_key: product.key },
         },
@@ -160,6 +174,7 @@ export async function POST(req: Request) {
         referrer: (attribution.referrer ?? "").slice(0, 400),
         product_keys: lines.map((l) => l.key).join(","),
         ship_zone: zone.id,
+        bundle: earnsBundle ? BUNDLE.name : "",
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       // What the customer sees on their card statement. Without this they see

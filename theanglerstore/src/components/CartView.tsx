@@ -5,7 +5,12 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useCart } from "./CartProvider";
 import { ProductArt } from "./ProductArt";
-import { formatPrice, getProduct } from "@/lib/products";
+import {
+  BUNDLE,
+  cartEarnsBundle,
+  formatPrice,
+  getProduct,
+} from "@/lib/products";
 import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
 
 function CancelNotice() {
@@ -36,9 +41,26 @@ function CartInner() {
     );
   }
 
-  const shipping = subtotal >= FREE_SHIPPING_OVER ? 0 : FLAT_SHIPPING;
-  const total = subtotal + shipping;
-  const toFreeShipping = FREE_SHIPPING_OVER - subtotal;
+  // Mirrors the server calculation in /api/checkout exactly. Shown here so the
+  // customer sees the discount before they commit — but the number that gets
+  // charged is always the one the server recomputes, never this one.
+  const earnsBundle = cartEarnsBundle(lines.map((l) => l.key));
+  const bundleSaving = earnsBundle
+    ? Math.round(
+        lines
+          .filter((l) => (BUNDLE.keys as readonly string[]).includes(l.key))
+          .reduce(
+            (sum, l) =>
+              sum + (getProduct(l.key)?.price ?? 0) * l.qty * BUNDLE.discount,
+            0,
+          ) * 100,
+      ) / 100
+    : 0;
+
+  const discountedSubtotal = subtotal - bundleSaving;
+  const shipping = discountedSubtotal >= FREE_SHIPPING_OVER ? 0 : FLAT_SHIPPING;
+  const total = discountedSubtotal + shipping;
+  const toFreeShipping = FREE_SHIPPING_OVER - discountedSubtotal;
 
   return (
     <>
@@ -116,6 +138,16 @@ function CartInner() {
               <dt className="text-ink-dim">Subtotal</dt>
               <dd className="tnum">{formatPrice(subtotal)}</dd>
             </div>
+
+            {earnsBundle && (
+              <div className="flex justify-between text-teal">
+                <dt>
+                  {BUNDLE.name} · {Math.round(BUNDLE.discount * 100)}% off
+                </dt>
+                <dd className="tnum">−{formatPrice(bundleSaving)}</dd>
+              </div>
+            )}
+
             <div className="flex justify-between">
               <dt className="text-ink-dim">Shipping</dt>
               <dd className="tnum">

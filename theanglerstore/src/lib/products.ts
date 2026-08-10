@@ -958,6 +958,49 @@ export function isSourced(p: Product | string): boolean {
   return !UNSOURCED.has(typeof p === "string" ? p : p.key);
 }
 
+/**
+ * THE SURF STARTER BUNDLE.
+ *
+ * Four things that make a session work, sold together at a discount. The
+ * discount is real and applied server-side in /api/checkout — the homepage
+ * used to advertise "save 12%" against a button that added nothing to the
+ * cart, which meant quoting a price we would not have honoured.
+ *
+ * Keys are filtered through isSourced() everywhere they're used, so an
+ * unsourced product silently drops out of the bundle instead of advertising
+ * something we can't ship. If fewer than MIN_ITEMS survive, the bundle is
+ * withdrawn entirely rather than shown as a "bundle" of one.
+ */
+export const BUNDLE = {
+  name: "The Surf Starter",
+  keys: ["braided-line", "fluoro-leader", "pliers", "landing-net"],
+  discount: 0.12,
+  minItems: 3,
+} as const;
+
+export function bundleItems(): Product[] {
+  return BUNDLE.keys
+    .map(getProduct)
+    .filter((p): p is Product => Boolean(p) && isSourced(p!));
+}
+
+export function bundleAvailable(): boolean {
+  return bundleItems().length >= BUNDLE.minItems;
+}
+
+/**
+ * Does this cart earn the bundle discount?
+ *
+ * Every currently-available bundle item must be present. Computed from keys
+ * only — the client never tells us whether it qualifies, it just sends what
+ * is in the cart and the server decides.
+ */
+export function cartEarnsBundle(keys: string[]): boolean {
+  if (!bundleAvailable()) return false;
+  const inCart = new Set(keys);
+  return bundleItems().every((p) => inCart.has(p.key));
+}
+
 /** Everything we're willing to show a browsing customer. */
 export function listed(): Product[] {
   return PRODUCTS.filter(isSourced);

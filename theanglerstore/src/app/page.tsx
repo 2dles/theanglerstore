@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { activeCategories, isSourced, listed, featured, getProduct } from "@/lib/products";
+import {
+  BUNDLE,
+  activeCategories,
+  bundleAvailable,
+  bundleItems,
+  listed,
+  featured,
+} from "@/lib/products";
+import { AddBundle } from "@/components/AddBundle";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
@@ -11,27 +19,12 @@ export const metadata = {
   alternates: { canonical: "/" },
 };
 
-/**
- * The starter bundle.
- *
- * Filtered through isSourced() on purpose. This block used to name a PENN
- * combo, Carolina rigs and sand spikes — none of which we can actually
- * supply — and it kept advertising them for hours after the rest of the
- * catalog had been cleaned up, because the keys were hardcoded here and
- * nowhere else. Anything unsourced now drops out silently, and if fewer than
- * two survive the whole section disappears rather than showing a "bundle" of
- * one item.
- */
-const STARTER_KEYS = ["braided-line", "fluoro-leader", "pliers", "landing-net"];
-
 export default function HomePage() {
   const picks = featured();
-  const starter = STARTER_KEYS.map(getProduct).filter(
-    (p): p is NonNullable<typeof p> => Boolean(p) && isSourced(p!),
-  );
+  const starter = bundleItems();
   const starterTotal = starter.reduce((s, p) => s + p.price, 0);
-  const bundlePrice = Math.round(starterTotal * 0.88 * 100) / 100;
-  const showBundle = starter.length >= 2;
+  const bundlePrice = Math.round(starterTotal * (1 - BUNDLE.discount) * 100) / 100;
+  const showBundle = bundleAvailable();
 
   return (
     <>
@@ -144,9 +137,11 @@ export default function HomePage() {
         <div className="card overflow-hidden">
           <div className="grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <span className="badge">Bundle · save 12%</span>
+              <span className="badge">
+                Bundle · save {Math.round(BUNDLE.discount * 100)}%
+              </span>
               <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-                The Surf Starter
+                {BUNDLE.name}
               </h2>
               <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
                 Braid, leader, pliers and a net. Bring your own rod and this is
@@ -172,9 +167,7 @@ export default function HomePage() {
               </p>
               <p className="tnum text-4xl font-semibold">${bundlePrice.toFixed(2)}</p>
               <p className="mt-1 text-xs text-ink-faint">Ships free</p>
-              <Link href="/products" className="btn btn-primary mt-4 w-full lg:w-auto">
-                Build the bundle
-              </Link>
+              <AddBundle keys={starter.map((p) => p.key)} />
             </div>
           </div>
         </div>
