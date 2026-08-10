@@ -25,7 +25,7 @@ export function isStripeConfigured(): boolean {
 }
 
 /**
- * Shipping economics — derived from the August 2026 sourcing research.
+ * Shipping economics — corrected 10 Aug 2026 against CWR's real rate card.
  *
  * Under manual dropship every order carries a fixed drag of roughly $4.29:
  * the cheapest verified flat-rate inbound freight ($3.99 from our highest-volume
@@ -33,9 +33,13 @@ export function isStripeConfigured(): boolean {
  * third of revenue, so free shipping on everything would sell several SKUs at a
  * loss.
  *
- * $5.95 collected below $49 covers the inbound with a small buffer; above $49
- * the basket absorbs it comfortably (inbound lands near 8% of revenue). The
- * threshold is set at $49 rather than $59 deliberately — see SOURCING.md.
+ * The earlier $5.95 was an estimate made before we had dealer access. CWR's
+ * actual cheapest inbound freight is $9.95, so $5.95 lost $4 on every order
+ * below the threshold. Across 995 in-stock fishing SKUs, moving to $9.95
+ * takes the count clearing 25% margin at honest retail from 228 to 471.
+ *
+ * Above $49 the basket absorbs the freight; below it the customer pays what
+ * shipping actually costs. See SOURCING-REALITY.md §3 for the full maths.
  */
 export const FREE_SHIPPING_OVER = 49;
-export const FLAT_SHIPPING = 5.95;
+export const FLAT_SHIPPING = 9.95;

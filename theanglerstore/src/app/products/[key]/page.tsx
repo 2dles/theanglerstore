@@ -259,6 +259,28 @@ export default async function ProductPage({
               </dl>
             </div>
 
+            {product.prop65 && (
+              <div className="card mt-4 border-[rgba(251,191,36,.25)] p-5">
+                <h2 className="text-sm font-semibold uppercase tracking-wider text-[#fbbf24]">
+                  ⚠ California Proposition 65 warning
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink-dim">
+                  This product can expose you to chemicals which are known to
+                  the State of California to cause cancer, birth defects or
+                  other reproductive harm. For more information go to{" "}
+                  <a
+                    href="https://www.p65warnings.ca.gov"
+                    className="text-tide hover:text-teal"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    P65Warnings.ca.gov
+                  </a>
+                  .
+                </p>
+              </div>
+            )}
+
             <div className="card mt-4 p-5">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-faint">
                 When to fish it

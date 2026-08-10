@@ -28,18 +28,25 @@ const SITE = "https://theanglerstore.com";
 /**
  * Product image.
  *
- * We have no supplier photography yet, but we do have a real, stable,
- * branded 1200×630 PNG per product — the OpenGraph card generated at build
- * from the live catalog. It is a genuine image of the product's listing, it
- * always matches the current name and price, and it never 404s.
+ * Products sourced from CWR carry their licensed dealer photography, served
+ * from productimageserver.com — we hold a CWR dealer account and their
+ * program provides those images for dealer storefronts.
  *
- * When licensed photography arrives and `product.image` is set, that becomes
- * the primary image and the OG card stays as a secondary. Google accepts an
- * array and prefers the first.
+ * Anything without supplier photography falls back to its OpenGraph card: a
+ * real, stable, branded 1200×630 PNG generated at build from the live
+ * catalog. It always matches the current name and price and never 404s.
+ *
+ * Google accepts an array and prefers the first, so the real photograph
+ * leads and the OG card stays as a fallback.
  */
 export function productImages(product: Product): string[] {
   const og = `${SITE}/products/${product.key}/opengraph-image`;
-  return product.image ? [`${SITE}${product.image}`, og] : [og];
+  if (!product.image) return [og];
+  // Supplier images are absolute URLs; our own files are site-relative.
+  const primary = product.image.startsWith("http")
+    ? product.image
+    : `${SITE}${product.image}`;
+  return [primary, og];
 }
 
 /**

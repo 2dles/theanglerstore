@@ -10,14 +10,24 @@
 // add a REDIRECTS entry so the inbound link 301s with its utm params intact.
 // ─────────────────────────────────────────────────────────────────────────────
 //
-// Every product here is a REAL product from a US-warehouse supplier, sourced
-// August 2026. Retail prices are set from verified supplier cost + shipping so
-// each SKU clears 25% net after Stripe fees. The supplier, cost, and margin for
-// each key live in SOURCING.md — deliberately NOT in this file, because this
-// file ships to the browser.
+// SOURCING STATUS — read before trusting anything below.
 //
-// Prices that differ from the original brief are intentional: the brief's
-// placeholder prices did not survive real sourcing. See SOURCING.md § Repricing.
+// SEVEN keys are real, live CWR products as of 10 Aug 2026, with the dealer
+// price, licensed photography and specs taken from CWR's own export:
+//   braided-line · fluoro-leader · jig-assort · landing-net · pliers ·
+//   tackle-bag · cooler
+// Their retail prices are CWR's list price, and each clears ~25% net after
+// $9.95 inbound freight and Stripe fees. See SOURCING-REALITY.md.
+//
+// SEVEN keys are still PLACEHOLDERS and cannot currently be fulfilled:
+//   surf-rod · inshore-combo · circle-hooks · carolina-kit · swimbait-kit ·
+//   sand-spike · headlamp
+// CWR stocks no fishing rods, two reels, and no fishing hooks. These are
+// waiting on the Burch Fishing Tackle account — see BURCH-APPLICATION.md.
+// Their names, prices and specs are invented and must not be treated as real.
+//
+// Cost, supplier and margin deliberately do NOT live in this file, because it
+// ships to the browser.
 
 export type Category =
   | "Rods & Combos"
@@ -52,6 +62,14 @@ export interface Product {
    * you did not take yourself or receive written permission to use.
    */
   image?: string;
+  /**
+   * California Proposition 65 warning required by the manufacturer.
+   * We are a California seller shipping to California consumers, so where the
+   * supplier declares one we surface it on the product page rather than
+   * burying it. Sufix braid, the Williamson jig and the Rapala pliers all
+   * carry one in CWR's feed.
+   */
+  prop65?: boolean;
   /**
    * "anchor"  — carries its own margin standalone, safe to advertise
    * "add-on"  — thin standalone; profitable inside a larger basket
@@ -183,64 +201,66 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "braided-line",
-    name: "Reaction Tackle X8 Braid — 30 lb / 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 20 lb, 300 yd",
     category: "Line & Leader",
-    price: 29.99,
-    compareAt: 39.99,
-    tagline: "Feel every tick of the bottom",
+    price: 40.99,
+    tagline: "8 fibers, 32 weaves per inch, Coastal Camo",
     blurb:
-      "True eight-carrier braid at 30 lb, 300 yards, with a no-fade color treatment that survives a season of sun. Put this on a mediocre reel and the reel gets better — braid is the single highest-leverage dollar in fishing, and an 8-carrier line casts quieter and further than the 4-carrier stuff sold at the same price.",
-    badge: "Staff Pick",
+      "Seven HMPE fibers plus one GORE Performance Fiber, braided at 32 picks per inch. The GORE fiber is what makes this line quiet through the guides and stubborn against sand and shell — the two things that end a surf session early. Coastal Camo is the colour to run when the water is clear and the fish have seen everything.",
     specs: [
-      { label: "Test", value: "30 lb" },
-      { label: "Length", value: "300 yd" },
-      { label: "Construction", value: "8-carrier round braid" },
-      { label: "Stretch", value: "Effectively zero" },
-      { label: "Color", value: "Hi-vis green · no-fade treated" },
-      { label: "Ships from", value: "Wisconsin" },
+      { label: "Strength", value: "20 lb test" },
+      { label: "Length", value: "300 yds" },
+      { label: "Construction", value: "8 fibers · 32 picks/in" },
+      { label: "Fiber", value: "7 HMPE + 1 GORE Performance" },
+      { label: "Colour", value: "Coastal Camo" },
+      { label: "Brand", value: "Sufix 832 Advanced Superline" },
     ],
     features: [
-      "Eight carriers, not four — rounder, smoother, and noticeably quieter through the guides",
-      "Zero stretch means you feel a pickup at 80 yards, which is the whole argument for braid",
-      "No-fade color treatment; cheap braid goes grey and chalky by August",
-      "Ships free and fast from a US warehouse",
+      "The GORE fiber is the whole point — it cuts line vibration, so you feel the take instead of the wind",
+      "32 picks per inch makes it round, and round line lies on the spool properly instead of digging in",
+      "Abrasion resistance that survives being dragged over shell and rock",
+      "300 yards fills a 4000-size spinning reel with backing to spare",
     ],
-    gradient: ["#233a5e", "#3b5fa0"],
+    gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
-    pairsWith: ["fluoro-leader", "surf-rod", "circle-hooks"],
-    whenToUse: "Main line for any surf or inshore setup.",
+    pairsWith: ["fluoro-leader", "pliers", "tackle-bag"],
+    whenToUse: "Main line for surf and inshore spinning. Clear water, spooky fish.",
     featured: true,
+    image: "https://productimageserver.com/product/xl/90822XL.jpg",
+    prop65: true,
     role: "anchor",
-    shipsIn: "2–5 business days",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "fluoro-leader",
-    name: "Reaction Tackle Fluorocarbon Leader — 15 lb / 50 yd",
+    name: "Sufix Wind-On Fluorocarbon Leader — 50 lb, 11 yd",
     category: "Line & Leader",
-    price: 17.99,
-    tagline: "Twice the yardage, genuinely invisible",
+    price: 22.49,
+    tagline: "Knotless loop-to-loop, winds through the guides",
     blurb:
-      "100% fluorocarbon at 0.34 mm — not fluoro-coated nylon, which is what a lot of cheap 'fluoro' actually is. Fifty yards instead of the usual twenty-five, so it's roughly 25 surf leaders rather than 12. On bright, clear days for corbina and halibut this is the difference between follows and bites.",
+      "A braided loop on one end means you connect to your main line without a knot or a swivel, and the leader winds straight through the guides onto the reel. That last part is the reason to buy it: you can fight a fish right to the rod tip without a hard connection banging through every guide on the way.",
     specs: [
-      { label: "Test", value: "15 lb" },
-      { label: "Diameter", value: "0.34 mm" },
-      { label: "Length", value: "50 yd" },
+      { label: "Strength", value: "50 lb test" },
+      { label: "Length", value: "11 yds" },
       { label: "Material", value: "100% fluorocarbon" },
-      { label: "Use", value: "Leader or main line" },
+      { label: "Connection", value: "Braided loop, knotless" },
+      { label: "Clarity", value: "Crystal clear" },
+      { label: "UV", value: "Unaffected by sunlight" },
     ],
     features: [
-      "50 yards — double the industry-standard 25 yd leader spool at a comparable price",
-      "Refractive index close to seawater, so it effectively disappears",
-      "Sinks, unlike mono, which keeps your bait in the strike zone",
-      "Ties clean FG and double-uni connections to braid",
+      "Loop-to-loop means no leader knot to catch weed or jam a guide",
+      "Winds onto the reel, so you can fish it as a long shock leader",
+      "Fluorocarbon disappears in clear water far better than mono",
+      "Shock absorption that mono can't match when a fish surges at the rod tip",
     ],
-    gradient: ["#1d3752", "#2e5f83"],
-    glyph: "spool-small",
-    pairsWith: ["braided-line", "circle-hooks", "inshore-combo"],
-    whenToUse: "Clear water, bright sun, spooky fish. Realistically, always.",
+    gradient: ["#243a4a", "#4f7f9c"],
+    glyph: "spool",
+    pairsWith: ["braided-line", "circle-hooks", "pliers"],
+    whenToUse: "Clear water, toothy or abrasive fish, anywhere braid needs a buffer.",
     featured: false,
-    role: "anchor",
-    shipsIn: "2–5 business days",
+    image: "https://productimageserver.com/product/xl/110924XL.jpg",
+    role: "add-on",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "circle-hooks",
@@ -334,63 +354,66 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "jig-assort",
-    name: "Trokar Pro-V Bucktail Assortment — 1, 2 & 3 oz",
+    name: "Williamson Vortex Speed 300 Jig — 10.5 oz",
     category: "Lures",
-    price: 34.99,
-    tagline: "The surf weight range, on surgical hooks",
+    price: 31.99,
+    tagline: "Rotates on the fall, pre-rigged with a VMC assist hook",
     blurb:
-      "Three natural bucktail jigs — 1 oz on a 5/0, 2 oz on a 6/0, 3 oz on a 7/0 — built on Trokar's three-sided surgically sharpened hooks. That 1-to-3-ounce spread is precisely the striper, halibut, and fluke window from the sand, and bucktail is the one lure that has never stopped working.",
+      "One side convex, the other concave, so the jig spins as it drops rather than falling dead. Each face is finished differently, which turns that rotation into a strobing flash on the way down — and the drop is when most fish commit. Comes pre-rigged with a ball-bearing swivel and a VMC assist hook, so it's ready to tie on.",
     specs: [
-      { label: "Count", value: "3 jigs" },
-      { label: "Weights", value: "1 oz · 2 oz · 3 oz" },
-      { label: "Hooks", value: "5/0 · 6/0 · 7/0 Trokar" },
-      { label: "Point", value: "Three-sided surgically sharpened" },
-      { label: "Colors", value: "White / Glow / Pink or all White" },
-      { label: "Hair", value: "Natural bucktail" },
+      { label: "Weight", value: "10.5 oz" },
+      { label: "Length", value: "7.25\"" },
+      { label: "Size", value: "300" },
+      { label: "Colour", value: "Black Silver" },
+      { label: "Hook", value: "VMC assist, pre-rigged" },
+      { label: "Swivel", value: "Stainless ball-bearing" },
     ],
     features: [
-      "Trokar points are the sharpest production hook made — measurably, not as marketing",
-      "1–3 oz is the working range from a beach; lighter jigs never reach, heavier ones plow",
-      "Natural bucktail breathes at rest in a way silicone skirts do not",
-      "⚠️ Contains lead — Prop 65 warning applies. Wash hands after handling.",
+      "Opposing convex and concave faces make it rotate instead of dropping flat",
+      "Two-tone finish turns that rotation into flash",
+      "Ball-bearing swivel lets you tie direct to the solid ring and leave the lure free-swimming",
+      "Arrives rigged \u2014 no assist hook to tie yourself",
     ],
-    gradient: ["#2a3350", "#4a5f96"],
+    gradient: ["#2a2d3a", "#5c6480"],
     glyph: "jig",
-    pairsWith: ["swimbait-kit", "surf-rod", "pliers"],
-    whenToUse: "Surf and inshore, especially moving water and structure edges.",
-    featured: true,
-    role: "anchor",
-    shipsIn: "2–5 business days",
+    pairsWith: ["braided-line", "pliers", "tackle-bag"],
+    whenToUse: "Deep water over structure. Drop it, rip it, let it flutter back.",
+    featured: false,
+    image: "https://productimageserver.com/product/xl/101149XL.jpg",
+    prop65: true,
+    role: "add-on",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "landing-net",
-    name: "KastKing Brutus Folding Landing Net",
+    name: "Attwood Fold-N-Stow Fishing Net — Medium",
     category: "Accessories",
-    price: 49.99,
-    tagline: "Folds flat, fish-friendly mesh",
+    price: 19.99,
+    tagline: "Folds flat, locks open with a flip",
     blurb:
-      "A 15×12 aluminum-frame net with 10-inch coated mesh and a push-button telescoping handle, rated to 44 pounds. The frame folds and the handle collapses, so it lives on the outside of a pack instead of in your other hand.",
+      "A flip of the handle opens it and locks it; pull the trigger and it collapses back down to something you can stow under a seat or strap to a pack. Knotless netting, which is gentler on a fish you intend to release and far less likely to tangle a treble hook than the old knotted mesh.",
     specs: [
-      { label: "Hoop", value: "15\" × 12\"" },
-      { label: "Depth", value: "10\"" },
-      { label: "Mesh", value: "Nylon-coated PVC, fish-friendly" },
-      { label: "Frame", value: "6063 aluminum, 1 mm wall" },
-      { label: "Handle", value: "Retractable, push-button lock" },
-      { label: "Capacity", value: "44 lb / 20 kg" },
+      { label: "Size", value: "Medium" },
+      { label: "Extended", value: "47\" \u00d7 16\" \u00d7 16\"" },
+      { label: "Netting", value: "Knot-free" },
+      { label: "Action", value: "Flip to open, trigger to collapse" },
+      { label: "Weight", value: "0.87 lb" },
+      { label: "Brand", value: "Attwood" },
     ],
     features: [
-      "Coated mesh protects the slime coat on fish you intend to release",
-      "Hooks pull free of coated mesh instead of burying like they do in knotted nylon",
-      "U-shaped folding hoop plus collapsing handle — packs down to almost nothing",
-      "Orange EVA grip, which you will appreciate the first time you drop it in the wash",
+      "Knot-free mesh is kinder to fish and doesn't snag trebles the way knotted netting does",
+      "Collapses small enough to carry on a beach walk or a kayak",
+      "Locks rigid when open \u2014 no flexing handle at the moment it matters",
+      "47 inches of reach extended, from a net that stows at a fraction of that",
     ],
-    gradient: ["#12483f", "#1f8a72"],
+    gradient: ["#1f3340", "#48788f"],
     glyph: "net",
-    pairsWith: ["inshore-combo", "pliers", "swimbait-kit"],
-    whenToUse: "Bays, jetties, kayaks — anywhere you can't slide a fish up the sand.",
+    pairsWith: ["pliers", "tackle-bag", "braided-line"],
+    whenToUse: "Anywhere you plan to release fish, and any time you're fishing alone.",
     featured: false,
-    role: "anchor",
-    shipsIn: "2–5 business days",
+    image: "https://productimageserver.com/product/xl/103114XL.jpg",
+    role: "add-on",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "sand-spike",
@@ -423,91 +446,97 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "pliers",
-    name: "KastKing AlumaStream Aluminum Pliers — 7.5\"",
+    name: "Rapala 8\" Super Stainless Steel Pliers",
     category: "Accessories",
-    price: 49.99,
-    tagline: "Tungsten carbide cutters, anodized aluminum",
+    price: 32.99,
+    tagline: "Stainless, spring-loaded, side cutter",
     blurb:
-      "6061 anodized aluminum body, 17-4 stainless jaws, and tungsten carbide cutters that go through 80 lb braid like thread. Comes with a belt sheath, a carabiner, and a lanyard — which you will use, because pliers dropped off a jetty are simply gone.",
+      "Eight inches of stainless with an internal spring that holds the jaws open, so you can work one-handed while the other hand is busy holding a fish. The side cutter handles line and leader, and there's a lanyard point \u2014 which you will use, because pliers dropped off a jetty are simply gone.",
     specs: [
-      { label: "Length", value: "7.5\"" },
-      { label: "Body", value: "6061 anodized aluminum" },
-      { label: "Jaws", value: "17-4 stainless, multi-function" },
-      { label: "Cutters", value: "Tungsten carbide — mono, fluoro, braid" },
-      { label: "Included", value: "Sheath · carabiner · lanyard" },
-      { label: "Extra", value: "Knot-cinch hole" },
+      { label: "Length", value: "8\"" },
+      { label: "Material", value: "Stainless steel" },
+      { label: "Jaw spring", value: "Precision internal, self-opening" },
+      { label: "Cutter", value: "Side cutter for line and leader" },
+      { label: "Grips", value: "Ergonomic comfort handles" },
+      { label: "Lanyard", value: "Built-in attachment point" },
     ],
     features: [
-      "Tungsten carbide is the only cutter material that stays sharp on braid",
-      "Aluminum body won't seize with rust the way stainless pliers do after a wet season",
-      "Split-ring tip that opens a split ring without needing a third hand",
-      "Self-adjusting belt sheath with a suction cup for the boat gunwale",
+      "Self-opening jaws mean genuine one-handed use with a fish in the other",
+      "Eight inches keeps your fingers away from teeth and trebles",
+      "Side cutter deals with leader without reaching for scissors",
+      "Lanyard point, because the sea takes anything you don't tether",
     ],
     gradient: ["#26364a", "#4a6a8c"],
     glyph: "pliers",
-    pairsWith: ["landing-net", "circle-hooks", "tackle-bag"],
-    whenToUse: "Every trip. Hook removal, crimping, cutting braid.",
+    pairsWith: ["landing-net", "braided-line", "tackle-bag"],
+    whenToUse: "Every trip. Hook removal, crimping, cutting leader.",
     featured: true,
+    image: "https://productimageserver.com/product/xl/110902XL.jpg",
+    prop65: true,
     role: "anchor",
-    shipsIn: "2–5 business days",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "tackle-bag",
-    name: "KastKing Essential Tackle Backpack + Tool Set",
+    name: "Rapala Venture 13 Backpack",
     category: "Accessories",
-    price: 74.99,
-    compareAt: 94.99,
-    tagline: "Two trays and a tool set included",
+    price: 76.99,
+    tagline: "13 L, holds three 3700 boxes, hands-free",
     blurb:
-      "A water-resistant tackle backpack that arrives with two utility trays and a tool set already in it, so it's usable the day it lands rather than after another $40 of boxes. Padded straps and a breathable back panel, which matters on a mile of soft sand.",
+      "Built for people who fish on foot. Thirteen litres of main compartment that swallows three 3700-size tackle boxes, three zippered pockets, tool attachment points, and a water-resistant base for when you set it down on wet sand. Padded shoulder straps with a chest belt, and a ventilated back panel that matters on a long walk to the mark.",
     specs: [
-      { label: "Included", value: "2 utility trays + tool set" },
-      { label: "Shell", value: "Water-resistant" },
-      { label: "Carry", value: "Padded straps, breathable back panel" },
-      { label: "Organisation", value: "Multi-compartment, front tool pockets" },
+      { label: "Capacity", value: "13 L main compartment" },
+      { label: "Boxes", value: "Fits 3 \u00d7 3700 size (not included)" },
+      { label: "Pockets", value: "3 zippered + mesh side pouch" },
+      { label: "Straps", value: "3D mesh padded, chest belt" },
+      { label: "Back", value: "3D mesh ventilating support" },
+      { label: "Base", value: "Water-resistant" },
     ],
     features: [
-      "Trays and tools included — most bags at this price arrive empty",
-      "Water-resistant shell for spray and the walk back in the rain",
-      "Padded, breathable harness for long walks to the spot",
-      "Front pockets sized for pliers and a headlamp, not just decoration",
+      "Carries hands-free, which is the whole difference on a beach or a kayak",
+      "Three 3700 boxes is a genuinely complete surf and inshore kit",
+      "Tool attachment points for pliers and a gripper on the outside where you need them",
+      "Water-resistant base survives being put down on wet sand and rock",
     ],
-    gradient: ["#2b2f46", "#525a86"],
+    gradient: ["#2b2f3d", "#5a6478"],
     glyph: "bag",
-    pairsWith: ["pliers", "headlamp", "carolina-kit"],
-    whenToUse: "Long walks to the spot, multi-rod sessions, kayak carry.",
-    featured: false,
+    pairsWith: ["pliers", "braided-line", "jig-assort"],
+    whenToUse: "Any session you walk into. Beach, jetty, kayak.",
+    featured: true,
+    image: "https://productimageserver.com/product/xl/105698XL.jpg",
     role: "anchor",
-    shipsIn: "2–5 business days",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "cooler",
-    name: "RTIC Ultra-Tough Soft Cooler — 30 can",
+    name: "Coleman CHILLER 28-Can Soft-Sided Backpack Cooler",
     category: "Coolers",
-    price: 184.99,
-    tagline: "The cooler that actually makes sense to ship",
+    price: 48.49,
+    tagline: "12+ hours cold, leakproof, carried on your back",
     blurb:
-      "A welded, waterproof soft cooler with a leakproof zipper and closed-cell insulation — and a deliberate substitution. We planned to sell a 45-quart rotomolded hard cooler here and spent real time trying to make it work. We couldn't, and rather than quietly drop the product we'd rather tell you why: see below.",
+      "Twenty-eight cans of capacity with TempLock insulation that holds ice past twelve hours, in a soft-sided pack you wear rather than carry. Welded seams so meltwater stays inside, and a zippered front pocket for ice packs. The exterior is made from recycled polyester.",
     specs: [
-      { label: "Capacity", value: "30 cans" },
-      { label: "Shell", value: "Welded, fully waterproof" },
-      { label: "Closure", value: "Leakproof zipper" },
-      { label: "Insulation", value: "Closed-cell foam" },
-      { label: "Carry", value: "Shoulder strap" },
+      { label: "Capacity", value: "28 cans" },
+      { label: "Ice retention", value: "12+ hours (TempLock)" },
+      { label: "Seams", value: "Welded, leakproof" },
+      { label: "Carry", value: "Padded shoulder + waist straps" },
+      { label: "Exterior", value: "Recycled polyester" },
+      { label: "Height", value: "18.75\"" },
     ],
     features: [
-      "Welded seams and a leakproof zipper — it holds ice water on its side in a truck bed",
-      "Compresses and stows flat when empty, unlike a hard cooler",
-      "Why not the 45 qt rotomolded: a carton that size bills at roughly 54 lb of dimensional weight regardless of what it weighs. Every US source we could order from one-at-a-time sells at consumer retail, so we'd have to list it at $330 to make a normal margin — about $90 over what you'd pay going direct.",
-      "We'd rather sell you the right cooler than mark up the wrong one.",
+      "Backpack straps free both hands for rods, nets and a tackle pack",
+      "Welded seams mean no drip trail across the car on the way home",
+      "Twelve hours is a full dawn-to-dusk session with ice left over",
+      "Front and interior mesh pockets keep ice packs off your lunch",
     ],
-    gradient: ["#1b3550", "#33628c"],
+    gradient: ["#1d3346", "#417293"],
     glyph: "cooler",
-    pairsWith: ["tackle-bag", "pliers", "headlamp"],
-    whenToUse: "Long days, hot beaches, and the walk back with fish.",
-    featured: false,
+    pairsWith: ["tackle-bag", "pliers", "landing-net"],
+    whenToUse: "Long sessions, hot days, and any trip you intend to keep fish.",
+    featured: true,
+    image: "https://productimageserver.com/product/xl/98875XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: "3\u20137 business days",
   },
   {
     key: "headlamp",
