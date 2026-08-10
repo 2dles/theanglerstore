@@ -177,7 +177,9 @@ export default async function ProductPage({
               <ProductArt product={product} priority className="aspect-[4/3] w-full" />
             </div>
             <p className="mt-3 text-xs text-ink-faint">
-              Product photography arrives with our next supplier shipment.
+              {product.image
+                ? "Manufacturer photography, supplied through our distributor."
+                : "Our own illustration — real photography arrives with the next supplier shipment."}
             </p>
           </div>
 
@@ -326,7 +328,7 @@ export default async function ProductPage({
         {alsoBuy.length > 0 && (
           <section className="mt-16">
             <h2 className="text-2xl font-semibold tracking-tight">Pairs with</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {alsoBuy.map((p) => (
                 <ProductCard key={p.key} product={p} />
               ))}

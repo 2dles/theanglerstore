@@ -97,7 +97,7 @@ export default async function CollectionPage({
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">{cat.blurb}</p>
 
         {items.length > 0 ? (
-          <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-9 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {items.map((p, i) => (
               <ProductCard key={p.key} product={p} priority={i < 3} />
             ))}

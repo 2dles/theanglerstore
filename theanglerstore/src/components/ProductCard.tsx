@@ -26,23 +26,29 @@ export function ProductCard({
           </span>
         )}
         {product.role === "add-on" && (
-          <span className="absolute right-3 top-3 rounded-full border border-line px-2.5 py-0.5 text-[0.6875rem] font-medium text-ink-dim backdrop-blur-sm">
+          <span className="absolute right-3 top-3 hidden rounded-full border border-line px-2.5 py-0.5 text-[0.6875rem] font-medium text-ink-dim backdrop-blur-sm sm:inline">
             Best as an add-on
           </span>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-1.5 p-4">
-        <p className="text-[0.6875rem] uppercase tracking-wider text-ink-faint">
+      {/* Two cards per row on a phone, so the grid scans instead of scrolling
+          one product at a time. Type steps down to match the narrower column
+          and the tagline is hidden below sm — at 2-up there isn't room for it
+          to be anything but clutter. */}
+      <div className="flex flex-1 flex-col gap-1 p-3 sm:gap-1.5 sm:p-4">
+        <p className="text-[0.625rem] uppercase tracking-wider text-ink-faint sm:text-[0.6875rem]">
           {product.category}
         </p>
-        <h3 className="font-medium leading-snug text-ink group-hover:text-tide">
+        <h3 className="text-sm font-medium leading-snug text-ink group-hover:text-tide sm:text-base">
           {product.name}
         </h3>
-        <p className="line-clamp-2 text-sm text-ink-dim">{product.tagline}</p>
+        <p className="line-clamp-2 hidden text-sm text-ink-dim sm:block">
+          {product.tagline}
+        </p>
 
-        <div className="mt-auto flex items-baseline gap-2 pt-3">
-          <span className="tnum text-lg font-semibold text-ink">
+        <div className="mt-auto flex items-baseline gap-2 pt-2 sm:pt-3">
+          <span className="tnum font-semibold text-ink sm:text-lg">
             {formatPrice(product.price)}
           </span>
           {product.compareAt && (
