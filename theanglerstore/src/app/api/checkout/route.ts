@@ -177,11 +177,16 @@ export async function POST(req: Request) {
         bundle: earnsBundle ? BUNDLE.name : "",
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
-      // What the customer sees on their card statement. Without this they see
-      // the Stripe account's legal name, don't recognise it, and file a
-      // chargeback — the single most common avoidable dispute for a new store.
+      // The statement descriptor is set at the ACCOUNT level in Stripe as
+      // "THEANGLERSTORE", which is what a customer needs to recognise on a
+      // card statement. We deliberately do NOT set statement_descriptor_suffix
+      // here: Stripe concatenates the account's shortened descriptor with the
+      // suffix, so a suffix of "ANGLERSTORE" would render as
+      // "THEANGLER ANGLERSTORE" — redundant, and near the 22-character limit.
+      //
+      // The description below is internal: it shows on the payment in the
+      // Stripe dashboard, not on the customer's statement.
       payment_intent_data: {
-        statement_descriptor_suffix: "ANGLERSTORE",
         description: `TheAnglerStore order — ${lines.length} item${lines.length === 1 ? "" : "s"}`,
       },
       automatic_tax: { enabled: false },
