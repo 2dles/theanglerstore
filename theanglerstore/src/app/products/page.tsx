@@ -53,6 +53,29 @@ export default function AllProductsPage() {
           ))}
         </div>
 
+        {/* Most Popular leads, because a first-time visitor from the tide site
+            should meet the things almost every angler needs before they meet
+            a category index. Ranked editorially in products.ts — see APPEAL. */}
+        <section className="mt-14">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold tracking-tight">
+                Most popular
+              </h2>
+              <p className="mt-1 text-sm text-ink-faint">
+                If you buy one thing from here, make it one of these.
+              </p>
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+            {listed()
+              .slice(0, 8)
+              .map((p, i) => (
+                <ProductCard key={p.key} product={p} priority={i < 4} />
+              ))}
+          </div>
+        </section>
+
         {activeCategories().map((c) => {
           const items = listed().filter((p) => p.category === c.name);
           if (items.length === 0) return null;

@@ -8,6 +8,7 @@ import {
 } from "@/lib/vercel-analytics";
 import { recentOrders, isStripeConfigured } from "@/lib/orders";
 import { getProduct, formatPrice } from "@/lib/products";
+import { supplierFor } from "@/lib/supplier";
 
 export const metadata = {
   title: "Admin",
@@ -276,11 +277,21 @@ export default async function AdminPage({
                       })}
                     </td>
                     <td className="py-3 pr-4 text-ink-dim">
-                      {o.items.map((i) => (
-                        <div key={i.description}>
-                          {i.quantity} × {i.description}
-                        </div>
-                      ))}
+                      {o.items.map((i) => {
+                        const sup = i.key ? supplierFor(i.key) : undefined;
+                        return (
+                          <div key={i.description} className="mb-1 last:mb-0">
+                            {i.quantity} × {i.description}
+                            {sup && (
+                              <div className="tnum text-xs text-ink-faint">
+                                CWR{" "}
+                                <span className="text-teal">{sup.sku}</span> ·
+                                cost ${sup.cost.toFixed(2)} ea
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
                     </td>
                     <td className="py-3 pr-4 text-ink-dim">
                       {o.name ?? "—"}
@@ -297,6 +308,17 @@ export default async function AdminPage({
                     </td>
                     <td className="tnum py-3 text-right font-medium">
                       {formatPrice(o.total / 100)}
+                      {o.cost > 0 && (
+                        <div
+                          className={`text-xs font-normal ${
+                            o.net >= 0 ? "text-teal" : "text-[#f87171]"
+                          }`}
+                          title="After goods, $9.95 inbound freight and Stripe fees"
+                        >
+                          net {formatPrice(o.net)} ·{" "}
+                          {Math.round((o.net / (o.total / 100)) * 100)}%
+                        </div>
+                      )}
                     </td>
                   </tr>
                 ))}

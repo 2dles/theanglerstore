@@ -1,5 +1,11 @@
 import { Resend } from "resend";
 import { getProduct } from "@/lib/products";
+import {
+  INBOUND_FREIGHT,
+  quickAddLines,
+  supplierCost,
+  supplierFor,
+} from "@/lib/supplier";
 
 /**
  * Order notification email.
@@ -86,19 +92,42 @@ export async function sendOrderEmail(order: OrderEmail): Promise<void> {
   const from = process.env.RESEND_FROM_EMAIL ?? "orders@theanglerstore.com";
   const apiKey = process.env.RESEND_API_KEY;
 
+  const lineKeys = order.items.map((i) => ({
+    key: keyFor(i.description),
+    quantity: i.quantity,
+  }));
+
   const itemLines = order.items
     .map((i) => {
       const key = keyFor(i.description);
+      const sup = key ? supplierFor(key) : undefined;
       return `  • ${i.quantity} × ${i.description}${
-        key ? `  [key: ${key}]` : ""
+        sup ? `\n      CWR SKU ${sup.sku}  ·  mfg ${sup.mfgPart}  ·  cost ${money(Math.round(sup.cost * 100), order.currency)} ea` : key ? `  [key: ${key}]` : ""
       }  —  ${money(i.amountTotal, order.currency)}`;
     })
     .join("\n");
+
+  // Paste-and-go for CWR's "Quick Add (SKU/MFG #/UPC)" box, so placing the
+  // supplier order is a paste rather than a search.
+  const quickAdd = quickAddLines(lineKeys);
+  const cost = supplierCost(lineKeys);
+  const stripeFee = (order.amountTotal / 100) * 0.029 + 0.3;
+  const net = order.amountTotal / 100 - cost - INBOUND_FREIGHT - stripeFee;
+  const netPct = order.amountTotal > 0 ? (net / (order.amountTotal / 100)) * 100 : 0;
 
   const text = `NEW PAID ORDER — place the supplier order now.
 
 ITEMS TO ORDER
 ${itemLines}
+${quickAdd.length ? `
+PASTE INTO CWR → Quick Add (SKU/MFG #/UPC)
+${quickAdd.map((l: string) => `  ${l}`).join("\n")}
+` : ""}
+WHAT YOU MAKE (estimate)
+  Goods cost   ${money(Math.round(cost * 100), order.currency)}
+  Inbound      ${money(Math.round(INBOUND_FREIGHT * 100), order.currency)}
+  Stripe fee   ${money(Math.round(stripeFee * 100), order.currency)}
+  Net          ${money(Math.round(net * 100), order.currency)}  (${netPct.toFixed(0)}%)
 
 SHIP TO
 ${formatAddress(order.address, order.shipName)}
@@ -126,11 +155,14 @@ Dashboard: https://dashboard.stripe.com/payments
   const rows = order.items
     .map((i) => {
       const key = keyFor(i.description);
+      const sup = key ? supplierFor(key) : undefined;
       return `<tr>
         <td style="padding:8px 12px;border-bottom:1px solid #eee"><strong>${i.quantity} ×</strong> ${i.description}${
-          key
-            ? ` <span style="color:#888;font-family:monospace;font-size:12px">${key}</span>`
-            : ""
+          sup
+            ? `<br><span style="color:#888;font-family:monospace;font-size:12px">CWR ${sup.sku} · mfg ${sup.mfgPart} · cost $${sup.cost.toFixed(2)} ea</span>`
+            : key
+              ? ` <span style="color:#888;font-family:monospace;font-size:12px">${key}</span>`
+              : ""
         }</td>
         <td style="padding:8px 12px;border-bottom:1px solid #eee;text-align:right;white-space:nowrap">${money(i.amountTotal, order.currency)}</td>
       </tr>`;

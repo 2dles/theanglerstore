@@ -1,4 +1,6 @@
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
+import { INBOUND_FREIGHT, supplierCost } from "@/lib/supplier";
+import { PRODUCTS } from "@/lib/products";
 import { STORE_ID } from "@/app/api/checkout/route";
 
 export { isStripeConfigured };
@@ -21,7 +23,11 @@ export interface AdminOrder {
   city: string;
   utmSource: string | null;
   utmMedium: string | null;
-  items: { description: string; quantity: number }[];
+  items: { description: string; quantity: number; key: string | null }[];
+  /** Dealer cost of the goods, USD. Server-side only — see src/lib/supplier.ts. */
+  cost: number;
+  /** What's left after goods, inbound freight and Stripe's cut. USD. */
+  net: number;
 }
 
 export async function recentOrders(days = 30): Promise<AdminOrder[]> {
@@ -50,6 +56,31 @@ export async function recentOrders(days = 30): Promise<AdminOrder[]> {
           s.customer_details?.address ??
           null;
 
+        // Stripe stores the line description, not our product key, so map back
+        // by name. metadata.product_keys is the fallback for older sessions and
+        // for anything whose display name has since been edited.
+        const metaKeys = (s.metadata?.product_keys ?? "")
+          .split(",")
+          .map((k) => k.trim())
+          .filter(Boolean);
+
+        const items = (s.line_items?.data ?? []).map((li, idx) => {
+          const desc = li.description ?? "(item)";
+          const byName = PRODUCTS.find(
+            (p) => desc === p.name || desc.startsWith(p.name),
+          );
+          return {
+            description: desc,
+            quantity: li.quantity ?? 1,
+            key: byName?.key ?? metaKeys[idx] ?? null,
+          };
+        });
+
+        const cost = supplierCost(items);
+        const gross = (s.amount_total ?? 0) / 100;
+        const net =
+          gross - cost - (cost > 0 ? INBOUND_FREIGHT : 0) - (gross * 0.029 + 0.3);
+
         return {
           id: s.id,
           created: new Date(s.created * 1000),
@@ -62,10 +93,9 @@ export async function recentOrders(days = 30): Promise<AdminOrder[]> {
           city: [addr?.city, addr?.state].filter(Boolean).join(", ") || "—",
           utmSource: s.metadata?.utm_source || null,
           utmMedium: s.metadata?.utm_medium || null,
-          items: (s.line_items?.data ?? []).map((li) => ({
-            description: li.description ?? "(item)",
-            quantity: li.quantity ?? 1,
-          })),
+          items,
+          cost,
+          net,
         };
       })
       .sort((a, b) => b.created.getTime() - a.created.getTime());

@@ -39,7 +39,7 @@ export function Footer() {
               Shop
             </p>
             <ul className="mt-3 space-y-2 text-sm">
-              {activeCategories().map((c) => (
+              {activeCategories().filter((c) => c.nav).map((c) => (
                 <li key={c.slug}>
                   <Link href={`/collections/${c.slug}`} className="link-quiet">
                     {c.name}
