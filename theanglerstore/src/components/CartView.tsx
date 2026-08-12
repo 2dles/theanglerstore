@@ -208,7 +208,14 @@ function CartInner() {
             </div>
           </dl>
 
-          <p className="mt-2 text-xs text-ink-faint">Tax calculated at checkout.</p>
+          <p className="mt-2 text-xs text-ink-faint">
+            California orders have sales tax added at checkout. Other states,
+            none &mdash; see{" "}
+            <Link href="/shipping" className="hover:text-ink">
+              shipping &amp; tax
+            </Link>
+            .
+          </p>
 
           {toFreeShipping > 0 && (
             <p className="mt-3 text-sm text-teal">

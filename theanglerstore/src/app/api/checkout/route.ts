@@ -83,6 +83,7 @@ export async function POST(req: Request) {
     quantity: number;
     price_data: {
       currency: string;
+      tax_behavior: "exclusive";
       unit_amount: number;
       product_data: {
         name: string;
@@ -143,6 +144,10 @@ export async function POST(req: Request) {
       quantity: qty,
       price_data: {
         currency: "usd",
+        // Explicit rather than relying on the account default. USD prices on
+        // this site are what the customer sees on the product page; tax goes
+        // on top of that, never inside it.
+        tax_behavior: "exclusive",
         unit_amount: Math.round(unit * 100),
         product_data: {
           name: discounted ? `${product.name} — ${BUNDLE.name}` : product.name,
@@ -178,7 +183,7 @@ export async function POST(req: Request) {
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       // The statement descriptor is set at the ACCOUNT level in Stripe as
-      // "THEANGLERSTORE", which is what a customer needs to recognise on a
+      // "THEANGLERSTORE", which is what a customer needs to recognize on a
       // card statement. We deliberately do NOT set statement_descriptor_suffix
       // here: Stripe concatenates the account's shortened descriptor with the
       // suffix, so a suffix of "ANGLERSTORE" would render as
@@ -189,7 +194,18 @@ export async function POST(req: Request) {
       payment_intent_data: {
         description: `TheAnglerStore order — ${lines.length} item${lines.length === 1 ? "" : "s"}`,
       },
-      automatic_tax: { enabled: false },
+      // Stripe Tax. Calculation happens only where we hold a registration —
+      // Stripe's own wording: "Without a registration in the customer's
+      // location, the calculation returns zero tax." So this is safe to leave
+      // on: it collects California tax once the CA registration is live at
+      // dashboard.stripe.com/tax/locations, and quietly returns zero
+      // everywhere else rather than over-collecting from people we have no
+      // obligation to.
+      //
+      // NOT tax advice. Nexus rules change with volume and with where stock
+      // ships from — get proper advice before assuming California is the only
+      // state that will ever apply.
+      automatic_tax: { enabled: true },
       // Only the resolved zone's countries are accepted, so a buyer can correct
       // a typo in their address without escaping the rate they were quoted.
       shipping_address_collection: {
@@ -200,6 +216,9 @@ export async function POST(req: Request) {
         {
           shipping_rate_data: {
             type: "fixed_amount",
+            // California taxes shipping on physical goods in most cases;
+            // letting Stripe decide is the point of enabling Tax at all.
+            tax_behavior: "exclusive",
             display_name:
               shipping === 0 ? "Free shipping" : "Standard shipping",
             fixed_amount: {

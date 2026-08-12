@@ -210,8 +210,22 @@ export default function ShippingPage() {
 
       <Section heading="Sales tax">
         <p>
-          Tax, where it applies, is calculated at checkout and shown before you
-          pay. Prices displayed on product pages are exclusive of tax.
+          We are registered to collect sales tax in{" "}
+          <strong className="text-ink">California</strong>, where the business
+          is based. California orders have tax calculated at checkout and shown
+          before you pay — on the goods and, as California requires, on the
+          shipping charge too.
+        </p>
+        <p>
+          Orders to other states are charged no sales tax, because we are not
+          registered anywhere else yet. That is not a loophole and it is not
+          permanent: once our volume in a state passes its threshold we have to
+          register there, and we will. Depending on where you live you may
+          still owe use tax on the purchase — most states ask for it on the
+          annual return, and whether you pay it is between you and them.
+        </p>
+        <p>
+          Prices on product pages are exclusive of tax.
         </p>
       </Section>
     </Prose>
