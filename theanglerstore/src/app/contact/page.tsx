@@ -14,8 +14,8 @@ export default function ContactPage() {
     >
       <Section heading="Email">
         <p>
-          <a href="mailto:support@theanglerstore.com" className="text-tide hover:text-teal">
-            support@theanglerstore.com
+          <a href="mailto:help@theanglerstore.com" className="text-tide hover:text-teal">
+            help@theanglerstore.com
           </a>{" "}
           — orders, returns, shipping, and anything that has gone wrong.
         </p>
@@ -39,21 +39,24 @@ export default function ContactPage() {
 
       <Section heading="Who you are dealing with">
         <p>
-          {/* REQUIRES OWNER INPUT — replace the two placeholders below with the
-              registered entity name and a mailing address (a PO box or the
-              registered agent's address is fine). Deliberately left as visible
-              placeholders rather than invented: a wrong address is worse than
-              none. */}
-          <strong className="text-ink">[LEGAL ENTITY NAME]</strong>, trading as
-          TheAnglerStore.
-          <br />
-          [BUSINESS ADDRESS]
+          {/* City and state only, deliberately. The registered address is a
+              private residence; a sole proprietor's home address does not
+              belong on a public page that scrapers read. Swap in a PO box or a
+              registered agent's address here whenever there is one. */}
+          <strong className="text-ink">Augustus Muse</strong>, sole proprietor,
+          trading as TheAnglerStore under a fictitious business name filed in
+          Sonoma County, California.
           <br />
           Sebastopol, California, United States
+          <br />
+          California seller&rsquo;s permit 215727328
         </p>
         <p>
-          We are a small operation and there is no phone line yet — email is
-          answered by the person who packed your order, usually the same day.
+          <a href="tel:+17075087118" className="text-tide hover:text-teal">
+            (707) 508-7118
+          </a>{" "}
+          — one person, one phone. If it rings out, we are on the water or in
+          the post office queue; email gets a faster answer.
         </p>
       </Section>
 

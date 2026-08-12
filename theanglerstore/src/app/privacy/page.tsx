@@ -58,7 +58,7 @@ export default function PrivacyPage() {
 
       <Section heading="Your rights">
         <p>
-          Email <a href="mailto:support@theanglerstore.com" className="text-tide hover:text-teal">support@theanglerstore.com</a>{" "}
+          Email <a href="mailto:help@theanglerstore.com" className="text-tide hover:text-teal">help@theanglerstore.com</a>{" "}
           and we will tell you exactly what we hold about you, correct it, or
           delete it. California residents have specific rights under the CCPA,
           including the right to know and the right to deletion; the same email

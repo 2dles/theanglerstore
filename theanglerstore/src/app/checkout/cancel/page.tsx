@@ -41,10 +41,10 @@ export default function CancelPage() {
       <p className="mt-10 text-sm leading-relaxed text-ink-faint">
         Something go wrong at checkout? Email{" "}
         <a
-          href="mailto:support@theanglerstore.com"
+          href="mailto:help@theanglerstore.com"
           className="text-tide hover:text-teal"
         >
-          support@theanglerstore.com
+          help@theanglerstore.com
         </a>{" "}
         and tell us what happened — we&rsquo;d rather fix it than lose the order.
       </p>

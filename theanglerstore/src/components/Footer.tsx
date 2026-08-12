@@ -85,7 +85,17 @@ export function Footer() {
         </div>
 
         <div className="hairline mt-10 flex flex-col gap-2 pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} TheAnglerStore. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} TheAnglerStore — Augustus Muse, sole
+            proprietor, Sebastopol, California.{" "}
+            <a href="tel:+17075087118" className="hover:text-ink">
+              (707) 508-7118
+            </a>{" "}
+            ·{" "}
+            <a href="mailto:help@theanglerstore.com" className="hover:text-ink">
+              help@theanglerstore.com
+            </a>
+          </p>
           <p>Tide and weather data on our sister site courtesy of NOAA CO-OPS and Open-Meteo.</p>
         </div>
       </div>

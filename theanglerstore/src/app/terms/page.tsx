@@ -19,7 +19,7 @@ export default function TermsPage() {
           Prices are in US dollars and are calculated on our server at checkout,
           not in your browser. If a price is listed in obvious error — a decimal
           in the wrong place — we may cancel the order and refund you in full
-          rather than honour it. We will tell you if that happens.
+          rather than honor it. We will tell you if that happens.
         </p>
         <p>
           Placing an order is an offer to buy. The contract forms when we accept
@@ -45,7 +45,7 @@ export default function TermsPage() {
           policy and we will make it right.
         </p>
         <p>
-          Colours vary between screens. Fishing outcomes vary considerably more.
+          Colors vary between screens. Fishing outcomes vary considerably more.
           Nothing on this site is a promise that you will catch fish.
         </p>
       </Section>
@@ -71,7 +71,10 @@ export default function TermsPage() {
 
       <Section heading="Governing law">
         <p>
-          These terms are governed by the laws of the State of California.
+          These terms are between you and Augustus Muse, sole proprietor,
+          trading as TheAnglerStore, of Sebastopol, California — a fictitious
+          business name registered in Sonoma County. They are governed by the
+          laws of the State of California.
           Nothing here limits any right you have under consumer protection law
           that cannot be limited by agreement.
         </p>
