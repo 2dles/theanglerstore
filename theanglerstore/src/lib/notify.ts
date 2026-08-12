@@ -1,8 +1,9 @@
 import { Resend } from "resend";
 import { getProduct } from "@/lib/products";
 import {
-  INBOUND_FREIGHT,
-  quickAddLines,
+  SUPPLIERS,
+  bySupplier,
+  inboundFreight,
   supplierCost,
   supplierFor,
 } from "@/lib/supplier";
@@ -102,30 +103,39 @@ export async function sendOrderEmail(order: OrderEmail): Promise<void> {
       const key = keyFor(i.description);
       const sup = key ? supplierFor(key) : undefined;
       return `  • ${i.quantity} × ${i.description}${
-        sup ? `\n      CWR SKU ${sup.sku}  ·  mfg ${sup.mfgPart}  ·  cost ${money(Math.round(sup.cost * 100), order.currency)} ea` : key ? `  [key: ${key}]` : ""
+        sup ? `\n      ${SUPPLIERS[sup.supplier ?? "cwr"].name} SKU ${sup.sku}  ·  mfg ${sup.mfgPart}  ·  cost ${money(Math.round(sup.cost * 100), order.currency)} ea` : key ? `  [key: ${key}]` : ""
       }  —  ${money(i.amountTotal, order.currency)}`;
     })
     .join("\n");
 
-  // Paste-and-go for CWR's "Quick Add (SKU/MFG #/UPC)" box, so placing the
-  // supplier order is a paste rather than a search.
-  const quickAdd = quickAddLines(lineKeys);
+  // One paste block per supplier. An order that spans both houses needs two
+  // supplier orders placed, and the email should say so plainly rather than
+  // running the SKUs together into one list you'd have to sort by hand.
+  const groups = bySupplier(lineKeys);
+  const freight = inboundFreight(lineKeys);
   const cost = supplierCost(lineKeys);
   const stripeFee = (order.amountTotal / 100) * 0.029 + 0.3;
-  const net = order.amountTotal / 100 - cost - INBOUND_FREIGHT - stripeFee;
+  const net = order.amountTotal / 100 - cost - freight - stripeFee;
   const netPct = order.amountTotal > 0 ? (net / (order.amountTotal / 100)) * 100 : 0;
 
   const text = `NEW PAID ORDER — place the supplier order now.
 
 ITEMS TO ORDER
 ${itemLines}
-${quickAdd.length ? `
-PASTE INTO CWR → Quick Add (SKU/MFG #/UPC)
-${quickAdd.map((l: string) => `  ${l}`).join("\n")}
-` : ""}
+${groups.length > 1 ? `
+⚠ TWO SUPPLIER ORDERS REQUIRED — this cart spans ${groups.length} houses.
+` : ""}${groups
+  .map(
+    (g) => `
+PLACE WITH ${SUPPLIERS[g.supplier].name.toUpperCase()}  (${SUPPLIERS[g.supplier].orderUrl})
+${SUPPLIERS[g.supplier].howToOrder}
+${g.lines.map((l) => `  ${l}`).join("\n")}
+`,
+  )
+  .join("")}
 WHAT YOU MAKE (estimate)
   Goods cost   ${money(Math.round(cost * 100), order.currency)}
-  Inbound      ${money(Math.round(INBOUND_FREIGHT * 100), order.currency)}
+  Inbound      ${money(Math.round(freight * 100), order.currency)}${groups.length > 1 ? "  ← two supplier orders" : ""}
   Stripe fee   ${money(Math.round(stripeFee * 100), order.currency)}
   Net          ${money(Math.round(net * 100), order.currency)}  (${netPct.toFixed(0)}%)
 
@@ -159,7 +169,7 @@ Dashboard: https://dashboard.stripe.com/payments
       return `<tr>
         <td style="padding:8px 12px;border-bottom:1px solid #eee"><strong>${i.quantity} ×</strong> ${i.description}${
           sup
-            ? `<br><span style="color:#888;font-family:monospace;font-size:12px">CWR ${sup.sku} · mfg ${sup.mfgPart} · cost $${sup.cost.toFixed(2)} ea</span>`
+            ? `<br><span style="color:#888;font-family:monospace;font-size:12px">${SUPPLIERS[sup.supplier ?? "cwr"].name} ${sup.sku} · mfg ${sup.mfgPart} · cost $${sup.cost.toFixed(2)} ea</span>`
             : key
               ? ` <span style="color:#888;font-family:monospace;font-size:12px">${key}</span>`
               : ""

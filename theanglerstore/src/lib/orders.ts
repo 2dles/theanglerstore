@@ -1,5 +1,5 @@
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
-import { INBOUND_FREIGHT, supplierCost } from "@/lib/supplier";
+import { inboundFreight, supplierCost } from "@/lib/supplier";
 import { PRODUCTS } from "@/lib/products";
 import { STORE_ID } from "@/app/api/checkout/route";
 
@@ -79,7 +79,7 @@ export async function recentOrders(days = 30): Promise<AdminOrder[]> {
         const cost = supplierCost(items);
         const gross = (s.amount_total ?? 0) / 100;
         const net =
-          gross - cost - (cost > 0 ? INBOUND_FREIGHT : 0) - (gross * 0.029 + 0.3);
+          gross - cost - inboundFreight(items) - (gross * 0.029 + 0.3);
 
         return {
           id: s.id,

@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { activeCategories, listed } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
+import { ProductFinder } from "@/components/ProductFinder";
 
 export const metadata = {
   title: "All Gear — Surf & Inshore Fishing Tackle",
@@ -41,60 +43,56 @@ export default function AllProductsPage() {
           bad buy, we say so on its page instead of quietly not selling it.
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {activeCategories().map((c) => (
-            <Link
-              key={c.slug}
-              href={`/collections/${c.slug}`}
-              className="chip hover:border-line-hi hover:text-ink"
-            >
-              {c.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Most Popular leads, because a first-time visitor from the tide site
-            should meet the things almost every angler needs before they meet
-            a category index. Ranked editorially in products.ts — see APPEAL. */}
-        <section className="mt-14">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-xl font-semibold tracking-tight">
-                Most popular
-              </h2>
-              <p className="mt-1 text-sm text-ink-faint">
-                If you buy one thing from here, make it one of these.
-              </p>
-            </div>
-          </div>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-            {listed()
-              .slice(0, 8)
-              .map((p, i) => (
-                <ProductCard key={p.key} product={p} priority={i < 4} />
-              ))}
-          </div>
-        </section>
-
-        {activeCategories().map((c) => {
-          const items = listed().filter((p) => p.category === c.name);
-          if (items.length === 0) return null;
-          return (
-            <section key={c.slug} className="mt-14">
+        <Suspense
+          fallback={
+            <div className="mt-8 h-32 rounded-xl border border-line bg-card/40" />
+          }
+        >
+          <ProductFinder>
+            {/* Most Popular leads, because a first-time visitor from the tide site
+                should meet the things almost every angler needs before they meet
+                a category index. Ranked editorially in products.ts — see APPEAL. */}
+            <section className="mt-14">
               <div className="flex items-end justify-between gap-4">
-                <h2 className="text-xl font-semibold tracking-tight">{c.name}</h2>
-                <Link href={`/collections/${c.slug}`} className="text-sm link-quiet">
-                  View collection →
-                </Link>
+                <div>
+                  <h2 className="text-xl font-semibold tracking-tight">
+                    Most popular
+                  </h2>
+                  <p className="mt-1 text-sm text-ink-faint">
+                    If you buy one thing from here, make it one of these.
+                  </p>
+                </div>
               </div>
               <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {items.map((p) => (
-                  <ProductCard key={p.key} product={p} />
-                ))}
+                {listed()
+                  .slice(0, 8)
+                  .map((p, i) => (
+                    <ProductCard key={p.key} product={p} priority={i < 4} />
+                  ))}
               </div>
             </section>
-          );
-        })}
+
+            {activeCategories().map((c) => {
+              const items = listed().filter((p) => p.category === c.name);
+              if (items.length === 0) return null;
+              return (
+                <section key={c.slug} className="mt-14">
+                  <div className="flex items-end justify-between gap-4">
+                    <h2 className="text-xl font-semibold tracking-tight">{c.name}</h2>
+                    <Link href={`/collections/${c.slug}`} className="text-sm link-quiet">
+                      View collection →
+                    </Link>
+                  </div>
+                  <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+                    {items.map((p) => (
+                      <ProductCard key={p.key} product={p} />
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </ProductFinder>
+        </Suspense>
       </div>
     </>
   );

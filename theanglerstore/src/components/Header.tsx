@@ -38,12 +38,29 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
         <Logo />
 
-        <nav className="hidden items-center gap-5 text-sm md:flex">
-          {activeCategories().filter((c) => c.nav).map((c) => (
-            <Link key={c.slug} href={`/collections/${c.slug}`} className="link-quiet">
-              {c.name}
-            </Link>
-          ))}
+        {/* Four categories and a door to the rest.
+            We used to list every nav category here, which worked at six and
+            fell apart at nine — the row crowded the cart and started wrapping.
+            /products now has a real search-and-filter, so the honest answer is
+            to stop treating the header as a category index and let it point
+            at the thing that does that job properly. Full list lives in the
+            footer and in the mobile menu below. */}
+        <nav className="hidden items-center gap-5 text-sm lg:flex">
+          <Link href="/products" className="link-quiet font-medium text-ink">
+            All gear
+          </Link>
+          {activeCategories()
+            .filter((c) => c.nav)
+            .slice(0, 4)
+            .map((c) => (
+              <Link
+                key={c.slug}
+                href={`/collections/${c.slug}`}
+                className="link-quiet whitespace-nowrap"
+              >
+                {c.name}
+              </Link>
+            ))}
         </nav>
 
         <div className="ml-auto flex items-center gap-3">
@@ -75,7 +92,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="btn btn-ghost !px-2.5 !py-2 md:hidden"
+            className="btn btn-ghost !px-2.5 !py-2 lg:hidden"
             aria-expanded={open}
             aria-label="Toggle menu"
           >
@@ -87,9 +104,18 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="hairline mx-auto max-w-6xl px-4 py-3 md:hidden">
+        <nav className="hairline mx-auto max-w-6xl px-4 py-3 lg:hidden">
           <ul className="grid gap-1">
-            {activeCategories().filter((c) => c.nav).map((c) => (
+            <li>
+              <Link
+                href="/products"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-2 py-2 text-sm font-medium text-ink"
+              >
+                All gear — search &amp; filter
+              </Link>
+            </li>
+            {activeCategories().map((c) => (
               <li key={c.slug}>
                 <Link
                   href={`/collections/${c.slug}`}

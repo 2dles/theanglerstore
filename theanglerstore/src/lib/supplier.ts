@@ -15,8 +15,48 @@
  * email costs no secrecy we still have. The COST is the part that must stay
  * server-side.)
  *
- * Generated from CWR's export on 10 Aug 2026. Re-generate when costs move.
+ * TWO SUPPLIERS now. CWR is a marine distributor (rod holders, nets, tools,
+ * downrigger gear); Burch Fishing Tackle is a tackle house in Florence, AL
+ * (rods, hooks, soft plastics, hard baits). Every entry carries a `supplier`
+ * so the order email can be split into one paste block per house — a single
+ * customer order can require two supplier orders.
+ *
+ * CWR costs generated from their export on 10 Aug 2026. Burch costs read from
+ * their dealer storefront on 12 Aug 2026. Re-generate when costs move.
  */
+
+export type SupplierId = "cwr" | "burch";
+
+export const SUPPLIERS: Record<
+  SupplierId,
+  {
+    name: string;
+    /** Where you go to place the order. */
+    orderUrl: string;
+    /**
+     * Inbound freight we pay per supplier order, used for margin estimates.
+     * CWR bills a real inbound charge. Burch charges no per-order fee, no
+     * minimum and no markup on shipping — we paid a one-time $199 membership
+     * instead — so their marginal freight is folded into the customer's
+     * shipping rather than sitting on top of it.
+     */
+    freight: number;
+    howToOrder: string;
+  }
+> = {
+  cwr: {
+    name: "CWR Distribution",
+    orderUrl: "https://www.cwrdistribution.com",
+    freight: 9.95,
+    howToOrder: 'Paste into Quick Add (SKU/MFG #/UPC).',
+  },
+  burch: {
+    name: "Burch Fishing Tackle",
+    orderUrl: "https://burchfishingtackle.com",
+    freight: 0,
+    howToOrder: "Order by SKU on their storefront. No minimum, no per-order fee.",
+  },
+};
 
 export interface SupplierItem {
   /** CWR part number — paste straight into their Quick Add box. */
@@ -25,6 +65,8 @@ export interface SupplierItem {
   mfgPart: string;
   /** Our dealer cost, USD. */
   cost: number;
+  /** Which house it comes from. Absent means CWR, which was the only one. */
+  supplier?: SupplierId;
 }
 
 const SUPPLIER: Record<string, SupplierItem> = {
@@ -147,7 +189,6 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "plano-edge-3700-terminal": { sku: "79718", mfgPart: "PLASE400", cost: 48.21 },
   "plano-edge-professional-3600-standard-stowaw": { sku: "79714", mfgPart: "PLASE360", cost: 22.50 },
   "plano-prolatch-xl-stowaway-utility-box": { sku: "66603", mfgPart: "705001", cost: 10.93 },
-  "plano-prolatch-leader-spool-box": { sku: "66849", mfgPart: "108700", cost: 19.29 },
   "plano-stowaway-3700-thin-stow": { sku: "109932", mfgPart: "P000270", cost: 9.83 },
   "plano-waterproof-stowaway-utility-box-3500-s": { sku: "66587", mfgPart: "354010", cost: 7.71 },
   "plano-waterproof-stowaway-3500": { sku: "109119", mfgPart: "P000272", cost: 11.79 },
@@ -162,7 +203,6 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "rapala-large-lure-wrap-3-pack": { sku: "88209", mfgPart: "RLWRL", cost: 9.59 },
   "rapala-rapstack-3600-open-foam-tackle-tray": { sku: "101113", mfgPart: "RTT3600OF", cost: 8.95 },
   "rapala-rapstack-3600-tackle-tray": { sku: "101112", mfgPart: "RTT3600", cost: 8.95 },
-  "rapala-stealth-fxf-fillet-knife-10-medium-fl": { sku: "105365", mfgPart: "RSFXF10", cost: 33.53 },
   "shurhold-gopro-camera-adapter": { sku: "51144", mfgPart: "104", cost: 8.54 },
   "shurhold-shur-lok-gaff-hook": { sku: "32953", mfgPart: "1804", cost: 42.14 },
   "shurhold-shur-lok-landing-net-17-x-20-x-30": { sku: "32954", mfgPart: "1820", cost: 28.68 },
@@ -188,33 +228,141 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "williamson-high-speed-tuna-catcher-rigged-8-": { sku: "105348", mfgPart: "HSTC8SJ", cost: 23.90 },
   "williamson-kensaki-220-jig-6-75-7-3-4oz-hot-": { sku: "105296", mfgPart: "KSJX220HS", cost: 15.27 },
   "williamson-kensaki-280-jig-7-25-9-7-8oz-char": { sku: "105303", mfgPart: "KSJX280CB", cost: 17.39 },
+
+  // Added 11 Aug 2026 — kayak, safety and trolling rigging.
+  "mate-30-rod-cup-holder": { sku: "77189", mfgPart: "P1030DW", cost: 13.70 },
+  "scotty-245-rail-mount": { sku: "34348", mfgPart: "245", cost: 12.88 },
+  "scotty-405-orca-kit": { sku: "37812", mfgPart: "405-BK", cost: 37.98 },
+  "mate-15-rod-cup-holder-ss": { sku: "72502", mfgPart: "C1015D", cost: 112.33 },
+  "ce-smith-swivel-flush-mount-80": { sku: "30231", mfgPart: "53680SA", cost: 123.55 },
+  "mate-backing-plate": { sku: "103694", mfgPart: "CBPT", cost: 16.44 },
+  "scotty-1170-release": { sku: "34313", mfgPart: "1170", cost: 8.76 },
+  "scotty-370-snubber": { sku: "34297", mfgPart: "370", cost: 9.03 },
+  "scotty-1176-stacker": { sku: "35527", mfgPart: "1176", cost: 10.05 },
+  "scotty-1148-weight-hook": { sku: "39627", mfgPart: "1148", cost: 9.83 },
+  "scotty-377-sure-stop": { sku: "73732", mfgPart: "0377", cost: 16.44 },
+  "scotty-358-rodmaster-ii": { sku: "34373", mfgPart: "358", cost: 20.63 },
+  "taco-outrigger-clips": { sku: "60571", mfgPart: "COK-0001B-2", cost: 19.21 },
+  "harken-229f-block": { sku: "78687", mfgPart: "229F", cost: 36.47 },
+  "yakgear-drain-plug-kit": { sku: "101697", mfgPart: "DPK", cost: 7.25 },
+  "yakgear-paddle-leash": { sku: "101684", mfgPart: "CPL24", cost: 8.08 },
+  "yakgear-scupper-plugs": { sku: "101702", mfgPart: "SCUP4", cost: 9.28 },
+  "yakgear-grapnel-anchor": { sku: "101690", mfgPart: "AB3", cost: 19.41 },
+  "railblaza-rod-holder-ii": { sku: "105801", mfgPart: "08-0085-11", cost: 24.96 },
+  "scotty-276-anchor-lock": { sku: "35507", mfgPart: "276", cost: 26.43 },
+  "railblaza-hexx-mount": { sku: "102209", mfgPart: "11-4174-11", cost: 47.89 },
+  "orion-safety-whistle": { sku: "77049", mfgPart: "676", cost: 7.05 },
+  "orion-signal-mirror": { sku: "70981", mfgPart: "916", cost: 11.25 },
+  "acr-c-strobe-h2o": { sku: "59880", mfgPart: "3964.1", cost: 20.98 },
+  "mustang-throw-bag-75": { sku: "93013", mfgPart: "MRD075-0-0-215", cost: 49.39 },
+  "acr-rapidditch-express": { sku: "50058", mfgPart: "2279", cost: 54.99 },
+
+  // Added 12 Aug 2026 — Burch Fishing Tackle. Their SKU and manufacturer part
+  // number are the same string on their storefront, so both columns match.
+  "surf-rod": { sku: "FTS1002MFS", mfgPart: "FTS1002MFS", cost: 22.33, supplier: "burch" },
+  "daiwa-ft-surf-9": { sku: "FTS902MFS", mfgPart: "FTS902MFS", cost: 22.33, supplier: "burch" },
+  "daiwa-ft-surf-11": { sku: "FTS1102MFS", mfgPart: "FTS1102MFS", cost: 22.33, supplier: "burch" },
+  "circle-hooks": { sku: "L197FH-4/0", mfgPart: "L197FH-4/0", cost: 11.25, supplier: "burch" },
+  "gamakatsu-octopus-circle-3-0": { sku: "208413", mfgPart: "208413", cost: 3.30, supplier: "burch" },
+  "gamakatsu-octopus-circle-1-0": { sku: "208411", mfgPart: "208411", cost: 3.30, supplier: "burch" },
+  "gamakatsu-worm-hook-3-0": { sku: "01413", mfgPart: "01413", cost: 3.75, supplier: "burch" },
+  "gamakatsu-worm-hook-2-0": { sku: "01412", mfgPart: "01412", cost: 3.75, supplier: "burch" },
+  "gamakatsu-offset-worm-hook-1": { sku: "07110", mfgPart: "07110", cost: 3.26, supplier: "burch" },
+  "mustad-barrel-swivel-4": { sku: "771046-4-9", mfgPart: "771046-4-9", cost: 4.75, supplier: "burch" },
+  "mustad-barrel-swivel-2-0": { sku: "771046-2/0-4", mfgPart: "771046-2/0-4", cost: 5.08, supplier: "burch" },
+  "mustad-snap-swivel-12": { sku: "77560-12-12", mfgPart: "77560-12-12", cost: 2.05, supplier: "burch" },
+  "strike-king-tungsten-weight-18": { sku: "TGTW18-46", mfgPart: "TGTW18-46", cost: 5.36, supplier: "burch" },
+  "mustad-tungsten-worm-weight": { sku: "MTW001-TX-3.5-4", mfgPart: "MTW001-TX-3.5-4", cost: 4.07, supplier: "burch" },
+  "yamamoto-senko-gp": { sku: "YAM-9-10-913", mfgPart: "YAM-9-10-913", cost: 5.83, supplier: "burch" },
+  "yamamoto-senko-smoke": { sku: "YAM-9-10-240", mfgPart: "YAM-9-10-240", cost: 5.83, supplier: "burch" },
+  "zoom-trick-worm-wrt": { sku: "006-338", mfgPart: "006-338", cost: 4.88, supplier: "burch" },
+  "zoom-trick-worm-pc": { sku: "006-015", mfgPart: "006-015", cost: 4.88, supplier: "burch" },
+  "zoom-super-fluke-jr": { sku: "056-091", mfgPart: "056-091", cost: 3.71, supplier: "burch" },
+  "zoom-fluke-smokin-shad": { sku: "015-109", mfgPart: "015-109", cost: 2.68, supplier: "burch" },
+  "zoom-brush-hog-junebug": { sku: "145-005", mfgPart: "145-005", cost: 4.78, supplier: "burch" },
+  "rage-bug": { sku: "RGBUG-875", mfgPart: "RGBUG-875", cost: 5.16, supplier: "burch" },
+  "baby-rage-bug": { sku: "RGBBUG-2", mfgPart: "RGBBUG-2", cost: 5.16, supplier: "burch" },
+  "zman-big-trd-gp": { sku: "TRD4-46PK6", mfgPart: "TRD4-46PK6", cost: 3.08, supplier: "burch" },
+  "zman-big-trd-bb": { sku: "TRD4-02PK6", mfgPart: "TRD4-02PK6", cost: 3.08, supplier: "burch" },
+  "powerbait-general": { sku: "PBMSTG5-GP", mfgPart: "PBMSTG5-GP", cost: 5.97, supplier: "burch" },
+  "powerbait-chigger-craw": { sku: "PBMSCHC3-GP", mfgPart: "PBMSCHC3-GP", cost: 5.97, supplier: "burch" },
+  "crappie-magnet-bw": { sku: "CM15-B/W", mfgPart: "CM15-B/W", cost: 1.51, supplier: "burch" },
+  "kvd-squarebill-sexy-shad": { sku: "HCKVDS2.5-590", mfgPart: "HCKVDS2.5-590", cost: 5.73, supplier: "burch" },
+  "kvd-squarebill-bbc": { sku: "HCKVDS2.5-535", mfgPart: "HCKVDS2.5-535", cost: 5.73, supplier: "burch" },
+  "red-eye-shad-34": { sku: "REYESD34-538", mfgPart: "REYESD34-538", cost: 6.67, supplier: "burch" },
+  "red-eye-shad-12": { sku: "REYESD12-401", mfgPart: "REYESD12-401", cost: 5.94, supplier: "burch" },
+  "strike-king-3xd-wrc": { sku: "HC3XD-468", mfgPart: "HC3XD-468", cost: 5.64, supplier: "burch" },
+  "strike-king-3xd-bbc": { sku: "HC3XD-535", mfgPart: "HC3XD-535", cost: 5.64, supplier: "burch" },
+  "war-eagle-spinnerbait": { sku: "WE12PW43", mfgPart: "WE12PW43", cost: 5.91, supplier: "burch" },
+  "sk-tour-grade-spinnerbait": { sku: "TGSB38CW-292", mfgPart: "TGSB38CW-292", cost: 6.89, supplier: "burch" },
+  "booyah-super-shad": { sku: "BYSS38612", mfgPart: "BYSS38612", cost: 5.01, supplier: "burch" },
+  "zman-finesse-shroomz": { sku: "FJH15-01PK5", mfgPart: "FJH15-01PK5", cost: 3.60, supplier: "burch" },
+  "zman-shroomz-weedless": { sku: "FJHW16-01PK5", mfgPart: "FJHW16-01PK5", cost: 4.20, supplier: "burch" },
+  "zman-nedlockz-ewg": { sku: "TTNL-3620", mfgPart: "TTNL-3620", cost: 5.09, supplier: "burch" },
+  "crappie-magnet-minnow-heads": { sku: "CMEHMH18-WH", mfgPart: "CMEHMH18-WH", cost: 2.47, supplier: "burch" },
 };
 
 export function supplierFor(key: string): SupplierItem | undefined {
   return SUPPLIER[key];
 }
 
-/** "103114 x 1" lines, ready to paste into CWR's Quick Add. */
-export function quickAddLines(
-  items: { key?: string | null; quantity: number }[],
-): string[] {
-  return items
-    .map((i) => {
-      const s = i.key ? supplierFor(i.key) : undefined;
-      return s ? `${s.sku} x ${i.quantity}` : null;
-    })
-    .filter((x): x is string => Boolean(x));
+/** Which house a key comes from. Defaults to CWR for entries written before Burch existed. */
+export function supplierIdOf(key: string): SupplierId | undefined {
+  const s = SUPPLIER[key];
+  return s ? (s.supplier ?? "cwr") : undefined;
+}
+
+type Line = { key?: string | null; quantity: number };
+
+/**
+ * Order lines grouped by the house that has to fill them.
+ *
+ * A cart can span both suppliers, in which case this returns two groups and
+ * you place two orders. The customer only ever pays one shipping charge — we
+ * decided to absorb the second inbound leg rather than show them a shipping
+ * total that jumps for reasons they cannot see.
+ */
+export function bySupplier(
+  items: Line[],
+): { supplier: SupplierId; lines: string[] }[] {
+  const groups = new Map<SupplierId, string[]>();
+  for (const i of items) {
+    const s = i.key ? supplierFor(i.key) : undefined;
+    if (!s) continue;
+    const id = s.supplier ?? "cwr";
+    if (!groups.has(id)) groups.set(id, []);
+    groups.get(id)!.push(`${s.sku} x ${i.quantity}`);
+  }
+  return [...groups.entries()].map(([supplier, lines]) => ({ supplier, lines }));
+}
+
+/** Flat paste lines, all suppliers. Kept for callers that don't care. */
+export function quickAddLines(items: Line[]): string[] {
+  return bySupplier(items).flatMap((g) => g.lines);
 }
 
 /** Total dealer cost of a set of lines, for margin display. */
-export function supplierCost(
-  items: { key?: string | null; quantity: number }[],
-): number {
+export function supplierCost(items: Line[]): number {
   return items.reduce((sum, i) => {
     const s = i.key ? supplierFor(i.key) : undefined;
     return sum + (s ? s.cost * i.quantity : 0);
   }, 0);
 }
 
-/** Cheapest CWR inbound freight, per order. Used for margin estimates only. */
+/**
+ * Inbound freight for an order — summed over the DISTINCT suppliers it touches,
+ * not per line. Two CWR items cost one inbound leg; one CWR item and one Burch
+ * item cost CWR's leg plus Burch's.
+ */
+export function inboundFreight(items: Line[]): number {
+  return bySupplier(items).reduce(
+    (sum, g) => sum + SUPPLIERS[g.supplier].freight,
+    0,
+  );
+}
+
+/**
+ * Cheapest CWR inbound freight, per order.
+ * @deprecated Use inboundFreight(items) — it knows about Burch.
+ */
 export const INBOUND_FREIGHT = 9.95;
