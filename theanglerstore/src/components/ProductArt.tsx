@@ -29,14 +29,25 @@ export function ProductArt({
 }) {
   if (product.image) {
     return (
-      <div className={`relative overflow-hidden bg-deep ${className}`}>
+      // CONTAIN, not cover.
+      //
+      // Supplier photography is shot product-on-white at roughly square. Filling
+      // a 4:3 card with object-cover crops the sides off, which is survivable
+      // for a tackle box and useless for anything long and thin — a 6 ft net
+      // handle cropped to its middle is a diagonal grey line, and a shopper
+      // genuinely cannot tell what they are looking at.
+      //
+      // So: fit the whole product inside the frame, on a WHITE plate. Not
+      // off-white — the photos are shot on pure white, and any other shade
+      // draws a visible seam where the photo ends and the plate begins.
+      <div className={`relative overflow-hidden bg-white ${className}`}>
         <Image
           src={product.image}
           alt={product.name}
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          className="object-contain p-3 sm:p-4"
         />
       </div>
     );

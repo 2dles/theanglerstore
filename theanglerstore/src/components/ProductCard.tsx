@@ -20,13 +20,17 @@ export function ProductCard({
           priority={priority}
           className="h-full w-full transition-transform duration-500 group-hover:scale-[1.04]"
         />
+        {/* Both pills sit ON the artwork, and the artwork is now a light plate
+            for photographed products and a dark gradient for illustrated ones.
+            Light-on-light is unreadable, so these carry their own dark ground
+            rather than inheriting the card's. */}
         {product.badge && (
-          <span className="badge absolute left-3 top-3 backdrop-blur-sm">
+          <span className="badge absolute left-3 top-3 !border-white/10 !bg-abyss/85 !text-ink backdrop-blur-sm">
             {product.badge}
           </span>
         )}
         {product.role === "add-on" && (
-          <span className="absolute right-3 top-3 hidden rounded-full border border-line px-2.5 py-0.5 text-[0.6875rem] font-medium text-ink-dim backdrop-blur-sm sm:inline">
+          <span className="absolute right-3 top-3 hidden rounded-full border border-white/10 bg-abyss/85 px-2.5 py-0.5 text-[0.6875rem] font-medium text-ink backdrop-blur-sm sm:inline">
             Best as an add-on
           </span>
         )}

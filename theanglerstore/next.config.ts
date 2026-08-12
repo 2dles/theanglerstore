@@ -15,6 +15,23 @@ const nextConfig: NextConfig = {
         hostname: "productimageserver.com",
         pathname: "/product/**",
       },
+      /**
+       * Burch Fishing Tackle's storefront CDN.
+       *
+       * Same basis as CWR: we hold a dealer account with them, and this is the
+       * manufacturer photography they publish for the products they sell us.
+       * Narrowed to their own Shopify store path so this cannot become a
+       * general licence to hotlink any Shopify site.
+       *
+       * NOT yet confirmed in writing — Leslie has been asked. If Burch say no,
+       * delete this block and the `image:` field on the 40 Burch products;
+       * they fall back to our own illustrations with no other change.
+       */
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/s/files/1/0033/5442/7456/**",
+      },
     ],
   },
 };
