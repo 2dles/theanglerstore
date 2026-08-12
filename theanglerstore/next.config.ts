@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Guessable URLs that used to 404.
+   *
+   * Every category lives at /collections/<slug>, so /collections/all is the
+   * pattern a customer (or an external link) will invent for "everything".
+   * It cost us a dead end for nothing.
+   */
+  async redirects() {
+    return [
+      { source: "/collections/all", destination: "/products", permanent: true },
+      { source: "/collections/rods-combos", destination: "/collections/surf-rods", permanent: true },
+    ];
+  },
   images: {
     /**
      * CWR's product image server. We are an approved CWR dealer and their

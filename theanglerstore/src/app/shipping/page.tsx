@@ -7,7 +7,7 @@ import { ZONES, shipsInternationally } from "@/lib/shipping-zones";
 export const metadata = {
   title: "Shipping",
   description:
-    "Free US shipping over $49. Most orders arrive in 3–7 business days, shipped from US warehouses. Exact delivery estimate on every product page.",
+    "Free US shipping over $75. Most orders arrive in 3–7 business days, shipped from US warehouses. Exact delivery estimate on every product page.",
   alternates: { canonical: "/shipping" },
 };
 
@@ -19,7 +19,6 @@ export default function ShippingPage() {
     return max > 7;
   });
 
-  const pending = ZONES.filter((z) => !z.enabled);
   const international = shipsInternationally();
 
   return (
@@ -137,22 +136,16 @@ export default function ShippingPage() {
               a parcel occupies rather than its weight — a 7-foot surf rod can
               cost more to send abroad than the rod itself. Our distributors are
               domestic, so there is no honest way to quote you a rate we could
-              actually honour.
+              actually honor.
             </p>
             <p>
-              Apparel is a different story, and that&rsquo;s where international
-              opens first. It&rsquo;s printed regionally rather than shipped from
-              the US, so an order in Berlin is a local delivery instead of a
-              transatlantic one. These are the regions queued up:
+              When international does open it will most likely open with
+              apparel, because print-on-demand is produced regionally rather
+              than shipped from the US. We don&rsquo;t sell any apparel yet, so
+              treat that as a plan rather than a promise — there is no date on
+              it, and we would rather tell you that than list regions we
+              can&rsquo;t serve.
             </p>
-            <ul className="space-y-2 text-ink-dim">
-              {pending.map((z) => (
-                <li key={z.id}>
-                  ▸ <strong className="text-ink">{z.label}</strong> —{" "}
-                  {z.blockedReason}
-                </li>
-              ))}
-            </ul>
             <p>
               If you&rsquo;re outside the US and want something from the
               catalog,{" "}

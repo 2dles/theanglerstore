@@ -189,3 +189,18 @@ body {
 
 /* Numeric alignment for prices */
 .tnum { font-variant-numeric: tabular-nums; }
+
+/* The search input carries our own ✕ button; WebKit adds a second one that
+   sits right next to it. Two clear buttons in one field is a bug you can see. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Anything you can jump to needs to clear the 4rem sticky header, or it lands
+   half-hidden underneath it. */
+:target,
+[id] {
+  scroll-margin-top: 5rem;
+}

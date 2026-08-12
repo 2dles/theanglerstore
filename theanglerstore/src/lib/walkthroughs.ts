@@ -26,11 +26,11 @@ export interface Walkthrough {
 export const WALKTHROUGHS: Record<string, Walkthrough> = {
   "surf-rod": {
     intro:
-      "A surf combo is only as good as the way it's set up. Twenty minutes at the kitchen table saves you a wasted session.",
+      "A surf rod is only as good as the way it's set up. We don't sell reels yet, so this assumes the reel is your own — a 5000–8000 size spinning reel is the right pairing for this blank. Twenty minutes at the kitchen table saves you a wasted session.",
     steps: [
       {
         heading: "Spool it properly",
-        body: "Put 30 lb braid straight onto the spool — no mono backing needed on a reel this size if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
+        body: "Put 30 lb braid straight onto the spool — on a 5000–8000 size spinning reel you won't need mono backing if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
       },
       {
         heading: "Join the two pieces correctly",

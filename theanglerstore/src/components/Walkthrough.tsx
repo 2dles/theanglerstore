@@ -1,5 +1,6 @@
 import type { Walkthrough as W } from "@/lib/walkthroughs";
 import type { Product } from "@/lib/products";
+import { walkthroughHeading } from "@/lib/products";
 
 /**
  * The "how to actually use this" section.
@@ -20,7 +21,7 @@ export function Walkthrough({
       <div className="max-w-3xl">
         <span className="chip">Walkthrough</span>
         <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-          How to fish the {product.name.split("—")[0].trim()}
+          {walkthroughHeading(product)}
         </h2>
         <p className="mt-3 text-lg leading-relaxed text-ink-dim">
           {walkthrough.intro}

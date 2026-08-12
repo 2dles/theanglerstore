@@ -16,7 +16,7 @@ export default function ReturnsPage() {
       <Section heading="The standard return">
         <p>
           Email us within 30 days of delivery and we will send a return
-          authorisation. Send the item back unused and in its original packaging
+          authorization. Send the item back unused and in its original packaging
           and we refund the product price to your original payment method within
           five business days of it arriving.
         </p>
@@ -28,7 +28,7 @@ export default function ReturnsPage() {
 
       <Section heading="If something is defective or wrong">
         <p>
-          Different rules, and they favour you. If an item arrives damaged,
+          Different rules, and they favor you. If an item arrives damaged,
           faulty, or simply is not what you ordered, tell us within 30 days and
           we cover return shipping and send a replacement or a full refund
           including original shipping. Photos help but we are not going to make
@@ -52,7 +52,8 @@ export default function ReturnsPage() {
       <Section heading="Manufacturer warranties">
         <p>
           Several items carry a manufacturer warranty that outlasts our 30-day
-          window. If a rod or reel fails outside that window, contact us anyway —
+          window. If a rod, a downrigger or a piece of hardware fails outside that
+          window, contact us anyway —
           we will tell you whether a warranty claim applies and help you file it.
         </p>
       </Section>

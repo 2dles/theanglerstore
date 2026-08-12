@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { activeCategories } from "@/lib/products";
 import { useCart } from "./CartProvider";
 
@@ -32,6 +33,29 @@ function Logo() {
 export function Header() {
   const { count, ready } = useCart();
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  // "/" opens search from anywhere, not just the one page that has the box.
+  // Ignored while the person is typing into something else, so it never eats
+  // a slash in an address or a note.
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "/") return;
+      const el = document.activeElement;
+      if (
+        el instanceof HTMLInputElement ||
+        el instanceof HTMLTextAreaElement ||
+        (el instanceof HTMLElement && el.isContentEditable)
+      ) {
+        return;
+      }
+      if (window.location.pathname === "/products") return; // the page handles it
+      e.preventDefault();
+      router.push("/products");
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [router]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-abyss/80 backdrop-blur-xl">
@@ -70,6 +94,30 @@ export function Header() {
           >
             Check the tides ↗
           </a>
+
+          <Link
+            href="/products"
+            aria-label="Search the catalog"
+            title="Search (press /)"
+            className="btn btn-ghost !px-2.5 !py-2"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
+              <circle
+                cx="8.5"
+                cy="8.5"
+                r="5.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+              />
+              <path
+                d="M12.8 12.8 17 17"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                strokeLinecap="round"
+              />
+            </svg>
+          </Link>
 
           <Link
             href="/cart"

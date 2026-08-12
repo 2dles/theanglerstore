@@ -30,7 +30,7 @@
 // ships to the browser.
 
 export type Category =
-  | "Rods & Combos"
+  | "Surf Rods"
   | "Line & Leader"
   | "Terminal Tackle"
   | "Lures"
@@ -116,8 +116,8 @@ export const CATEGORIES: {
   nav?: boolean;
 }[] = [
   {
-    slug: "rods-combos",
-    name: "Rods & Combos",
+    slug: "surf-rods",
+    name: "Surf Rods",
     blurb:
       "Two-piece surf rods, which is the honest answer to a hard problem: a one-piece 10-foot blank ships as oversize freight and costs more to send than it does to make. Break it in half and it goes in a normal parcel.",
     nav: true,
@@ -226,23 +226,23 @@ export const PRODUCTS: Product[] = [
   {
     key: "surf-rod",
     name: "Daiwa FT Surf Spinning Rod — 10', 2-Piece Medium",
-    category: "Rods & Combos",
+    category: "Surf Rods",
     price: 34.99,
-    tagline: "Fibreglass, two-piece, honestly priced",
+    tagline: "Fiberglass, two-piece, honestly priced",
     blurb:
-      "Ten feet is the length most surfcasters land on: enough to clear the first break and keep a bait out past it, still short enough to cast all day without your shoulders filing a complaint. Fibreglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
+      "Ten feet is the length most surfcasters land on: enough to clear the first break and keep a bait out past it, still short enough to cast all day without your shoulders filing a complaint. Fiberglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
     specs: [
       { label: "Brand", value: "Daiwa" },
       { label: "Length", value: "10'" },
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
-      { label: "Blank", value: "Fibreglass" },
+      { label: "Blank", value: "Fiberglass" },
       { label: "Line rating", value: "8–20 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
       "Two-piece — ships as a parcel, fits in a car",
-      "Fibreglass blank: forgiving, and very hard to break",
+      "Fiberglass blank: forgiving, and very hard to break",
       "Medium power, 8–20 lb line",
       "Daiwa's entry surf series, priced accordingly",
     ],
@@ -258,7 +258,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "inshore-combo",
     name: "PENN Wrath II Inshore Combo — 7' Medium",
-    category: "Rods & Combos",
+    category: "Surf Rods",
     price: 129.99,
     compareAt: 159.99,
     tagline: "Bays, jetties, and kelp edges",
@@ -292,16 +292,16 @@ export const PRODUCTS: Product[] = [
     name: "Sufix 832 Advanced Superline Braid — 20 lb, 300 yd",
     category: "Line & Leader",
     price: 34.99,
-    tagline: "8 fibers, 32 weaves per inch, Coastal Camo",
+    tagline: "8 fibers, 32 picks per inch, Coastal Camo",
     blurb:
-      "Seven HMPE fibers plus one GORE Performance Fiber, braided at 32 picks per inch. The GORE fiber is what makes this line quiet through the guides and stubborn against sand and shell — the two things that end a surf session early. Coastal Camo is the colour to run when the water is clear and the fish have seen everything.",
+      "Seven HMPE fibers plus one GORE Performance Fiber, braided at 32 picks per inch. The GORE fiber is what makes this line quiet through the guides and stubborn against sand and shell — the two things that end a surf session early. Coastal Camo is the color to run when the water is clear and the fish have seen everything.",
     specs: [
       { label: "Strength", value: "20 lb test" },
       { label: "Length", value: "300 yds" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Fiber", value: "7 HMPE + 1 GORE Performance" },
-      { label: "Colour", value: "Coastal Camo" },
-      { label: "Brand", value: "Sufix 832 Advanced Superline" },
+      { label: "Color", value: "Coastal Camo" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
       "The GORE fiber is the whole point — it cuts line vibration, so you feel the take instead of the wind",
@@ -360,7 +360,8 @@ export const PRODUCTS: Product[] = [
       "The circle hook does the work for you: no strike, just let the rod load and the hook finds the corner of the jaw on its own. That's why they're mandated in a lot of fisheries — fish that are released swim off unharmed. Sea Guard finish for salt, and fifty in the box so you stop rationing them.",
     specs: [
       { label: "Brand", value: "Eagle Claw" },
-      { label: "Model", value: "L197FH" },
+      { label: "Color", value: "4/0" },
+      { label: "Quantity", value: "50-Pack" },
       { label: "Size", value: "4/0" },
       { label: "Quantity", value: "50" },
       { label: "Finish", value: "Sea Guard" },
@@ -454,7 +455,7 @@ export const PRODUCTS: Product[] = [
       { label: "Weight", value: "10.5 oz" },
       { label: "Length", value: "7.25\"" },
       { label: "Size", value: "300" },
-      { label: "Colour", value: "Black Silver" },
+      { label: "Color", value: "Black Silver" },
       { label: "Hook", value: "VMC assist, pre-rigged" },
       { label: "Swivel", value: "Stainless ball-bearing" },
     ],
@@ -664,21 +665,21 @@ export const PRODUCTS: Product[] = [
     name: "Sufix 832 Braid — 20 lb, Hi-Vis Yellow, 300 yd",
     category: "Line & Leader",
     price: 38.99,
-    tagline: "The same braid, in a colour you can see",
+    tagline: "The same braid, in a color you can see",
     blurb:
-      "Identical line to the Coastal Camo — eight fibres, 32 picks, one GORE strand — but yellow enough to watch. Worth it at night, mending line in current, or teaching someone else to feel a bite: you see the tick before they feel it. Run a fluorocarbon leader and the fish never see the colour anyway.",
+      "Identical line to the Coastal Camo — eight fibers, 32 picks, one GORE strand — but yellow enough to watch. Worth it at night, mending line in current, or teaching someone else to feel a bite: you see the tick before they feel it. Run a fluorocarbon leader and the fish never see the color anyway.",
     specs: [
       { label: "Strength", value: "20 lb test" },
       { label: "Length", value: "300 yds" },
-      { label: "Colour", value: "Hi-Vis Yellow" },
+      { label: "Color", value: "Hi-Vis Yellow" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Fiber", value: "7 HMPE + 1 GORE Performance" },
-      { label: "Brand", value: "Sufix 832" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
       "Watching your line is the fastest way to learn to detect bites",
       "Same abrasion resistance and diameter as the camo version",
-      "Pairs with a fluorocarbon leader so the colour never reaches the fish",
+      "Pairs with a fluorocarbon leader so the color never reaches the fish",
       "Genuinely useful in the dark under a headlamp",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
@@ -701,10 +702,10 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Strength", value: "8 lb test" },
       { label: "Length", value: "300 yds" },
-      { label: "Colour", value: "Ghost" },
+      { label: "Color", value: "Ghost" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Best for", value: "Finesse, clear water" },
-      { label: "Brand", value: "Sufix 832" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
       "Tiny diameter for the strength — small baits actually swim properly",
@@ -821,11 +822,11 @@ export const PRODUCTS: Product[] = [
     price: 119.98,
     tagline: "Net handle, 43″ to 72″ — head sold separately",
     blurb:
-      "A telescoping aluminium handle that takes a Shur-LOK net head and extends from 43 to 72 inches. This answers one specific problem: hooking a fish from a jetty, a pier or a high bank and having no way to reach it. Collapses to something you can actually carry.",
+      "A telescoping aluminum handle that takes a Shur-LOK net head and extends from 43 to 72 inches. This answers one specific problem: hooking a fish from a jetty, a pier or a high bank and having no way to reach it. Collapses to something you can actually carry.",
     specs: [
       { label: "Extended", value: "72″" },
       { label: "Collapsed", value: "43″" },
-      { label: "Material", value: "Aluminium" },
+      { label: "Material", value: "Aluminum" },
       { label: "Fitting", value: "Shur-LOK quick-release" },
       { label: "Series", value: "Fishing" },
       { label: "Brand", value: "Shurhold" },
@@ -834,7 +835,7 @@ export const PRODUCTS: Product[] = [
       "Six feet of reach is the difference between landing a fish and losing it at the wall",
       "Telescopes down to something that fits in a car or on a pack",
       "Quick-release head, so one handle takes a net or a gaff",
-      "Aluminium will not seize with salt the way steel does",
+      "Aluminum will not seize with salt the way steel does",
     ],
     gradient: ["#26364a", "#4a6a8c"],
     glyph: "net",
@@ -945,7 +946,7 @@ export const PRODUCTS: Product[] = [
     price: 22.99,
     tagline: "Attractor for trolled salmon rigs",
     blurb:
-      "An eleven-inch rolling flasher for trolling. It does not catch fish itself — it makes the bait behind it findable from much further away. Standard kit for West Coast salmon, and the reason a slow troll works at all in coloured water.",
+      "An eleven-inch rolling flasher for trolling. It does not catch fish itself — it makes the bait behind it findable from much further away. Standard kit for West Coast salmon, and the reason a slow troll works at all in colored water.",
     specs: [
       { label: "Length", value: "11″" },
       { label: "Finish", value: "Rainbow Crush" },
@@ -963,7 +964,7 @@ export const PRODUCTS: Product[] = [
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: ["braided-line", "fluoro-leader", "cooler"],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110805XL.jpg",
     role: "add-on",
@@ -981,7 +982,7 @@ export const PRODUCTS: Product[] = [
       { label: "Weight", value: "7-3/4 oz" },
       { label: "Length", value: "6.75″" },
       { label: "Size", value: "220" },
-      { label: "Colour", value: "Blue Lagoon" },
+      { label: "Color", value: "Blue Lagoon" },
       { label: "Hook", value: "VMC assist, pre-rigged" },
       { label: "Swivel", value: "Stainless ball-bearing" },
     ],
@@ -989,7 +990,7 @@ export const PRODUCTS: Product[] = [
       "Lighter drop rate keeps it in the strike zone longer in slack current",
       "Same rotating profile that makes the Kensaki work",
       "Pre-rigged with a VMC assist hook",
-      "Blue Lagoon is a clear-water, bright-day colour",
+      "Blue Lagoon is a clear-water, bright-day color",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "jig",
@@ -1135,7 +1136,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Capacity", value: "3 rods" },
       { label: "Series", value: "Triple Threat" },
-      { label: "Colour", value: "Flat Dark Earth" },
+      { label: "Color", value: "Flat Dark Earth" },
       { label: "Use", value: "Boat, dock, rail" },
       { label: "Brand", value: "Sea-Dog" },
       { label: "Footprint", value: "Single-holder" },
@@ -1188,23 +1189,23 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "clamp-on-holder",
-    name: "C.E. Smith Aluminium Clamp-On Rod Holder — Horizontal",
+    name: "C.E. Smith Aluminum Clamp-On Rod Holder — Horizontal",
     category: "Rod Holders",
     price: 93.15,
     tagline: "Clamps to a 1.315″ rail, no drilling",
     blurb:
-      "Clamps onto a horizontal rail of 1.315 inch outside diameter — the standard pipe size on most boat rails and dock structures. Aluminium, so it will not rust into the rail and become permanent by accident.",
+      "Clamps onto a horizontal rail of 1.315 inch outside diameter — the standard pipe size on most boat rails and dock structures. Aluminum, so it will not rust into the rail and become permanent by accident.",
     specs: [
       { label: "Fits", value: "1.315″ OD rail" },
       { label: "Orientation", value: "Horizontal" },
-      { label: "Material", value: "Aluminium" },
+      { label: "Material", value: "Aluminum" },
       { label: "Mount", value: "Clamp-on" },
       { label: "Brand", value: "C.E. Smith" },
       { label: "Drilling", value: "None" },
     ],
     features: [
       "No drilling, so no holes to regret",
-      "Aluminium will not seize into the rail the way steel does",
+      "Aluminum will not seize into the rail the way steel does",
       "1.315 inch is the standard rail and dock pipe size",
       "Moves to another boat with you",
     ],
@@ -1227,7 +1228,7 @@ export const PRODUCTS: Product[] = [
       "Five feet, fixed. A telescoping handle can slip under load; a fixed one cannot. If you always fish the same height above the water, the fixed handle is the stronger and cheaper answer.",
     specs: [
       { label: "Length", value: "60″ fixed" },
-      { label: "Material", value: "Aluminium" },
+      { label: "Material", value: "Aluminum" },
       { label: "Fitting", value: "Shur-LOK quick-release" },
       { label: "Series", value: "Fishing" },
       { label: "Brand", value: "Shurhold" },
@@ -1262,7 +1263,7 @@ export const PRODUCTS: Product[] = [
       { label: "Shape", value: "Curved" },
       { label: "Use", value: "Handle-to-head" },
       { label: "Brand", value: "Shurhold" },
-      { label: "Material", value: "Aluminium" },
+      { label: "Material", value: "Aluminum" },
     ],
     features: [
       "Angles the hoop toward the water instead of straight ahead",
@@ -1313,7 +1314,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "cup-holder-box",
     name: "Deep Blue Marine Double Cup Holder / Storage Box",
-    category: "Coolers",
+    category: "Tackle Storage",
     price: 28.95,
     tagline: "Two drinks and somewhere for the small stuff",
     blurb:
@@ -1346,19 +1347,19 @@ export const PRODUCTS: Product[] = [
     name: "Sufix Performance Lead Core — 18 lb, 200 yd",
     category: "Line & Leader",
     price: 31.99,
-    tagline: "Colour changes every ten yards, so you know your depth",
+    tagline: "Color changes every ten yards, so you know your depth",
     blurb:
-      "Lead core sinks, and it changes colour every ten yards so you can count exactly how much you have out. That is the whole trick: depth becomes a number you control rather than a guess, and you can repeat the depth that just produced a fish.",
+      "Lead core sinks, and it changes color every ten yards so you can count exactly how much you have out. That is the whole trick: depth becomes a number you control rather than a guess, and you can repeat the depth that just produced a fish.",
     specs: [
       { label: "Strength", value: "18 lb test" },
       { label: "Length", value: "200 yds" },
-      { label: "Metering", value: "10-colour, every 10 yds" },
+      { label: "Metering", value: "10-color, every 10 yds" },
       { label: "Core", value: "Lead" },
       { label: "Use", value: "Trolling to depth" },
-      { label: "Brand", value: "Sufix Performance" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
-      "Counting colours turns depth into something you can repeat",
+      "Counting colors turns depth into something you can repeat",
       "Gets baits down without a downrigger or heavy weights",
       "200 yards covers the range most trolling actually uses",
       "The cheapest depth control there is",
@@ -1369,6 +1370,7 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Trolling when the fish are holding at a depth you need to hit again.",
     featured: false,
     image: "https://productimageserver.com/product/xl/96824XL.jpg",
+    prop65: true,
     role: "anchor",
     shipsIn: "3–7 business days",
   },
@@ -1383,16 +1385,16 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Strength", value: "10 lb test" },
       { label: "Length", value: "300 yds" },
-      { label: "Colour", value: "Hi-Vis Yellow" },
+      { label: "Color", value: "Hi-Vis Yellow" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Use", value: "Finesse, visible" },
-      { label: "Brand", value: "Sufix 832" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
       "Light line and visible line, which normally means picking one",
       "Small diameter casts light baits a long way",
       "Watch the line and you see bites you would not feel",
-      "Fluorocarbon leader keeps the colour away from the fish",
+      "Fluorocarbon leader keeps the color away from the fish",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -1408,22 +1410,22 @@ export const PRODUCTS: Product[] = [
     name: "Sufix 832 Braid — 15 lb, Fire Tiger, 300 yd",
     category: "Line & Leader",
     price: 28.99,
-    tagline: "The middle weight, in the loudest colour",
+    tagline: "The middle weight, in the loudest color",
     blurb:
       "Fifteen pound sits between the finesse spool and the surf spool, which makes it the one line that will do most things adequately. Fire Tiger is aggressively visible — useful in low light, and the reason to run a leader.",
     specs: [
       { label: "Strength", value: "15 lb test" },
       { label: "Length", value: "300 yds" },
-      { label: "Colour", value: "Fire Tiger" },
+      { label: "Color", value: "Fire Tiger" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Use", value: "General purpose" },
-      { label: "Brand", value: "Sufix 832" },
+      { label: "Brand", value: "Sufix" },
     ],
     features: [
       "The weight that does most jobs adequately if you only own one spool",
-      "Fire Tiger is the easiest colour to track in low light",
+      "Fire Tiger is the easiest color to track in low light",
       "Same 832 construction as the heavier spools",
-      "Run a fluorocarbon leader and the colour stops mattering",
+      "Run a fluorocarbon leader and the color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -1472,25 +1474,25 @@ export const PRODUCTS: Product[] = [
     price: 21.99,
     tagline: "Dives to 15 feet on the troll",
     blurb:
-      "A trolling minnow that runs at fifteen feet without weight or a downrigger — the lip does the work. Hot Pink UV is a colour that reads as bright to fish in water where everything else has gone grey.",
+      "A trolling minnow that runs at fifteen feet without weight or a downrigger — the lip does the work. Hot Pink UV is a color that reads as bright to fish in water where everything else has gone gray.",
     specs: [
       { label: "Dive depth", value: "15 ft trolled" },
-      { label: "Colour", value: "Hot Pink UV" },
+      { label: "Color", value: "Hot Pink UV" },
       { label: "Type", value: "Trolling minnow" },
       { label: "Action", value: "Hard swimming" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Reaches fifteen feet with nothing but the lip — no weight, no downrigger",
-      "UV finish stays visible in deep or coloured water",
+      "UV finish stays visible in deep or colored water",
       "Hard swimming action that holds at trolling speed",
       "Rapala hardware, so the hooks and rings are not the weak point",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: ["lead-core", "flasher", "flush-mount-ss"],
-    whenToUse: "Trolling the top fifteen feet, especially in coloured water.",
+    whenToUse: "Trolling the top fifteen feet, especially in colored water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/89811XL.jpg",
     role: "add-on",
@@ -1568,7 +1570,7 @@ export const PRODUCTS: Product[] = [
       "Forty watts of green over the water on a mains supply. The chain is simple and reliable: light draws plankton, plankton draws bait, bait draws what you actually came for. Leave it on an hour before you fish.",
     specs: [
       { label: "Power", value: "40W / 120VAC" },
-      { label: "Colour", value: "Green" },
+      { label: "Color", value: "Green" },
       { label: "Mount", value: "Dock" },
       { label: "Use", value: "Night fishing" },
       { label: "Brand", value: "Hydro Glow" },
@@ -1599,7 +1601,7 @@ export const PRODUCTS: Product[] = [
       "A flood rather than a submersible — it throws light across the surface instead of down through it. Useful for working an area rather than concentrating bait at one point, and for actually seeing what you are doing on the dock.",
     specs: [
       { label: "Power", value: "50W / 120VAC" },
-      { label: "Colour", value: "Green" },
+      { label: "Color", value: "Green" },
       { label: "Type", value: "Flood" },
       { label: "Coverage", value: "Surface spread" },
       { label: "Brand", value: "Hydro Glow" },
@@ -1630,11 +1632,11 @@ export const PRODUCTS: Product[] = [
       "The deep one. Thirty feet without weight, a downrigger or lead core — the lip drags it down and holds it there. Bunker is a baitfish pattern, which is what you want when the fish are on schools rather than hunting anything that moves.",
     specs: [
       { label: "Dive depth", value: "30 ft trolled" },
-      { label: "Colour", value: "Bunker" },
+      { label: "Color", value: "Bunker" },
       { label: "Type", value: "Deep trolling minnow" },
       { label: "Action", value: "Hard swimming" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Thirty feet with nothing but the lip doing the work",
@@ -1658,20 +1660,20 @@ export const PRODUCTS: Product[] = [
     price: 28.99,
     tagline: "Twenty feet, translucent finish",
     blurb:
-      "The middle depth of the Magnum range, in a translucent finish that reads as a real baitfish rather than a painted one. Glass Ghost is the colour for clear water and bright days, when a solid pattern looks like exactly what it is.",
+      "The middle depth of the Magnum range, in a translucent finish that reads as a real baitfish rather than a painted one. Glass Ghost is the color for clear water and bright days, when a solid pattern looks like exactly what it is.",
     specs: [
       { label: "Dive depth", value: "20 ft trolled" },
-      { label: "Colour", value: "Glass Ghost" },
+      { label: "Color", value: "Glass Ghost" },
       { label: "Type", value: "Trolling minnow" },
       { label: "Finish", value: "Translucent" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Twenty feet fills the gap between the 15 and the 30",
       "Translucent bodies out-fish solid ones in clear water",
       "Same hardware as the rest of the Magnum range",
-      "Bright-day colour for when the water is gin clear",
+      "Bright-day color for when the water is gin clear",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
@@ -1689,14 +1691,14 @@ export const PRODUCTS: Product[] = [
     price: 29.99,
     tagline: "Surface bait for fish that come up",
     blurb:
-      "The Xplode works the surface rather than diving — for the moments when fish are pushing bait up and a deep-diving plug swims straight under the action. Dorado is the high-contrast colour for blue water.",
+      "The Xplode works the surface rather than diving — for the moments when fish are pushing bait up and a deep-diving plug swims straight under the action. Dorado is the high-contrast color for blue water.",
     specs: [
       { label: "Type", value: "Surface / shallow" },
       { label: "Size", value: "170 mm" },
-      { label: "Colour", value: "Dorado" },
+      { label: "Color", value: "Dorado" },
       { label: "Use", value: "Fish feeding on top" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum Xplode" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Works the surface, where the diving plugs miss the action entirely",
@@ -1723,7 +1725,7 @@ export const PRODUCTS: Product[] = [
       "A skirted trolling lure built for speed — it holds together and keeps swimming at the pace you cover water looking for tuna, where slower lures blow out and spin. Arrives rigged, so it goes straight in the spread.",
     specs: [
       { label: "Length", value: "8″" },
-      { label: "Colour", value: "Mahi" },
+      { label: "Color", value: "Mahi" },
       { label: "Type", value: "Skirted trolling" },
       { label: "Speed", value: "High-speed rated" },
       { label: "Rigged", value: "Yes, ready to fish" },
@@ -1873,12 +1875,12 @@ export const PRODUCTS: Product[] = [
     name: "Tigress Premium Silver Anodized Rod Hanger",
     category: "Rod Holders",
     price: 34.99,
-    tagline: "Anodized aluminium, one rod",
+    tagline: "Anodized aluminum, one rod",
     blurb:
-      "A single anodized hanger — the unit you buy several of and space out to suit your own rods, rather than accepting whatever spacing a fixed rack came with. Anodized aluminium, so it stays clean in salt air.",
+      "A single anodized hanger — the unit you buy several of and space out to suit your own rods, rather than accepting whatever spacing a fixed rack came with. Anodized aluminum, so it stays clean in salt air.",
     specs: [
       { label: "Capacity", value: "1 rod" },
-      { label: "Material", value: "Anodized aluminium" },
+      { label: "Material", value: "Anodized aluminum" },
       { label: "Finish", value: "Silver" },
       { label: "Mount", value: "Overhead or bulkhead" },
       { label: "Brand", value: "Tigress" },
@@ -1886,7 +1888,7 @@ export const PRODUCTS: Product[] = [
     ],
     features: [
       "Buy several and space them to fit your own rods",
-      "Anodized aluminium survives salt air without staining",
+      "Anodized aluminum survives salt air without staining",
       "Overhead or bulkhead mounting",
       "The flexible answer where a fixed rack does not fit",
     ],
@@ -2068,7 +2070,6 @@ export const PRODUCTS: Product[] = [
       { label: "Depth", value: "Precise, by counter" },
       { label: "Power", value: "None required" },
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "1060 Depthking" },
     ],
     features: [
       "Exact depth, held there, rather than an educated guess",
@@ -2098,7 +2099,6 @@ export const PRODUCTS: Product[] = [
       { label: "Fits", value: "Scotty downriggers" },
       { label: "Safety", value: "Hands off the cable" },
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "3025" },
       { label: "Material", value: "Marine grade" },
     ],
     features: [
@@ -2129,7 +2129,6 @@ export const PRODUCTS: Product[] = [
       { label: "Part", value: "Terminal pulley" },
       { label: "Type", value: "Replacement kit" },
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "1014" },
       { label: "Fitment", value: "Scotty downriggers" },
     ],
     features: [
@@ -2160,7 +2159,6 @@ export const PRODUCTS: Product[] = [
       { label: "Material", value: "Premium stainless" },
       { label: "Use", value: "Downrigger replacement" },
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "Replacement cable" },
       { label: "Fitment", value: "Scotty downriggers" },
     ],
     features: [
@@ -2278,10 +2276,10 @@ export const PRODUCTS: Product[] = [
     price: 175.00,
     tagline: "Blue, for clearer water",
     blurb:
-      "The blue version of the dock light. Blue penetrates clear water further than green, while green wins in water with any colour to it — so the honest answer is that it depends on where you fish, and locals usually know which works.",
+      "The blue version of the dock light. Blue penetrates clear water further than green, while green wins in water with any color to it — so the honest answer is that it depends on where you fish, and locals usually know which works.",
     specs: [
       { label: "Power", value: "40W / 120VAC" },
-      { label: "Colour", value: "Blue" },
+      { label: "Color", value: "Blue" },
       { label: "Mount", value: "Dock" },
       { label: "Best in", value: "Clear water" },
       { label: "Brand", value: "Hydro Glow" },
@@ -2289,9 +2287,9 @@ export const PRODUCTS: Product[] = [
     ],
     features: [
       "Blue reaches further in clear water than green does",
-      "Green wins where the water carries colour — pick for your spot",
+      "Green wins where the water carries color — pick for your spot",
       "Mains powered, so no battery management",
-      "Ask locally which colour works; opinions are strong and usually right",
+      "Ask locally which color works; opinions are strong and usually right",
     ],
     gradient: ["#1d3320", "#3f7a4e"],
     glyph: "lamp",
@@ -2312,17 +2310,19 @@ export const PRODUCTS: Product[] = [
       "Eighty-four watts on twelve volts, designed to go in the water rather than hang above it. Under the surface there is no reflection loss, so far more of the light does the job — and 12V means it runs off a boat battery instead of a dock outlet.",
     specs: [
       { label: "Power", value: "84W / 12V / 7A" },
-      { label: "Colour", value: "Green" },
+      { label: "Color", value: "Green" },
       { label: "Type", value: "Submersible" },
       { label: "Supply", value: "12V battery" },
       { label: "Brand", value: "Hydro Glow" },
-      { label: "Model", value: "HG1000G" },
+      { label: "Color", value: "Green" },
+      { label: "Color ", value: "84W" },
+      { label: "Color  ", value: "12V" },
     ],
     features: [
       "Submerged light loses nothing to surface reflection",
       "12V runs from a boat battery, no shore power needed",
       "Eighty-four watts is a serious draw of bait",
-      "Green is the workhorse colour for most water",
+      "Green is the workhorse color for most water",
     ],
     gradient: ["#1d3320", "#3f7a4e"],
     glyph: "lamp",
@@ -2402,7 +2402,7 @@ export const PRODUCTS: Product[] = [
     price: 15.99,
     tagline: "Thirty feet on the same principle",
     blurb:
-      "The deeper Jet Diver, reaching about thirty feet. Purple UV is the low-light colour — first and last hour, or any day the water carries some colour and a clear finish stops registering.",
+      "The deeper Jet Diver, reaching about thirty feet. Purple UV is the low-light color — first and last hour, or any day the water carries some color and a clear finish stops registering.",
     specs: [
       { label: "Depth", value: "~30 ft" },
       { label: "Finish", value: "Purple UV Moon Jelly" },
@@ -2413,14 +2413,14 @@ export const PRODUCTS: Product[] = [
     ],
     features: [
       "Ten feet deeper than the 20 for the same effort",
-      "Purple UV holds up in low light and coloured water",
+      "Purple UV holds up in low light and colored water",
       "No lead, so light gear still handles it",
       "Run one of each to find the depth quickly",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: ["jet-driver-20", "flasher", "lead-core"],
-    whenToUse: "Dawn, dusk, or water with colour in it.",
+    whenToUse: "Dawn, dusk, or water with color in it.",
     featured: false,
     image: "https://productimageserver.com/product/xl/102255XL.jpg",
     role: "add-on",
@@ -2436,7 +2436,7 @@ export const PRODUCTS: Product[] = [
       "Five and a half inches of rigged skirt — the size for school tuna, bonito and anything else feeding on small bait. Arrives rigged, so it goes straight in the spread rather than needing an evening at the vice.",
     specs: [
       { label: "Length", value: "5.5″" },
-      { label: "Colour", value: "Candy Floss" },
+      { label: "Color", value: "Candy Floss" },
       { label: "Type", value: "Skirted trolling" },
       { label: "Rigged", value: "Yes" },
       { label: "Target", value: "School tuna, bonito" },
@@ -2446,7 +2446,7 @@ export const PRODUCTS: Product[] = [
       "Small profile matches the bait school fish are actually on",
       "Rigged and ready, straight into the spread",
       "Runs well at the speeds you search at",
-      "Cheap enough to carry three colours",
+      "Cheap enough to carry three colors",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
@@ -2498,7 +2498,7 @@ export const PRODUCTS: Product[] = [
       "Eight and a quarter inches in a skipjack pattern, which is what larger tuna and marlin are actually hunting. A big lure narrows the bites you get and widens the ones you want.",
     specs: [
       { label: "Length", value: "8.25″" },
-      { label: "Colour", value: "Skipjack" },
+      { label: "Color", value: "Skipjack" },
       { label: "Type", value: "Big game skirt" },
       { label: "Rigged", value: "Yes" },
       { label: "Target", value: "Large tuna, billfish" },
@@ -2539,7 +2539,7 @@ export const PRODUCTS: Product[] = [
       "Less drag, so a light rod still shows you the bite",
       "Same attraction principle as the 11-inch",
       "Easier on kayak and small-boat setups",
-      "Proven colour on West Coast salmon",
+      "Proven color on West Coast salmon",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
@@ -2588,12 +2588,12 @@ export const PRODUCTS: Product[] = [
     price: 19.99,
     tagline: "The 220 in a mackerel pattern",
     blurb:
-      "Same rotating Kensaki body as the Blue Lagoon, in a mackerel pattern. Colour matters less than most people think and more than nothing — carry two and let the fish tell you.",
+      "Same rotating Kensaki body as the Blue Lagoon, in a mackerel pattern. Color matters less than most people think and more than nothing — carry two and let the fish tell you.",
     specs: [
       { label: "Weight", value: "7-3/4 oz" },
       { label: "Length", value: "6.75″" },
       { label: "Size", value: "220" },
-      { label: "Colour", value: "Mack Daddy" },
+      { label: "Color", value: "Mack Daddy" },
       { label: "Hook", value: "VMC assist, pre-rigged" },
       { label: "Swivel", value: "Stainless ball-bearing" },
     ],
@@ -2601,7 +2601,7 @@ export const PRODUCTS: Product[] = [
       "Mackerel pattern for water where that is the bait",
       "Same rotating fall that makes the Kensaki work",
       "Pre-rigged with a VMC assist hook",
-      "Carry two colours rather than two sizes",
+      "Carry two colors rather than two sizes",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
@@ -2624,13 +2624,13 @@ export const PRODUCTS: Product[] = [
       { label: "Weight", value: "9-7/8 oz" },
       { label: "Length", value: "7.25″" },
       { label: "Size", value: "280" },
-      { label: "Colour", value: "Candy Floss" },
+      { label: "Color", value: "Candy Floss" },
       { label: "Hook", value: "VMC assist, pre-rigged" },
       { label: "Swivel", value: "Stainless ball-bearing" },
     ],
     features: [
       "Holds the strike zone in current the 220 gets swept out of",
-      "Bright finish for when natural colours are being refused",
+      "Bright finish for when natural colors are being refused",
       "Same pre-rigged assist setup",
       "Sits between the 220 and the 300 in the range",
     ],
@@ -2650,18 +2650,18 @@ export const PRODUCTS: Product[] = [
     price: 22.99,
     tagline: "Smaller surface bait, clear finish",
     blurb:
-      "The 130 to the 170\u2019s bigger profile — for surface fish keyed on smaller bait, which is most of the time. Clear is the finish for bright days and calm water, when a solid colour reads as obviously fake.",
+      "The 130 to the 170\u2019s bigger profile — for surface fish keyed on smaller bait, which is most of the time. Clear is the finish for bright days and calm water, when a solid color reads as obviously fake.",
     specs: [
       { label: "Type", value: "Surface / shallow" },
       { label: "Size", value: "130 mm" },
-      { label: "Colour", value: "Clear" },
+      { label: "Color", value: "Clear" },
       { label: "Use", value: "Fish feeding on top" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum Xplode" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Smaller profile matches the bait most surface fish are on",
-      "Clear works where solid colours get refused",
+      "Clear works where solid colors get refused",
       "Same Xplode surface action as the 170",
       "The one to throw first when a school comes up",
     ],
@@ -2684,11 +2684,11 @@ export const PRODUCTS: Product[] = [
       "The 20-foot Magnum in Hot Head, which puts a bright strike point at the front of an otherwise natural body. Useful in stained water where a fish needs something to aim at.",
     specs: [
       { label: "Dive depth", value: "20 ft trolled" },
-      { label: "Colour", value: "Hot Head" },
+      { label: "Color", value: "Hot Head" },
       { label: "Type", value: "Trolling minnow" },
       { label: "Action", value: "Hard swimming" },
       { label: "Hooks", value: "VMC" },
-      { label: "Brand", value: "Rapala X-Rap Magnum" },
+      { label: "Brand", value: "Rapala" },
     ],
     features: [
       "Bright head gives a fish a target in stained water",
@@ -2699,7 +2699,7 @@ export const PRODUCTS: Product[] = [
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: ["xrap-20", "xrap-30", "dipsy-mid"],
-    whenToUse: "Stained or coloured water at twenty feet.",
+    whenToUse: "Stained or colored water at twenty feet.",
     featured: false,
     image: "https://productimageserver.com/product/xl/89837XL.jpg",
     role: "add-on",
@@ -2707,14 +2707,14 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "attwood-2-in-1-non-adjustable-rod-holders-2-",
-    name: "Attwood 2-In-1 Non-Adjustable Rod Holders *2-Pack",
+    name: "Attwood 2-In-1 Non-Adjustable Rod Holders 2-Pack",
     category: "Rod Holders",
     price: 26.99,
     tagline: "Two holders, fixed angle",
     blurb:
       "A pair of fixed-angle holders, which is all most people need — the angle you want for storage doesn't change once you've found it. Two to a pack.",
     specs: [
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2742,7 +2742,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "A caddy for the things that otherwise end up loose on the deck — pliers, a drink, a phone, the leader spool you keep putting down and losing.",
     specs: [
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2763,15 +2763,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "attwood-fold-n-stow-fishing-net-small",
-    name: "Attwood Fold-N-Stow Fishing Net - Small",
+    name: "Attwood Fold-N-Stow Fishing Net — Small",
     category: "Nets & Landing",
     price: 11.99,
     tagline: "Folds flat, locks open with a flip",
     blurb:
       "A flip of the handle opens and locks it; pull the trigger and it collapses to something you can stow. Knot-free netting, which is gentler on fish and far less likely to tangle a treble.",
     specs: [
-      { label: "Model", value: "Small" },
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Color", value: "Small" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2792,15 +2792,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "attwood-handheld-spotlight-400-lumens-12v",
-    name: "Attwood Handheld Spotlight - 400 Lumens - 12V",
+    name: "Attwood Handheld Spotlight — 400 Lumens, 12V",
     category: "Lights",
     price: 32.99,
     tagline: "400 lumens, 12V handheld",
     blurb:
       "A 12V handheld spotlight for finding a channel marker, a mooring, or the ramp on the way back in the dark. Four hundred lumens is enough for the job without wrecking your night vision on the deck.",
     specs: [
-      { label: "Model", value: "400 Lumens - 12V" },
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Color", value: "400 Lumens" },
+      { label: "Color ", value: "12V" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2828,7 +2829,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Adjustable angle on a combo mount that fits either a flat deck or a vertical side. Being able to change the angle matters more than it sounds — trolling and storage want different ones.",
     specs: [
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2856,7 +2857,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The adjustable head on a flush-mount base, for a permanent install where you still want to change the rod angle between trolling and running.",
     specs: [
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2884,7 +2885,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "A simple clip for storing a rod horizontally along a gunwale or bulkhead, out of the walkway and off the floor where it gets stepped on.",
     specs: [
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2905,15 +2906,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "attwood-standard-series-rod-holder-30-black-",
-    name: "Attwood Standard Series Rod Holder - 30° - Black Insert",
+    name: "Attwood Standard Series Rod Holder — 30°, Black Insert",
     category: "Rod Holders",
     price: 45.99,
     tagline: "Straightforward flush mount",
     blurb:
       "A no-nonsense flush-mount holder with a protective insert — the sensible option when you're fitting several and don't need stainless throughout.",
     specs: [
-      { label: "Model", value: "30° - Black Insert" },
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Color", value: "30°" },
+      { label: "Color ", value: "Black Insert" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2934,15 +2936,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "attwood-standard-series-rod-holder-0-black-i",
-    name: "Attwood Standard Series Rod Holder - 0° Black Insert",
+    name: "Attwood Standard Series Rod Holder — 0° Black Insert",
     category: "Rod Holders",
     price: 46.99,
     tagline: "Straightforward flush mount",
     blurb:
       "A no-nonsense flush-mount holder with a protective insert — the sensible option when you're fitting several and don't need stainless throughout.",
     specs: [
-      { label: "Model", value: "0° Black Insert" },
-      { label: "Brand", value: "Attwood Marine" },
+      { label: "Color", value: "0° Black Insert" },
+      { label: "Brand", value: "Attwood" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -2963,14 +2965,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "frabill-seine-net-4-x-12-mesh",
-    name: "Frabill Seine Net - 4' x 12' Mesh",
+    name: "Frabill Seine Net — 4' x 12' Mesh",
     category: "Nets & Landing",
     price: 26.99,
     tagline: "Two-person net for catching your own bait",
     blurb:
       "A seine for gathering live bait yourself rather than buying it. Two people walk it through the shallows — the cheapest bait you'll ever fish, and fresher than anything in a tank.",
     specs: [
-      { label: "Model", value: "4' x 12' Mesh" },
+      { label: "Length", value: "4' x 12' Mesh" },
       { label: "Brand", value: "Frabill" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -2992,14 +2994,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-20-jet-driver-purple-uv-moon-jel",
-    name: "Luhr-Jensen 20' Jet Driver - Purple UV Moon Jelly",
+    name: "Luhr-Jensen Jet Driver 20 ft — Purple UV Moon Jelly",
     category: "Lures",
     price: 11.99,
     tagline: "Twenty feet down, no weight needed",
     blurb:
       "Water forced through the jet ports drives it to about twenty feet and holds it there. Lighter on the rod than a heavy diver, so you keep some feel for what's happening down there.",
     specs: [
-      { label: "Model", value: "Purple UV Moon Jelly" },
+      { label: "Color", value: "Purple UV Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3021,14 +3023,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-20-jet-driver-blue-uv-moon-jelly",
-    name: "Luhr-Jensen 20' Jet Driver - Blue UV Moon Jelly",
+    name: "Luhr-Jensen Jet Driver 20 ft — Blue UV Moon Jelly",
     category: "Lures",
     price: 11.99,
     tagline: "Twenty feet down, no weight needed",
     blurb:
       "Water forced through the jet ports drives it to about twenty feet and holds it there. Lighter on the rod than a heavy diver, so you keep some feel for what's happening down there.",
     specs: [
-      { label: "Model", value: "Blue UV Moon Jelly" },
+      { label: "Color", value: "Blue UV Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3050,14 +3052,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-20-jet-driver-black-moon-jelly",
-    name: "Luhr-Jensen 20' Jet Driver - Black Moon Jelly",
+    name: "Luhr-Jensen Jet Driver 20 ft — Black Moon Jelly",
     category: "Lures",
     price: 12.49,
     tagline: "Twenty feet down, no weight needed",
     blurb:
       "Water forced through the jet ports drives it to about twenty feet and holds it there. Lighter on the rod than a heavy diver, so you keep some feel for what's happening down there.",
     specs: [
-      { label: "Model", value: "Black Moon Jelly" },
+      { label: "Color", value: "Black Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3079,14 +3081,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-20-jet-driver-silver-crush",
-    name: "Luhr-Jensen 20' Jet Driver - Silver Crush",
+    name: "Luhr-Jensen Jet Driver 20 ft — Silver Crush",
     category: "Lures",
     price: 12.49,
     tagline: "Twenty feet down, no weight needed",
     blurb:
       "Water forced through the jet ports drives it to about twenty feet and holds it there. Lighter on the rod than a heavy diver, so you keep some feel for what's happening down there.",
     specs: [
-      { label: "Model", value: "Silver Crush" },
+      { label: "Color", value: "Silver Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3108,14 +3110,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-black-black-bo",
-    name: "Luhr-Jensen 3-1/4' Dipsy Diver - Black/Black Bottom Moon Jelly",
+    name: "Luhr-Jensen 3¼″ Dipsy Diver — Black/Black Bottom Moon Jelly",
     category: "Lures",
     price: 18.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
       "A diving planer that takes your bait down and sideways, away from the boat. The sideways part is the point: several lines, no tangles, and water the prop hasn't just spooked.",
     specs: [
-      { label: "Model", value: "Black/Black Bottom Moon Jelly" },
+      { label: "Color", value: "Black/Black Bottom Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3137,14 +3139,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-silver-silver-",
-    name: "Luhr-Jensen 3-1/4' Dipsy Diver - Silver/Silver Bottom Crush",
+    name: "Luhr-Jensen 3¼″ Dipsy Diver — Silver/Silver Bottom Crush",
     category: "Lures",
     price: 18.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
       "A diving planer that takes your bait down and sideways, away from the boat. The sideways part is the point: several lines, no tangles, and water the prop hasn't just spooked.",
     specs: [
-      { label: "Model", value: "Silver/Silver Bottom Crush" },
+      { label: "Color", value: "Silver/Silver Bottom Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3166,14 +3168,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-chartreuse-sil",
-    name: "Luhr-Jensen 3-1/4' Dipsy Diver - Chartreuse/Silver Bottom Moon Jelly",
+    name: "Luhr-Jensen 3¼″ Dipsy Diver — Chartreuse/Silver Bottom Moon Jelly",
     category: "Lures",
     price: 16.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
       "A diving planer that takes your bait down and sideways, away from the boat. The sideways part is the point: several lines, no tangles, and water the prop hasn't just spooked.",
     specs: [
-      { label: "Model", value: "Chartreuse/Silver Bottom Moon Jelly" },
+      { label: "Color", value: "Chartreuse/Silver Bottom Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3195,14 +3197,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-30-jet-driver-black-moon-jelly",
-    name: "Luhr-Jensen 30' Jet Driver - Black Moon Jelly",
+    name: "Luhr-Jensen Jet Driver 30 ft — Black Moon Jelly",
     category: "Lures",
     price: 12.49,
     tagline: "Thirty feet, same principle",
     blurb:
       "The deeper Jet Diver, reaching about thirty feet on the same jet-port principle. Run one of each and you find the productive depth in two passes instead of six.",
     specs: [
-      { label: "Model", value: "Black Moon Jelly" },
+      { label: "Color", value: "Black Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3224,14 +3226,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-30-jet-driver-clear-uv-moon-jell",
-    name: "Luhr-Jensen 30' Jet Driver - Clear UV Moon Jelly",
+    name: "Luhr-Jensen Jet Driver 30 ft — Clear UV Moon Jelly",
     category: "Lures",
     price: 10.99,
     tagline: "Thirty feet, same principle",
     blurb:
       "The deeper Jet Diver, reaching about thirty feet on the same jet-port principle. Run one of each and you find the productive depth in two passes instead of six.",
     specs: [
-      { label: "Model", value: "Clear UV Moon Jelly" },
+      { label: "Color", value: "Clear UV Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3253,14 +3255,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-30-jet-driver-silver-uv-crush",
-    name: "Luhr-Jensen 30' Jet Driver - Silver UV Crush",
+    name: "Luhr-Jensen Jet Driver 30 ft — Silver UV Crush",
     category: "Lures",
     price: 12.99,
     tagline: "Thirty feet, same principle",
     blurb:
       "The deeper Jet Diver, reaching about thirty feet on the same jet-port principle. Run one of each and you find the productive depth in two passes instead of six.",
     specs: [
-      { label: "Model", value: "Silver UV Crush" },
+      { label: "Color", value: "Silver UV Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3282,14 +3284,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-black-black-bo",
-    name: "Luhr-Jensen 4-1/8' Dipsy Diver - Black/Black Bottom Moon Jelly",
+    name: "Luhr-Jensen 4⅛″ Dipsy Diver — Black/Black Bottom Moon Jelly",
     category: "Lures",
     price: 23.99,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
       "Deepest and furthest out of the three sizes, and the hardest pulling. Worth owning when fish are deep and the water is wide; worth leaving home the rest of the time.",
     specs: [
-      { label: "Model", value: "Black/Black Bottom Moon Jelly" },
+      { label: "Color", value: "Black/Black Bottom Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3311,14 +3313,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-fire-silver-bo",
-    name: "Luhr-Jensen 4-1/8' Dipsy Diver - Fire/Silver Bottom Moon Jelly",
+    name: "Luhr-Jensen 4⅛″ Dipsy Diver — Fire/Silver Bottom Moon Jelly",
     category: "Lures",
     price: 19.49,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
       "Deepest and furthest out of the three sizes, and the hardest pulling. Worth owning when fish are deep and the water is wide; worth leaving home the rest of the time.",
     specs: [
-      { label: "Model", value: "Fire/Silver Bottom Moon Jelly" },
+      { label: "Color", value: "Fire/Silver Bottom Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3340,14 +3342,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-kelly-green-si",
-    name: "Luhr-Jensen 4-1/8' Dipsy Diver - Kelly Green/Silver Bottom Moon Jelly",
+    name: "Luhr-Jensen 4⅛″ Dipsy Diver — Kelly Green/Silver Bottom Moon Jelly",
     category: "Lures",
     price: 19.49,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
       "Deepest and furthest out of the three sizes, and the hardest pulling. Worth owning when fish are deep and the water is wide; worth leaving home the rest of the time.",
     specs: [
-      { label: "Model", value: "Kelly Green/Silver Bottom Moon Jelly" },
+      { label: "Color", value: "Kelly Green/Silver Bottom Moon Jelly" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3369,14 +3371,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-blue-ka",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Blue Kamikaze UV",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Blue Kamikaze UV",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Blue Kamikaze UV" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Blue Kamikaze UV" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3384,12 +3387,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110782XL.jpg",
     role: "add-on",
@@ -3398,14 +3401,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-chrome-",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Chrome Ladder",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Chrome Ladder",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Chrome Ladder" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Chrome Ladder" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3413,12 +3417,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110784XL.jpg",
     role: "add-on",
@@ -3427,14 +3431,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-citrus-",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Citrus Nugget",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Citrus Nugget",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Citrus Nugget" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Citrus Nugget" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3442,12 +3447,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110786XL.jpg",
     role: "add-on",
@@ -3456,14 +3461,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-glow-bl",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Glow Blue Crush",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Glow Blue Crush",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Glow Blue Crush" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Glow Blue Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3471,12 +3477,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110787XL.jpg",
     role: "add-on",
@@ -3485,14 +3491,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-rainbow",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Rainbow Crush",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Rainbow Crush",
     category: "Lures",
     price: 18.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Rainbow Crush" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Rainbow Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3500,12 +3507,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110790XL.jpg",
     role: "add-on",
@@ -3514,14 +3521,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-nuclear",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Nuclear Carbon Glow",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Nuclear Carbon Glow",
     category: "Lures",
     price: 17.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Nuclear Carbon Glow" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Nuclear Carbon Glow" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3529,12 +3537,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110792XL.jpg",
     role: "add-on",
@@ -3543,14 +3551,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-razzle-",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Razzle Dazzle",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Razzle Dazzle",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Razzle Dazzle" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Razzle Dazzle" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3558,12 +3567,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110793XL.jpg",
     role: "add-on",
@@ -3572,14 +3581,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-pearl-b",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - Pearl Blue Skeleton",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Pearl Blue Skeleton",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - Pearl Blue Skeleton" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "Pearl Blue Skeleton" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3587,12 +3597,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110794XL.jpg",
     role: "add-on",
@@ -3601,14 +3611,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-2-face-",
-    name: "Luhr-Jensen Money Roll Flasher - 8-1/4' - 2 Face UV",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, 2 Face UV",
     category: "Lures",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "8-1/4' - 2 Face UV" },
+      { label: "Size", value: "8¼″" },
+      { label: "Color", value: "2 Face UV" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3616,12 +3627,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110795XL.jpg",
     role: "add-on",
@@ -3630,14 +3641,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-blue-kamik",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Blue Kamikaze UV",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Blue Kamikaze UV",
     category: "Lures",
     price: 25.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Blue Kamikaze UV" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Blue Kamikaze UV" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3645,12 +3657,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110796XL.jpg",
     role: "add-on",
@@ -3659,14 +3671,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-brandon-s-",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Brandon's Secret",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Brandon's Secret",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Brandon's Secret" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Brandon's Secret" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3674,12 +3687,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110797XL.jpg",
     role: "add-on",
@@ -3688,14 +3701,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-chrome-lad",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Chrome Ladder",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Chrome Ladder",
     category: "Lures",
     price: 23.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Chrome Ladder" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Chrome Ladder" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3703,12 +3717,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110798XL.jpg",
     role: "add-on",
@@ -3717,14 +3731,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-chrome-sca",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Chrome Scale",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Chrome Scale",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Chrome Scale" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Chrome Scale" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3732,12 +3747,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110799XL.jpg",
     role: "add-on",
@@ -3746,14 +3761,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-citrus-nug",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Citrus Nugget",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Citrus Nugget",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Citrus Nugget" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Citrus Nugget" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3761,12 +3777,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110800XL.jpg",
     role: "add-on",
@@ -3775,14 +3791,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-glow-blue-",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Glow Blue Crush",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Glow Blue Crush",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Glow Blue Crush" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Glow Blue Crush" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3790,12 +3807,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110801XL.jpg",
     role: "add-on",
@@ -3804,14 +3821,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-glow-bioha",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Glow Biohazard",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Glow Biohazard",
     category: "Lures",
     price: 25.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Glow Biohazard" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Glow Biohazard" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3819,12 +3837,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110804XL.jpg",
     role: "add-on",
@@ -3833,14 +3851,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-nuclear-ca",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Nuclear Carbon Glow",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Nuclear Carbon Glow",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Nuclear Carbon Glow" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Nuclear Carbon Glow" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3848,12 +3867,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110806XL.jpg",
     role: "add-on",
@@ -3862,14 +3881,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-razzle-daz",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Razzle Dazzle",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Razzle Dazzle",
     category: "Lures",
     price: 23.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Razzle Dazzle" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Razzle Dazzle" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3877,12 +3897,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110807XL.jpg",
     role: "add-on",
@@ -3891,14 +3911,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-pearl-blue",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - Pearl Blue Skeleton",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, Pearl Blue Skeleton",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - Pearl Blue Skeleton" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "Pearl Blue Skeleton" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3906,12 +3927,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110808XL.jpg",
     role: "add-on",
@@ -3920,14 +3941,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "luhr-jensen-money-roll-flasher-11-2-face-uv",
-    name: "Luhr-Jensen Money Roll Flasher - 11' - 2 Face UV",
+    name: "Luhr-Jensen Money Roll Flasher — 11″, 2 Face UV",
     category: "Lures",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
       "A flasher doesn't catch fish — it makes the bait behind it findable from much further away. The roll throws flash in every direction on a slow troll, which is why a spread with one out-fishes the same spread without.",
     specs: [
-      { label: "Model", value: "11' - 2 Face UV" },
+      { label: "Size", value: "11″" },
+      { label: "Color", value: "2 Face UV" },
       { label: "Brand", value: "Luhr-Jensen" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -3935,12 +3957,12 @@ export const PRODUCTS: Product[] = [
       "Widens the area a fish can find your bait from",
       "Rolling action rather than a hard flip, easier on light gear",
       "Standard West Coast salmon rigging",
-      "Colour matters less than having one on — but carry two",
+      "Color matters less than having one on — but carry two",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
     pairsWith: [],
-    whenToUse: "Trolling for salmon, especially in coloured or deep water.",
+    whenToUse: "Trolling for salmon, especially in colored or deep water.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110809XL.jpg",
     role: "add-on",
@@ -3956,7 +3978,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The EDGE terminal box holds hooks, swivels and weights in their own compartments rather than as a heap. Rustrictor coating and a waterproof gasket, which is what stops a box of hooks becoming scrap after a salt season.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -3984,7 +4006,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Same professional-grade gasket and Rustrictor coating as the 3700 range, in the smaller 3600 footprint — for bags and packs built around that size.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4012,7 +4034,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The XL ProLatch, for things that don't fit a standard utility box — big plugs, bulk soft plastics, a spare reel. ProLatch closures that stay shut when the box goes in upside down.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4041,7 +4063,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The shallow 3700 — right for hooks, blades, swivels and anything that lies flat. Two thin boxes fit the slot one deep box takes.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4062,15 +4084,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "plano-waterproof-stowaway-utility-box-3500-s",
-    name: "Plano Waterproof StowAway Utility Box - 3500 Size",
+    name: "Plano Waterproof StowAway Utility Box — 3500 Size",
     category: "Tackle Storage",
     price: 11.99,
     tagline: "Gasket-sealed utility box",
     blurb:
       "A proper rubber gasket in the lid, so spray, rain and a wet bag floor stay out. The cheapest insurance there is against opening a box of rusted hooks.",
     specs: [
-      { label: "Model", value: "3500 Size" },
-      { label: "Brand", value: "Plano " },
+      { label: "Color", value: "3500 Size" },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4098,7 +4120,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The waterproof 3500 — smaller footprint for packs built around that size, same gasket sealing the lid.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4126,7 +4148,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The waterproof version of the format nearly every tackle bag is built around, including the Rapala Venture backpack we sell.",
     specs: [
-      { label: "Brand", value: "Plano " },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4147,15 +4169,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "plano-weekend-tackle-bag-3500-slate-plawknd3",
-    name: "Plano Weekend Tackle Bag 3500 - Slate - PLAWKND3500GBTSLATE",
+    name: "Plano Weekend Tackle Bag 3500 — Slate, PLAWKND3500GBTSLATE",
     category: "Tackle Storage",
     price: 44.99,
     tagline: "Soft bag sized for 3500 boxes",
     blurb:
       "A soft-sided bag built around the 3500 format, for trips where a full 3700 system is more than you need. Shoulder strap and enough external pockets to keep tools out of the main compartment.",
     specs: [
-      { label: "Model", value: "Slate - PLAWKND3500GBTSLATE" },
-      { label: "Brand", value: "Plano " },
+      { label: "Color", value: "Slate" },
+      { label: "Color ", value: "PLAWKND3500GBTSLATE" },
+      { label: "Brand", value: "Plano" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -4176,7 +4199,7 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "rapala-50lb-high-contrast-digital-scale",
-    name: "Rapala 50lb High Contrast Digital Scale",
+    name: "Rapala 50 lb High Contrast Digital Scale",
     category: "Tools",
     price: 49.49,
     tagline: "Readable in bad light",
@@ -4204,7 +4227,7 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "rapala-6-super-stainless-steel-pliers",
-    name: "Rapala 6' Super Stainless Steel Pliers",
+    name: "Rapala 6″ Super Stainless Steel Pliers",
     category: "Tools",
     price: 24.99,
     tagline: "The shorter stainless pliers",
@@ -4232,14 +4255,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "rapala-angler-s-pliers-6-1-2",
-    name: "Rapala Angler's Pliers - 6-1/2'",
+    name: "Rapala Angler's Pliers — 6½″",
     category: "Tools",
     price: 12.99,
     tagline: "The budget pair, for a spare",
     blurb:
       "The cheap Rapala pliers — not the stainless ones, but perfectly good as a second pair for the car, the kayak, or the friend who never brings their own.",
     specs: [
-      { label: "Model", value: "6-1/2'" },
+      { label: "Size", value: "6½″" },
       { label: "Brand", value: "Rapala" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4289,14 +4312,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "rapala-floating-fish-gripper-6",
-    name: "Rapala Floating Fish Gripper - 6'",
+    name: "Rapala Floating Fish Gripper — 6″",
     category: "Tools",
     price: 12.49,
     tagline: "Floats when you drop it",
     blurb:
       "A lip gripper that floats — which is the entire feature, and worth it the first time you fumble one over the side. Controls the fish without your hands near the gill plate or the hooks.",
     specs: [
-      { label: "Model", value: "6'" },
+      { label: "Size", value: "6″" },
       { label: "Brand", value: "Rapala" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4346,7 +4369,7 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "rapala-large-lure-wrap-3-pack",
-    name: "Rapala Large Lure Wrap *3-Pack",
+    name: "Rapala Large Lure Wrap 3-Pack",
     category: "Tackle Storage",
     price: 11.99,
     tagline: "Stops trebles finding each other",
@@ -4487,14 +4510,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "shurhold-shur-lok-landing-net-17-x-20-x-30",
-    name: "Shurhold Shur-LOK Landing Net - 17' x 20' x 30'",
+    name: "Shurhold Shur-LOK Landing Net — 17″ × 20″ × 30″",
     category: "Nets & Landing",
     price: 44.99,
     tagline: "Full-size net head for the Shur-LOK handles",
     blurb:
       "A proper landing net head on the Shur-LOK quick-release, so it clips onto the telescoping or fixed handle in a second. Seventeen by twenty inches with thirty inches of depth — sized for fish you'd actually want a net for.",
     specs: [
-      { label: "Model", value: "17' x 20' x 30'" },
+      { label: "Size", value: "17″ × 20″ × 30″" },
       { label: "Brand", value: "Shurhold" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4516,14 +4539,14 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "shurhold-shur-lok-shrimp-shad-dip-net-17-x-2",
-    name: "Shurhold Shur-LOK Shrimp & Shad Dip Net - 17' x 20' x 30'",
+    name: "Shurhold Shur-LOK Shrimp & Shad Dip Net — 17″ × 20″ × 30″",
     category: "Nets & Landing",
     price: 56.98,
     tagline: "Fine mesh for bait, not fish",
     blurb:
       "Fine-mesh dip net for shrimp and small baitfish — the mesh a landing net can't do, on the same quick-release fitting. Gathering your own bait is half the fun and most of the saving.",
     specs: [
-      { label: "Model", value: "17' x 20' x 30'" },
+      { label: "Size", value: "17″ × 20″ × 30″" },
       { label: "Brand", value: "Shurhold" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4558,7 +4581,7 @@ export const PRODUCTS: Product[] = [
     features: [
       "Bridges threaded heads onto Shur-LOK poles",
       "Saves replacing gear you already own",
-      "Aluminium, so it won't seize in salt",
+      "Aluminum, so it won't seize in salt",
       "Small enough to keep in the bag",
     ],
     gradient: ["#1f3340", "#48788f"],
@@ -4573,19 +4596,21 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-lead-core-18lb-10-color-m",
-    name: "Sufix 832 Advanced Lead Core - 18lb - 10-Color Metered - 100 yds",
+    name: "Sufix 832 Advanced Lead Core — 18 lb, 10-Color Metered, 100 yd",
     category: "Line & Leader",
     price: 34.99,
-    tagline: "Colour changes every ten yards",
+    tagline: "Color changes every ten yards",
     blurb:
-      "Lead core sinks, and it changes colour every ten yards so you can count exactly how much is out. Depth stops being a guess and becomes a number you can repeat when a pass produces a fish.",
+      "Lead core sinks, and it changes color every ten yards so you can count exactly how much is out. Depth stops being a guess and becomes a number you can repeat when a pass produces a fish.",
     specs: [
-      { label: "Model", value: "18lb - 10-Color Metered - 100 yds" },
+      { label: "Line rating", value: "18 lb" },
+      { label: "Color", value: "10-Color Metered" },
+      { label: "Spool length", value: "100 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
-      "Counting colours makes depth repeatable",
+      "Counting colors makes depth repeatable",
       "Gets baits down without a downrigger",
       "832 construction on the outer braid",
       "The cheapest depth control there is",
@@ -4596,25 +4621,28 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Trolling to a depth you need to hit again.",
     featured: false,
     image: "https://productimageserver.com/product/xl/96812XL.jpg",
+    prop65: true,
     role: "add-on",
     shipsIn: "3–7 business days",
   },
 
   {
     key: "sufix-832-advanced-lead-core-27lb-10-color-m",
-    name: "Sufix 832 Advanced Lead Core - 27lb - 10-Color Metered - 100 yds",
+    name: "Sufix 832 Advanced Lead Core — 27 lb, 10-Color Metered, 100 yd",
     category: "Line & Leader",
     price: 34.99,
-    tagline: "Colour changes every ten yards",
+    tagline: "Color changes every ten yards",
     blurb:
-      "Lead core sinks, and it changes colour every ten yards so you can count exactly how much is out. Depth stops being a guess and becomes a number you can repeat when a pass produces a fish.",
+      "Lead core sinks, and it changes color every ten yards so you can count exactly how much is out. Depth stops being a guess and becomes a number you can repeat when a pass produces a fish.",
     specs: [
-      { label: "Model", value: "27lb - 10-Color Metered - 100 yds" },
+      { label: "Line rating", value: "27 lb" },
+      { label: "Color", value: "10-Color Metered" },
+      { label: "Spool length", value: "100 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
-      "Counting colours makes depth repeatable",
+      "Counting colors makes depth repeatable",
       "Gets baits down without a downrigger",
       "832 construction on the outer braid",
       "The cheapest depth control there is",
@@ -4625,28 +4653,31 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Trolling to a depth you need to hit again.",
     featured: false,
     image: "https://productimageserver.com/product/xl/110915XL.jpg",
+    prop65: true,
     role: "add-on",
     shipsIn: "3–7 business days",
   },
 
   {
     key: "sufix-832-braid-30lb-fire-tiger-300-yds",
-    name: "Sufix 832 Braid - 30lb - Fire Tiger - 300 yds",
+    name: "Sufix 832 Braid — 30 lb, Fire Tiger, 300 yd",
     category: "Line & Leader",
     price: 32.99,
     tagline: "The 832 in a high-visibility finish",
     blurb:
-      "Same eight-fiber construction as the rest of the 832 range, in a colour you can watch. Being able to see your line is the fastest way to learn to spot a bite before you feel it.",
+      "Same eight-fiber construction as the rest of the 832 range, in a color you can watch. Being able to see your line is the fastest way to learn to spot a bite before you feel it.",
     specs: [
-      { label: "Model", value: "30lb - Fire Tiger - 300 yds" },
+      { label: "Line rating", value: "30 lb" },
+      { label: "Color", value: "Fire Tiger" },
+      { label: "Spool length", value: "300 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
       "Watching the line teaches you bites you'd otherwise miss",
-      "Same abrasion resistance as every other 832 colour",
+      "Same abrasion resistance as every other 832 color",
       "Round profile spools cleanly",
-      "Fluorocarbon leader keeps colour away from the fish",
+      "Fluorocarbon leader keeps color away from the fish",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4660,14 +4691,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-8lb-coast",
-    name: "Sufix 832 Advanced Superline Braid - 8lb - Coastal Camo - 150 yds",
+    name: "Sufix 832 Advanced Superline Braid — 8 lb, Coastal Camo, 150 yd",
     category: "Line & Leader",
     price: 18.99,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "8lb - Coastal Camo - 150 yds" },
+      { label: "Line rating", value: "8 lb" },
+      { label: "Color", value: "Coastal Camo" },
+      { label: "Spool length", value: "150 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4675,7 +4708,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4689,14 +4722,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-8lb-low-v",
-    name: "Sufix 832 Advanced Superline Braid - 8lb - Low-Vis Green - 150 yds",
+    name: "Sufix 832 Advanced Superline Braid — 8 lb, Low-Vis Green, 150 yd",
     category: "Line & Leader",
     price: 18.69,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "8lb - Low-Vis Green - 150 yds" },
+      { label: "Line rating", value: "8 lb" },
+      { label: "Color", value: "Low-Vis Green" },
+      { label: "Spool length", value: "150 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4704,7 +4739,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4718,14 +4753,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-8lb-ghost",
-    name: "Sufix 832 Advanced Superline Braid - 8lb - Ghost - 150 yds",
+    name: "Sufix 832 Advanced Superline Braid — 8 lb, Ghost, 150 yd",
     category: "Line & Leader",
     price: 19.99,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "8lb - Ghost - 150 yds" },
+      { label: "Line rating", value: "8 lb" },
+      { label: "Color", value: "Ghost" },
+      { label: "Spool length", value: "150 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4733,7 +4770,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4747,14 +4784,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-15lb-ghos",
-    name: "Sufix 832 Advanced Superline Braid - 15lb - Ghost - 150 yds",
+    name: "Sufix 832 Advanced Superline Braid — 15 lb, Ghost, 150 yd",
     category: "Line & Leader",
     price: 19.99,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "15lb - Ghost - 150 yds" },
+      { label: "Line rating", value: "15 lb" },
+      { label: "Color", value: "Ghost" },
+      { label: "Spool length", value: "150 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4762,7 +4801,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4776,14 +4815,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-30lb-low-",
-    name: "Sufix 832 Advanced Superline Braid - 30lb - Low-Vis Green - 150 yds",
+    name: "Sufix 832 Advanced Superline Braid — 30 lb, Low-Vis Green, 150 yd",
     category: "Line & Leader",
     price: 19.49,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "30lb - Low-Vis Green - 150 yds" },
+      { label: "Line rating", value: "30 lb" },
+      { label: "Color", value: "Low-Vis Green" },
+      { label: "Spool length", value: "150 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4791,7 +4832,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4805,14 +4846,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-10lb-neon",
-    name: "Sufix 832 Advanced Superline Braid - 10lb - Neon Lime - 300 yds",
+    name: "Sufix 832 Advanced Superline Braid — 10 lb, Neon Lime, 300 yd",
     category: "Line & Leader",
     price: 29.49,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "10lb - Neon Lime - 300 yds" },
+      { label: "Line rating", value: "10 lb" },
+      { label: "Color", value: "Neon Lime" },
+      { label: "Spool length", value: "300 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4820,7 +4863,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4834,14 +4877,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-15lb-low-",
-    name: "Sufix 832 Advanced Superline Braid - 15lb - Low-Vis Green - 300 yds",
+    name: "Sufix 832 Advanced Superline Braid — 15 lb, Low-Vis Green, 300 yd",
     category: "Line & Leader",
     price: 36.99,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "15lb - Low-Vis Green - 300 yds" },
+      { label: "Line rating", value: "15 lb" },
+      { label: "Color", value: "Low-Vis Green" },
+      { label: "Spool length", value: "300 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4849,7 +4894,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4863,14 +4908,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-advanced-superline-braid-20lb-low-",
-    name: "Sufix 832 Advanced Superline Braid - 20lb - Low-Vis Green - 300 yds",
+    name: "Sufix 832 Advanced Superline Braid — 20 lb, Low-Vis Green, 300 yd",
     category: "Line & Leader",
     price: 34.84,
-    tagline: "8 fibers, 32 weaves per inch",
+    tagline: "8 fibers, 32 picks per inch",
     blurb:
       "Seven HMPE fibers plus one GORE Performance Fiber at 32 picks per inch. The GORE strand is what makes it quiet through the guides and stubborn against sand and shell — the two things that end a session early.",
     specs: [
-      { label: "Model", value: "20lb - Low-Vis Green - 300 yds" },
+      { label: "Line rating", value: "20 lb" },
+      { label: "Color", value: "Low-Vis Green" },
+      { label: "Spool length", value: "300 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4878,7 +4925,7 @@ export const PRODUCTS: Product[] = [
       "The GORE fiber cuts line vibration, so you feel the take",
       "32 picks per inch makes it round, and round line spools properly",
       "Abrasion resistance that survives shell and rock",
-      "Run a fluorocarbon leader and colour stops mattering",
+      "Run a fluorocarbon leader and color stops mattering",
     ],
     gradient: ["#1e3a2f", "#3f7a5e"],
     glyph: "spool",
@@ -4892,20 +4939,22 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-performance-lead-core-36lb-10-color-me",
-    name: "Sufix Performance Lead Core - 36lb - 10-Color Metered - 200 yds",
+    name: "Sufix Performance Lead Core — 36 lb, 10-Color Metered, 200 yd",
     category: "Line & Leader",
     price: 45.99,
     tagline: "Metered lead core, longer spools",
     blurb:
-      "The same colour-metered principle in longer lengths, for filling a dedicated trolling reel rather than topping one up. Ten-yard colour changes throughout.",
+      "The same color-metered principle in longer lengths, for filling a dedicated trolling reel rather than topping one up. Ten-yard color changes throughout.",
     specs: [
-      { label: "Model", value: "36lb - 10-Color Metered - 200 yds" },
+      { label: "Line rating", value: "36 lb" },
+      { label: "Color", value: "10-Color Metered" },
+      { label: "Spool length", value: "200 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
       "Long spools for a dedicated trolling setup",
-      "Ten-yard colour metering end to end",
+      "Ten-yard color metering end to end",
       "Sinks without weights or a downrigger",
       "Repeatable depth once you know the count",
     ],
@@ -4915,20 +4964,23 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Filling a dedicated lead-core trolling reel.",
     featured: false,
     image: "https://productimageserver.com/product/xl/96826XL.jpg",
+    prop65: true,
     role: "add-on",
     shipsIn: "3–7 business days",
   },
 
   {
     key: "sufix-revolve-braid-14-lb-coastal-camo-200-y",
-    name: "Sufix Revolve Braid - 14 lb - Coastal Camo - 200 yds",
+    name: "Sufix Revolve Braid — 14 lb, Coastal Camo, 200 yd",
     category: "Line & Leader",
     price: 22.09,
     tagline: "Smoother-casting braid at a lower price",
     blurb:
       "Sufix's smoother, rounder braid for people who want a good line without paying 832 money. Casts further than mono at the same test and behaves properly on a spinning spool.",
     specs: [
-      { label: "Model", value: "14 lb - Coastal Camo - 200 yds" },
+      { label: "Line rating", value: "14 lb" },
+      { label: "Color", value: "Coastal Camo" },
+      { label: "Spool length", value: "200 yd" },
       { label: "Brand", value: "Sufix" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4950,14 +5002,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "vmc-titanium-leader-7-strand-15lb-12",
-    name: "VMC Titanium Leader 7-Strand - 15lb - 12'",
+    name: "VMC Titanium Leader 7-Strand — 15 lb, 12″",
     category: "Line & Leader",
     price: 14.49,
     tagline: "Titanium, for teeth",
     blurb:
       "Seven-strand titanium leader — kink-resistant in a way steel isn't, and it doesn't take a permanent set after a fish rolls in it. For anything with teeth that would go through fluorocarbon.",
     specs: [
-      { label: "Model", value: "15lb - 12'" },
+      { label: "Line rating", value: "15 lb" },
+      { label: "Size", value: "12″" },
       { label: "Brand", value: "VMC" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -4979,14 +5032,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "vmc-titanium-leader-7-strand-30lb-12",
-    name: "VMC Titanium Leader 7-Strand - 30lb - 12'",
+    name: "VMC Titanium Leader 7-Strand — 30 lb, 12″",
     category: "Line & Leader",
     price: 14.99,
     tagline: "Titanium, for teeth",
     blurb:
       "Seven-strand titanium leader — kink-resistant in a way steel isn't, and it doesn't take a permanent set after a fish rolls in it. For anything with teeth that would go through fluorocarbon.",
     specs: [
-      { label: "Model", value: "30lb - 12'" },
+      { label: "Line rating", value: "30 lb" },
+      { label: "Size", value: "12″" },
       { label: "Brand", value: "VMC" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5008,14 +5062,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "vmc-titanium-leader-multi-strand-50lb-12",
-    name: "VMC Titanium Leader Multi-Strand - 50lb - 12'",
+    name: "VMC Titanium Leader Multi-Strand — 50 lb, 12″",
     category: "Line & Leader",
     price: 14.49,
     tagline: "Heavier titanium, more strands",
     blurb:
       "The multi-strand version at fifty pounds — more supple than the seven-strand and rated for bigger fish. Still kink-resistant, still reusable.",
     specs: [
-      { label: "Model", value: "50lb - 12'" },
+      { label: "Line rating", value: "50 lb" },
+      { label: "Size", value: "12″" },
       { label: "Brand", value: "VMC" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5037,14 +5092,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "williamson-high-speed-tuna-catcher-rigged-7-",
-    name: "Williamson High-Speed Tuna Catcher Rigged 7 - 7.5' - Monte Carlo",
+    name: "Williamson High-Speed Tuna Catcher Rigged — 7½″ skirt, Monte Carlo",
     category: "Lures",
     price: 26.99,
     tagline: "Rigged skirt, built for a fast troll",
     blurb:
       "Holds together and keeps swimming at the speed you cover water looking for tuna, where slower skirts blow out and spin. Arrives rigged, so it goes straight into the spread.",
     specs: [
-      { label: "Model", value: "7.5' - Monte Carlo" },
+      { label: "Size", value: "7½″ skirt" },
+      { label: "Color", value: "Monte Carlo" },
       { label: "Brand", value: "Williamson" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5052,7 +5108,7 @@ export const PRODUCTS: Product[] = [
       "Holds its swim at searching speeds",
       "Arrives rigged — no evening at the vice",
       "Seven and a half inches is the searching size",
-      "Carry two colours rather than two sizes",
+      "Carry two colors rather than two sizes",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "lure",
@@ -5066,14 +5122,15 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "williamson-high-speed-tuna-catcher-rigged-8-",
-    name: "Williamson High-Speed Tuna Catcher Rigged 8 - 8' - Skipjack",
+    name: "Williamson High-Speed Tuna Catcher Rigged — 8″ skirt, Skipjack",
     category: "Lures",
     price: 35.25,
     tagline: "The bigger rigged skirt",
     blurb:
       "Eight inches of rigged skirt for fish keyed on larger bait. Fewer bites, better average size — which is the trade you make once you've caught enough small ones.",
     specs: [
-      { label: "Model", value: "8' - Skipjack" },
+      { label: "Size", value: "8″ skirt" },
+      { label: "Color", value: "Skipjack" },
       { label: "Brand", value: "Williamson" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5095,14 +5152,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "williamson-kensaki-220-jig-6-75-7-3-4oz-hot-",
-    name: "Williamson Kensaki 220 Jig - 6.75' - 7-3/4oz - Hot Sauce",
+    name: "Williamson Kensaki 220 Jig — 6¾″, 7¾ oz, Hot Sauce",
     category: "Lures",
     price: 18.99,
     tagline: "Rotates on the fall, pre-rigged",
     blurb:
       "Convex on one side, concave on the other, so it spins as it drops instead of falling dead. Each face is finished differently, which turns that rotation into a strobing flash — and the drop is when most fish commit.",
     specs: [
-      { label: "Model", value: "6.75' - 7-3/4oz - Hot Sauce" },
+      { label: "Size", value: "6¾″" },
+      { label: "Weight", value: "7¾ oz" },
+      { label: "Color", value: "Hot Sauce" },
       { label: "Brand", value: "Williamson" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5124,14 +5183,16 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "williamson-kensaki-280-jig-7-25-9-7-8oz-char",
-    name: "Williamson Kensaki 280 Jig - 7.25' - 9-7/8oz - Chartreuse Blink",
+    name: "Williamson Kensaki 280 Jig — 7¼″, 9⅞ oz, Chartreuse Blink",
     category: "Lures",
     price: 21.99,
     tagline: "The heavier Kensaki",
     blurb:
       "Nine and seven-eighths ounces, for deeper water or more current than the 220 can hold in. Same rotating body, more weight to keep it in the zone.",
     specs: [
-      { label: "Model", value: "7.25' - 9-7/8oz - Chartreuse Blink" },
+      { label: "Size", value: "7¼″" },
+      { label: "Weight", value: "9⅞ oz" },
+      { label: "Color", value: "Chartreuse Blink" },
       { label: "Brand", value: "Williamson" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5174,7 +5235,7 @@ export const PRODUCTS: Product[] = [
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "rod-short",
     pairsWith: ["mate-backing-plate", "scotty-1170-release"],
-    whenToUse: "Fitting out a centre console or skiff gunwale on a budget.",
+    whenToUse: "Fitting out a center console or skiff gunwale on a budget.",
     featured: false,
     image: "https://productimageserver.com/product/xl/77189XL.jpg",
     role: "add-on",
@@ -5192,7 +5253,7 @@ export const PRODUCTS: Product[] = [
       { label: "Brand", value: "Scotty" },
       { label: "Fits rail", value: "1¼\" round" },
       { label: "Mount", value: "Clamp-on" },
-      { label: "Model", value: "245" },
+      { label: "Size", value: "1¼\"" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -5220,7 +5281,7 @@ export const PRODUCTS: Product[] = [
       "The Orca is Scotty's heavy holder: it locks the rod in rather than just cradling it, so a fish that loads up doesn't lift the butt out. The 459 extender that comes with it pulls the whole thing up and inboard, clear of a downrigger cable.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "405 Orca + 459" },
+      { label: "Color", value: "with 459 Extension" },
       { label: "Mount", value: "Scotty post" },
       { label: "Weight", value: "2.1 lb" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5339,7 +5400,7 @@ export const PRODUCTS: Product[] = [
       "Grips the line by the pad rather than the knot, so it holds under trolling load and lets go clean on the strike without shaving your braid. The 18-inch mono leader sets the lure back off the ball. Buy two.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "1170" },
+      { label: "Size", value: "18\" Leader" },
       { label: "Leader", value: "18\" mono" },
       { label: "Fitting", value: "Cannonball snap" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5369,7 +5430,7 @@ export const PRODUCTS: Product[] = [
       "Sits between the cable and the cannonball and takes the jolt when the ball swings or the boat drops off a wave. That shock is what parts cable and pulls hooks. The SAMPO ball-bearing swivel on the end kills the line twist that comes with it.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "370" },
+      { label: "Color", value: "with SAMPO Swivel" },
       { label: "Swivel", value: "SAMPO ball-bearing" },
       { label: "Fitting", value: "Cannonball snap" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5399,7 +5460,7 @@ export const PRODUCTS: Product[] = [
       "Clips onto the cable above the ball so you can run a second rod at a shallower depth on the same wire. Twice the lines in the strike zone for the price of a release rather than the price of another downrigger.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "1176" },
+      { label: "Size", value: "6\" Leader" },
       { label: "Leader", value: "6\"" },
       { label: "Type", value: "Stacker" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5429,7 +5490,7 @@ export const PRODUCTS: Product[] = [
       "Bolts to a 1¼-inch boom and gives the ball a home while you fight and net the fish. Without one the cannonball swings on the end of the cable into your gelcoat, which you will only enjoy once.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "1148" },
+      { label: "Size", value: "1¼\" Boom Mount" },
       { label: "Fits", value: "1¼\" boom" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5458,7 +5519,8 @@ export const PRODUCTS: Product[] = [
       "An electric downrigger retrieving at full speed will drive a cannonball into the boom if nothing stops it. This does, at a repeatable spot, with a snubber built in to soften the arrival. It saves booms.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "377 Sure Stop Pro" },
+      { label: "Size", value: "30\" Boom" },
+      { label: "Color", value: "with Snubber" },
       { label: "Boom", value: "30\"" },
       { label: "Snubber", value: "Included" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5488,7 +5550,8 @@ export const PRODUCTS: Product[] = [
       "Clamps straight onto the downrigger boom so the rod rides at the release rather than three feet away from it, which is where you actually want it when you're setting lines single-handed. The removable gimbal pin keeps the butt put when a fish loads up.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "358 Rodmaster II" },
+      { label: "Color", value: "Clamp-On" },
+      { label: "Size", value: "1¼\" Boom" },
       { label: "Fits", value: "1¼\" boom" },
       { label: "Gimbal", value: "Removable pin" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5518,7 +5581,7 @@ export const PRODUCTS: Product[] = [
       "Tension-adjustable stainless and polymer clips that carry your bait out on the halyard and let go when a fish loads up. Sold in pairs, which is the honest quantity — you will lose one before you wear one out.",
     specs: [
       { label: "Brand", value: "TACO Marine" },
-      { label: "Model", value: "COK-0001B-2" },
+      { label: "Color", value: "Pair" },
       { label: "Quantity", value: "Pair" },
       { label: "Tension", value: "Adjustable" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5548,7 +5611,7 @@ export const PRODUCTS: Product[] = [
       "Harken makes sailing blocks, and this is the fishing-finish version of one. Three sheaves and a becket in a 2¼-ounce package that runs smoothly with real load on it — which is the whole problem with cheap outrigger hardware.",
     specs: [
       { label: "Brand", value: "Harken" },
-      { label: "Model", value: "229F" },
+      { label: "Color", value: "Fishing" },
       { label: "Sheave", value: "22 mm" },
       { label: "Config", value: "Triple + becket" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5724,7 +5787,7 @@ export const PRODUCTS: Product[] = [
       "Pay out line, lock it, release it — all with one hand, from a seated position, which is the only position available in a kayak. This is the part that makes anchoring from a small boat something you'll actually do rather than something you'll talk about.",
     specs: [
       { label: "Brand", value: "Scotty" },
-      { label: "Model", value: "276 + 241 mount" },
+      { label: "Color", value: "with 241 Side Deck Mount" },
       { label: "Operation", value: "One-handed" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5753,7 +5816,6 @@ export const PRODUCTS: Product[] = [
       "A three-axis mount stiff enough to hold a fish finder steady in chop and adjustable enough to put the screen at an angle you can actually read in sun. Pulls off in seconds when the kayak goes on the roof rack.",
     specs: [
       { label: "Brand", value: "RAILBLAZA" },
-      { label: "Model", value: "HEXX" },
       { label: "Adjustment", value: "Three axes" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -5779,12 +5841,12 @@ export const PRODUCTS: Product[] = [
     price: 9.99,
     tagline: "Meets the sound-signal requirement, costs nothing",
     blurb:
-      "Orion rates these at 116 dB at one metre. Clipped to a PFD, a whistle carries when your voice doesn't, and a boat under 40 feet has to carry a sound-producing device anyway. Two in the pack — one for the vest, one for the bag.",
+      "Orion rates these at 116 dB at one meter. Clipped to a PFD, a whistle carries when your voice doesn't, and a boat under 40 feet has to carry a sound-producing device anyway. Two in the pack — one for the vest, one for the bag.",
     specs: [
       { label: "Brand", value: "Orion" },
       { label: "Output", value: "116 dB at 1 m" },
       { label: "Quantity", value: "2" },
-      { label: "Model", value: "676" },
+      { label: "Quantity", value: "2-Pack" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -5814,7 +5876,7 @@ export const PRODUCTS: Product[] = [
       { label: "Brand", value: "Orion" },
       { label: "Size", value: "3\" × 4\"" },
       { label: "Weight", value: "3 oz" },
-      { label: "Model", value: "916" },
+      { label: "Size", value: "3\" × 4\"" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -5842,7 +5904,7 @@ export const PRODUCTS: Product[] = [
       "Water-activated, so if you go over the side at dusk you become a flashing target rather than a dark head in the chop — without having to find a switch. ACR states USCG and SOLAS approval, a 45-lumen LED and over 120 hours of runtime.",
     specs: [
       { label: "Brand", value: "ACR" },
-      { label: "Model", value: "3964.1" },
+      { label: "Color", value: "Water-Activated LED Distress Strobe" },
       { label: "Approval", value: "USCG / SOLAS, per ACR" },
       { label: "Runtime", value: ">120 hr at 30°C" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5873,7 +5935,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Mustang Survival" },
       { label: "Rope", value: "75 ft, 9 mm floating" },
-      { label: "Model", value: "MRD075" },
+      { label: "Length", value: "75 ft Rope" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -5901,7 +5963,7 @@ export const PRODUCTS: Product[] = [
       "A buoyant grab bag for the VHF, flares, phone and first-aid kit, so leaving in a hurry is one motion instead of four. ACR rates it to float 15 lb dead weight with the bag flooded. It is water-resistant, not a dry bag — pack accordingly.",
     specs: [
       { label: "Brand", value: "ACR" },
-      { label: "Model", value: "2279" },
+      { label: "Color", value: "Abandon Ship Bag" },
       { label: "Capacity", value: "8 gal (21 × 6 × 14.5 in)" },
       { label: "Flotation", value: "15 lb, per ACR" },
       { label: "Ships in", value: "3–7 business days" },
@@ -5924,23 +5986,23 @@ export const PRODUCTS: Product[] = [
   {
     key: "daiwa-ft-surf-9",
     name: "Daiwa FT Surf Spinning Rod — 9', 2-Piece Medium",
-    category: "Rods & Combos",
+    category: "Surf Rods",
     price: 34.99,
-    tagline: "Fibreglass, two-piece, honestly priced",
+    tagline: "Fiberglass, two-piece, honestly priced",
     blurb:
-      "The short one, for jetties, piers and beaches where you don't need to reach the horizon. Easier to control in a crowd and easier to fit in a car. Fibreglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
+      "The short one, for jetties, piers and beaches where you don't need to reach the horizon. Easier to control in a crowd and easier to fit in a car. Fiberglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
     specs: [
       { label: "Brand", value: "Daiwa" },
       { label: "Length", value: "9'" },
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
-      { label: "Blank", value: "Fibreglass" },
+      { label: "Blank", value: "Fiberglass" },
       { label: "Line rating", value: "8–20 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
       "Two-piece — ships as a parcel, fits in a car",
-      "Fibreglass blank: forgiving, and very hard to break",
+      "Fiberglass blank: forgiving, and very hard to break",
       "Medium power, 8–20 lb line",
       "Daiwa's entry surf series, priced accordingly",
     ],
@@ -5956,23 +6018,23 @@ export const PRODUCTS: Product[] = [
   {
     key: "daiwa-ft-surf-11",
     name: "Daiwa FT Surf Spinning Rod — 11', 2-Piece Medium",
-    category: "Rods & Combos",
+    category: "Surf Rods",
     price: 34.99,
-    tagline: "Fibreglass, two-piece, honestly priced",
+    tagline: "Fiberglass, two-piece, honestly priced",
     blurb:
-      "The long one. Distance when the bar is far out, and enough tip height to keep line above the wash on a steep beach. Fibreglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
+      "The long one. Distance when the bar is far out, and enough tip height to keep line above the wash on a steep beach. Fiberglass rather than graphite, which is the trade Daiwa made deliberately: heavier in the hand, far harder to break, and a third of the price. Two-piece, so it ships as a normal parcel instead of an oversize freight item.",
     specs: [
       { label: "Brand", value: "Daiwa" },
       { label: "Length", value: "11'" },
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
-      { label: "Blank", value: "Fibreglass" },
+      { label: "Blank", value: "Fiberglass" },
       { label: "Line rating", value: "8–20 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
       "Two-piece — ships as a parcel, fits in a car",
-      "Fibreglass blank: forgiving, and very hard to break",
+      "Fiberglass blank: forgiving, and very hard to break",
       "Medium power, 8–20 lb line",
       "Daiwa's entry surf series, priced accordingly",
     ],
@@ -6294,7 +6356,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Gary Yamamoto" },
       { label: "Length", value: "5 in" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Quantity", value: "10" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6324,7 +6386,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Gary Yamamoto" },
       { label: "Length", value: "5 in" },
-      { label: "Colour", value: "Smoke Pearl Blue" },
+      { label: "Color", value: "Smoke Pearl Blue" },
       { label: "Quantity", value: "10" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6354,7 +6416,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Zoom" },
       { label: "Length", value: "6.5 in" },
-      { label: "Colour", value: "Watermelon Red Tomato" },
+      { label: "Color", value: "Watermelon Red Tomato" },
       { label: "Quantity", value: "20" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6383,7 +6445,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Zoom" },
       { label: "Length", value: "6.5 in" },
-      { label: "Colour", value: "Pumpkin Chartreuse" },
+      { label: "Color", value: "Pumpkin Chartreuse" },
       { label: "Quantity", value: "20" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6413,7 +6475,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Zoom" },
       { label: "Length", value: "4 in" },
-      { label: "Colour", value: "Albino" },
+      { label: "Color", value: "Albino" },
       { label: "Quantity", value: "10" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6443,7 +6505,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Zoom" },
       { label: "Length", value: "4 in" },
-      { label: "Colour", value: "Smokin' Shad" },
+      { label: "Color", value: "Smokin' Shad" },
       { label: "Quantity", value: "10" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6469,11 +6531,11 @@ export const PRODUCTS: Product[] = [
     price: 6.79,
     tagline: "Appendages that won't sit still",
     blurb:
-      "A creature bait with enough flapping parts that it moves even when you don't. Junebug — dark purple with green flake — is the colour that works in stained water when nothing bright will. The midsize is the one to own if you're only owning one.",
+      "A creature bait with enough flapping parts that it moves even when you don't. Junebug — dark purple with green flake — is the color that works in stained water when nothing bright will. The midsize is the one to own if you're only owning one.",
     specs: [
       { label: "Brand", value: "Zoom" },
       { label: "Length", value: "4.5–5 in" },
-      { label: "Colour", value: "Junebug" },
+      { label: "Color", value: "Junebug" },
       { label: "Quantity", value: "10" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6502,7 +6564,7 @@ export const PRODUCTS: Product[] = [
       "Strike King's Rage claws are cut thin enough that they kick hard on the fall with no input from you at all. Drop it beside a laydown and it swims itself down. The smaller size is for when they've seen everything.",
     specs: [
       { label: "Brand", value: "Strike King" },
-      { label: "Colour", value: "Smoke Purple Black Flake" },
+      { label: "Color", value: "Smoke Purple Black Flake" },
       { label: "Quantity", value: "7" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6531,7 +6593,7 @@ export const PRODUCTS: Product[] = [
       "Strike King's Rage claws are cut thin enough that they kick hard on the fall with no input from you at all. Drop it beside a laydown and it swims itself down. The smaller size is for when they've seen everything.",
     specs: [
       { label: "Brand", value: "Strike King" },
-      { label: "Colour", value: "Black/Blue" },
+      { label: "Color", value: "Black/Blue" },
       { label: "Quantity", value: "9" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6561,7 +6623,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Z-Man" },
       { label: "Length", value: "4 in" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Material", value: "ElaZtech" },
       { label: "Quantity", value: "6" },
       { label: "Ships in", value: "3–7 business days" },
@@ -6592,7 +6654,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Z-Man" },
       { label: "Length", value: "4 in" },
-      { label: "Colour", value: "Black/Blue Flake" },
+      { label: "Color", value: "Black/Blue Flake" },
       { label: "Material", value: "ElaZtech" },
       { label: "Quantity", value: "6" },
       { label: "Ships in", value: "3–7 business days" },
@@ -6623,7 +6685,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Berkley" },
       { label: "Length", value: "5 in" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Quantity", value: "8" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6653,7 +6715,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Berkley" },
       { label: "Length", value: "3 in" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Quantity", value: "8" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6683,7 +6745,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Leland" },
       { label: "Length", value: "1.5 in" },
-      { label: "Colour", value: "Blue/White" },
+      { label: "Color", value: "Blue/White" },
       { label: "Quantity", value: "15" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6713,7 +6775,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "5/8 oz" },
-      { label: "Colour", value: "Sexy Shad" },
+      { label: "Color", value: "Sexy Shad" },
       { label: "Depth", value: "3–6 ft" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6743,7 +6805,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "5/8 oz" },
-      { label: "Colour", value: "Black Back Chartreuse" },
+      { label: "Color", value: "Black Back Chartreuse" },
       { label: "Depth", value: "3–6 ft" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6773,7 +6835,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "3/4 oz" },
-      { label: "Colour", value: "Chartreuse Sexy Shad" },
+      { label: "Color", value: "Chartreuse Sexy Shad" },
       { label: "Type", value: "Lipless crankbait" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6803,7 +6865,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "1/2 oz" },
-      { label: "Colour", value: "Smokey Chrome Blue" },
+      { label: "Color", value: "Smokey Chrome Blue" },
       { label: "Type", value: "Lipless crankbait" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6833,7 +6895,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "7/16 oz" },
-      { label: "Colour", value: "Watermelon Red Craw" },
+      { label: "Color", value: "Watermelon Red Craw" },
       { label: "Depth", value: "8–10 ft" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6863,7 +6925,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "7/16 oz" },
-      { label: "Colour", value: "Black Back Chartreuse" },
+      { label: "Color", value: "Black Back Chartreuse" },
       { label: "Depth", value: "8–10 ft" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6894,7 +6956,7 @@ export const PRODUCTS: Product[] = [
       { label: "Brand", value: "War Eagle" },
       { label: "Weight", value: "1/2 oz" },
       { label: "Blades", value: "Double willow" },
-      { label: "Colour", value: "Chartreuse" },
+      { label: "Color", value: "Chartreuse" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -6923,7 +6985,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Strike King" },
       { label: "Weight", value: "3/8 oz" },
-      { label: "Colour", value: "White Silver" },
+      { label: "Color", value: "White Silver" },
       { label: "Series", value: "Tour Grade" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6931,7 +6993,7 @@ export const PRODUCTS: Product[] = [
       "Heavier tournament-grade wire frame",
       "Premium hook and swivel hardware",
       "3/8 oz — the everyday size",
-      "White silver: the universal shad colour",
+      "White silver: the universal shad color",
     ],
     gradient: ["#22303f", "#46647e"],
     glyph: "lure",
@@ -6954,7 +7016,7 @@ export const PRODUCTS: Product[] = [
       { label: "Brand", value: "Booyah" },
       { label: "Weight", value: "3/8 oz" },
       { label: "Blades", value: "Four willow" },
-      { label: "Colour", value: "Silver Chartreuse" },
+      { label: "Color", value: "Silver Chartreuse" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -6983,7 +7045,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Z-Man" },
       { label: "Weight", value: "1/5 oz" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Quantity", value: "5" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -7014,7 +7076,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Z-Man" },
       { label: "Weight", value: "1/6 oz" },
-      { label: "Colour", value: "Green Pumpkin" },
+      { label: "Color", value: "Green Pumpkin" },
       { label: "Quantity", value: "5" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -7076,7 +7138,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: "Brand", value: "Leland" },
       { label: "Weight", value: "1/8 oz" },
-      { label: "Colour", value: "White" },
+      { label: "Color", value: "White" },
       { label: "Quantity", value: "5" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -7157,7 +7219,7 @@ export function isSourced(p: Product | string): boolean {
  * Four things that make a session work, sold together at a discount. The
  * discount is real and applied server-side in /api/checkout — the homepage
  * used to advertise "save 12%" against a button that added nothing to the
- * cart, which meant quoting a price we would not have honoured.
+ * cart, which meant quoting a price we would not have honored.
  *
  * Keys are filtered through isSourced() everywhere they're used, so an
  * unsourced product silently drops out of the bundle instead of advertising
@@ -7256,6 +7318,123 @@ const APPEAL: Record<string, number> = {
   "taco-outrigger-clips": 76, "acr-rapidditch-express": 77, "harken-229f-block": 78,
   "mate-15-rod-cup-holder-ss": 79, "ce-smith-swivel-flush-mount-80": 80,
 };
+
+/**
+ * WHICH WATER IS THIS FOR?
+ *
+ * Derived rather than stored, because the answer follows from the category and
+ * the brand in almost every case, and a derived rule can't drift out of sync
+ * with 230 hand-edited entries.
+ *
+ * This exists because the catalog genuinely spans two fisheries. Our suppliers
+ * are strongest in freshwater bass and crappie, and in Great Lakes trolling,
+ * while the store's own voice is Californian surf. Rather than pretend, we tag
+ * it and let people shop their own water.
+ */
+export type Water = "salt" | "fresh" | "both";
+
+const FRESH_BRANDS = [
+  "Strike King", "Zoom", "Z-Man", "Booyah", "War Eagle", "Leland", "Berkley",
+  "Gary Yamamoto", "Blakemore",
+];
+
+export function waterOf(p: Product): Water {
+  if (p.category === "Soft Baits") return "fresh";
+  if (p.category === "Surf Rods") return "salt";
+  const brand = p.specs.find((s) => s.label === "Brand")?.value ?? "";
+  if (FRESH_BRANDS.some((b) => brand.startsWith(b))) return "fresh";
+  // Circle and octopus hooks are bait-fishing hooks — sea and surf.
+  if (/circle|octopus|seagard/i.test(p.name)) return "salt";
+  // Worm hooks and tungsten bullet weights are bass rigging.
+  if (/worm hook|tungsten/i.test(p.name)) return "fresh";
+  // Everything else — line, tools, storage, holders, nets, trolling hardware —
+  // works in either, and claiming otherwise would be inventing a distinction.
+  return "both";
+}
+
+export const WATERS: { id: Water; label: string }[] = [
+  { id: "salt", label: "Saltwater" },
+  { id: "fresh", label: "Freshwater" },
+];
+
+/** Does this product suit the water someone asked for? "both" always does. */
+export function suitsWater(p: Product, want: Water): boolean {
+  const w = waterOf(p);
+  return w === "both" || w === want;
+}
+
+/**
+ * PRODUCT FAMILIES.
+ *
+ * Twenty Money Roll Flashers, seven Jet Drivers and three rod lengths were all
+ * separate, unrelated products with no way to get from one to another. A
+ * shopper on the 20 lb braid page who wanted 15 lb had to go back and scroll.
+ *
+ * Derived from the title rather than stored: everything before the em dash is
+ * the family, everything after it is the variant. That is exactly the naming
+ * convention the catalog now follows, so the grouping stays correct as long as
+ * the titles do.
+ */
+function familyKey(p: Product): string {
+  const head = p.name.split(" — ")[0];
+  return head.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+/** The variant part of the name — what distinguishes this one from its siblings. */
+export function variantLabel(p: Product): string {
+  const parts = p.name.split(" — ");
+  return parts.length > 1 ? parts.slice(1).join(" — ") : "";
+}
+
+let FAMILIES: Map<string, Product[]> | null = null;
+
+function families(): Map<string, Product[]> {
+  if (FAMILIES) return FAMILIES;
+  FAMILIES = new Map();
+  for (const p of listed()) {
+    const k = familyKey(p);
+    if (!FAMILIES.has(k)) FAMILIES.set(k, []);
+    FAMILIES.get(k)!.push(p);
+  }
+  return FAMILIES;
+}
+
+/** Other sizes and colors of the same product. Empty when there are none. */
+export function siblings(p: Product): Product[] {
+  return (families().get(familyKey(p)) ?? [])
+    .filter((x) => x.key !== p.key)
+    .sort((a, b) => a.price - b.price);
+}
+
+/**
+ * Is this a thing you fish, or a thing you bring?
+ *
+ * "How to fish the Coleman CHILLER 28-Can Soft-Sided Backpack Cooler" was
+ * funny exactly once, and then it just exposed the template.
+ */
+const NOT_FISHED: readonly Category[] = [
+  "Coolers",
+  "Tackle Storage",
+  "Safety & Flotation",
+  "Kayak & Paddle",
+  "Rod Holders",
+];
+
+export function walkthroughHeading(p: Product): string {
+  const head = p.name.split("—")[0].trim();
+  return NOT_FISHED.includes(p.category)
+    ? `How to get the most from the ${head}`
+    : `How to fish the ${head}`;
+}
+
+/**
+ * Most we'll let someone add of one item.
+ *
+ * We hold no stock — every order is placed with a distributor after the fact —
+ * so a 40-unit order is a promise we can't check. Ten is enough for anyone
+ * restocking a tackle box, and anything larger deserves an email.
+ */
+export const MAX_QTY = 10;
 
 /** Lower sorts first. Unranked products go to the end. */
 export function appealOf(p: Product | string): number {

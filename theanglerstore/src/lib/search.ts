@@ -1,4 +1,12 @@
-import { appealOf, listed, type Category, type Product } from "@/lib/products";
+import {
+  appealOf,
+  listed,
+  suitsWater,
+  waterOf,
+  type Category,
+  type Product,
+  type Water,
+} from "@/lib/products";
 
 /**
  * CATALOG SEARCH.
@@ -92,7 +100,7 @@ const PHRASES: [RegExp, string][] = [
 const SYNONYM_WEIGHT = 0.3;
 
 /** Strip everything that isn't a letter or digit, and fold case. */
-function normalise(s: string): string {
+function normalize(s: string): string {
   return s
     .toLowerCase()
     .normalize("NFKD")
@@ -102,7 +110,7 @@ function normalise(s: string): string {
 }
 
 function tokenise(s: string): string[] {
-  const n = normalise(s);
+  const n = normalize(s);
   return n ? n.split(" ") : [];
 }
 
@@ -140,6 +148,18 @@ function index(): Doc[] {
         weight: WEIGHTS.features,
       },
       { tokens: tokenise(product.whenToUse).map(stem), weight: WEIGHTS.when },
+      // Water suitability is searchable text as well as a filter — "saltwater"
+      // used to return exactly one product on a store that sells surf tackle.
+      {
+        tokens: tokenise(
+          waterOf(product) === "both"
+            ? "saltwater freshwater surf inshore"
+            : waterOf(product) === "salt"
+              ? "saltwater salt surf inshore beach"
+              : "freshwater fresh bass crappie lake",
+        ).map(stem),
+        weight: WEIGHTS.category,
+      },
     ],
   }));
   return INDEX;
@@ -157,7 +177,7 @@ interface Group {
  * Every group must match something; within a group, any member will do.
  */
 function expand(query: string): Group[] {
-  let q = normalise(query);
+  let q = normalize(query);
   for (const [re, to] of PHRASES) q = q.replace(re, to);
   const raws = q ? q.split(" ") : [];
   return raws.map((raw) => {
@@ -250,6 +270,7 @@ export interface Filters {
   query: string;
   categories: Category[];
   bands: PriceBandId[];
+  waters: Water[];
   sort: SortId;
 }
 
@@ -257,6 +278,7 @@ export const EMPTY_FILTERS: Filters = {
   query: "",
   categories: [],
   bands: [],
+  waters: [],
   sort: "popular",
 };
 
@@ -265,6 +287,7 @@ export function isFiltered(f: Filters): boolean {
     f.query.trim().length > 0 ||
     f.categories.length > 0 ||
     f.bands.length > 0 ||
+    f.waters.length > 0 ||
     f.sort !== "popular"
   );
 }
@@ -276,6 +299,10 @@ export function applyFilters(f: Filters): Product[] {
   if (f.categories.length) {
     const want = new Set<string>(f.categories);
     out = out.filter((p) => want.has(p.category));
+  }
+
+  if (f.waters.length) {
+    out = out.filter((p) => f.waters.some((w) => suitsWater(p, w)));
   }
 
   if (f.bands.length) {
@@ -311,4 +338,154 @@ export function categoryCounts(f: Filters): Map<string, number> {
   const counts = new Map<string, number>();
   for (const p of base) counts.set(p.category, (counts.get(p.category) ?? 0) + 1);
   return counts;
+}
+
+/**
+ * THE GAP NOTICE.
+ *
+ * Some searches deserve an answer rather than a result set. We sell no reels,
+ * and a literal search for "reel" used to return pliers and braid because the
+ * word appears in their copy — which reads as either incompetence or bait.
+ *
+ * Saying so plainly costs us nothing and is the same instinct as the rest of
+ * the store: tell people what we don't have, and why.
+ */
+export function gapNotice(query: string): { title: string; body: string } | null {
+  const q = normalize(query);
+  if (!q) return null;
+  if (/\b(reel|reels|combo|combos)\b/.test(q)) {
+    return {
+      title: "We don't sell reels yet.",
+      body:
+        "Our rods are real and in stock, but the reel is still yours to bring. Our distributors carry almost none, and we would rather sell you nothing than sell you a reel we haven't fished. For the surf rods here, a 5000–8000 size spinning reel with sealed bearings is the right pairing.",
+    };
+  }
+  if (/\b(rod|rods)\b/.test(q) && !/holder|rack|hanger|storage/.test(q)) {
+    return {
+      title: "Three rods, one model.",
+      body:
+        "We carry the Daiwa FT Surf in 9, 10 and 11 foot. That is the whole rod range today — it is a fiberglass blank at a fair price, not a flagship, and we say so on its page.",
+    };
+  }
+  return null;
+}
+
+// ── Did you mean? ──────────────────────────────────────────────────────────
+
+/**
+ * TYPO TOLERANCE.
+ *
+ * "hoks" returned nothing and offered nothing. A shopper who mistypes once and
+ * gets a blank page usually doesn't try a second time.
+ *
+ * Deliberately conservative: we only suggest when the query found NOTHING, and
+ * only for a single close word. Fuzzy matching applied to a query that already
+ * works is how a search box starts returning things nobody asked for.
+ */
+function editDistance(a: string, b: string, cap: number): number {
+  if (Math.abs(a.length - b.length) > cap) return cap + 1;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    let best = i;
+    for (let j = 1; j <= b.length; j++) {
+      const d = Math.min(
+        prev[j] + 1,
+        cur[j - 1] + 1,
+        prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1),
+      );
+      cur.push(d);
+      if (d < best) best = d;
+    }
+    if (best > cap) return cap + 1; // whole row already too far — stop early
+    prev = cur;
+  }
+  return prev[b.length];
+}
+
+/**
+ * Words this shop has already declared meaningful — every synonym key and
+ * every synonym value. A candidate in this set gets a one-edit head start.
+ *
+ * This is the bit that makes the suggestions read as though a fisherman wrote
+ * them. "brade" is one edit from "grade" (which appears twice, inside "Tour
+ * Grade") and two from "braid" — but braid is a word this catalog is built
+ * around and grade is an adjective that happens to be in two product names.
+ * Pure edit distance has no way to know that. The synonym table does.
+ */
+let DOMAIN: Set<string> | null = null;
+function domainWords(): Set<string> {
+  if (DOMAIN) return DOMAIN;
+  DOMAIN = new Set<string>();
+  for (const [k, vs] of Object.entries(SYNONYMS)) {
+    DOMAIN.add(stem(k));
+    for (const v of vs) DOMAIN.add(stem(v));
+  }
+  return DOMAIN;
+}
+
+let VOCAB: Map<string, number> | null = null;
+
+/**
+ * Candidate words, with how many products each appears in.
+ *
+ * Frequency matters: "brade" is one edit from "grade" and two from "braid",
+ * but nobody searching a tackle shop meant "Tour Grade". Weighting by how
+ * common a word is in the catalog picks the word a fisherman meant.
+ */
+function vocab(): Map<string, number> {
+  if (VOCAB) return VOCAB;
+  VOCAB = new Map();
+  for (const doc of index()) {
+    const seen = new Set<string>();
+    // Names, brands and categories only. Feature-bullet words would suggest
+    // "abrasion" at someone who typed "abrasin", which helps nobody.
+    for (const f of doc.fields.slice(0, 3)) {
+      for (const t of f.tokens) if (t.length >= 4) seen.add(t);
+    }
+    for (const t of seen) VOCAB.set(t, (VOCAB.get(t) ?? 0) + 1);
+  }
+  return VOCAB;
+}
+
+/**
+ * The nearest real word to what they typed, or null if nothing is close.
+ * Only meaningful when the search returned no results.
+ */
+export function didYouMean(query: string): string | null {
+  const raw = tokenise(query);
+  // 3 characters is the floor: "hoks" stems to "hok", and refusing to look at
+  // it was why the audit's example returned no suggestion at all.
+  const words = raw.map(stem).filter((w) => w.length >= 3);
+  if (words.length === 0) return null;
+
+  const v = vocab();
+  // Only give up when EVERY word is already real — "circel hook" has one good
+  // word and one typo, and that is exactly the case worth catching.
+  if (words.every((w) => v.has(w))) return null;
+
+  const fixes = new Map<string, string>();
+  for (const w of words) {
+    if (v.has(w)) continue;
+    const dom = domainWords();
+    let best: { term: string; score: number; freq: number } | null = null;
+    for (const [cand, freq] of v) {
+      const d = editDistance(w, cand, 2);
+      if (d > 2) continue;
+      // Order-independent: score every candidate, keep the lowest.
+      const score = dom.has(cand) ? Math.max(0, d - 1) : d;
+      if (
+        !best ||
+        score < best.score ||
+        (score === best.score && freq > best.freq)
+      ) {
+        best = { term: cand, score, freq };
+      }
+    }
+    if (best) fixes.set(w, best.term);
+  }
+  if (fixes.size === 0) return null;
+
+  const out = raw.map((t) => fixes.get(stem(t)) ?? t).join(" ");
+  return out === normalize(query) ? null : out;
 }

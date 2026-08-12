@@ -7,7 +7,7 @@ export const contentType = "image/png";
 
 /**
  * Site-wide OG card. Rendered at build time with no network access — every
- * colour and shape is inline, and we use the default sans stack rather than
+ * color and shape is inline, and we use the default sans stack rather than
  * fetching a webfont (Google Fonts is unreachable at build in our sandbox).
  */
 export default function Image() {
@@ -103,7 +103,7 @@ export default function Image() {
               color: "#9db8d2",
             }}
           >
-            Surf &amp; inshore tackle · Free US shipping over $49
+            Surf &amp; inshore tackle · Free US shipping over $75
           </div>
         </div>
 

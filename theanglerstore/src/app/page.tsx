@@ -13,9 +13,13 @@ import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
 
 export const metadata = {
-  title: "TheAnglerStore — Surf & Inshore Fishing Tackle",
+  // absolute: the layout template would otherwise render this as
+  // "TheAnglerStore — … | TheAnglerStore".
+  title: {
+    absolute: "TheAnglerStore — Surf & Inshore Fishing Tackle",
+  },
   description:
-    "Surf and inshore fishing gear chosen by people who fish the same beaches you do. Free US shipping over $49. Sister site to USTideCharts.",
+    "Surf and inshore fishing gear chosen by people who fish the same beaches you do. Free US shipping over $75. Sister site to USTideCharts.",
   alternates: { canonical: "/" },
 };
 

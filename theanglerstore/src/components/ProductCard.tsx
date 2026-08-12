@@ -1,5 +1,17 @@
 import Link from "next/link";
 import { formatPrice, type Product } from "@/lib/products";
+import { FLAT_SHIPPING } from "@/lib/stripe";
+
+/**
+ * The threshold is the shipping charge itself, not a round number.
+ *
+ * An item that costs less than it costs to post is unambiguously an add-on,
+ * and that is a fact the customer can check rather than a label we asserted.
+ * At $20 the hint landed on 46% of the catalog; at the shipping rate it lands
+ * on 22%, which is roughly the share of the catalog that is genuinely tiny.
+ */
+const ADD_ON_HINT_UNDER = FLAT_SHIPPING;
+
 import { ProductArt } from "./ProductArt";
 
 export function ProductCard({
@@ -29,11 +41,7 @@ export function ProductCard({
             {product.badge}
           </span>
         )}
-        {product.role === "add-on" && (
-          <span className="absolute right-3 top-3 hidden rounded-full border border-white/10 bg-abyss/85 px-2.5 py-0.5 text-[0.6875rem] font-medium text-ink backdrop-blur-sm sm:inline">
-            Best as an add-on
-          </span>
-        )}
+
       </div>
 
       {/* Two cards per row on a phone, so the grid scans instead of scrolling
@@ -50,6 +58,17 @@ export function ProductCard({
         <p className="line-clamp-2 hidden text-sm text-ink-dim sm:block">
           {product.tagline}
         </p>
+
+        {/* The add-on hint used to sit on ~90% of cards, on top of the photo,
+            which made it both unreadable and meaningless. It now appears only
+            where it tells you something you didn't know — genuinely small items
+            that can't carry their own shipping — and it lives in the text
+            column, not over the product. */}
+        {product.role === "add-on" && product.price < ADD_ON_HINT_UNDER && (
+          <p className="hidden text-[0.6875rem] text-ink-faint sm:block">
+            Rides along in a bigger order
+          </p>
+        )}
 
         <div className="mt-auto flex items-baseline gap-2 pt-2 sm:pt-3">
           <span className="tnum font-semibold text-ink sm:text-lg">

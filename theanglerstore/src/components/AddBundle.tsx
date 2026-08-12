@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useCart } from "./CartProvider";
+import { announceAdded } from "./CartToast";
+import { BUNDLE } from "@/lib/products";
 
 /**
  * Adds every item in the starter bundle to the cart in one click, then sends
@@ -16,23 +17,25 @@ import { useCart } from "./CartProvider";
  */
 export function AddBundle({ keys }: { keys: readonly string[] }) {
   const { add } = useCart();
-  const router = useRouter();
-  const [busy, setBusy] = useState(false);
+  const [added, setAdded] = useState(false);
 
   function handle() {
-    setBusy(true);
     for (const k of keys) add(k, 1);
-    router.push("/cart");
+    // Same confirmation as every other add. This used to hard-navigate to the
+    // cart, so the identical action had two different outcomes depending on
+    // where you clicked it.
+    announceAdded({ keys: [...keys], qty: 1, label: BUNDLE.name });
+    setAdded(true);
+    window.setTimeout(() => setAdded(false), 2200);
   }
 
   return (
     <button
       type="button"
       onClick={handle}
-      disabled={busy}
       className="btn btn-primary mt-4 w-full lg:w-auto"
     >
-      {busy ? "Adding…" : "Add the bundle to cart"}
+      {added ? "Added ✓" : "Add the bundle to cart"}
     </button>
   );
 }

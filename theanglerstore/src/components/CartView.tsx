@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useCart } from "./CartProvider";
 import { ProductArt } from "./ProductArt";
 import {
   BUNDLE,
+  MAX_QTY,
   cartEarnsBundle,
   formatPrice,
   getProduct,
@@ -25,6 +26,7 @@ function CancelNotice() {
 
 function CartInner() {
   const { lines, subtotal, setQty, remove, ready } = useCart();
+  const [confirmKey, setConfirmKey] = useState<string | null>(null);
 
   if (!ready) {
     return <p className="mt-8 text-ink-dim">Loading your cart…</p>;
@@ -45,6 +47,8 @@ function CartInner() {
   // customer sees the discount before they commit — but the number that gets
   // charged is always the one the server recomputes, never this one.
   const earnsBundle = cartEarnsBundle(lines.map((l) => l.key));
+  const inBundle = (key: string) =>
+    (BUNDLE.keys as readonly string[]).includes(key);
   const bundleSaving = earnsBundle
     ? Math.round(
         lines
@@ -72,7 +76,7 @@ function CartInner() {
             const p = getProduct(line.key);
             if (!p) return null;
             return (
-              <li key={line.key} className="card flex gap-4 p-4">
+              <li key={line.key} className="card relative flex gap-4 p-4">
                 <Link
                   href={`/products/${p.key}`}
                   className="w-24 shrink-0 overflow-hidden rounded-xl"
@@ -87,7 +91,12 @@ function CartInner() {
                   >
                     {p.name}
                   </Link>
-                  <p className="mt-0.5 text-sm text-ink-faint">{p.category}</p>
+                  <p className="mt-0.5 text-sm text-ink-faint">
+                    {p.category}
+                    {earnsBundle && inBundle(p.key) && (
+                      <span className="ml-2 text-teal">· {BUNDLE.name}</span>
+                    )}
+                  </p>
                   <p className="mt-1 text-xs text-ink-faint">
                     Ships in {p.shipsIn}
                   </p>
@@ -105,7 +114,7 @@ function CartInner() {
                       <span className="tnum w-7 text-center text-sm">{line.qty}</span>
                       <button
                         type="button"
-                        onClick={() => setQty(p.key, line.qty + 1)}
+                        onClick={() => setQty(p.key, Math.min(MAX_QTY, line.qty + 1))}
                         className="px-2.5 py-1.5 text-sm text-ink-dim hover:text-ink"
                         aria-label={`Increase ${p.name} quantity`}
                       >
@@ -114,7 +123,16 @@ function CartInner() {
                     </div>
                     <button
                       type="button"
-                      onClick={() => remove(p.key)}
+                      onClick={() => {
+                        // Removing a bundle member quietly deletes the 12%
+                        // discount. The math was always right; the customer
+                        // just never found out until the total moved.
+                        if (earnsBundle && inBundle(p.key)) {
+                          setConfirmKey(p.key);
+                        } else {
+                          remove(p.key);
+                        }
+                      }}
                       className="text-sm text-ink-faint hover:text-[#f87171]"
                     >
                       Remove
@@ -125,6 +143,36 @@ function CartInner() {
                 <p className="tnum shrink-0 font-semibold">
                   {formatPrice(p.price * line.qty)}
                 </p>
+
+                {confirmKey === p.key && (
+                  <div className="absolute inset-0 flex flex-col justify-center gap-3 rounded-[1.25rem] bg-abyss/95 p-4 backdrop-blur-sm">
+                    <p className="text-sm leading-relaxed text-ink">
+                      Removing this breaks up{" "}
+                      <strong>{BUNDLE.name}</strong> — you&rsquo;ll lose the{" "}
+                      {Math.round(BUNDLE.discount * 100)}% bundle discount
+                      ({formatPrice(bundleSaving)}).
+                    </p>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          remove(p.key);
+                          setConfirmKey(null);
+                        }}
+                        className="btn btn-ghost !py-2 !text-sm"
+                      >
+                        Remove anyway
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setConfirmKey(null)}
+                        className="btn btn-primary !py-2 !text-sm"
+                      >
+                        Keep the bundle
+                      </button>
+                    </div>
+                  </div>
+                )}
               </li>
             );
           })}

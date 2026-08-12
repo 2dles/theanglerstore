@@ -4,10 +4,16 @@ import type { Metadata } from "next";
 import {
   REDIRECTS,
   allKeys,
+  categoryBySlug,
   formatPrice,
   getProduct,
   isSourced,
   related,
+  siblings,
+  variantLabel,
+  walkthroughHeading,
+  waterOf,
+  CATEGORIES,
 } from "@/lib/products";
 import { withParams } from "@/lib/attribution";
 import {
@@ -85,6 +91,9 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const alsoBuy = related(product);
+  const family = siblings(product);
+  const cat = CATEGORIES.find((c) => c.name === product.category);
+  const water = waterOf(product);
   const walkthrough = getWalkthrough(product.key);
   const sourced = isSourced(product);
 
@@ -124,10 +133,16 @@ export default async function ProductPage({
       {
         "@type": "ListItem",
         position: 2,
-        name: product.category,
-        item: `https://theanglerstore.com/products`,
+        name: "All gear",
+        item: "https://theanglerstore.com/products",
       },
-      { "@type": "ListItem", position: 3, name: product.name },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: product.category,
+        item: `https://theanglerstore.com/collections/${cat?.slug ?? ""}`,
+      },
+      { "@type": "ListItem", position: 4, name: product.name },
     ],
   };
 
@@ -135,7 +150,7 @@ export default async function ProductPage({
     ? {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        name: `How to fish the ${product.name}`,
+        name: walkthroughHeading(product),
         description: walkthrough.intro,
         step: walkthrough.steps.map((s, i) => ({
           "@type": "HowToStep",
@@ -167,6 +182,17 @@ export default async function ProductPage({
             All gear
           </Link>
           <span className="mx-2">/</span>
+          {cat && (
+            <>
+              <Link
+                href={`/collections/${cat.slug}`}
+                className="hover:text-tide"
+              >
+                {cat.name}
+              </Link>
+              <span className="mx-2">/</span>
+            </>
+          )}
           <span className="text-ink-dim">{product.name}</span>
         </nav>
 
@@ -190,6 +216,13 @@ export default async function ProductPage({
                 {product.category}
               </span>
               {product.badge && <span className="badge">{product.badge}</span>}
+              <span className="chip">
+                {water === "salt"
+                  ? "Saltwater"
+                  : water === "fresh"
+                    ? "Freshwater"
+                    : "Salt or fresh"}
+              </span>
             </div>
 
             <h1 className="mt-2 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
@@ -212,6 +245,16 @@ export default async function ProductPage({
                 </>
               )}
             </div>
+
+            {sourced && (
+              <p className="mt-3 flex items-center gap-2 text-sm text-teal">
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-teal"
+                />
+                In stock at our distributor · ships in {product.shipsIn}
+              </p>
+            )}
 
             <p className="mt-2 text-sm text-ink-faint">
               {!sourced
@@ -324,6 +367,35 @@ export default async function ProductPage({
             </div>
           </div>
         </div>
+
+        {family.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Other sizes &amp; colors
+            </h2>
+            <p className="mt-1 text-sm text-ink-faint">
+              Same product, {family.length} other{" "}
+              {family.length === 1 ? "option" : "options"}.
+            </p>
+            <ul className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {family.map((sib) => (
+                <li key={sib.key}>
+                  <Link
+                    href={`/products/${sib.key}`}
+                    className="card card-hover flex items-center justify-between gap-3 px-4 py-3"
+                  >
+                    <span className="min-w-0 flex-1 truncate text-sm text-ink-dim">
+                      {variantLabel(sib) || sib.name}
+                    </span>
+                    <span className="tnum shrink-0 text-sm font-semibold">
+                      {formatPrice(sib.price)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {alsoBuy.length > 0 && (
           <section className="mt-16">

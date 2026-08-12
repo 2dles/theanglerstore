@@ -4,13 +4,21 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ProductCard } from "./ProductCard";
-import { activeCategories, listed, type Category } from "@/lib/products";
+import {
+  activeCategories,
+  listed,
+  type Category,
+  type Water,
+} from "@/lib/products";
+import { WATERS } from "@/lib/products";
 import {
   EMPTY_FILTERS,
   PRICE_BANDS,
   SORTS,
   applyFilters,
   categoryCounts,
+  didYouMean,
+  gapNotice,
   isFiltered,
   type Filters,
   type PriceBandId,
@@ -45,11 +53,16 @@ function parse(sp: URLSearchParams): Filters {
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean) as PriceBandId[];
+  const waters = (sp.get("water") ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter((w): w is Water => w === "salt" || w === "fresh");
   const sort = (sp.get("sort") ?? "popular") as SortId;
   return {
     query: sp.get("q") ?? "",
     categories: cats,
     bands,
+    waters,
     sort: SORTS.some((s) => s.id === sort) ? sort : "popular",
   };
 }
@@ -59,6 +72,7 @@ function serialise(f: Filters): string {
   if (f.query.trim()) sp.set("q", f.query.trim());
   if (f.categories.length) sp.set("cat", f.categories.join(","));
   if (f.bands.length) sp.set("price", f.bands.join(","));
+  if (f.waters.length) sp.set("water", f.waters.join(","));
   if (f.sort !== "popular") sp.set("sort", f.sort);
   return sp.toString();
 }
@@ -120,6 +134,15 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
       categories: f.categories.includes(name)
         ? f.categories.filter((c) => c !== name)
         : [...f.categories, name],
+    }));
+  }, []);
+
+  const toggleWater = useCallback((id: Water) => {
+    setFilters((f) => ({
+      ...f,
+      waters: f.waters.includes(id)
+        ? f.waters.filter((w) => w !== id)
+        : [...f.waters, id],
     }));
   }, []);
 
@@ -257,6 +280,24 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="mt-2.5 flex flex-wrap items-center gap-2">
+            {WATERS.map((w) => {
+              const on = filters.waters.includes(w.id);
+              return (
+                <button
+                  key={w.id}
+                  type="button"
+                  onClick={() => toggleWater(w.id)}
+                  aria-pressed={on}
+                  className={`chip transition-colors ${
+                    on
+                      ? "!border-tide/50 !bg-tide/12 !text-ink"
+                      : "hover:border-line-hi hover:text-ink"
+                  }`}
+                >
+                  {w.label}
+                </button>
+              );
+            })}
             {PRICE_BANDS.map((b) => {
               const on = filters.bands.includes(b.id);
               return (
@@ -309,6 +350,7 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
       {/* ── results, or the curated browse below ─────────────────────────── */}
       {active ? (
         <section className="mt-10" aria-label="Search results">
+          <GapNotice query={filters.query} />
           {results.length > 0 ? (
             <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
               {results.map((p, i) => (
@@ -316,13 +358,33 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
               ))}
             </div>
           ) : (
-            <EmptyState filters={filters} onClear={() => setFilters(EMPTY_FILTERS)} />
+            <EmptyState
+              filters={filters}
+              onClear={() => setFilters(EMPTY_FILTERS)}
+              onSuggest={(q) => setFilters((f) => ({ ...f, query: q }))}
+            />
           )}
         </section>
       ) : (
         children
       )}
     </>
+  );
+}
+
+/**
+ * Some searches are better answered than matched — see gapNotice().
+ */
+function GapNotice({ query }: { query: string }) {
+  const notice = gapNotice(query);
+  if (!notice) return null;
+  return (
+    <div className="card mb-6 border-l-2 border-l-tide p-5">
+      <p className="font-semibold text-ink">{notice.title}</p>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-dim">
+        {notice.body}
+      </p>
+    </div>
   );
 }
 
@@ -334,10 +396,13 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
 function EmptyState({
   filters,
   onClear,
+  onSuggest,
 }: {
   filters: Filters;
   onClear: () => void;
+  onSuggest: (q: string) => void;
 }) {
+  const suggestion = filters.query.trim() ? didYouMean(filters.query) : null;
   const withoutPrice = applyFilters({ ...filters, bands: [] }).length;
   const withoutCats = applyFilters({ ...filters, categories: [] }).length;
   const withoutQuery = applyFilters({ ...filters, query: "" }).length;
@@ -347,9 +412,23 @@ function EmptyState({
       <p className="text-lg font-semibold">Nothing matches all of that.</p>
       <p className="mt-2 text-sm leading-relaxed text-ink-dim">
         {filters.query.trim()
-          ? `We don't carry anything for “${filters.query.trim()}”—or not with the other filters on.`
+          ? `We don't carry anything for “${filters.query.trim()}” — or not with the other filters on.`
           : "That combination of filters is empty."}
       </p>
+
+      {suggestion && (
+        <p className="mt-3 text-sm text-ink-dim">
+          Did you mean{" "}
+          <button
+            type="button"
+            onClick={() => onSuggest(suggestion)}
+            className="text-tide underline underline-offset-2 hover:text-teal"
+          >
+            {suggestion}
+          </button>
+          ?
+        </p>
+      )}
 
       <div className="mt-5 flex flex-col items-center gap-2 text-sm">
         {filters.bands.length > 0 && withoutPrice > 0 && (

@@ -5,6 +5,7 @@ import "./globals.css";
 import { CartProvider } from "@/components/CartProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { CartToast } from "@/components/CartToast";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -70,6 +71,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <CartToast />
         </CartProvider>
         <Analytics />
       </body>

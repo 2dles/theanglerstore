@@ -33,20 +33,26 @@ export default function AboutPage() {
           We are a small operation, so we do not pretend to carry everything.
           What we carry is chosen against a specific coastline: California surf
           and bays, where the fish are halibut, surfperch, corbina, calico, and
-          spotted bay bass, and where the wrong gear is usually gear designed for
-          Midwest largemouth.
+          spotted bay bass. Most of what we stock is chosen against that water.
+          We also carry a freshwater bass and crappie range, and a Great Lakes
+          trolling range, because our suppliers are strong there and plenty of
+          you fish both — every product is tagged for the water it suits, so you
+          can shop yours and ignore the rest.
         </p>
         <p>
           Two rules govern the catalog. First, salt-facing specs are
           non-negotiable — sealed bearings, plated hooks, anodized aluminum.
           Untreated hardware fails in one season and we will not sell it. Second,
-          if we think a product is a bad buy, we say so on the product page
-          rather than quietly leaving it out. Our{" "}
-          <Link href="/products/cooler" className="text-tide hover:text-teal">
-            45 qt cooler page
+          if we think a product is a bad buy, we say so on the page rather than
+          quietly leaving it out. Most of the small items here carry a note
+          telling you <em>not</em> to buy them on their own — they cost nearly as
+          much to ship as they do to make, and they only earn their price riding
+          along in a bigger box. And our{" "}
+          <Link href="/collections/coolers" className="text-tide hover:text-teal">
+            coolers page
           </Link>{" "}
-          is the clearest example: it exists, you can order it, and we explain
-          why you probably should not.
+          explains why we don&rsquo;t stock the big rotomolded hard coolers
+          everyone else pushes: they cost more to freight than they do to make.
         </p>
       </Section>
 

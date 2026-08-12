@@ -69,29 +69,52 @@ function CheckoutFrame({ initialLines }: { initialLines: CartLine[] }) {
 
   return (
     <div className="mt-8">
+      {/* "Back to cart" sits ABOVE the payment slab now.
+          The Stripe element reflows several times while it works out which
+          payment methods to show, and anything rendered below it moves with
+          every repaint — which meant the escape hatch jumped under the cursor
+          at the exact moment someone was deciding whether to trust us. Above
+          the slab it cannot move at all. */}
+      <Link href="/cart" className="mb-4 block text-center text-sm link-quiet">
+        ← Back to cart
+      </Link>
+
       {/* Stripe renders its own light-on-white form here. Keeping it on a plain
-          white surface is deliberate — a recoloured payment form reads as less
+          white surface is deliberate — a recolored payment form reads as less
           trustworthy, and trust is the only thing that matters at this step.
           What we can do is make the slab feel like part of the page rather
           than pasted onto it: same corner radius and border treatment as our
           cards, a ring instead of a hard edge, and no wasted padding.
-          Everything inside the frame is Stripe's; set the accent colour and
+          Everything inside the frame is Stripe's; set the accent color and
           logo under Settings → Business → Branding in the dashboard. */}
-      <div className="overflow-hidden rounded-[1.25rem] bg-white px-1 py-2 shadow-[0_1px_0_rgba(148,197,255,.12),0_18px_50px_-12px_rgba(0,0,0,.6)] ring-1 ring-[rgba(148,197,255,.14)]">
+      <div className="relative min-h-[760px] overflow-hidden rounded-[1.25rem] bg-white px-1 py-2 shadow-[0_1px_0_rgba(148,197,255,.12),0_18px_50px_-12px_rgba(0,0,0,.6)] ring-1 ring-[rgba(148,197,255,.14)]">
+        {/* Skeleton underneath. The frame reserves its full height from the
+            first paint, so the element mounting on top of this displaces
+            nothing. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 flex flex-col gap-4 p-6"
+        >
+          <div className="h-5 w-32 rounded bg-[#eceff3]" />
+          <div className="h-11 w-full rounded-lg bg-[#f3f5f8]" />
+          <div className="h-11 w-full rounded-lg bg-[#f3f5f8]" />
+          <div className="h-11 w-2/3 rounded-lg bg-[#f3f5f8]" />
+          <div className="mt-4 h-5 w-40 rounded bg-[#eceff3]" />
+          <div className="h-11 w-full rounded-lg bg-[#f3f5f8]" />
+        </div>
+        <div className="relative">
         <EmbeddedCheckoutProvider
           stripe={stripePromise}
           options={{ fetchClientSecret }}
         >
-          <EmbeddedCheckout className="min-h-[620px]" />
+          <EmbeddedCheckout />
         </EmbeddedCheckoutProvider>
+        </div>
       </div>
 
       <p className="mt-4 text-center text-xs text-ink-faint">
         Payments processed by Stripe. Your card details never touch our servers.
       </p>
-      <Link href="/cart" className="mt-2 block text-center text-sm link-quiet">
-        ← Back to cart
-      </Link>
     </div>
   );
 }

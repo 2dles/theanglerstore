@@ -37,6 +37,26 @@ export default function ContactPage() {
         </ul>
       </Section>
 
+      <Section heading="Who you are dealing with">
+        <p>
+          {/* REQUIRES OWNER INPUT — replace the two placeholders below with the
+              registered entity name and a mailing address (a PO box or the
+              registered agent's address is fine). Deliberately left as visible
+              placeholders rather than invented: a wrong address is worse than
+              none. */}
+          <strong className="text-ink">[LEGAL ENTITY NAME]</strong>, trading as
+          TheAnglerStore.
+          <br />
+          [BUSINESS ADDRESS]
+          <br />
+          Sebastopol, California, United States
+        </p>
+        <p>
+          We are a small operation and there is no phone line yet — email is
+          answered by the person who packed your order, usually the same day.
+        </p>
+      </Section>
+
       <Section heading="Hours">
         <p>
           Monday to Friday, 9am–5pm Pacific. Messages sent over a weekend get
