@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/collections/all", destination: "/products", permanent: true },
-      { source: "/collections/rods-combos", destination: "/collections/surf-rods", permanent: true },
+      { source: "/collections/rods-combos", destination: "/collections/combos", permanent: true },
     ];
   },
   images: {

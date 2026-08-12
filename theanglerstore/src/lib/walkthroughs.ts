@@ -26,7 +26,7 @@ export interface Walkthrough {
 export const WALKTHROUGHS: Record<string, Walkthrough> = {
   "surf-rod": {
     intro:
-      "A surf rod is only as good as the way it's set up. We don't sell reels yet, so this assumes the reel is your own — a 5000–8000 size spinning reel is the right pairing for this blank. Twenty minutes at the kitchen table saves you a wasted session.",
+      "A surf rod is only as good as the way it's set up. The reels we stock are freshwater models, so for surf work assume the reel is your own — a 5000–8000 size spinning reel with sealed bearings is the right pairing for this blank. Twenty minutes at the kitchen table saves you a wasted session.",
     steps: [
       {
         heading: "Spool it properly",

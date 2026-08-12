@@ -355,16 +355,16 @@ export function gapNotice(query: string): { title: string; body: string } | null
   if (!q) return null;
   if (/\b(reel|reels|combo|combos)\b/.test(q)) {
     return {
-      title: "We don't sell reels yet.",
+      title: "We stock freshwater reels, not surf reels.",
       body:
-        "Our rods are real and in stock, but the reel is still yours to bring. Our distributors carry almost none, and we would rather sell you nothing than sell you a reel we haven't fished. For the surf rods here, a 5000–8000 size spinning reel with sealed bearings is the right pairing.",
+        "Spinning reels and matched combos from Daiwa and Abu Garcia are in the catalog now. Every one is a freshwater reel — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim, and we won't invent one. If you're rigging a surf rod, the reel is still yours to bring: a 5000–8000 size with sealed bearings is the pairing you want, and we'll say so until we can stock one we'd fish ourselves.",
     };
   }
   if (/\b(rod|rods)\b/.test(q) && !/holder|rack|hanger|storage/.test(q)) {
     return {
-      title: "Three rods, one model.",
+      title: "Four surf rods and a short freshwater range.",
       body:
-        "We carry the Daiwa FT Surf in 9, 10 and 11 foot. That is the whole rod range today — it is a fiberglass blank at a fair price, not a flagship, and we say so on its page.",
+        "The Daiwa FT Surf comes in 9, 10 and 11 foot, and the Okuma Tundra 7 foot is the short end of surf. Everything else in rods is freshwater — a Laguna ultralight and two rod-and-reel combos. All of it is entry-price tackle chosen for value, and each page says which water it suits.",
     };
   }
   return null;

@@ -45,7 +45,9 @@ export type Category =
   | "Trolling & Rigging"
   | "Kayak & Paddle"
   | "Safety & Flotation"
-  | "Soft Baits";
+  | "Soft Baits"
+  | "Reels"
+  | "Rods & Combos";
 
 export interface Product {
   key: string;
@@ -218,6 +220,20 @@ export const CATEGORIES: {
     name: "Soft Baits",
     blurb:
       "Worms, craws, creatures and stick baits — the plastic half of freshwater fishing. Almost everything here is under ten dollars and none of it justifies its own shipping label, so buy a handful at once and let them ride in the same box.",
+    nav: true,
+  },
+  {
+    slug: "reels",
+    name: "Reels",
+    blurb:
+      "Spinning reels from Daiwa and Abu Garcia. Every one here is a freshwater reel and labelled as such — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim for these models, and we don't make claims they don't. A surf reel we'd actually stand behind is still on the list.",
+    nav: true,
+  },
+  {
+    slug: "combos",
+    name: "Rods & Combos",
+    blurb:
+      "Rod and reel sold together, matched and balanced by the manufacturer, plus the freshwater rods that don't belong in the surf rack. The cheapest honest way to own a working outfit in one purchase.",
     nav: true,
   },
 ];
@@ -1717,7 +1733,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "tuna-catcher",
-    name: "Williamson High-Speed Tuna Catcher Rigged 8″ — Mahi",
+    name: "Williamson High-Speed Tuna Catcher Rigged — 8″, Mahi",
     category: "Lures",
     price: 35.25,
     tagline: "Rigged and ready for a fast troll",
@@ -2428,7 +2444,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "tuna-catcher-5",
-    name: "Williamson Tuna Catcher Rigged 5½″ — Candy Floss",
+    name: "Williamson Tuna Catcher Rigged — 5½″, Candy Floss",
     category: "Lures",
     price: 15.49,
     tagline: "The small rigged skirt, for school fish",
@@ -2490,7 +2506,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "big-game-catcher",
-    name: "Williamson Big Game Catcher 8¼″ — Skipjack",
+    name: "Williamson Big Game Catcher — 8¼″, Skipjack",
     category: "Lures",
     price: 18.95,
     tagline: "Big skirt for fish that eat other fish",
@@ -2521,7 +2537,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "flasher-small",
-    name: "Luhr-Jensen Money Roll Flasher 8¼″ — Brandon\u2019s Secret",
+    name: "Luhr-Jensen Money Roll Flasher — 8¼″, Brandon\u2019s Secret",
     category: "Lures",
     price: 19.99,
     tagline: "The smaller flasher, for lighter gear",
@@ -7158,6 +7174,275 @@ export const PRODUCTS: Product[] = [
     role: "add-on",
     shipsIn: "3–7 business days",
   },
+  {
+    key: "daiwa-crossfire-lt-2000",
+    name: "Daiwa Crossfire LT 2000 Spinning Reel",
+    category: "Reels",
+    price: 34.99,
+    tagline: "Three bearings and a real aluminum spool",
+    blurb:
+      "Daiwa's entry reel, but with the parts that matter: an ABS aluminum spool that takes braid without a mono backing, their Airdrive rotor, and a drag that gives line smoothly rather than in steps. Three bearings plus a roller is more than anything else at this money. Daiwa build and market this as a freshwater reel — they make no saltwater rating and no sealed-bearing claim, and neither will we.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Size", value: "2000" },
+      { label: "Bearings", value: "3 + 1 roller" },
+      { label: "Gear ratio", value: "5.2:1" },
+      { label: "Max drag", value: "11 lb" },
+      { label: "Line capacity", value: "6 lb / 110 yd mono · 8 lb / 150 yd braid" },
+      { label: "Weight", value: "7.9 oz" },
+      { label: "Water", value: "Freshwater — Daiwa states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Three ball bearings plus a roller bearing",
+      "LC-ABS aluminum spool — braid straight on, no backing",
+      "ATD Type-L drag: smooth from the first turn",
+      "Tough Digigear drive gear",
+    ],
+    gradient: ["#22303f", "#46647e"],
+    glyph: "spool",
+    pairsWith: ["daiwa-laguna-ul", "braided-line", "fluoro-leader"],
+    whenToUse: "Lake and river spinning, and any freshwater rod in the 6–7 ft range.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "daiwa-crossfire-lt-3000",
+    name: "Daiwa Crossfire LT 3000-C Spinning Reel",
+    category: "Reels",
+    price: 34.99,
+    tagline: "Three bearings and a real aluminum spool",
+    blurb:
+      "Daiwa's entry reel, but with the parts that matter: an ABS aluminum spool that takes braid without a mono backing, their Airdrive rotor, and a drag that gives line smoothly rather than in steps. Three bearings plus a roller is more than anything else at this money. Daiwa build and market this as a freshwater reel — they make no saltwater rating and no sealed-bearing claim, and neither will we.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Size", value: "3000-C" },
+      { label: "Bearings", value: "3 + 1 roller" },
+      { label: "Gear ratio", value: "5.3:1" },
+      { label: "Max drag", value: "22 lb" },
+      { label: "Line capacity", value: "10 lb / 130 yd mono · 10 lb / 185 yd braid" },
+      { label: "Weight", value: "9.2 oz" },
+      { label: "Water", value: "Freshwater — Daiwa states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Three ball bearings plus a roller bearing",
+      "LC-ABS aluminum spool — braid straight on, no backing",
+      "ATD Type-L drag: smooth from the first turn",
+      "Tough Digigear drive gear",
+    ],
+    gradient: ["#22303f", "#46647e"],
+    glyph: "spool",
+    pairsWith: ["daiwa-laguna-ul", "braided-line", "fluoro-leader"],
+    whenToUse: "Lake and river spinning, and any freshwater rod in the 6–7 ft range.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "abu-max-x-2500",
+    name: "Abu Garcia Max X 2500 Spinning Reel",
+    category: "Reels",
+    price: 39.99,
+    tagline: "Four stainless bearings, machined spool",
+    blurb:
+      "Abu Garcia's Max X gets a machined aluminum braid-ready spool and four stainless bearings plus a roller — five in total, which is unusual under forty dollars. The asymmetric graphite frame keeps the weight down without the flex you feel in cheaper bodies. Abu Garcia specify stainless bearings but publish no saltwater rating and no sealed-bearing claim, so we list it as a freshwater reel.",
+    specs: [
+      { label: "Brand", value: "Abu Garcia" },
+      { label: "Size", value: "2500" },
+      { label: "Bearings", value: "4 + 1 roller" },
+      { label: "Gear ratio", value: "5.2:1" },
+      { label: "Retrieve", value: "27 in per turn" },
+      { label: "Line capacity", value: "8 lb / 130 yd mono · 8 lb / 190 yd braid" },
+      { label: "Weight", value: "8.1 oz" },
+      { label: "Water", value: "Freshwater — Abu Garcia states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Four stainless ball bearings + one roller",
+      "Machined aluminum spool, braid-ready",
+      "Asymmetric graphite frame and rotor",
+      "Rocket Line Management to cut wind knots",
+    ],
+    gradient: ["#22303f", "#46647e"],
+    glyph: "spool",
+    pairsWith: ["abu-max-x-combo", "braided-line", "yamamoto-senko-gp"],
+    whenToUse: "An all-round freshwater reel you won't outgrow in a season.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_b1b63532-32b9-4d59-8c76-6e98f4aaee33.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "abu-max-x-3000",
+    name: "Abu Garcia Max X 3000 Spinning Reel",
+    category: "Reels",
+    price: 39.99,
+    tagline: "Four stainless bearings, machined spool",
+    blurb:
+      "Abu Garcia's Max X gets a machined aluminum braid-ready spool and four stainless bearings plus a roller — five in total, which is unusual under forty dollars. The asymmetric graphite frame keeps the weight down without the flex you feel in cheaper bodies. Abu Garcia specify stainless bearings but publish no saltwater rating and no sealed-bearing claim, so we list it as a freshwater reel.",
+    specs: [
+      { label: "Brand", value: "Abu Garcia" },
+      { label: "Size", value: "3000" },
+      { label: "Bearings", value: "4 + 1 roller" },
+      { label: "Gear ratio", value: "5.2:1" },
+      { label: "Retrieve", value: "29 in per turn" },
+      { label: "Line capacity", value: "8 lb / 175 yd mono · 10 lb / 180 yd braid" },
+      { label: "Weight", value: "8.3 oz" },
+      { label: "Water", value: "Freshwater — Abu Garcia states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Four stainless ball bearings + one roller",
+      "Machined aluminum spool, braid-ready",
+      "Asymmetric graphite frame and rotor",
+      "Rocket Line Management to cut wind knots",
+    ],
+    gradient: ["#22303f", "#46647e"],
+    glyph: "spool",
+    pairsWith: ["abu-max-x-combo", "braided-line", "yamamoto-senko-gp"],
+    whenToUse: "An all-round freshwater reel you won't outgrow in a season.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_d451df4c-ae88-4f30-92f3-9fddc9e99781.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "daiwa-d-shock-combo-7mh",
+    name: "Daiwa D-Shock Spinning Combo — 7 ft, 2-Piece Medium-Heavy",
+    category: "Rods & Combos",
+    price: 34.99,
+    tagline: "Rod and reel, matched, thirty-five dollars",
+    blurb:
+      "A complete outfit: a seven-foot medium-heavy fiberglass blank with a cork grip, and a DSK40 reel already balanced to it. Daiwa name this the D-Shock Freshwater combo and rate it for nothing else — no salt claim, no sealed bearings — so treat it as a lake and river outfit. For someone starting from nothing, it is the cheapest honest way to own a working rod and reel at once.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "7 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Medium-heavy" },
+      { label: "Blank", value: "Fiberglass" },
+      { label: "Reel", value: "DSK40-B, 1 ball bearing" },
+      { label: "Water", value: "Freshwater — Daiwa's own model name is D-Shock Freshwater" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Rod and reel matched and balanced by Daiwa",
+      "7 ft medium-heavy — worm, jig and spinnerbait weights",
+      "Two-piece, so it fits in a car",
+      "ABS machined aluminum spool with Twist Buster line roller",
+    ],
+    gradient: ["#26364a", "#4a6a8c"],
+    glyph: "rod",
+    pairsWith: ["yamamoto-senko-gp", "gamakatsu-worm-hook-3-0", "braided-line"],
+    whenToUse: "A first outfit, or a spare you don't mind lending.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/786122_bfc8e673-fd7f-4516-b3c1-f43538fcb9f4.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "abu-max-x-combo",
+    name: "Abu Garcia Max X Spinning Combo — 6 ft 6 in, Medium-Light",
+    category: "Rods & Combos",
+    price: 64.99,
+    tagline: "The Max X reel, on a rod built for it",
+    blurb:
+      "The same five-bearing Max X reel we sell on its own, paired with a one-piece carbon-composite blank rated 4–10 lb and 3/16–1/2 oz. One-piece means no ferrule to work loose and a cleaner bend through the middle — the trade is that it won't fit in a small car. Abu Garcia make no saltwater claim for either half, so we list it freshwater.",
+    specs: [
+      { label: "Brand", value: "Abu Garcia" },
+      { label: "Length", value: "6 ft 6 in" },
+      { label: "Pieces", value: "1" },
+      { label: "Power", value: "Medium-light" },
+      { label: "Line rating", value: "4–10 lb" },
+      { label: "Lure rating", value: "3/16–1/2 oz" },
+      { label: "Reel", value: "Max X 2500, 4+1 bearings" },
+      { label: "Water", value: "Freshwater — Abu Garcia states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "One-piece carbon composite blank — no ferrule to slip",
+      "Line 4–10 lb, lure 3/16–1/2 oz",
+      "Max X reel: 4 stainless bearings + roller, machined aluminum spool",
+      "Medium-light: finesse plastics and small hard baits",
+    ],
+    gradient: ["#26364a", "#4a6a8c"],
+    glyph: "rod",
+    pairsWith: ["abu-max-x-2500", "zman-big-trd-gp", "zman-finesse-shroomz"],
+    whenToUse: "Finesse plastics, small cranks, and anywhere a light line is the point.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897415_8a11f533-f9d3-4cbb-ae09-eee201ea354f.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "okuma-tundra-7",
+    name: "Okuma Tundra Surf Spinning Rod — 7 ft, 2-Piece",
+    category: "Surf Rods",
+    price: 25.95,
+    tagline: "The cheapest rod here we'd take to the beach",
+    blurb:
+      "Okuma build the Tundra as a surf series and say so themselves — they describe it as favoured by catfish anglers and cost-conscious surf anglers. Glass fiber blank, stainless guide rings, and a twenty-inch EVA grip so you can get two hands on a cast. At seven feet it is the short end of surf: jetties, piers, and beaches where distance matters less than control.",
+    specs: [
+      { label: "Brand", value: "Okuma" },
+      { label: "Length", value: "7 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Blank", value: "Glass fiber" },
+      { label: "Line rating", value: "6–15 lb" },
+      { label: "Guides", value: "Stainless steel rings" },
+      { label: "Reel seat", value: "Graphite with stainless" },
+      { label: "Water", value: "Okuma position the Tundra as a surf series" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Okuma's own surf series, at the entry price",
+      "Extra-long 20¾ in EVA grip for two-handed casting",
+      "Stainless steel guide rings",
+      "Line 6–15 lb",
+    ],
+    gradient: ["#26364a", "#4a6a8c"],
+    glyph: "rod",
+    pairsWith: ["surf-rod", "circle-hooks", "braided-line"],
+    whenToUse: "Jetties and piers, and beaches where the bar is close in.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/362064_c7df0fb1-c7ea-4a9f-b785-fc59546fe82f.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "daiwa-laguna-ul",
+    name: "Daiwa Laguna Spinning Rod — 6 ft 6 in, 2-Piece Ultralight",
+    category: "Rods & Combos",
+    price: 49.99,
+    tagline: "One to four pound line, and you feel everything",
+    blurb:
+      "An IM-6 graphite blank with woven carbon, rated 1–4 lb line and 1/32–1/8 oz lures. That is genuinely light — a trout rod, a panfish rod, a rod for days when the fish want something tiny and a normal outfit can't cast it. Seven aluminium-oxide guides and split EVA grips. Daiwa make no saltwater claim for the Laguna, so we list it freshwater.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "6 ft 6 in" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Ultralight" },
+      { label: "Line rating", value: "1–4 lb" },
+      { label: "Lure rating", value: "1/32–1/8 oz" },
+      { label: "Blank", value: "IM-6 graphite" },
+      { label: "Water", value: "Freshwater — Daiwa states no saltwater rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "IM-6 graphite with woven carbon — light and quick",
+      "Line 1–4 lb, lure 1/32–1/8 oz",
+      "Seven aluminum-oxide guides",
+      "Split EVA grips, two-piece",
+    ],
+    gradient: ["#26364a", "#4a6a8c"],
+    glyph: "rod",
+    pairsWith: ["daiwa-crossfire-lt-2000", "crappie-magnet-bw", "crappie-magnet-minnow-heads"],
+    whenToUse: "Trout, panfish and crappie, and anything that wants a 1/32 oz jig.",
+    featured: false,
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/31177.jpg",
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
 ];
 
 /**
@@ -7341,6 +7626,10 @@ const FRESH_BRANDS = [
 export function waterOf(p: Product): Water {
   if (p.category === "Soft Baits") return "fresh";
   if (p.category === "Surf Rods") return "salt";
+  // Every reel and combo we stock is a freshwater model. Not one of these
+  // manufacturers publishes a saltwater rating or a sealed-bearing claim for
+  // them, and "both" would be us quietly implying one.
+  if (p.category === "Reels" || p.category === "Rods & Combos") return "fresh";
   const brand = p.specs.find((s) => s.label === "Brand")?.value ?? "";
   if (FRESH_BRANDS.some((b) => brand.startsWith(b))) return "fresh";
   // Circle and octopus hooks are bait-fishing hooks — sea and surf.
@@ -7441,8 +7730,55 @@ export function appealOf(p: Product | string): number {
   return APPEAL[typeof p === "string" ? p : p.key] ?? 999;
 }
 
+/**
+ * VULGAR FRACTIONS BACK TO NUMBERS, so 8¼ sorts below 11.
+ */
+const FRACTION: Record<string, number> = {
+  "¼": 0.25, "½": 0.5, "¾": 0.75, "⅛": 0.125, "⅜": 0.375,
+  "⅝": 0.625, "⅞": 0.875, "⅓": 1 / 3, "⅔": 2 / 3,
+};
+
+/**
+ * The first measurement in a product's variant label, as a number.
+ *
+ * Used only to order siblings — a 9 ft rod should sit left of an 11 ft rod,
+ * and 8 lb braid left of 20 lb, regardless of the order they were typed into
+ * this file. Returns null when there is nothing measurable to sort on.
+ */
+function sizeRank(p: Product): number | null {
+  const tail = p.name.split(" — ")[1] ?? p.name;
+  // "6 ft 6 in" → 6.5; "8¼″" → 8.25; "20 lb" → 20; "10'" → 10
+  const m = tail.match(/(\d+(?:\.\d+)?)\s*([¼½¾⅛⅜⅝⅞⅓⅔])?/);
+  if (!m) return null;
+  let n = parseFloat(m[1]);
+  if (m[2]) n += FRACTION[m[2]] ?? 0;
+  const inches = tail.match(/ft\s*(\d+(?:\.\d+)?)\s*in/i);
+  if (inches) n += parseFloat(inches[1]) / 12;
+  return Number.isFinite(n) ? n : null;
+}
+
+/**
+ * Editorial rank first, then — for products we rank equally, which is most of
+ * them — family and size. Without the size tiebreak the three Daiwa surf rods
+ * came out 10 ft, 9 ft, 11 ft, in the order someone happened to add them.
+ */
 function byAppeal(a: Product, b: Product): number {
-  return appealOf(a) - appealOf(b);
+  const rank = appealOf(a) - appealOf(b);
+  if (rank !== 0) return rank;
+
+  // Everything below must be a TOTAL order. An earlier version returned 0 for
+  // products in different families, which looks harmless and isn't: it makes
+  // the comparator intransitive, and V8's sort is then free to return anything
+  // — which is why three surf rods came out 10 ft, 9 ft, 11 ft.
+  const famA = a.name.split(" — ")[0];
+  const famB = b.name.split(" — ")[0];
+  if (famA !== famB) return famA.localeCompare(famB);
+
+  const sa = sizeRank(a);
+  const sb = sizeRank(b);
+  if (sa !== null && sb !== null && sa !== sb) return sa - sb;
+  if (a.price !== b.price) return a.price - b.price;
+  return a.key.localeCompare(b.key);
 }
 
 /** Everything we're willing to show a browsing customer. */

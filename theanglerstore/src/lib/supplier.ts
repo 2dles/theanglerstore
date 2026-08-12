@@ -300,6 +300,16 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "zman-shroomz-weedless": { sku: "FJHW16-01PK5", mfgPart: "FJHW16-01PK5", cost: 4.20, supplier: "burch" },
   "zman-nedlockz-ewg": { sku: "TTNL-3620", mfgPart: "TTNL-3620", cost: 5.09, supplier: "burch" },
   "crappie-magnet-minnow-heads": { sku: "CMEHMH18-WH", mfgPart: "CMEHMH18-WH", cost: 2.47, supplier: "burch" },
+
+  // Added 12 Aug 2026 — rods, reels and combos from Burch.
+  "daiwa-crossfire-lt-2000": { sku: "CRFLT2000", mfgPart: "CRFLT2000", cost: 25.14, supplier: "burch" },
+  "daiwa-crossfire-lt-3000": { sku: "CRFLT3000-C", mfgPart: "CRFLT3000-C", cost: 25.14, supplier: "burch" },
+  "abu-max-x-2500": { sku: "MAXXSP2500", mfgPart: "MAXXSP2500", cost: 26.84, supplier: "burch" },
+  "abu-max-x-3000": { sku: "MAXXSP3000", mfgPart: "MAXXSP3000", cost: 26.84, supplier: "burch" },
+  "daiwa-d-shock-combo-7mh": { sku: "DSK40-B/F702MH", mfgPart: "DSK40-B/F702MH", cost: 24.42, supplier: "burch" },
+  "abu-max-x-combo": { sku: "MAXXSP2500/661ML", mfgPart: "MAXXSP2500/661ML", cost: 41.75, supplier: "burch" },
+  "okuma-tundra-7": { sku: "OKTU-70", mfgPart: "OKTU-70", cost: 17.44, supplier: "burch" },
+  "daiwa-laguna-ul": { sku: "LAG662ULFS", mfgPart: "LAG662ULFS", cost: 29.91, supplier: "burch" },
 };
 
 export function supplierFor(key: string): SupplierItem | undefined {

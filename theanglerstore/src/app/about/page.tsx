@@ -40,9 +40,13 @@ export default function AboutPage() {
           can shop yours and ignore the rest.
         </p>
         <p>
-          Two rules govern the catalog. First, salt-facing specs are
-          non-negotiable — sealed bearings, plated hooks, anodized aluminum.
-          Untreated hardware fails in one season and we will not sell it. Second,
+          Two rules govern the catalog. First, anything we call saltwater gear
+          has to meet salt-facing specs — sealed bearings, plated hooks,
+          anodized aluminum. Untreated hardware fails in one season, and we
+          will not sell it to you as something it isn&rsquo;t. Where a
+          manufacturer publishes no saltwater rating, the product page says so
+          and the item is tagged freshwater, however tempting it would be to
+          stay quiet about it. Second,
           if we think a product is a bad buy, we say so on the page rather than
           quietly leaving it out. Most of the small items here carry a note
           telling you <em>not</em> to buy them on their own — they cost nearly as
