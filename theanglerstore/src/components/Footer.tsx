@@ -29,7 +29,7 @@ export function Footer() {
             <a
               href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=footer"
               className="mt-4 inline-flex items-center gap-1.5 text-sm text-tide hover:text-teal"
-            >
+             target="_blank" rel="noopener">
               Check the tides before you fish ↗
             </a>
           </div>

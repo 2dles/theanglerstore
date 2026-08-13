@@ -12,6 +12,24 @@ const nextConfig: NextConfig = {
     return [
       { source: "/collections/all", destination: "/products", permanent: true },
       { source: "/collections/rods-combos", destination: "/collections/combos", permanent: true },
+      /**
+       * /collections/accessories was 404ing while still serving as the
+       * breadcrumb on indexed product results in Google — a dead end reached
+       * from a live search listing.
+       *
+       * There is no honest single destination: what used to sit under
+       * Accessories is now split across Tools, Tackle Storage and Lights.
+       * Picking one would send two thirds of the traffic to the wrong shelf,
+       * so it goes to the full catalogue, which contains all three.
+       */
+      { source: "/collections/accessories", destination: "/products", permanent: true },
+      // Common guesses that currently 404. Cheap to answer, and each one is
+      // a real query: "surf fishing" is the store's whole positioning and had
+      // no landing page at all.
+      { source: "/collections/surf-fishing", destination: "/collections/surf-rods", permanent: true },
+      { source: "/collections/rods", destination: "/collections/surf-rods", permanent: true },
+      { source: "/collections/line", destination: "/collections/line-leader", permanent: true },
+      { source: "/collections/nets", destination: "/collections/nets-landing", permanent: true },
     ];
   },
   images: {

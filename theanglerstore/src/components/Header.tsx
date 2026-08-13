@@ -91,7 +91,7 @@ export function Header() {
           <a
             href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=nav"
             className="hidden text-sm link-quiet lg:inline"
-          >
+           target="_blank" rel="noopener">
             Check the tides ↗
           </a>
 
@@ -178,7 +178,7 @@ export function Header() {
               <a
                 href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=nav"
                 className="block rounded-lg px-2 py-2 text-sm link-quiet"
-              >
+               target="_blank" rel="noopener">
                 Check the tides ↗
               </a>
             </li>

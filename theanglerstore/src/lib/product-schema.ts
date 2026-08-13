@@ -89,13 +89,28 @@ export function shippingDetails(product: Product) {
       const window =
         zone.id === "us" ? transit : { min: zone.transit.min, max: zone.transit.max };
 
+      // What we actually charge depends on the ORDER total, not this
+      // product's price — "free over $75, $12.95 below that". Asserting a
+      // flat 12.95 was a claim the storefront contradicts two inches away on
+      // the same page, and it is the number a shopping surface would quote.
+      //
+      // So: a product that clears the threshold on its own ships free, and
+      // says so exactly. Anything below it is genuinely a range, because a
+      // second item in the basket can take it to zero — and MonetaryAmount
+      // min/max is how schema.org expresses a range honestly.
+      const freeAlone = rate === 0;
+      const shippingRate = freeAlone
+        ? { "@type": "MonetaryAmount", value: 0, currency: "USD" }
+        : {
+            "@type": "MonetaryAmount",
+            minValue: 0,
+            maxValue: rate,
+            currency: "USD",
+          };
+
       return {
         "@type": "OfferShippingDetails",
-        shippingRate: {
-          "@type": "MonetaryAmount",
-          value: rate,
-          currency: "USD",
-        },
+        shippingRate,
         shippingDestination: zone.countries.map((cc) => ({
           "@type": "DefinedRegion",
           addressCountry: cc,

@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { BUNDLE, cartEarnsBundle, getProduct, isSourced } from "@/lib/products";
+import {
+  BUNDLE,
+  bundleUnitPrice,
+  cartEarnsBundle,
+  discountedUnitsFor,
+  getProduct,
+  isSourced,
+} from "@/lib/products";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import {
   rateFor,
@@ -97,7 +104,13 @@ export async function POST(req: Request) {
   // The bundle discount is decided HERE, from the keys the cart contains —
   // never from anything the client claims. Same rule as pricing: the browser
   // sends keys and quantities, the server decides what they cost.
-  const earnsBundle = cartEarnsBundle(lines.map((l) => String(l.key)));
+  // Clamp quantities before anything reads them, so the set count and the
+  // per-line maths can never disagree.
+  const normalised = lines.map((l) => ({
+    key: String(l.key),
+    qty: Math.min(Math.max(Math.floor(Number(l.qty) || 0), 1), 99),
+  }));
+  const earnsBundle = cartEarnsBundle(normalised.map((l) => l.key));
 
   for (const line of lines) {
     const product = getProduct(String(line.key));
@@ -130,32 +143,43 @@ export async function POST(req: Request) {
 
     const qty = Math.min(Math.max(Math.floor(Number(line.qty) || 0), 1), 99);
 
-    // Discount applies only to the bundle's own members, and only to the
-    // first of each — buying six spools of braid doesn't multiply the deal.
-    const discounted =
-      earnsBundle && (BUNDLE.keys as readonly string[]).includes(product.key);
-    const unit = discounted
-      ? Math.round(product.price * (1 - BUNDLE.discount) * 100) / 100
-      : product.price;
+    // How many of THIS line are actually part of a complete bundle. The rest
+    // are a normal purchase at the normal price.
+    //
+    // Previously the discounted unit price was applied to the whole line, so
+    // a cart with the bundle plus two spare spools of braid got 12% off all
+    // three spools. Splitting the line is the only honest way to express
+    // "one at the bundle price, two at full" through Stripe's API.
+    const atBundlePrice = earnsBundle
+      ? Math.min(qty, discountedUnitsFor(product.key, normalised))
+      : 0;
+    const atFullPrice = qty - atBundlePrice;
 
-    subtotal += unit * qty;
+    const bundleUnit = bundleUnitPrice(product.price);
 
-    items.push({
-      quantity: qty,
-      price_data: {
-        currency: "usd",
-        // Explicit rather than relying on the account default. USD prices on
-        // this site are what the customer sees on the product page; tax goes
-        // on top of that, never inside it.
-        tax_behavior: "exclusive",
-        unit_amount: Math.round(unit * 100),
-        product_data: {
-          name: discounted ? `${product.name} — ${BUNDLE.name}` : product.name,
-          description: product.tagline,
-          metadata: { product_key: product.key },
+    const push = (quantity: number, unit: number, bundled: boolean) => {
+      if (quantity <= 0) return;
+      subtotal += unit * quantity;
+      items.push({
+        quantity,
+        price_data: {
+          currency: "usd",
+          // Explicit rather than relying on the account default. USD prices on
+          // this site are what the customer sees on the product page; tax goes
+          // on top of that, never inside it.
+          tax_behavior: "exclusive",
+          unit_amount: Math.round(unit * 100),
+          product_data: {
+            name: bundled ? `${product.name} — ${BUNDLE.name}` : product.name,
+            description: product.tagline,
+            metadata: { product_key: product.key },
+          },
         },
-      },
-    });
+      });
+    };
+
+    push(atBundlePrice, bundleUnit, true);
+    push(atFullPrice, product.price, false);
   }
 
   const shipping = rateFor(zone, subtotal);

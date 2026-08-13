@@ -93,6 +93,57 @@ export default function AllProductsPage() {
             })}
           </ProductFinder>
         </Suspense>
+
+        {/*
+          THE CRAWLABLE INDEX — deliberately outside the Suspense boundary.
+
+          ProductFinder reads searchParams, so everything inside that boundary
+          renders as the fallback skeleton in the server response and only
+          becomes real after hydration. The consequence: this page shipped 504
+          KB of HTML containing 29 anchors, none of which pointed at a
+          product, while emitting ItemList schema describing 233 products it
+          did not link to. The site's most-linked hub passed zero link equity
+          to anything it sold, and any retrieval system that doesn't run
+          JavaScript saw an empty catalogue.
+
+          A paginated card grid would fix the letter of that (24 links on page
+          one) but not the substance — products on page 6 stay three hops from
+          the hub. Plain text links cost almost nothing to render, so every
+          product gets a server-rendered link one hop from the nav instead.
+          It's also just a useful page: people who know what they want can
+          find it without waiting for a search box to hydrate.
+        */}
+        <section className="mt-20 border-t border-line pt-10" aria-labelledby="index-h">
+          <h2 id="index-h" className="text-xl font-semibold tracking-tight">
+            Every product
+          </h2>
+          <p className="mt-1 text-sm text-ink-faint">
+            The whole catalogue as a plain list, by category.
+          </p>
+
+          {activeCategories().map((c) => {
+            const items = listed().filter((p) => p.category === c.name);
+            if (items.length === 0) return null;
+            return (
+              <div key={c.slug} className="mt-8">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-ink-faint">
+                  <Link href={`/collections/${c.slug}`} className="link-quiet">
+                    {c.name}
+                  </Link>
+                </h3>
+                <ul className="mt-3 grid gap-x-8 gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
+                  {items.map((p) => (
+                    <li key={p.key} className="text-sm leading-snug">
+                      <Link href={`/products/${p.key}`} className="link-quiet">
+                        {p.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </section>
       </div>
     </>
   );

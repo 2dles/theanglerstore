@@ -30,7 +30,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
     steps: [
       {
         heading: "Spool it properly",
-        body: "Put 30 lb braid straight onto the spool — on a 5000–8000 size spinning reel you won't need mono backing if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
+        body: "Twenty pound braid, straight onto the spool — this rod is rated 10–20 lb, and going heavier doesn't make you stronger, it just means the blank becomes the weakest thing in the system. Braid has no stretch, so on a snag or a hard cast something has to give, and you want that to be the line rather than the rod. On a 4000–6000 size spinning reel you won't need mono backing if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
       },
       {
         heading: "Join the two pieces correctly",
@@ -38,7 +38,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Add a shock leader",
-        body: "With 3–4 oz of lead and a full cast, braid alone will crack off and send a sinker down the beach. Tie about 25 feet of 50 lb mono or fluoro to your braid with an FG or double-uni knot — enough that you have five or six turns on the spool at the start of the cast.",
+        body: "This rod is rated to cast 1–4 oz, and that rating is the whole payload — lead plus bait. Two to three ounces of lead with a bait chunk is where it works; four is the ceiling, not the target. At those weights a shock leader is optional rather than essential, but if you're punching a full 4 oz out there, tie about 25 feet of 30 lb mono or fluoro to your braid with an FG or double-uni knot, enough that you have five or six turns on the spool at the start of the cast. The old surfcaster's rule is roughly 10 lb of shock leader per ounce of lead — which is also why a 50 lb leader belongs on a heaver throwing 5 oz, not on this rod.",
       },
       {
         heading: "Set the drag before you cast, not after",
@@ -50,6 +50,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
+      "Rated 1–4 oz and 10–20 lb — the 9 ft sibling is 1–3 oz, the 11 ft is 1–5 oz, so match the rod to the lead you actually throw",
       "Rinse the reel with a light freshwater spray after every session — never a pressure hose, which drives salt past the seals",
       "Back the drag off completely when you store it, so the washers don't take a set",
       "Two-piece means you can leave it made up in the truck; break it down for long storage",

@@ -8,12 +8,16 @@ import {
   formatPrice,
   getProduct,
   isSourced,
+  brandOf,
+  metaDescription,
+  structuredSpecs,
   related,
   siblings,
   variantLabel,
   walkthroughHeading,
   waterOf,
   CATEGORIES,
+  FISHABLE,
 } from "@/lib/products";
 import { withParams } from "@/lib/attribution";
 import {
@@ -24,9 +28,11 @@ import {
 import { ProductArt } from "@/components/ProductArt";
 import { ProductCard } from "@/components/ProductCard";
 import { AddToCart } from "@/components/AddToCart";
-import { TidePromo } from "@/components/TidePromo";
 import { Walkthrough } from "@/components/Walkthrough";
 import { getWalkthrough } from "@/lib/walkthroughs";
+// Server component. supplier.ts is marked `server-only`, so this import can
+// never follow a client boundary and leak dealer cost into a JS chunk.
+import { mpnOf } from "@/lib/supplier";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 
 /**
@@ -55,10 +61,32 @@ export async function generateMetadata({
   const product = getProduct(key);
   if (!product) return { title: "Product not found" };
 
+  // The price used to live in the title. Google was already stripping it —
+  // the SERP showed "Foxelli MX200 Rechargeable Headlamp - TheAnglerStore"
+  // with the "— $37.99" gone — so it bought nothing and cost characters, and
+  // a title that goes stale the moment a price moves is a liability. Price
+  // reaches the SERP through Offer schema, which is where it belongs.
+  //
+  // product.name is already {Brand} {Model} — {Key spec}; the category suffix
+  // is added only when there's room inside a title Google will show whole.
+  //
+  // `absolute` on purpose: the root layout appends " | TheAnglerStore" to
+  // every title, which is 17 characters of brand on a page whose brand is
+  // already the domain in the result. With the suffix, these titles ran
+  // 68-94 characters and Google rewrote them anyway. The product name is
+  // what a searcher matched on — spend the space on that.
+  const withCategory = `${product.name} | ${product.category}`;
+  const title = withCategory.length <= 62 ? withCategory : product.name;
+
   return {
-    title: `${product.name} — ${formatPrice(product.price)}`,
-    description: product.blurb.slice(0, 158),
+    title: { absolute: title },
+    description: metaDescription(product),
     alternates: { canonical: `/products/${product.key}` },
+    // A page nobody can buy from should resolve — USTideCharts links to five
+    // of them and those links are attribution we can't get back — but it
+    // should not be offered to the index as a product. It stays out of the
+    // sitemap for the same reason; this makes the two agree.
+    ...(isSourced(product) ? {} : { robots: { index: false, follow: true } }),
     openGraph: {
       title: product.name,
       description: product.tagline,
@@ -100,6 +128,14 @@ export default async function ProductPage({
   // NOTE: no aggregateRating / review here, deliberately. Search Console asks
   // for them, but we have never taken an order — inventing ratings would be
   // fabricated review content. They go in when real customers write them.
+  // We are the seller; Sufix, Rapala and Luhr-Jensen are the brands. Emitting
+  // ourselves as the brand contradicted the spec table on the same page and
+  // made every listing unmatchable against the same product at any other
+  // merchant. brandOf() reads the visible row, so they cannot diverge.
+  const brand = brandOf(product);
+  const mpn = mpnOf(product.key);
+  const attributes = structuredSpecs(product);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -108,13 +144,31 @@ export default async function ProductPage({
     category: product.category,
     sku: product.key,
     image: productImages(product),
-    brand: { "@type": "Brand", name: "TheAnglerStore" },
+    ...(brand ? { brand: { "@type": "Brand", name: brand } } : {}),
+    // Our sku is the URL slug, which is meaningless off this domain. The MPN
+    // is the only identifier here that reconciles across merchants. Omitted
+    // where we don't hold one — we have no UPC/EAN at all, so no gtin.
+    ...(mpn ? { mpn } : {}),
+    // Every spec the page shows, machine-readable. Was human-readable only:
+    // the Daiwa Laguna page displays nine useful specs and the schema
+    // described none of them.
+    ...(attributes.length
+      ? {
+          additionalProperty: attributes.map((s) => ({
+            "@type": "PropertyValue",
+            name: s.label,
+            value: s.value,
+          })),
+        }
+      : {}),
     offers: {
       "@type": "Offer",
       url: `https://theanglerstore.com/products/${product.key}`,
       priceCurrency: "USD",
       price: product.price.toFixed(2),
-      priceValidUntil: `${new Date().getFullYear() + 1}-12-31`,
+      // priceValidUntil deliberately absent. It was hardcoded to next
+      // December on all 233 products — a date we invented, describing a
+      // commitment we never made. A missing field is better than a false one.
       itemCondition: "https://schema.org/NewCondition",
       availability: sourced
         ? "https://schema.org/InStock"
@@ -246,25 +300,25 @@ export default async function ProductPage({
               )}
             </div>
 
-            {sourced && (
+            {/* One line, not two. This used to print "In stock at our
+                distributor · ships in 3–7 business days" directly above
+                "Free shipping over $75 · ships in 3–7 business days". */}
+            {sourced ? (
               <p className="mt-3 flex items-center gap-2 text-sm text-teal">
                 <span
                   aria-hidden="true"
                   className="inline-block h-1.5 w-1.5 rounded-full bg-teal"
                 />
-                In stock at our distributor · ships in {product.shipsIn}
+                In stock at our distributor · ships in {product.shipsIn} ·{" "}
+                {product.price >= FREE_SHIPPING_OVER
+                  ? "ships free"
+                  : `free shipping over $${FREE_SHIPPING_OVER}`}
+              </p>
+            ) : (
+              <p className="mt-2 text-sm text-ink-faint">
+                Pricing shown is indicative until we confirm a supplier.
               </p>
             )}
-
-            <p className="mt-2 text-sm text-ink-faint">
-              {!sourced
-                ? "Pricing shown is indicative until we confirm a supplier."
-                : product.price >= FREE_SHIPPING_OVER
-                  ? "Ships free"
-                  : `Free shipping over $${FREE_SHIPPING_OVER}`}
-              {sourced && " · ships in "}
-              {sourced && product.shipsIn}
-            </p>
 
             {product.role === "add-on" && (
               <p className="mt-3 rounded-xl border border-line bg-card/60 p-3 text-sm leading-relaxed text-ink-dim">
@@ -353,17 +407,28 @@ export default async function ProductPage({
 
             <div className="card mt-4 p-5">
               <h2 className="text-sm font-semibold uppercase tracking-wider text-ink-faint">
-                When to fish it
+                {/* "When to fish it" on a cup holder was funny once. */}
+                {FISHABLE.includes(product.category)
+                  ? "When to fish it"
+                  : "When it earns its place"}
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-dim">
                 {product.whenToUse}
               </p>
-              <a
-                href={`https://ustidecharts.com?utm_source=theanglerstore&utm_medium=location`}
-                className="mt-3 inline-block text-sm text-tide hover:text-teal"
-              >
-                Find the right tide window near you ↗
-              </a>
+              {/* The single tide link on a product page, and only where tides
+                  are relevant. Tides do not move a lake, and "find your tide
+                  window" under a crappie bait reads as automation — which
+                  quietly undermines the water tag a few inches above it. */}
+              {water !== "fresh" && (
+                <a
+                  href={`https://ustidecharts.com?utm_source=theanglerstore&utm_medium=location&utm_content=${product.key}`}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-3 inline-block text-sm text-tide hover:text-teal"
+                >
+                  Find the right tide window near you ↗
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -412,7 +477,6 @@ export default async function ProductPage({
           <Walkthrough product={product} walkthrough={walkthrough} />
         )}
 
-        <TidePromo product={product} />
       </div>
     </>
   );

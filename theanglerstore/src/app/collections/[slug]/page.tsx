@@ -1,7 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { CATEGORIES, activeCategories, byCategory, categoryBySlug } from "@/lib/products";
+import {
+  CATEGORIES,
+  activeCategories,
+  brandOf,
+  byCategory,
+  categoryBySlug,
+  isSourced,
+} from "@/lib/products";
+import { productImages } from "@/lib/product-schema";
 import { ProductCard } from "@/components/ProductCard";
 
 type Params = { slug: string };
@@ -65,11 +73,29 @@ export default async function CollectionPage({
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: items.length,
+      // Was position/name/url only. The cards on this page also show the
+      // photograph, the manufacturer and the price, so the markup should say
+      // so — a list that describes less than the page displays makes the page
+      // look thinner than it is.
       itemListElement: items.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        name: p.name,
         url: `https://theanglerstore.com/products/${p.key}`,
+        item: {
+          "@type": "Product",
+          name: p.name,
+          url: `https://theanglerstore.com/products/${p.key}`,
+          image: productImages(p)[0],
+          ...(brandOf(p) ? { brand: { "@type": "Brand", name: brandOf(p) } } : {}),
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: p.price.toFixed(2),
+            availability: isSourced(p)
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+          },
+        },
       })),
     },
   };

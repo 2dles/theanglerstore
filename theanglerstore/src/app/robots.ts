@@ -12,6 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: "https://theanglerstore.com/sitemap.xml",
-    host: "https://theanglerstore.com",
+    // `host:` removed — a Yandex directive Google has never supported, and
+    // Yandex itself deprecated it. Canonical tags already do this job.
   };
 }

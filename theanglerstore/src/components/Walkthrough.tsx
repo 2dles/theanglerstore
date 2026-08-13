@@ -70,12 +70,9 @@ export function Walkthrough({
           <p className="mt-3 text-sm leading-relaxed text-ink-dim">
             {walkthrough.timing}
           </p>
-          <a
-            href={`https://ustidecharts.com?utm_source=theanglerstore&utm_medium=walkthrough&utm_content=${product.key}`}
-            className="mt-4 inline-block text-sm text-tide hover:text-teal"
-          >
-            Check your local tide window ↗
-          </a>
+          {/* The tide link lives once per page, in the "When to fish it"
+              block above. A product page that offers three ways to leave for
+              the sister site and one way to add to cart is not a shop. */}
         </div>
       </div>
     </section>

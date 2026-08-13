@@ -8,6 +8,8 @@ import { ProductArt } from "./ProductArt";
 import {
   BUNDLE,
   MAX_QTY,
+  bundleDiscountAmount,
+  bundleSets,
   cartEarnsBundle,
   formatPrice,
   getProduct,
@@ -49,17 +51,11 @@ function CartInner() {
   const earnsBundle = cartEarnsBundle(lines.map((l) => l.key));
   const inBundle = (key: string) =>
     (BUNDLE.keys as readonly string[]).includes(key);
-  const bundleSaving = earnsBundle
-    ? Math.round(
-        lines
-          .filter((l) => (BUNDLE.keys as readonly string[]).includes(l.key))
-          .reduce(
-            (sum, l) =>
-              sum + (getProduct(l.key)?.price ?? 0) * l.qty * BUNDLE.discount,
-            0,
-          ) * 100,
-      ) / 100
-    : 0;
+  // Per complete set. Mirrors the server exactly — /api/checkout recomputes
+  // this from the same function, and the number charged is always the
+  // server's.
+  const sets = bundleSets(lines);
+  const bundleSaving = bundleDiscountAmount(lines);
 
   const discountedSubtotal = subtotal - bundleSaving;
   const shipping = discountedSubtotal >= FREE_SHIPPING_OVER ? 0 : FLAT_SHIPPING;
@@ -191,6 +187,7 @@ function CartInner() {
               <div className="flex justify-between text-teal">
                 <dt>
                   {BUNDLE.name} · {Math.round(BUNDLE.discount * 100)}% off
+                  {sets > 1 ? ` × ${sets}` : ""}
                 </dt>
                 <dd className="tnum">−{formatPrice(bundleSaving)}</dd>
               </div>

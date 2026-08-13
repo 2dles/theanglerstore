@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/products";
+import { waterOf } from "@/lib/products";
 
 /**
  * The cross-ecosystem link, product-page edition.
@@ -8,6 +9,12 @@ import type { Product } from "@/lib/products";
  * used — which is what makes these legitimate links rather than link-swapping.
  */
 export function TidePromo({ product }: { product: Product }) {
+  // Tides do not move a lake. Showing "Find the right tide window" on a
+  // crappie bait reads as template automation — which is exactly the
+  // impression the rest of the writing works to avoid — and it quietly
+  // undermines the water tag sitting a few inches above it.
+  if (waterOf(product) === "fresh") return null;
+
   const href = `https://ustidecharts.com?utm_source=theanglerstore&utm_medium=location&utm_content=${product.key}`;
 
   return (
@@ -38,15 +45,18 @@ export function TidePromo({ product }: { product: Product }) {
             <h2 className="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
               Check the tides before you fish
             </h2>
+            {/* The product's own one-liner used to be concatenated onto the
+                front of this sentence, producing "When nothing else is
+                working. Genuinely. USTideCharts scores every two-hour
+                window…". Two unrelated sentences welded together. */}
             <p className="mt-2 max-w-2xl leading-relaxed text-ink-dim">
-              <strong className="text-ink">{product.whenToUse}</strong>{" "}
               USTideCharts scores every two-hour window at your local spot using
               live NOAA tide data, wind, and moon phase — so you know whether
               tomorrow is worth the early alarm before you buy anything at all.
             </p>
           </div>
 
-          <a href={href} className="btn btn-ghost shrink-0">
+          <a href={href} className="btn btn-ghost shrink-0" target="_blank" rel="noopener">
             Find your tide window ↗
           </a>
         </div>

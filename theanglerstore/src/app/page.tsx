@@ -55,7 +55,7 @@ export default function HomePage() {
                 <a
                   href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=home"
                   className="btn btn-ghost"
-                >
+                 target="_blank" rel="noopener">
                   Check the tides first ↗
                 </a>
               </div>
@@ -194,7 +194,7 @@ export default function HomePage() {
           <a
             href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=home"
             className="btn btn-ghost shrink-0"
-          >
+           target="_blank" rel="noopener">
             USTideCharts.com ↗
           </a>
         </div>

@@ -7,7 +7,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const statics: MetadataRoute.Sitemap = [
-    { url: BASE, lastModified: now, changeFrequency: "daily", priority: 1 },
+    // Trailing slash on purpose: the homepage canonical is
+    // https://theanglerstore.com/ and a <loc> that differs from the canonical
+    // by even a slash is a URL the sitemap is asking Google not to index.
+    { url: `${BASE}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/products`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE}/shipping`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },

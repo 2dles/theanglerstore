@@ -402,7 +402,13 @@ function EmptyState({
   onClear: () => void;
   onSuggest: (q: string) => void;
 }) {
-  const suggestion = filters.query.trim() ? didYouMean(filters.query) : null;
+  // A curated panel is a better answer than a guess at a misspelling, so when
+  // one is showing we don't also ask "did you mean silver?" of someone who
+  // typed "sinker".
+  const suggestion =
+    filters.query.trim() && !gapNotice(filters.query)
+      ? didYouMean(filters.query)
+      : null;
   const withoutPrice = applyFilters({ ...filters, bands: [] }).length;
   const withoutCats = applyFilters({ ...filters, categories: [] }).length;
   const withoutQuery = applyFilters({ ...filters, query: "" }).length;

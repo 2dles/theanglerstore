@@ -1,6 +1,7 @@
 import {
   appealOf,
   listed,
+  speciesOf,
   suitsWater,
   waterOf,
   type Category,
@@ -160,6 +161,9 @@ function index(): Doc[] {
         ).map(stem),
         weight: WEIGHTS.category,
       },
+      // Species. Nobody's product title says "halibut", but that is what a
+      // customer types.
+      { tokens: tokenise(speciesOf(product).join(" ")).map(stem), weight: WEIGHTS.tagline },
     ],
   }));
   return INDEX;
@@ -360,6 +364,27 @@ export function gapNotice(query: string): { title: string; body: string } | null
         "Spinning reels and matched combos from Daiwa and Abu Garcia are in the catalog now. Every one is a freshwater reel — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim, and we won't invent one. If you're rigging a surf rod, the reel is still yours to bring: a 5000–8000 size with sealed bearings is the pairing you want, and we'll say so until we can stock one we'd fish ourselves.",
     };
   }
+  if (/\b(sinker|sinkers|weight|weights|lead|pyramid|sputnik)\b/.test(q)) {
+    return {
+      title: "We don't stock surf sinkers yet.",
+      body:
+        "Which is awkward, because our own surf rod guide tells you to cast two to three ounces of lead. Pyramid and sputnik sinkers in 2–6 oz are on the list to source and aren't here yet — a tackle shop or any bait store on the coast will have them for a couple of dollars, and you won't lose anything by buying them locally. What we do have for rigging is in Terminal Tackle: circle hooks, swivels and leader. The tungsten worm weights you'll see there are 1/8 oz bass weights, not surf lead — don't buy those expecting to hold bottom.",
+    };
+  }
+  if (/\b(sand ?spike|spike|spikes|rod ?holder)\b/.test(q) && /sand|beach|surf|spike/.test(q)) {
+    return {
+      title: "No sand spikes yet — and our rod holders won't do the job.",
+      body:
+        "Every rod holder we carry is a boat fitting: flush mounts, rail clamps and track mounts. None of them push into sand. A beach spike is a $15–30 item we intend to stock and don't yet, and in the meantime a length of PVC cut at an angle is what half the beach is using anyway. We'd rather say that than sell you a gunwale mount and let you find out at the water.",
+    };
+  }
+  if (/\b(rig|rigs|hi ?lo|fishfinder|fish ?finder rig|carolina)\b/.test(q)) {
+    return {
+      title: "No pre-tied surf rigs yet.",
+      body:
+        "Hi-lo and fishfinder rigs are on the sourcing list. Until they land you can build both from what's here — circle hooks, barrel swivels and fluorocarbon leader are all in Terminal Tackle and Line & Leader, and tying your own is genuinely better: you pick the hook size and the leader length instead of accepting whatever a packet decided.",
+    };
+  }
   if (/\b(rod|rods)\b/.test(q) && !/holder|rack|hanger|storage/.test(q)) {
     return {
       title: "Four surf rods and a short freshwater range.",
@@ -472,6 +497,11 @@ export function didYouMean(query: string): string | null {
     for (const [cand, freq] of v) {
       const d = editDistance(w, cand, 2);
       if (d > 2) continue;
+      // A suggestion must plausibly be the word they were reaching for.
+      // Sharing the first two letters is a cheap, strict-enough proxy:
+      // "sand"→"shad" and "spike"→"strike" both pass edit distance and both
+      // read as nonsense, which is how "sand spike" became "shad strike".
+      if (cand.slice(0, 2) !== w.slice(0, 2)) continue;
       // Order-independent: score every candidate, keep the lowest.
       const score = dom.has(cand) ? Math.max(0, d - 1) : d;
       if (

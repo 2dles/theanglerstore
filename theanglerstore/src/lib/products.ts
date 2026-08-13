@@ -47,7 +47,7 @@ export type Category =
   | "Safety & Flotation"
   | "Soft Baits"
   | "Reels"
-  | "Rods & Combos";
+  | "Freshwater Rods & Combos";
 
 export interface Product {
   key: string;
@@ -83,6 +83,17 @@ export interface Product {
    */
   prop65?: boolean;
   /**
+   * Overrides the family derived from the title.
+   *
+   * Grouping normally comes from everything before the em dash, which works
+   * until two spellings of the same product exist — five spools titled
+   * "Sufix 832 Braid" sat in a different family from nine titled "Sufix 832
+   * Advanced Superline Braid", so the shopper looking for 20 lb Hi-Vis was
+   * told it didn't exist. Titles are now unified, but an explicit key means a
+   * future rename can't silently split a family again.
+   */
+  familyKey?: string;
+  /**
    * "anchor"  — carries its own margin standalone, safe to advertise
    * "add-on"  — thin standalone; profitable inside a larger basket
    */
@@ -117,11 +128,29 @@ export const CATEGORIES: {
    */
   nav?: boolean;
 }[] = [
+  // ORDER IS DELIBERATE and shared by the header, the homepage chips,
+  // the /products filter and the mobile menu. Rods, reels and the things
+  // you tie to line first; boat hardware and safety later. New categories
+  // used to be appended, which is how Reels ended up last in every list.
   {
     slug: "surf-rods",
     name: "Surf Rods",
     blurb:
       "Two-piece surf rods, which is the honest answer to a hard problem: a one-piece 10-foot blank ships as oversize freight and costs more to send than it does to make. Break it in half and it goes in a normal parcel.",
+    nav: true,
+  },
+  {
+    slug: "reels",
+    name: "Reels",
+    blurb:
+      "Spinning reels from Daiwa and Abu Garcia. Every one here is a freshwater reel and labelled as such — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim for these models, and we don't make claims they don't. A surf reel we'd actually stand behind is still on the list.",
+    nav: true,
+  },
+  {
+    slug: "combos",
+    name: "Freshwater Rods & Combos",
+    blurb:
+      "Rod and reel sold together, matched and balanced by the manufacturer, plus the freshwater rods that aren't surf rods. Every item here is a freshwater model — the manufacturers publish no saltwater rating for any of them, and we won't imply one.",
     nav: true,
   },
   {
@@ -146,6 +175,13 @@ export const CATEGORIES: {
     nav: true,
   },
   {
+    slug: "soft-baits",
+    name: "Soft Baits",
+    blurb:
+      "Worms, craws, creatures and stick baits — the plastic half of freshwater fishing. Almost everything here is under ten dollars and none of it justifies its own shipping label, so buy a handful at once and let them ride in the same box.",
+    nav: true,
+  },
+  {
     slug: "nets-landing",
     name: "Nets & Landing",
     blurb:
@@ -167,11 +203,10 @@ export const CATEGORIES: {
     nav: true,
   },
   {
-    slug: "rod-holders",
-    name: "Rod Holders",
+    slug: "trolling-rigging",
+    name: "Trolling & Rigging",
     blurb:
-      "Somewhere to put the rod that isn't your hand or the sand. Flush mounts for a gunwale, clamp-ons for a rail, racks for the garage wall — CWR is a marine distributor first, and this is the category where that shows.",
-    nav: true,
+      "Release clips, snubbers, stops and outrigger hardware — the small parts that make a downrigger or a rigger actually work, and the ones that wear out, break or go over the side. This is the consumable end of trolling.",
   },
   {
     slug: "downriggers",
@@ -180,28 +215,11 @@ export const CATEGORIES: {
       "Precise depth, held there, instead of an educated guess. A manual downrigger and the parts that wear out on it — cable and terminal pulleys go before anything else does.",
   },
   {
-    slug: "lights",
-    name: "Lights",
+    slug: "rod-holders",
+    name: "Rod Holders",
     blurb:
-      "Green and blue submersible and dock lights. Light draws plankton, plankton draws bait, bait draws what you're after — it's the oldest trick in night fishing and it still works.",
-  },
-  {
-    slug: "bait-live-wells",
-    name: "Bait & Live Wells",
-    blurb:
-      "Keeping bait alive is most of the battle. A dead anchovy catches a fraction of what a lively one does, and an aerator is the cheapest thing on this site measured against the difference it makes.",
-  },
-  {
-    slug: "coolers",
-    name: "Coolers",
-    blurb:
-      "Cold storage that actually ships well. We looked hard at big rotomolded hard coolers and decided against them: they cost more to freight than they do to make.",
-  },
-  {
-    slug: "trolling-rigging",
-    name: "Trolling & Rigging",
-    blurb:
-      "Release clips, snubbers, stops and outrigger hardware — the small parts that make a downrigger or a rigger actually work, and the ones that wear out, break or go over the side. This is the consumable end of trolling.",
+      "Somewhere to put the rod that isn't your hand or the sand. Flush mounts for a gunwale, clamp-ons for a rail, racks for the garage wall — CWR is a marine distributor first, and this is the category where that shows.",
+    nav: true,
   },
   {
     slug: "kayak-paddle",
@@ -210,31 +228,28 @@ export const CATEGORIES: {
       "Rigging for a fishing kayak: track-mount rod holders, anchor gear that works one-handed from a seated position, leashes, plugs and a finder mount stiff enough for chop. Nothing here needs you to drill a new hole below the waterline.",
   },
   {
+    slug: "bait-live-wells",
+    name: "Bait & Live Wells",
+    blurb:
+      "Keeping bait alive is most of the battle. A dead anchovy catches a fraction of what a lively one does, and an aerator is the cheapest thing on this site measured against the difference it makes.",
+  },
+  {
+    slug: "lights",
+    name: "Lights",
+    blurb:
+      "Green and blue submersible and dock lights. Light draws plankton, plankton draws bait, bait draws what you're after — it's the oldest trick in night fishing and it still works.",
+  },
+  {
+    slug: "coolers",
+    name: "Coolers",
+    blurb:
+      "Cold storage that actually ships well. We looked hard at big rotomolded hard coolers and decided against them: they cost more to freight than they do to make.",
+  },
+  {
     slug: "safety-flotation",
     name: "Safety & Flotation",
     blurb:
       "Whistles, strobes, a signalling mirror, a throw bag and a grab bag. We describe safety equipment using only what the manufacturer states — where a product carries no USCG or SOLAS approval, we say so rather than implying one.",
-  },
-  {
-    slug: "soft-baits",
-    name: "Soft Baits",
-    blurb:
-      "Worms, craws, creatures and stick baits — the plastic half of freshwater fishing. Almost everything here is under ten dollars and none of it justifies its own shipping label, so buy a handful at once and let them ride in the same box.",
-    nav: true,
-  },
-  {
-    slug: "reels",
-    name: "Reels",
-    blurb:
-      "Spinning reels from Daiwa and Abu Garcia. Every one here is a freshwater reel and labelled as such — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim for these models, and we don't make claims they don't. A surf reel we'd actually stand behind is still on the list.",
-    nav: true,
-  },
-  {
-    slug: "combos",
-    name: "Rods & Combos",
-    blurb:
-      "Rod and reel sold together, matched and balanced by the manufacturer, plus the freshwater rods that don't belong in the surf rack. The cheapest honest way to own a working outfit in one purchase.",
-    nav: true,
   },
 ];
 
@@ -253,7 +268,8 @@ export const PRODUCTS: Product[] = [
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
       { label: "Blank", value: "Fiberglass" },
-      { label: "Line rating", value: "8–20 lb" },
+      { label: "Casting weight", value: "1–4 oz" },
+      { label: "Line rating", value: "10–20 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -281,6 +297,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "A 7-foot medium two-piece on a PENN 4000 turning 6.2:1. The fast retrieve is the point: when a halibut picks up a swimbait and runs at you, a slow reel loses the fish before you ever feel it. Best value in the catalog by a clear margin.",
     specs: [
+      { label: "Brand", value: "PENN" },
       { label: "Length", value: "7' 0\" · 2-piece" },
       { label: "Power", value: "Medium" },
       { label: "Reel size", value: "4000" },
@@ -313,7 +330,7 @@ export const PRODUCTS: Product[] = [
       "Seven HMPE fibers plus one GORE Performance Fiber, braided at 32 picks per inch. The GORE fiber is what makes this line quiet through the guides and stubborn against sand and shell — the two things that end a surf session early. Coastal Camo is the color to run when the water is clear and the fish have seen everything.",
     specs: [
       { label: "Strength", value: "20 lb test" },
-      { label: "Length", value: "300 yds" },
+      { label: "Length", value: "300 yd" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Fiber", value: "7 HMPE + 1 GORE Performance" },
       { label: "Color", value: "Coastal Camo" },
@@ -344,8 +361,9 @@ export const PRODUCTS: Product[] = [
     blurb:
       "A braided loop on one end means you connect to your main line without a knot or a swivel, and the leader winds straight through the guides onto the reel. That last part is the reason to buy it: you can fight a fish right to the rod tip without a hard connection banging through every guide on the way.",
     specs: [
+      { label: "Brand", value: "Sufix" },
       { label: "Strength", value: "50 lb test" },
-      { label: "Length", value: "11 yds" },
+      { label: "Length", value: "11 yd" },
       { label: "Material", value: "100% fluorocarbon" },
       { label: "Connection", value: "Braided loop, knotless" },
       { label: "Clarity", value: "Crystal clear" },
@@ -407,6 +425,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Three finished Carolina rigs, each built on heavy cable and fluorocarbon with a ball-bearing swivel and a 5/0 or 8/0 circle hook. We looked hard at the 200-piece rig-making kits everyone sells and could not find one from a US warehouse that we could price honestly — they are all the same Chinese white-label box, and your customer can find it themselves for what we'd have to pay. So we sell finished rigs made in America instead.",
     specs: [
+      { label: "Brand", value: "Terra Firma" },
       { label: "Count", value: "3 rigs" },
       { label: "Leader", value: "200 lb cable / 130 lb fluoro / 200 lb mono options" },
       { label: "Hook", value: "5/0 or 8/0 high-carbon circle" },
@@ -439,6 +458,7 @@ export const PRODUCTS: Product[] = [
       "Twenty-one Z-Man paddle tails across 2.5\" and 4\" in the pearl, smelt, and mullet range that actually produces on this coast. ElaZtech is the reason to care: it's buoyant, so the tail stands up off the bottom at rest instead of lying flat — which matters enormously to a halibut sitting in the sand watching it.",
     badge: "Best Value",
     specs: [
+      { label: "Brand", value: "Z-Man" },
       { label: "Count", value: "21 baits" },
       { label: "Sizes", value: "2.5\" Slim SwimZ (16) · 4\" DieZel MinnowZ (5)" },
       { label: "Material", value: "ElaZtech — 10× tougher, buoyant" },
@@ -468,6 +488,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "One side convex, the other concave, so the jig spins as it drops rather than falling dead. Each face is finished differently, which turns that rotation into a strobing flash on the way down — and the drop is when most fish commit. Comes pre-rigged with a ball-bearing swivel and a VMC assist hook, so it's ready to tie on.",
     specs: [
+      { label: "Brand", value: "Williamson" },
       { label: "Weight", value: "10.5 oz" },
       { label: "Length", value: "7.25\"" },
       { label: "Size", value: "300" },
@@ -531,6 +552,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Two 27-inch corrosion-proof PVC spikes with an angled sand-driving point and a rod-butt slot. Nothing clever, nothing to break, and they hold in wet sand at the wash where the fancy aluminum ones lever themselves loose.",
     specs: [
+      { label: "Brand", value: "Sea Striker" },
       { label: "Length", value: "27\"" },
       { label: "Count", value: "2 per pack" },
       { label: "Material", value: "Corrosion-proof PVC" },
@@ -560,6 +582,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Eight inches of stainless with an internal spring that holds the jaws open, so you can work one-handed while the other hand is busy holding a fish. The side cutter handles line and leader, and there's a lanyard point \u2014 which you will use, because pliers dropped off a jetty are simply gone.",
     specs: [
+      { label: "Brand", value: "Rapala" },
       { label: "Length", value: "8\"" },
       { label: "Material", value: "Stainless steel" },
       { label: "Jaw spring", value: "Precision internal, self-opening" },
@@ -592,6 +615,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Built for people who fish on foot. Thirteen litres of main compartment that swallows three 3700-size tackle boxes, three zippered pockets, tool attachment points, and a water-resistant base for when you set it down on wet sand. Padded shoulder straps with a chest belt, and a ventilated back panel that matters on a long walk to the mark.",
     specs: [
+      { label: "Brand", value: "Rapala" },
       { label: "Capacity", value: "13 L main compartment" },
       { label: "Boxes", value: "Fits 3 \u00d7 3700 size (not included)" },
       { label: "Pockets", value: "3 zippered + mesh side pouch" },
@@ -623,6 +647,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Twenty-eight cans of capacity with TempLock insulation that holds ice past twelve hours, in a soft-sided pack you wear rather than carry. Welded seams so meltwater stays inside, and a zippered front pocket for ice packs. The exterior is made from recycled polyester.",
     specs: [
+      { label: "Brand", value: "Coleman" },
       { label: "Capacity", value: "28 cans" },
       { label: "Ice retention", value: "12+ hours (TempLock)" },
       { label: "Seams", value: "Welded, leakproof" },
@@ -655,6 +680,7 @@ export const PRODUCTS: Product[] = [
       "180 lumens of white, a proper red mode you reach by holding the button rather than cycling through white, USB-C charging, and IPX5 water resistance. The red is the actual reason to buy this: white light kills your night vision for twenty minutes and puts down fish in skinny water.",
     badge: "Staff Pick",
     specs: [
+      { label: "Brand", value: "Foxelli" },
       { label: "Output", value: "180 lumens" },
       { label: "Modes", value: "5 · white + red" },
       { label: "Red access", value: "Press and hold 1.5 s" },
@@ -678,7 +704,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "braid-hivis",
-    name: "Sufix 832 Braid — 20 lb, Hi-Vis Yellow, 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 20 lb, Hi-Vis Yellow, 300 yd",
     category: "Line & Leader",
     price: 38.99,
     tagline: "The same braid, in a color you can see",
@@ -686,7 +712,7 @@ export const PRODUCTS: Product[] = [
       "Identical line to the Coastal Camo — eight fibers, 32 picks, one GORE strand — but yellow enough to watch. Worth it at night, mending line in current, or teaching someone else to feel a bite: you see the tick before they feel it. Run a fluorocarbon leader and the fish never see the color anyway.",
     specs: [
       { label: "Strength", value: "20 lb test" },
-      { label: "Length", value: "300 yds" },
+      { label: "Length", value: "300 yd" },
       { label: "Color", value: "Hi-Vis Yellow" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Fiber", value: "7 HMPE + 1 GORE Performance" },
@@ -709,7 +735,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "braid-light",
-    name: "Sufix 832 Braid — 8 lb, Ghost, 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 8 lb, Ghost, 300 yd",
     category: "Line & Leader",
     price: 29.99,
     tagline: "Light line for clear water and small baits",
@@ -717,7 +743,7 @@ export const PRODUCTS: Product[] = [
       "Eight-pound test in Ghost, the near-translucent finish. This is the spool for finesse work — surfperch on small plastics, bay bass on light jigs, anywhere heavier line kills the action of a two-inch bait. The diameter is closer to 2 lb mono, so it casts a long way for very little effort.",
     specs: [
       { label: "Strength", value: "8 lb test" },
-      { label: "Length", value: "300 yds" },
+      { label: "Length", value: "300 yd" },
       { label: "Color", value: "Ghost" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Best for", value: "Finesse, clear water" },
@@ -995,6 +1021,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "The same Kensaki profile as the 300, at 7¾ ounces instead of 10½ — the size to reach for in eighty feet rather than two hundred, or when the current is slack and a heavier jig drops too fast to get looked at.",
     specs: [
+      { label: "Brand", value: "Williamson" },
       { label: "Weight", value: "7-3/4 oz" },
       { label: "Length", value: "6.75″" },
       { label: "Size", value: "220" },
@@ -1368,8 +1395,8 @@ export const PRODUCTS: Product[] = [
       "Lead core sinks, and it changes color every ten yards so you can count exactly how much you have out. That is the whole trick: depth becomes a number you control rather than a guess, and you can repeat the depth that just produced a fish.",
     specs: [
       { label: "Strength", value: "18 lb test" },
-      { label: "Length", value: "200 yds" },
-      { label: "Metering", value: "10-color, every 10 yds" },
+      { label: "Length", value: "200 yd" },
+      { label: "Metering", value: "10-color, every 10 yd" },
       { label: "Core", value: "Lead" },
       { label: "Use", value: "Trolling to depth" },
       { label: "Brand", value: "Sufix" },
@@ -1392,7 +1419,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "braid-10",
-    name: "Sufix 832 Braid — 10 lb, Hi-Vis Yellow, 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 10 lb, Hi-Vis Yellow, 300 yd",
     category: "Line & Leader",
     price: 36.99,
     tagline: "Light line you can still see",
@@ -1400,7 +1427,7 @@ export const PRODUCTS: Product[] = [
       "Ten-pound test in hi-vis yellow — light enough for finesse work, visible enough to watch. The combination people usually have to choose between, which is why it is worth stocking as its own spool rather than a compromise.",
     specs: [
       { label: "Strength", value: "10 lb test" },
-      { label: "Length", value: "300 yds" },
+      { label: "Length", value: "300 yd" },
       { label: "Color", value: "Hi-Vis Yellow" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Use", value: "Finesse, visible" },
@@ -1423,7 +1450,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "braid-15",
-    name: "Sufix 832 Braid — 15 lb, Fire Tiger, 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 15 lb, Fire Tiger, 300 yd",
     category: "Line & Leader",
     price: 28.99,
     tagline: "The middle weight, in the loudest color",
@@ -1431,7 +1458,7 @@ export const PRODUCTS: Product[] = [
       "Fifteen pound sits between the finesse spool and the surf spool, which makes it the one line that will do most things adequately. Fire Tiger is aggressively visible — useful in low light, and the reason to run a leader.",
     specs: [
       { label: "Strength", value: "15 lb test" },
-      { label: "Length", value: "300 yds" },
+      { label: "Length", value: "300 yd" },
       { label: "Color", value: "Fire Tiger" },
       { label: "Construction", value: "8 fibers · 32 picks/in" },
       { label: "Use", value: "General purpose" },
@@ -1462,7 +1489,7 @@ export const PRODUCTS: Product[] = [
       "The hundred-pound version of the wind-on leader. Same knotless loop connection, same ability to wind through the guides — but rated for fish that would part the fifty. This is the leader for tuna, big halibut, and anything that goes near structure.",
     specs: [
       { label: "Strength", value: "100 lb test" },
-      { label: "Length", value: "11 yds" },
+      { label: "Length", value: "11 yd" },
       { label: "Material", value: "100% fluorocarbon" },
       { label: "Connection", value: "Braided loop, knotless" },
       { label: "Use", value: "Big fish, structure" },
@@ -1733,7 +1760,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "tuna-catcher",
-    name: "Williamson High-Speed Tuna Catcher Rigged — 8″, Mahi",
+    name: "Williamson High-Speed Tuna Catcher Rigged — 8″ skirt, Mahi",
     category: "Lures",
     price: 35.25,
     tagline: "Rigged and ready for a fast troll",
@@ -2444,7 +2471,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "tuna-catcher-5",
-    name: "Williamson Tuna Catcher Rigged — 5½″, Candy Floss",
+    name: "Williamson Tuna Catcher Rigged — 5½″ skirt, Candy Floss",
     category: "Lures",
     price: 15.49,
     tagline: "The small rigged skirt, for school fish",
@@ -2506,7 +2533,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "big-game-catcher",
-    name: "Williamson Big Game Catcher — 8¼″, Skipjack",
+    name: "Williamson Big Game Catcher — 8¼″ skirt, Skipjack",
     category: "Lures",
     price: 18.95,
     tagline: "Big skirt for fish that eat other fish",
@@ -2606,6 +2633,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Same rotating Kensaki body as the Blue Lagoon, in a mackerel pattern. Color matters less than most people think and more than nothing — carry two and let the fish tell you.",
     specs: [
+      { label: "Brand", value: "Williamson" },
       { label: "Weight", value: "7-3/4 oz" },
       { label: "Length", value: "6.75″" },
       { label: "Size", value: "220" },
@@ -2637,6 +2665,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "Nine and seven-eighths ounces, for deeper water or more current than the 220 can hold in. Candy Floss is the bright option — the one to try when a natural pattern has been ignored for an hour.",
     specs: [
+      { label: "Brand", value: "Williamson" },
       { label: "Weight", value: "9-7/8 oz" },
       { label: "Length", value: "7.25″" },
       { label: "Size", value: "280" },
@@ -2981,7 +3010,7 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "frabill-seine-net-4-x-12-mesh",
-    name: "Frabill Seine Net — 4' x 12' Mesh",
+    name: "Frabill Seine Net — 4 ft × 12 ft",
     category: "Nets & Landing",
     price: 26.99,
     tagline: "Two-person net for catching your own bait",
@@ -4379,6 +4408,7 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Weighing fish you intend to put back.",
     featured: false,
     image: "https://productimageserver.com/product/xl/96771XL.jpg",
+    familyKey: "Rapala Fish Gripper Scale Combo",
     role: "add-on",
     shipsIn: "3–7 business days",
   },
@@ -4676,7 +4706,7 @@ export const PRODUCTS: Product[] = [
 
   {
     key: "sufix-832-braid-30lb-fire-tiger-300-yds",
-    name: "Sufix 832 Braid — 30 lb, Fire Tiger, 300 yd",
+    name: "Sufix 832 Advanced Superline Braid — 30 lb, Fire Tiger, 300 yd",
     category: "Line & Leader",
     price: 32.99,
     tagline: "The 832 in a high-visibility finish",
@@ -6013,6 +6043,7 @@ export const PRODUCTS: Product[] = [
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
       { label: "Blank", value: "Fiberglass" },
+      { label: "Casting weight", value: "1–3 oz" },
       { label: "Line rating", value: "8–20 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -6045,7 +6076,8 @@ export const PRODUCTS: Product[] = [
       { label: "Pieces", value: "2" },
       { label: "Power", value: "Medium" },
       { label: "Blank", value: "Fiberglass" },
-      { label: "Line rating", value: "8–20 lb" },
+      { label: "Casting weight", value: "1–5 oz" },
+      { label: "Line rating", value: "10–25 lb" },
       { label: "Ships in", value: "3–7 business days" },
     ],
     features: [
@@ -7201,7 +7233,7 @@ export const PRODUCTS: Product[] = [
     ],
     gradient: ["#22303f", "#46647e"],
     glyph: "spool",
-    pairsWith: ["daiwa-laguna-ul", "braided-line", "fluoro-leader"],
+    pairsWith: ["braid-light", "fluoro-leader", "zman-finesse-shroomz"],
     whenToUse: "Lake and river spinning, and any freshwater rod in the 6–7 ft range.",
     featured: false,
     role: "anchor",
@@ -7234,7 +7266,7 @@ export const PRODUCTS: Product[] = [
     ],
     gradient: ["#22303f", "#46647e"],
     glyph: "spool",
-    pairsWith: ["daiwa-laguna-ul", "braided-line", "fluoro-leader"],
+    pairsWith: ["braid-light", "fluoro-leader", "daiwa-laguna-ul"],
     whenToUse: "Lake and river spinning, and any freshwater rod in the 6–7 ft range.",
     featured: false,
     role: "anchor",
@@ -7267,7 +7299,7 @@ export const PRODUCTS: Product[] = [
     ],
     gradient: ["#22303f", "#46647e"],
     glyph: "spool",
-    pairsWith: ["abu-max-x-combo", "braided-line", "yamamoto-senko-gp"],
+    pairsWith: ["braid-light", "abu-max-x-combo", "zman-big-trd-gp"],
     whenToUse: "An all-round freshwater reel you won't outgrow in a season.",
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_b1b63532-32b9-4d59-8c76-6e98f4aaee33.jpg",
@@ -7301,7 +7333,7 @@ export const PRODUCTS: Product[] = [
     ],
     gradient: ["#22303f", "#46647e"],
     glyph: "spool",
-    pairsWith: ["abu-max-x-combo", "braided-line", "yamamoto-senko-gp"],
+    pairsWith: ["braid-light", "yamamoto-senko-gp", "gamakatsu-worm-hook-3-0"],
     whenToUse: "An all-round freshwater reel you won't outgrow in a season.",
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_d451df4c-ae88-4f30-92f3-9fddc9e99781.jpg",
@@ -7311,7 +7343,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "daiwa-d-shock-combo-7mh",
     name: "Daiwa D-Shock Spinning Combo — 7 ft, 2-Piece Medium-Heavy",
-    category: "Rods & Combos",
+    category: "Freshwater Rods & Combos",
     price: 34.99,
     tagline: "Rod and reel, matched, thirty-five dollars",
     blurb:
@@ -7344,7 +7376,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "abu-max-x-combo",
     name: "Abu Garcia Max X Spinning Combo — 6 ft 6 in, Medium-Light",
-    category: "Rods & Combos",
+    category: "Freshwater Rods & Combos",
     price: 64.99,
     tagline: "The Max X reel, on a rod built for it",
     blurb:
@@ -7388,6 +7420,7 @@ export const PRODUCTS: Product[] = [
       { label: "Length", value: "7 ft" },
       { label: "Pieces", value: "2" },
       { label: "Blank", value: "Glass fiber" },
+      { label: "Casting weight", value: "Not published by Okuma" },
       { label: "Line rating", value: "6–15 lb" },
       { label: "Guides", value: "Stainless steel rings" },
       { label: "Reel seat", value: "Graphite with stainless" },
@@ -7412,7 +7445,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "daiwa-laguna-ul",
     name: "Daiwa Laguna Spinning Rod — 6 ft 6 in, 2-Piece Ultralight",
-    category: "Rods & Combos",
+    category: "Freshwater Rods & Combos",
     price: 49.99,
     tagline: "One to four pound line, and you feel everything",
     blurb:
@@ -7499,6 +7532,79 @@ export function isSourced(p: Product | string): boolean {
 }
 
 /**
+ * The manufacturer, as shown in the product's own spec table.
+ *
+ * Product schema used to emit brand.name: "TheAnglerStore" on all 233 pages
+ * while the visible spec row two inches below it said Sufix, or Rapala, or
+ * Luhr-Jensen. We are a reseller, not a manufacturer: that was schema
+ * contradicting the page it described, and it meant an assistant asked "where
+ * can I buy Sufix 832 20 lb" could not match this listing to that product.
+ *
+ * Read from the spec table on purpose, so the two can never disagree again —
+ * the visible row IS the source. Never guess a brand out of the product name.
+ */
+export function brandOf(p: Product): string | undefined {
+  return p.specs.find((s) => s.label.toLowerCase() === "brand")?.value;
+}
+
+/**
+ * Spec labels that must not become schema.org additionalProperty.
+ *
+ * "Ships in" is a fulfilment term, not an attribute of the thing being sold —
+ * it belongs in the Offer, and it was quietly inflating the apparent spec
+ * count on 160 of 238 pages. "Brand" has its own schema field.
+ */
+const NON_ATTRIBUTE_SPECS = new Set(["brand", "ships in"]);
+
+/** The visible spec table, as machine-readable attributes. */
+export function structuredSpecs(p: Product): { label: string; value: string }[] {
+  return p.specs.filter((s) => !NON_ATTRIBUTE_SPECS.has(s.label.toLowerCase()));
+}
+
+/**
+ * The <meta name="description">.
+ *
+ * Was the first 158 characters of the blurb, which is identical across every
+ * colour of a lure that only differs by colour — 21 groups of pages, 72 in
+ * total, describing themselves in exactly the same words. Google picks one
+ * and drops the rest, and a searcher comparing two colours sees two results
+ * that say nothing different.
+ *
+ * So variants lead with the thing that makes them different. "Kelly Green
+ * Sparkle." in front of the shared paragraph is a small change that makes
+ * every page in the family distinct, and it front-loads the words someone
+ * hunting a specific colour or line weight is actually scanning for.
+ */
+export function metaDescription(p: Product): string {
+  const variant = variantLabel(p);
+  if (variant) return `${variant}. ${p.blurb}`.slice(0, 158);
+  // Two reels can differ only by spool size, with the size inside the name
+  // rather than after an em dash — "Daiwa Crossfire LT 2000" and "…LT 3000-C"
+  // share every word of their blurb. Where a description would otherwise be
+  // an exact duplicate, the model name goes in front, which is the one thing
+  // that distinguishes them. Applied only on collision, so the other 230-odd
+  // products keep a description that opens on substance rather than a name
+  // the searcher can already see in the title.
+  const lead = collidingBlurbs().has(p.blurb.slice(0, 158)) ? `${p.name}. ` : "";
+  return (lead + p.blurb).slice(0, 158);
+}
+
+let COLLIDING: Set<string> | null = null;
+
+function collidingBlurbs(): Set<string> {
+  if (COLLIDING) return COLLIDING;
+  const seen = new Set<string>();
+  COLLIDING = new Set<string>();
+  for (const p of PRODUCTS) {
+    if (variantLabel(p)) continue;
+    const head = p.blurb.slice(0, 158);
+    if (seen.has(head)) COLLIDING.add(head);
+    else seen.add(head);
+  }
+  return COLLIDING;
+}
+
+/**
  * THE SURF STARTER BUNDLE.
  *
  * Four things that make a session work, sold together at a discount. The
@@ -7539,6 +7645,72 @@ export function cartEarnsBundle(keys: string[]): boolean {
   if (!bundleAvailable()) return false;
   const inCart = new Set(keys);
   return bundleItems().every((p) => inCart.has(p.key));
+}
+
+/**
+ * HOW MANY COMPLETE BUNDLES ARE IN THIS CART?
+ *
+ * The number of full sets you could make from what's there — the smallest
+ * quantity across the components. Four braid and one of everything else is
+ * one bundle plus three spools of braid, not four bundles.
+ *
+ * This exists because the discount used to be computed as 12% of every unit
+ * of every component in the cart. Adding the bundle and then bumping braid to
+ * qty 3 took the discount from $12.33 to $20.72 — 12% off three spools nobody
+ * bundled. At qty 20 it would have taken 12% off twenty. The old comment in
+ * the checkout route claimed the discount applied "only to the first of each",
+ * which was the intent; it was never what the code did.
+ */
+export function bundleSets(lines: { key: string; qty: number }[]): number {
+  if (!bundleAvailable()) return 0;
+  const qtyOf = new Map(lines.map((l) => [l.key, Math.max(0, Math.floor(l.qty))]));
+  const quantities = bundleItems().map((p) => qtyOf.get(p.key) ?? 0);
+  if (quantities.length === 0) return 0;
+  return Math.min(...quantities);
+}
+
+/** The bundle price of one unit, rounded to the cent Stripe will charge. */
+export function bundleUnitPrice(price: number): number {
+  return Math.round(price * (1 - BUNDLE.discount) * 100) / 100;
+}
+
+/**
+ * The money off, in dollars.
+ *
+ * Derived from the SAME per-unit rounded prices the checkout charges, rather
+ * than from a percentage of the set total. Those two are not the same number:
+ * 12% of $102.71 is $12.3252, and rounding that once gives $12.33, while
+ * rounding each of the four components first and summing gives $12.32 — a
+ * cent of disagreement that doubles to two cents at two sets.
+ *
+ * A cart that displays one total and a Stripe page that charges another is
+ * the worst possible bug on a checkout, so this is defined as exactly what
+ * gets charged and never as an independent calculation.
+ */
+export function bundleDiscountAmount(
+  lines: { key: string; qty: number }[],
+): number {
+  const sets = bundleSets(lines);
+  if (sets === 0) return 0;
+  const perSet = bundleItems().reduce(
+    (sum, p) => sum + (p.price - bundleUnitPrice(p.price)),
+    0,
+  );
+  return Math.round(sets * perSet * 100) / 100;
+}
+
+/**
+ * How many units of a given key are sold at the bundle price.
+ *
+ * Used by the checkout route to split a line: `sets` units at the discounted
+ * price, the remainder at full price. Returns 0 for anything not in the bundle.
+ */
+export function discountedUnitsFor(
+  key: string,
+  lines: { key: string; qty: number }[],
+): number {
+  if (!(BUNDLE.keys as readonly string[]).includes(key)) return 0;
+  return bundleSets(lines);
 }
 
 
@@ -7629,7 +7801,7 @@ export function waterOf(p: Product): Water {
   // Every reel and combo we stock is a freshwater model. Not one of these
   // manufacturers publishes a saltwater rating or a sealed-bearing claim for
   // them, and "both" would be us quietly implying one.
-  if (p.category === "Reels" || p.category === "Rods & Combos") return "fresh";
+  if (p.category === "Reels" || p.category === "Freshwater Rods & Combos") return "fresh";
   const brand = p.specs.find((s) => s.label === "Brand")?.value ?? "";
   if (FRESH_BRANDS.some((b) => brand.startsWith(b))) return "fresh";
   // Circle and octopus hooks are bait-fishing hooks — sea and surf.
@@ -7639,6 +7811,42 @@ export function waterOf(p: Product): Water {
   // Everything else — line, tools, storage, holders, nets, trolling hardware —
   // works in either, and claiming otherwise would be inventing a distinction.
   return "both";
+}
+
+/**
+ * WHAT DOES THIS CATCH?
+ *
+ * The About page names halibut, surfperch, corbina, calico and spotted bay
+ * bass as the reason the store exists — and searching any of them returned
+ * nothing at all. Species is how anglers actually think about tackle, so it
+ * needs to be searchable even though no product title contains the word.
+ *
+ * Derived, like water, so it can't drift out of sync with the catalog.
+ */
+export function speciesOf(p: Product): string[] {
+  const n = `${p.name} ${p.tagline} ${p.whenToUse}`.toLowerCase();
+  const brand = (p.specs.find((s) => s.label === "Brand")?.value ?? "").toLowerCase();
+  const out = new Set<string>();
+
+  if (p.category === "Surf Rods" || /circle|surf|pyramid/.test(n)) {
+    ["halibut", "surfperch", "perch", "corbina", "striped bass", "striper", "shark", "ray"].forEach((x) => out.add(x));
+  }
+  if (/flasher|dipsy|jet driver|lead core|downrigger|trolling|snubber|cannonball/.test(n)) {
+    ["salmon", "king salmon", "coho", "steelhead", "trout", "kokanee", "lake trout"].forEach((x) => out.add(x));
+  }
+  if (/williamson|tuna|kensaki|jig 300|vortex/.test(n) || /williamson/.test(brand)) {
+    ["tuna", "yellowtail", "dorado", "mahi", "albacore", "bonito"].forEach((x) => out.add(x));
+  }
+  if (p.category === "Soft Baits" || /senko|craw|squarebill|spinnerbait|lipless|trd|ned/.test(n)) {
+    ["largemouth", "largemouth bass", "smallmouth", "bass"].forEach((x) => out.add(x));
+  }
+  if (/crappie|panfish|road runner|magnet|ultralight/.test(n)) {
+    ["crappie", "panfish", "bluegill", "trout"].forEach((x) => out.add(x));
+  }
+  if (waterOf(p) === "salt" || p.category === "Nets & Landing") {
+    ["calico bass", "spotted bay bass", "rockfish", "lingcod"].forEach((x) => out.add(x));
+  }
+  return [...out];
 }
 
 export const WATERS: { id: Water; label: string }[] = [
@@ -7665,7 +7873,7 @@ export function suitsWater(p: Product, want: Water): boolean {
  * the titles do.
  */
 function familyKey(p: Product): string {
-  const head = p.name.split(" — ")[0];
+  const head = p.familyKey ?? p.name.split(" — ")[0];
   return head.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
@@ -7701,6 +7909,21 @@ export function siblings(p: Product): Product[] {
  * "How to fish the Coleman CHILLER 28-Can Soft-Sided Backpack Cooler" was
  * funny exactly once, and then it just exposed the template.
  */
+/** Categories whose products you actually cast, troll or fish. */
+export const FISHABLE: readonly Category[] = [
+  "Surf Rods",
+  "Reels",
+  "Freshwater Rods & Combos",
+  "Line & Leader",
+  "Terminal Tackle",
+  "Lures",
+  "Soft Baits",
+  "Downriggers",
+  "Trolling & Rigging",
+  "Bait & Live Wells",
+  "Nets & Landing",
+];
+
 const NOT_FISHED: readonly Category[] = [
   "Coolers",
   "Tackle Storage",

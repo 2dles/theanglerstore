@@ -29,13 +29,56 @@ const siteJsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      // Every value below is already published on /contact and in the footer.
+      // Nothing here is invented, and nothing here is more than the visible
+      // pages say. It was all missing from schema, which meant the most
+      // verifiable thing about this business — a named human, a real address
+      // and a state seller's permit — was invisible to anything reading the
+      // markup. That is more identity than most competitors publish.
+      "@type": ["Organization", "OnlineStore"],
       "@id": "https://theanglerstore.com/#org",
       name: "TheAnglerStore",
       url: "https://theanglerstore.com",
+      logo: "https://theanglerstore.com/icon.svg",
       description:
         "Surf and inshore fishing tackle for US anglers. Sister site to USTideCharts.",
-      sameAs: ["https://ustidecharts.com"],
+      email: "help@theanglerstore.com",
+      telephone: "+1-707-508-7118",
+      founder: { "@type": "Person", name: "Augustus Muse" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sebastopol",
+        addressRegion: "CA",
+        addressCountry: "US",
+      },
+      areaServed: { "@type": "Country", name: "United States" },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          email: "help@theanglerstore.com",
+          telephone: "+1-707-508-7118",
+          areaServed: "US",
+          availableLanguage: "English",
+        },
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "gear@theanglerstore.com",
+          areaServed: "US",
+          availableLanguage: "English",
+        },
+      ],
+      // sameAs used to point at ustidecharts.com. sameAs means "another
+      // profile of this same entity" — a Twitter account, a Wikidata item.
+      // USTideCharts is a different site under the same owner, which is what
+      // this actually says. It goes back to sameAs the day social or
+      // directory profiles exist for TheAnglerStore itself.
+      subOrganization: {
+        "@type": "Organization",
+        name: "USTideCharts",
+        url: "https://ustidecharts.com",
+      },
     },
     {
       "@type": "WebSite",
@@ -43,14 +86,12 @@ const siteJsonLd = {
       name: "TheAnglerStore",
       url: "https://theanglerstore.com",
       publisher: { "@id": "https://theanglerstore.com/#org" },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: "https://theanglerstore.com/products?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
+      // SearchAction removed. It advertised
+      // /products?q={search_term_string}, but search here is client-side —
+      // that URL returns the full unfiltered catalogue server-side, so the
+      // markup was promising an endpoint that does not exist. It goes back
+      // in the day /products?q= filters on the server (that result page must
+      // then be noindex, follow and canonical to /products).
     },
   ],
 };

@@ -35,7 +35,7 @@ export default function SuccessPage() {
         <a
           href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=post-purchase"
           className="btn btn-ghost mt-4"
-        >
+         target="_blank" rel="noopener">
           Plan your next session ↗
         </a>
       </div>

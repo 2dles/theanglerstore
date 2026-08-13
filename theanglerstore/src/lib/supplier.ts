@@ -25,6 +25,11 @@
  * their dealer storefront on 12 Aug 2026. Re-generate when costs move.
  */
 
+// Enforced, not just documented. Dealer cost lives in this file; if anyone
+// ever adds `"use client"` to a component that imports it, the build fails
+// here rather than shipping our margins to the browser in a JS chunk.
+import "server-only";
+
 export type SupplierId = "cwr" | "burch";
 
 export const SUPPLIERS: Record<
@@ -314,6 +319,26 @@ const SUPPLIER: Record<string, SupplierItem> = {
 
 export function supplierFor(key: string): SupplierItem | undefined {
   return SUPPLIER[key];
+}
+
+/**
+ * Manufacturer part number, for Product schema.
+ *
+ * Our sku is the URL slug ("braided-line"), which means nothing to anyone but
+ * us — no shopping surface can reconcile it with the same spool listed by
+ * another merchant. The MPN can, and unlike cost it is not confidential: the
+ * numbers are already legible in our own public image URLs.
+ *
+ * Returns undefined rather than a placeholder where we don't have one. An
+ * invented identifier is worse than a missing one, because it will match
+ * something that isn't this product.
+ *
+ * NOTE: we hold no UPC/EAN, so there is deliberately no gtinOf(). CWR's export
+ * has a UPC column we did not import; adding it is the way to get gtin13.
+ */
+export function mpnOf(key: string): string | undefined {
+  const part = SUPPLIER[key]?.mfgPart?.trim();
+  return part ? part : undefined;
 }
 
 /** Which house a key comes from. Defaults to CWR for entries written before Burch existed. */
