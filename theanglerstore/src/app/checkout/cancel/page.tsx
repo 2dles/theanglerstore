@@ -46,7 +46,7 @@ export default function CancelPage() {
         >
           help@theanglerstore.com
         </a>{" "}
-        and tell us what happened — we&rsquo;d rather fix it than lose the order.
+        and tell us what happened. We&rsquo;d rather fix it than lose the order.
       </p>
     </div>
   );

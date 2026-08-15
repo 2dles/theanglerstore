@@ -13,7 +13,7 @@ export default function CheckoutPage() {
           Checkout
         </h1>
         <p className="mt-3 text-ink-dim">
-          You&rsquo;re staying right here — payment happens on this page.
+          You&rsquo;re staying right here. Payment happens on this page.
         </p>
       </div>
       <EmbeddedCheckoutForm />

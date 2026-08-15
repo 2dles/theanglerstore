@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import { SPECIES } from "@/lib/editorial";
 
 export const metadata = {
-  title: { absolute: "Fish Species — Gear & Tactics | TheAnglerStore" },
+  title: { absolute: "Fish Species: Gear & Tactics | TheAnglerStore" },
   description:
-    "What to use for surfperch, halibut, striped bass and the rest — rod, reel, line, leader, hook and weight, per species.",
+    "What to use for surfperch, halibut, striped bass and the rest: rod, reel, line, leader, hook and weight, per species.",
   alternates: { canonical: "/species" },
 };
 

@@ -51,7 +51,7 @@ export function TidePromo({ product }: { product: Product }) {
                 window…". Two unrelated sentences welded together. */}
             <p className="mt-2 max-w-2xl leading-relaxed text-ink-dim">
               USTideCharts scores every two-hour window at your local spot using
-              live NOAA tide data, wind, and moon phase — so you know whether
+              live NOAA tide data, wind, and moon phase, so you know whether
               tomorrow is worth the early alarm before you buy anything at all.
             </p>
           </div>

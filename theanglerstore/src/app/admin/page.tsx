@@ -165,8 +165,8 @@ export default async function AdminPage({
           <p className="mt-2 leading-relaxed text-ink-dim">
             Either the token lacks access, the project ID is wrong, or Web
             Analytics isn&rsquo;t enabled on the project. Check the Vercel
-            function logs for the exact status code &mdash; a 402 or 403 means
-            the API is gated on your plan.
+            function logs for the exact status code. A 402 or 403 means the
+            API is gated on your plan.
           </p>
         </div>
       ) : (
@@ -204,7 +204,7 @@ export default async function AdminPage({
             <BarTable
               title="Referrers"
               rows={traffic.referrers}
-              empty="No referrers yet — traffic so far is direct."
+              empty="No referrers yet. Traffic so far is direct."
             />
             <BarTable
               title="Countries"
@@ -228,7 +228,7 @@ export default async function AdminPage({
           <p className="leading-relaxed text-ink-dim">
             Stripe isn&rsquo;t configured, so there are no orders to show. That
             is expected until you finish <code className="text-ink">RUNBOOK.md</code>{" "}
-            steps 1&ndash;5.
+            steps 1 to 5.
           </p>
         </div>
       ) : !orders || orders.length === 0 ? (
@@ -294,13 +294,13 @@ export default async function AdminPage({
                       })}
                     </td>
                     <td className="py-3 pr-4 text-ink-dim">
-                      {o.name ?? "—"}
+                      {o.name ?? "(no name)"}
                       <div className="text-xs text-ink-faint">{o.city}</div>
                     </td>
                     <td className="py-3 pr-4 text-ink-faint">
                       {o.utmSource === "ustidecharts" ? (
                         <span className="text-teal">
-                          tides · {o.utmMedium || "—"}
+                          tides · {o.utmMedium || "none"}
                         </span>
                       ) : (
                         (o.utmSource ?? "direct")
@@ -331,8 +331,8 @@ export default async function AdminPage({
       <p className="mt-10 text-xs leading-relaxed text-ink-faint">
         Traffic from the Vercel Web Analytics API · orders from Stripe. On the
         Hobby plan the reporting window is 30 days and UTM dimensions
-        aren&rsquo;t available at page level &mdash; per-order attribution
-        (the Source column) comes from Stripe metadata and is unaffected.
+        aren&rsquo;t available at page level. Per-order attribution (the
+        Source column) comes from Stripe metadata and is unaffected.
       </p>
     </div>
   );

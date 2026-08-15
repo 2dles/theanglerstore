@@ -53,7 +53,7 @@ export function AddToCart({ productKey }: { productKey: string }) {
 
       {qty >= MAX_QTY && (
         <p className="text-sm text-ink-faint">
-          {MAX_QTY} is the most we&rsquo;ll take online — we order from a
+          {MAX_QTY} is the most we&rsquo;ll take online. We order from a
           distributor after you buy, so bigger than that needs a quick email
           first.
         </p>

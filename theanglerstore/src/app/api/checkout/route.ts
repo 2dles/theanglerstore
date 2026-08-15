@@ -159,7 +159,7 @@ export async function POST(req: Request) {
           tax_behavior: "exclusive",
           unit_amount: Math.round(unit * 100),
           product_data: {
-            name: bundleName ? `${product.name} — ${bundleName}` : product.name,
+            name: bundleName ? `${product.name} (${bundleName})` : product.name,
             description: product.tagline,
             metadata: { product_key: product.key },
           },
@@ -225,7 +225,7 @@ export async function POST(req: Request) {
       // The description below is internal: it shows on the payment in the
       // Stripe dashboard, not on the customer's statement.
       payment_intent_data: {
-        description: `TheAnglerStore order — ${merged.length} item${merged.length === 1 ? "" : "s"}`,
+        description: `TheAnglerStore order, ${merged.length} item${merged.length === 1 ? "" : "s"}`,
       },
       // Stripe Tax. Calculation happens only where we hold a registration —
       // Stripe's own wording: "Without a registration in the customer's

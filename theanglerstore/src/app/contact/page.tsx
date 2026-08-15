@@ -17,14 +17,14 @@ export default function ContactPage() {
           <a href="mailto:help@theanglerstore.com" className="text-tide hover:text-teal">
             help@theanglerstore.com
           </a>{" "}
-          — orders, returns, shipping, and anything that has gone wrong.
+          for orders, returns, shipping, and anything that has gone wrong.
         </p>
         <p>
           <a href="mailto:gear@theanglerstore.com" className="text-tide hover:text-teal">
             gear@theanglerstore.com
           </a>{" "}
-          — what to buy, what to pair it with, and whether a product is right for
-          the water you fish. We would rather talk you out of the wrong purchase
+          for what to buy, what to pair it with, and whether a product is
+          right for the water you fish. We would rather talk you out of the wrong purchase
           than process the return.
         </p>
       </Section>
@@ -55,8 +55,8 @@ export default function ContactPage() {
           <a href="tel:+17075087118" className="text-tide hover:text-teal">
             (707) 508-7118
           </a>{" "}
-          — one person, one phone. If it rings out, we are on the water or in
-          the post office queue; email gets a faster answer.
+          is one person and one phone. If it rings out, we are on the water or
+          in the post office queue; email gets a faster answer.
         </p>
       </Section>
 

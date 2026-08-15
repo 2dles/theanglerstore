@@ -632,7 +632,7 @@ export const PRODUCTS: Product[] = [
       "Opposing convex and concave faces make it rotate instead of dropping flat",
       "Two-tone finish turns that rotation into flash",
       "Ball-bearing swivel lets you tie direct to the solid ring and leave the lure free-swimming",
-      "Arrives rigged \u2014 no assist hook to tie yourself",
+      "Arrives rigged, no assist hook to tie yourself",
     ],
     gradient: ["#2a2d3a", "#5c6480"],
     glyph: "jig",
@@ -663,7 +663,7 @@ export const PRODUCTS: Product[] = [
     features: [
       "Knot-free mesh is kinder to fish and doesn't snag trebles the way knotted netting does",
       "Collapses small enough to carry on a beach walk or a kayak",
-      "Locks rigid when open \u2014 no flexing handle at the moment it matters",
+      "Locks rigid when open, no flexing handle at the moment it matters",
       "47 inches of reach extended, from a net that stows at a fraction of that",
     ],
     gradient: ["#1f3340", "#48788f"],
@@ -712,7 +712,7 @@ export const PRODUCTS: Product[] = [
     price: 32.99,
     tagline: "Stainless, spring-loaded, side cutter",
     blurb:
-      "Eight inches of stainless with an internal spring that holds the jaws open, so you can work one-handed while the other hand is busy holding a fish. The side cutter handles line and leader, and there's a lanyard point \u2014 which you will use, because pliers dropped off a jetty are simply gone.",
+      "Eight inches of stainless with an internal spring that holds the jaws open, so you can work one-handed while the other hand is busy holding a fish. The side cutter handles line and leader, and there's a lanyard point. Use it, because pliers dropped off a jetty are simply gone.",
     specs: [
       { label: "Brand", value: "Rapala" },
       { label: "Length", value: "8\"" },

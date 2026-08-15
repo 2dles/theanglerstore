@@ -17,6 +17,11 @@
   --color-glow: #22d3ee;
   --color-teal: #2dd4bf;
 
+  /* The one warm hue, reserved for kits and money off. Everything else on the
+     site is cyan, so a discount CTA in cyan just reads as more navigation. */
+  --color-gold: #fbbf24;
+  --color-gold-deep: #f59e0b;
+
   --color-score-excellent: #4ade80;
   --color-score-verygood: #2dd4bf;
   --color-score-good: #facc15;
@@ -152,6 +157,34 @@ body {
   .btn-primary:hover:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: 0 16px 40px -14px rgba(45, 212, 191, 0.85);
+  }
+
+  /* Kits and savings. Deliberately not the cyan gradient: this button competes
+     with "Shop all gear" for the same eye, and it can only win that on colour. */
+  .btn-accent {
+    background: linear-gradient(90deg, var(--color-gold), var(--color-gold-deep));
+    color: #2a1705;
+    box-shadow: 0 10px 30px -12px rgba(245, 158, 11, 0.65);
+  }
+  .btn-accent:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 40px -14px rgba(245, 158, 11, 0.85);
+  }
+
+  /* The Kits entry in the header. A destination, not a category, so it should
+     not look like one of the category links sitting next to it. */
+  .nav-tab {
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid rgba(251, 191, 36, 0.38);
+    background: rgba(251, 191, 36, 0.1);
+    color: #fcd34d;
+    font-weight: 600;
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+  }
+  .nav-tab:hover {
+    background: rgba(251, 191, 36, 0.2);
+    border-color: rgba(251, 191, 36, 0.6);
   }
 
   .btn-ghost {

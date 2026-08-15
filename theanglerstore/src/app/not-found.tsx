@@ -2,7 +2,7 @@ import Link from "next/link";
 import { activeCategories } from "@/lib/products";
 
 export const metadata = {
-  title: { absolute: "Nothing at this address — TheAnglerStore" },
+  title: { absolute: "Nothing at this address | TheAnglerStore" },
   robots: { index: false, follow: false },
 };
 
@@ -28,7 +28,7 @@ export default function NotFound() {
       </h1>
       <p className="mt-4 leading-relaxed text-ink-dim">
         Either we moved it, or the link was wrong to begin with. Nothing has been
-        lost from your cart — it&rsquo;s exactly where you left it.
+        lost from your cart; it&rsquo;s exactly where you left it.
       </p>
 
       <form action="/products" method="get" role="search" className="mt-8">
@@ -72,7 +72,7 @@ export default function NotFound() {
         <Link href="/contact" className="text-tide hover:text-teal">
           tell us where it was
         </Link>{" "}
-        — we&rsquo;d rather fix it than have you find it twice.
+        and we&rsquo;d rather fix it than have you find it twice.
       </p>
     </div>
   );

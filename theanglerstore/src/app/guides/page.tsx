@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { GUIDES } from "@/lib/editorial";
 
 export const metadata = {
-  title: { absolute: "Fishing Guides — Rigs, Tides & Technique | TheAnglerStore" },
+  title: { absolute: "Fishing Guides: Rigs, Tides & Technique | TheAnglerStore" },
   description:
     "How to rig, when to fish, and what actually works on Northern California beaches and bays. Written by people who fish them.",
   alternates: { canonical: "/guides" },

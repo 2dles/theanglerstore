@@ -53,8 +53,8 @@ export default function ReturnsPage() {
         <p>
           Several items carry a manufacturer warranty that outlasts our 30-day
           window. If a rod, a downrigger or a piece of hardware fails outside that
-          window, contact us anyway —
-          we will tell you whether a warranty claim applies and help you file it.
+          window, contact us anyway. We will tell you whether a warranty claim
+          applies and help you file it.
         </p>
       </Section>
     </Prose>

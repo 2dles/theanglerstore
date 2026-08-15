@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <p>
           When you place an order: your name, email, shipping address, and the
           items you bought. When you browse: standard server logs, and a record
-          of which site referred you — including the UTM tags on links from our
+          of which site referred you, including the UTM tags on links from our
           sister site USTideCharts.
         </p>
         <p>
@@ -37,9 +37,9 @@ export default function PrivacyPage() {
 
       <Section heading="Who we share it with">
         <ul className="space-y-2 text-ink-dim">
-          <li>▸ <strong className="text-ink">Stripe</strong> — to take payment</li>
-          <li>▸ <strong className="text-ink">Our suppliers</strong> — your name and shipping address only, so they can send your order</li>
-          <li>▸ <strong className="text-ink">Carriers</strong> — the same, to deliver it</li>
+          <li>▸ <strong className="text-ink">Stripe</strong>, to take payment</li>
+          <li>▸ <strong className="text-ink">Our suppliers</strong>, your name and shipping address only, so they can send your order</li>
+          <li>▸ <strong className="text-ink">Carriers</strong>, the same, to deliver it</li>
         </ul>
         <p>
           That is the entire list. We do not sell, rent, or trade customer data,

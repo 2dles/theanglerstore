@@ -20,7 +20,7 @@ export async function generateMetadata({
   const sp = getSpecies(slug);
   if (!sp) return { title: "Species not found" };
   return {
-    title: { absolute: `${sp.name} — Gear & Tactics | TheAnglerStore` },
+    title: { absolute: `${sp.name}: Gear & Tactics | TheAnglerStore` },
     description: sp.description.slice(0, 158),
     alternates: { canonical: `/species/${sp.slug}` },
   };
@@ -36,7 +36,7 @@ export default async function SpeciesPage({ params }: { params: Promise<Params> 
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${sp.name} — gear and tactics`,
+    headline: `${sp.name}: gear and tactics`,
     description: sp.description,
     datePublished: sp.published,
     dateModified: sp.updated ?? sp.published,

@@ -11,7 +11,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   metadataBase: new URL("https://theanglerstore.com"),
   title: {
-    default: "TheAnglerStore — Surf & Inshore Fishing Tackle",
+    default: "TheAnglerStore. Surf & Inshore Fishing Tackle",
     template: "%s | TheAnglerStore",
   },
   description:

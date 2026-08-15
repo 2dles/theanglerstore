@@ -35,13 +35,13 @@ export default function ShippingPage() {
           </li>
           <li>
             ▸ <strong className="text-ink">${FLAT_SHIPPING.toFixed(2)} flat</strong>{" "}
-            — US orders under ${FREE_SHIPPING_OVER}
+            on US orders under ${FREE_SHIPPING_OVER}
           </li>
         </ul>
         <p>
-          One flat rate per order regardless of how many items are in it, which
-          is why it&rsquo;s worth adding the small stuff, hooks, leader, rigs —
-          to an order rather than buying them on their own.
+          One flat rate per order regardless of how many items are in it,
+          which is why it&rsquo;s worth adding the small stuff (hooks, leader,
+          rigs) to an order rather than buying them on their own.
         </p>
       </Section>
 
@@ -89,7 +89,7 @@ export default function ShippingPage() {
                   >
                     {p.name}
                   </Link>{" "}
-                  — {p.shipsIn}
+                  &middot; {p.shipsIn}
                 </li>
               ))}
             </ul>
@@ -152,8 +152,8 @@ export default function ShippingPage() {
               <Link href="/contact" className="text-tide hover:text-teal">
                 email us
               </Link>{" "}
-              — for a small item we can sometimes quote it manually, and it tells
-              us where to open next.
+              anyway. For a small item we can sometimes quote it manually,
+              and it tells us where to open next.
             </p>
           </>
         )}

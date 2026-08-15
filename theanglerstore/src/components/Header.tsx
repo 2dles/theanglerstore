@@ -74,7 +74,9 @@ export function Header() {
           <Link href="/products" className="link-quiet font-medium text-ink">
             All gear
           </Link>
-          <Link href="/bundles" className="link-quiet whitespace-nowrap">
+          {/* A destination, not a category, so it should not look like the
+              category links beside it. */}
+          <Link href="/bundles" className="nav-tab whitespace-nowrap">
             Kits
           </Link>
           {activeCategories()
@@ -164,7 +166,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className="block rounded-lg px-2 py-2 text-sm font-medium text-ink"
               >
-                All gear — search &amp; filter
+                All gear: search &amp; filter
               </Link>
             </li>
             {activeCategories().map((c) => (

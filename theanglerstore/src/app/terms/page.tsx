@@ -54,8 +54,8 @@ export default function TermsPage() {
         <p>
           Fishing tackle includes sharp hooks, and some products contain lead.
           Keep hooks away from children. Wash your hands after handling lead
-          jigs and sinkers. Know and follow your local fishing regulations —
-          circle hook requirements, size and bag limits, and closures are your
+          jigs and sinkers. Know and follow your local fishing regulations.
+          Circle hook requirements, size and bag limits, and closures are your
           responsibility, not ours, and they change.
         </p>
       </Section>
@@ -64,7 +64,7 @@ export default function TermsPage() {
         <p>
           We stand behind what we sell and will refund or replace anything
           defective. Beyond that, our liability is limited to what you paid for
-          the product. We are not liable for indirect or consequential losses —
+          the product. We are not liable for indirect or consequential losses:
           a missed tide, a ruined trip, a lost tournament.
         </p>
       </Section>

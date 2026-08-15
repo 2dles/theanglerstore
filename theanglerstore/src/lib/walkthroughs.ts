@@ -51,7 +51,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
     ],
     tips: [
       "Rated 1–4 oz and 10–20 lb, the 9 ft sibling is 1–3 oz, the 11 ft is 1–5 oz, so match the rod to the lead you actually throw",
-      "Rinse the reel with a light freshwater spray after every session — never a pressure hose, which drives salt past the seals",
+      "Rinse the reel with a light freshwater spray after every session, never a pressure hose, which drives salt past the seals",
       "Back the drag off completely when you store it, so the washers don't take a set",
       "Two-piece means you can leave it made up in the truck; break it down for long storage",
     ],
