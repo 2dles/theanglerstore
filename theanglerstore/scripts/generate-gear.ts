@@ -21,7 +21,14 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { getProduct, isSourced, type Product } from "../src/lib/products";
+import {
+  getProduct,
+  indexed,
+  isSourced,
+  speciesOf,
+  waterOf,
+  type Product,
+} from "../src/lib/products";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -74,10 +81,109 @@ const NO_EQUIVALENT: Record<string, string> = {
 const MIN_CARDS = 3;
 const BACKFILL = ["braided-line", "pliers", "landing-net", "circle-hooks", "tackle-bag"];
 
+/**
+ * USTIDECHARTS SPECIES SLUG -> THE STORE'S OWN SPECIES TERMS.
+ *
+ * The tide site names 24 species. The store tags products by species in
+ * `speciesOf()`, derived from category, name and water. This is the only
+ * hand-written part of the bridge, and it is deliberately a translation
+ * table and nothing more — it maps names to names, it does not decide which
+ * products suit which fish. That judgement stays in the catalog.
+ *
+ * A slug absent from this table emits no entry, and USTideCharts falls back
+ * to its own hand-written list. That is the correct outcome for the eleven
+ * Florida species and for white seabass and cabezon: this is a Northern
+ * California surf and inshore shop, it has nothing tagged for bonefish or
+ * tarpon, and inventing a match would be exactly the failure that put
+ * fabricated gear on those pages in the first place.
+ */
+const SPECIES_MAP: Record<string, string[]> = {
+  "striped-bass": ["striped bass", "striper"],
+  halibut: ["halibut"],
+  rockfish: ["rockfish"],
+  lingcod: ["lingcod"],
+  surfperch: ["surfperch", "perch"],
+  salmon: ["salmon", "king salmon", "coho"],
+  yellowtail: ["yellowtail", "tuna", "bonito"],
+  "calico-bass": ["calico bass"],
+  corbina: ["corbina"],
+  "spotted-bay-bass": ["spotted bay bass"],
+  "leopard-shark": ["shark", "ray"],
+};
+
+/**
+ * A page shows four cards. Four soft baits is not a recommendation, it is a
+ * shelf — so each species list is ordered as a KIT, one product per job, in
+ * the order someone actually assembles a setup. Location pages take the first
+ * four of whatever they're given, so this ordering is what decides whether a
+ * reader sees rod/line/hook/lure or four colours of the same lure.
+ */
+const KIT_ORDER: string[][] = [
+  ["Surf Rods", "Rod & Reel Combos", "Reels"],
+  ["Line & Leader"],
+  ["Terminal Tackle"],
+  ["Lures", "Soft Baits"],
+  ["Nets & Landing"],
+  ["Tools"],
+  ["Trolling & Rigging"],
+  ["Tackle Storage", "Coolers"],
+];
+
+/** How many keys to emit per species. Pages slice to 4; the rest give variety. */
+const PER_SPECIES = 8;
+
+function keysForSpecies(terms: string[]): string[] {
+  const wanted = new Set(terms.map((t) => t.toLowerCase()));
+  const salt = indexed().filter((p) => waterOf(p) !== "fresh");
+  // Tagged for this species...
+  const pool = salt.filter((p) => speciesOf(p).some((s) => wanted.has(s.toLowerCase())));
+  // ...falling back to anything that works anywhere in salt. Rockfish and
+  // lingcod are tagged on only a handful of products, so a tagging-only pool
+  // gave them a rod, a hook and then two landing nets. Braid and pliers are
+  // honest recommendations for any saltwater fish; using them to fill an empty
+  // kit slot is not a claim that they were chosen for that species.
+  const groupOf = (p: Product) => KIT_ORDER.findIndex((g) => g.includes(p.category));
+
+  const picked: Product[] = [];
+  const used = new Set<string>();
+  const filledGroups = new Set<number>();
+
+  const take = (p: Product | undefined) => {
+    if (!p || used.has(p.key)) return false;
+    picked.push(p);
+    used.add(p.key);
+    filledGroups.add(groupOf(p));
+    return true;
+  };
+
+  // Round one: one product per kit slot, species-tagged first, universal second.
+  for (let i = 0; i < KIT_ORDER.length; i++) {
+    const group = KIT_ORDER[i];
+    const inGroup = (p: Product) => group.includes(p.category);
+    if (!take(pool.find((p) => !used.has(p.key) && inGroup(p)))) {
+      take(salt.find((p) => !used.has(p.key) && inGroup(p)));
+    }
+  }
+
+  // Round two: widen with species-tagged items from kit slots still empty.
+  for (const p of pool) {
+    if (picked.length >= PER_SPECIES) break;
+    if (!used.has(p.key) && !filledGroups.has(groupOf(p))) take(p);
+  }
+
+  // Round three: pad the tail with more of what this species is tagged for.
+  for (const p of pool) {
+    if (picked.length >= PER_SPECIES) break;
+    take(p);
+  }
+
+  return picked.slice(0, PER_SPECIES).map((p) => p.key);
+}
+
 /** Card art, by store category. Purely decorative. */
 const ART: Record<string, { gradient: string; icon: string }> = {
   "Surf Rods": { gradient: "linear-gradient(135deg,#0e3a5c,#155e88)", icon: "🎣" },
-  "Freshwater Rods & Combos": { gradient: "linear-gradient(135deg,#0d4a4a,#137a6e)", icon: "🎣" },
+  "Rod & Reel Combos": { gradient: "linear-gradient(135deg,#0d4a4a,#137a6e)", icon: "🎣" },
   Reels: { gradient: "linear-gradient(135deg,#123a52,#1d6c86)", icon: "🌀" },
   "Line & Leader": { gradient: "linear-gradient(135deg,#233a5e,#3b5fa0)", icon: "🧵" },
   "Terminal Tackle": { gradient: "linear-gradient(135deg,#3a2e59,#5d4a8f)", icon: "🪝" },
@@ -117,10 +223,27 @@ function esc(s: string): string {
 }
 
 // ── build ────────────────────────────────────────────────────────────────────
+// Species lists first, so we know every product that needs an entry.
+const BY_SPECIES: Record<string, string[]> = {};
+for (const [slug, terms] of Object.entries(SPECIES_MAP)) {
+  const keys = keysForSpecies(terms);
+  if (keys.length > 0) BY_SPECIES[slug] = keys;
+}
+
+// PRODUCTS must contain everything anyone can ask for: the legacy request
+// keys, plus every product a species list names. Legacy keys stay keyed by
+// their legacy name and point at the real product; species keys are keyed by
+// the real product key. getProducts() dedupes on the resolved key, so a page
+// asking for both "inshore-combo" and "okuma-tundra-7" gets one card.
+const REQUESTS: Record<string, string> = { ...RESOLVE };
+for (const keys of Object.values(BY_SPECIES)) {
+  for (const k of keys) if (!(k in REQUESTS)) REQUESTS[k] = k;
+}
+
 const entries: string[] = [];
 const report: string[] = [];
 
-for (const [legacy, real] of Object.entries(RESOLVE)) {
+for (const [legacy, real] of Object.entries(REQUESTS)) {
   const p = getProduct(real);
   if (!p) throw new Error(`RESOLVE["${legacy}"] -> "${real}" is not in the catalog.`);
   if (!isSourced(p)) {
@@ -149,6 +272,11 @@ for (const [legacy, real] of Object.entries(RESOLVE)) {
 }
 for (const [legacy, why] of Object.entries(NO_EQUIVALENT)) {
   report.push(`  ${legacy.padEnd(15)} -> DROPPED — ${why}`);
+}
+report.push("");
+report.push(`  BY_SPECIES: ${Object.keys(BY_SPECIES).length} species mapped, ${Object.keys(REQUESTS).length} products emitted`);
+for (const [slug, keys] of Object.entries(BY_SPECIES)) {
+  report.push(`    ${slug.padEnd(18)} ${keys.length} keys — ${keys.slice(0, 4).join(", ")}`);
 }
 
 const stamp = new Date().toISOString().slice(0, 10);
@@ -204,6 +332,18 @@ ${Object.entries(NO_EQUIVALENT)
   .join("\n")}
  */
 export const UNAVAILABLE: readonly string[] = ${JSON.stringify(Object.keys(NO_EQUIVALENT))};
+
+/**
+ * Species slug -> product keys, ordered as a KIT: rod, line, terminal, lure,
+ * then the rest. Derived from the store's own per-product species tagging, not
+ * hand-picked here.
+ *
+ * A species absent from this map has nothing in the catalog tagged for it —
+ * the eleven Florida species, plus white seabass and cabezon. Those fall back
+ * to USTideCharts' own lists rather than being handed a NorCal surf rod and
+ * told it was chosen for bonefish.
+ */
+export const BY_SPECIES: Record<string, string[]> = ${JSON.stringify(BY_SPECIES, null, 2)};
 
 /** Relevant almost anywhere saltwater; tops a list back up when one drops out. */
 const BACKFILL: readonly string[] = ${JSON.stringify(BACKFILL)};

@@ -8142,7 +8142,11 @@ export function speciesOf(p: Product): string[] {
   const brand = (p.specs.find((s) => s.label === "Brand")?.value ?? "").toLowerCase();
   const out = new Set<string>();
 
-  if (p.category === "Surf Rods" || /circle|surf|pyramid/.test(n)) {
+  // `surf` needs the negative lookahead: without it the regex matches
+  // "surface", and every topwater plug in the catalog was being tagged as
+  // surf tackle — which is how a 130 mm offshore surface bait ended up
+  // recommended for surfperch. It still matches surfcasting and surfperch.
+  if (p.category === "Surf Rods" || /\bcircle\b|\bsurf(?!ace)|\bpyramid\b/.test(n)) {
     ["halibut", "surfperch", "perch", "corbina", "striped bass", "striper", "shark", "ray"].forEach((x) => out.add(x));
   }
   if (/flasher|dipsy|jet driver|lead core|downrigger|trolling|snubber|cannonball/.test(n)) {
