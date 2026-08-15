@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { activeCategories, indexed } from "@/lib/products";
+import { GUIDES, SPECIES } from "@/lib/editorial";
 
 const BASE = "https://theanglerstore.com";
 
@@ -40,5 +41,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...statics, ...collections, ...products];
+  // Editorial pages, and their index pages, only once something is published.
+  // Both arrays are empty today, so none of this appears — an index of nothing
+  // in the sitemap is a thin page we asked Google to come and look at.
+  const guides: MetadataRoute.Sitemap = GUIDES.length
+    ? [
+        { url: `${BASE}/guides`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+        ...GUIDES.map((g) => ({
+          url: `${BASE}/guides/${g.slug}`,
+          lastModified: new Date(`${g.updated ?? g.published}T00:00:00Z`),
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+        })),
+      ]
+    : [];
+
+  const species: MetadataRoute.Sitemap = SPECIES.length
+    ? [
+        { url: `${BASE}/species`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
+        ...SPECIES.map((s) => ({
+          url: `${BASE}/species/${s.slug}`,
+          lastModified: new Date(`${s.updated ?? s.published}T00:00:00Z`),
+          changeFrequency: "monthly" as const,
+          priority: 0.7,
+        })),
+      ]
+    : [];
+
+  return [...statics, ...collections, ...guides, ...species, ...products];
 }

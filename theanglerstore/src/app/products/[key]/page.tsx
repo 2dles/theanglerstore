@@ -34,7 +34,7 @@ import { Walkthrough } from "@/components/Walkthrough";
 import { getWalkthrough } from "@/lib/walkthroughs";
 // Server component. supplier.ts is marked `server-only`, so this import can
 // never follow a client boundary and leak dealer cost into a JS chunk.
-import { mpnOf } from "@/lib/supplier";
+import { mpnOf, upcOf } from "@/lib/supplier";
 import { tideLinkFor } from "@/lib/tide-links";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 
@@ -141,6 +141,7 @@ export default async function ProductPage({
   // merchant. brandOf() reads the visible row, so they cannot diverge.
   const brand = brandOf(product);
   const mpn = mpnOf(product.key);
+  const gtin12 = upcOf(product.key);
   const attributes = structuredSpecs(product);
 
   const jsonLd = {
@@ -152,10 +153,13 @@ export default async function ProductPage({
     sku: product.key,
     image: productImages(product),
     ...(brand ? { brand: { "@type": "Brand", name: brand } } : {}),
-    // Our sku is the URL slug, which is meaningless off this domain. The MPN
-    // is the only identifier here that reconciles across merchants. Omitted
-    // where we don't hold one — we have no UPC/EAN at all, so no gtin.
+    // Our sku is the URL slug, which means nothing off this domain. The MPN
+    // and the UPC are what let a shopping surface recognise this listing as
+    // the same product another merchant sells. Both omitted where we don't
+    // hold one — Burch publish no UPCs, so their items carry mpn only, and an
+    // invented identifier would resolve to somebody else's product.
     ...(mpn ? { mpn } : {}),
+    ...(gtin12 ? { gtin12 } : {}),
     // Every spec the page shows, machine-readable. Was human-readable only:
     // the Daiwa Laguna page displays nine useful specs and the schema
     // described none of them.

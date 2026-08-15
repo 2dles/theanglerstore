@@ -21,6 +21,7 @@ import {
   structuredSpecs,
   CATEGORIES,
 } from "@/lib/products";
+import { GUIDES, SPECIES, validateEditorial } from "@/lib/editorial";
 
 let failures = 0;
 
@@ -160,6 +161,18 @@ check(
   indexedButUnbuyable.length === 0,
   indexedButUnbuyable.join(", "),
 );
+
+// ── editorial ──────────────────────────────────────────────────────────────
+// Empty today. These checks exist so the first guide written can't quietly
+// reference a product that has since been retired — which is exactly how
+// USTideCharts ended up advertising gear that did not exist.
+const editorialProblems = validateEditorial();
+check(
+  "every guide and species reference resolves to a real, sourced product",
+  editorialProblems.length === 0,
+  editorialProblems.join("\n        "),
+);
+console.log(`NOTE  editorial: ${GUIDES.length} guide(s), ${SPECIES.length} species page(s) published.`);
 
 // ── categories ─────────────────────────────────────────────────────────────
 const slugs = CATEGORIES.map((c) => c.slug);
