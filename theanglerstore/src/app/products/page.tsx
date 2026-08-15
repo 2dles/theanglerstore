@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { activeCategories, listed } from "@/lib/products";
+import { activeCategories, indexed } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductFinder } from "@/components/ProductFinder";
 
@@ -19,8 +19,10 @@ export default function AllProductsPage() {
     url: "https://theanglerstore.com/products",
     mainEntity: {
       "@type": "ItemList",
-      numberOfItems: listed().length,
-      itemListElement: listed().map((p, i) => ({
+      // Must describe what the page links, not the raw catalogue — the old
+      // ItemList named 233 products while the HTML linked none of them.
+      numberOfItems: indexed().length,
+      itemListElement: indexed().map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.name,
@@ -38,7 +40,7 @@ export default function AllProductsPage() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">All gear</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
-          {listed().length} products. Everything here is something we&rsquo;d
+          {indexed().length} products. Everything here is something we&rsquo;d
           actually carry down the beach &mdash; and where we think a product is a
           bad buy, we say so on its page instead of quietly not selling it.
         </p>
@@ -64,7 +66,7 @@ export default function AllProductsPage() {
                 </div>
               </div>
               <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {listed()
+                {indexed()
                   .slice(0, 8)
                   .map((p, i) => (
                     <ProductCard key={p.key} product={p} priority={i < 4} />
@@ -72,19 +74,36 @@ export default function AllProductsPage() {
               </div>
             </section>
 
+            {/*
+              A PREVIEW per category, not the whole shelf.
+
+              This used to render a card for all 233 products, which is what
+              made this page 504 KB of payload — every card's props serialised
+              into the RSC stream, and the heaviest page on the site by an
+              order of magnitude, mostly on phones. Four cards is enough to
+              show what a category looks like; the collection page is one
+              click away and the text index below links every single product.
+
+              Nothing became less reachable: this page still contains 233
+              product links in the server HTML. It just stopped shipping 233
+              product cards to do it.
+            */}
             {activeCategories().map((c) => {
-              const items = listed().filter((p) => p.category === c.name);
+              const items = indexed().filter((p) => p.category === c.name);
               if (items.length === 0) return null;
+              const preview = items.slice(0, 4);
               return (
                 <section key={c.slug} className="mt-14">
                   <div className="flex items-end justify-between gap-4">
                     <h2 className="text-xl font-semibold tracking-tight">{c.name}</h2>
                     <Link href={`/collections/${c.slug}`} className="text-sm link-quiet">
-                      View collection →
+                      {items.length > preview.length
+                        ? `All ${items.length} →`
+                        : "View collection →"}
                     </Link>
                   </div>
                   <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
-                    {items.map((p) => (
+                    {preview.map((p) => (
                       <ProductCard key={p.key} product={p} />
                     ))}
                   </div>
@@ -122,7 +141,7 @@ export default function AllProductsPage() {
           </p>
 
           {activeCategories().map((c) => {
-            const items = listed().filter((p) => p.category === c.name);
+            const items = indexed().filter((p) => p.category === c.name);
             if (items.length === 0) return null;
             return (
               <div key={c.slug} className="mt-8">

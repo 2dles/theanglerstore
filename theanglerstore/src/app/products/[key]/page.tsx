@@ -9,6 +9,8 @@ import {
   getProduct,
   isSourced,
   brandOf,
+  colorCanonical,
+  colorFamily,
   metaDescription,
   structuredSpecs,
   related,
@@ -33,6 +35,7 @@ import { getWalkthrough } from "@/lib/walkthroughs";
 // Server component. supplier.ts is marked `server-only`, so this import can
 // never follow a client boundary and leak dealer cost into a JS chunk.
 import { mpnOf } from "@/lib/supplier";
+import { tideLinkFor } from "@/lib/tide-links";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 
 /**
@@ -81,7 +84,10 @@ export async function generateMetadata({
   return {
     title: { absolute: title },
     description: metaDescription(product),
-    alternates: { canonical: `/products/${product.key}` },
+    // Colour-only variants point at the cheapest colour in their family.
+    // Twenty near-identical flasher pages were competing with each other for
+    // the same query; now one of them can win it.
+    alternates: { canonical: `/products/${colorCanonical(product).key}` },
     // A page nobody can buy from should resolve — USTideCharts links to five
     // of them and those links are attribution we can't get back — but it
     // should not be offered to the index as a product. It stays out of the
@@ -124,6 +130,7 @@ export default async function ProductPage({
   const water = waterOf(product);
   const walkthrough = getWalkthrough(product.key);
   const sourced = isSourced(product);
+  const tideLink = tideLinkFor(product);
 
   // NOTE: no aggregateRating / review here, deliberately. Search Console asks
   // for them, but we have never taken an order — inventing ratings would be
@@ -419,14 +426,14 @@ export default async function ProductPage({
                   are relevant. Tides do not move a lake, and "find your tide
                   window" under a crappie bait reads as automation — which
                   quietly undermines the water tag a few inches above it. */}
-              {water !== "fresh" && (
+              {tideLink && (
                 <a
-                  href={`https://ustidecharts.com?utm_source=theanglerstore&utm_medium=location&utm_content=${product.key}`}
+                  href={tideLink.href}
                   target="_blank"
                   rel="noopener"
                   className="mt-3 inline-block text-sm text-tide hover:text-teal"
                 >
-                  Find the right tide window near you ↗
+                  {tideLink.label}
                 </a>
               )}
             </div>

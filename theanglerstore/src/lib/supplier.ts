@@ -313,6 +313,13 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "abu-max-x-3000": { sku: "MAXXSP3000", mfgPart: "MAXXSP3000", cost: 26.84, supplier: "burch" },
   "daiwa-d-shock-combo-7mh": { sku: "DSK40-B/F702MH", mfgPart: "DSK40-B/F702MH", cost: 24.42, supplier: "burch" },
   "abu-max-x-combo": { sku: "MAXXSP2500/661ML", mfgPart: "MAXXSP2500/661ML", cost: 41.75, supplier: "burch" },
+  // Daiwa D-Wave saltwater combos. Costs and SKUs read from Burch's own
+  // product pages, 13 Aug 2026 — all four showed sold out that day, so they
+  // sit in UNSOURCED until stock is confirmed.
+  "dwave-combo-7": { sku: "DWB40-B/F702M", mfgPart: "DWB40-B/F702M", cost: 42.09, supplier: "burch" },
+  "dwave-combo-8": { sku: "DWB40-B/F802M", mfgPart: "DWB40-B/F802M", cost: 42.09, supplier: "burch" },
+  "dwave-combo-9": { sku: "DWB50-B/F902M", mfgPart: "DWB50-B/F902M", cost: 61.23, supplier: "burch" },
+  "dwave-combo-10": { sku: "DWB50-B/F1002M", mfgPart: "DWB50-B/F1002M", cost: 61.23, supplier: "burch" },
   "okuma-tundra-7": { sku: "OKTU-70", mfgPart: "OKTU-70", cost: 17.44, supplier: "burch" },
   "daiwa-laguna-ul": { sku: "LAG662ULFS", mfgPart: "LAG662ULFS", cost: 29.91, supplier: "burch" },
 };

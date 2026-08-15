@@ -11,6 +11,7 @@ import { AddBundle } from "@/components/AddBundle";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
+import { TIDE_HOME } from "@/lib/tide-links";
 
 export const metadata = {
   // absolute: the layout template would otherwise render this as
@@ -53,7 +54,7 @@ export default function HomePage() {
                   Shop all gear
                 </Link>
                 <a
-                  href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=home"
+                  href={TIDE_HOME}
                   className="btn btn-ghost"
                  target="_blank" rel="noopener">
                   Check the tides first ↗
@@ -192,7 +193,7 @@ export default function HomePage() {
             </p>
           </div>
           <a
-            href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=home"
+            href={TIDE_HOME}
             className="btn btn-ghost shrink-0"
            target="_blank" rel="noopener">
             USTideCharts.com ↗

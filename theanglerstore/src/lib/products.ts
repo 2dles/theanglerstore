@@ -47,7 +47,7 @@ export type Category =
   | "Safety & Flotation"
   | "Soft Baits"
   | "Reels"
-  | "Freshwater Rods & Combos";
+  | "Rod & Reel Combos";
 
 export interface Product {
   key: string;
@@ -122,6 +122,24 @@ export const CATEGORIES: {
   name: Category;
   blurb: string;
   /**
+   * The <title>. Was bare "{Name} | TheAnglerStore" on all 18 — "Lures |
+   * TheAnglerStore" competes with every tackle shop on earth and tells a
+   * searcher nothing about what is behind the link. The modifier names what
+   * the page actually holds, which is also the thing someone is searching for.
+   */
+  title: string;
+  /**
+   * A plain warning shown at the top of the collection, where the catalogue
+   * cannot do what the storefront implies.
+   *
+   * Not marketing. This exists because every reel we stock is freshwater-rated
+   * by its own manufacturer, on a site whose title promises surf and inshore
+   * tackle — so somebody buying an 11-foot surf rod has nothing here to put on
+   * it. Saying so costs a sale we were not going to complete honestly anyway,
+   * and burying it costs a customer.
+   */
+  notice?: string;
+  /**
    * Show in the header and footer nav. Ten categories is the right shape for
    * /products but too many for a header row, so the deeper ones live one click
    * in. Every category still gets its own page and sits in the sitemap.
@@ -135,6 +153,9 @@ export const CATEGORIES: {
   {
     slug: "surf-rods",
     name: "Surf Rods",
+    title: "Surf Rods — Two-Piece Beach & Pier Rods",
+    notice:
+      "These rods are saltwater rods. The reels we sell separately are not — every one is freshwater-rated by its manufacturer, so we can't sell you a reel to put on one of these. Bring your own, or take a Daiwa D-Wave combo instead, which arrives as a matched saltwater rod and reel.",
     blurb:
       "Two-piece surf rods, which is the honest answer to a hard problem: a one-piece 10-foot blank ships as oversize freight and costs more to send than it does to make. Break it in half and it goes in a normal parcel.",
     nav: true,
@@ -142,20 +163,25 @@ export const CATEGORIES: {
   {
     slug: "reels",
     name: "Reels",
+    title: "Spinning Reels for Rod & Combo Builds",
+    notice:
+      "Every reel we sell on its own is rated by its manufacturer for freshwater only — none of them publish a saltwater rating, and we won't invent one. If you're building a surf or jetty setup, these are not the reels for it. The saltwater reels we can get come matched to a rod, in the Daiwa D-Wave combos.",
     blurb:
       "Spinning reels from Daiwa and Abu Garcia. Every one here is a freshwater reel and labelled as such — none of these manufacturers publishes a saltwater rating or a sealed-bearing claim for these models, and we don't make claims they don't. A surf reel we'd actually stand behind is still on the list.",
     nav: true,
   },
   {
     slug: "combos",
-    name: "Freshwater Rods & Combos",
+    name: "Rod & Reel Combos",
+    title: "Rod & Reel Combos — Ready to Fish",
     blurb:
-      "Rod and reel sold together, matched and balanced by the manufacturer, plus the freshwater rods that aren't surf rods. Every item here is a freshwater model — the manufacturers publish no saltwater rating for any of them, and we won't imply one.",
+      "Rod and reel sold together, matched and balanced by the manufacturer. Some are saltwater outfits and some are strictly freshwater — every one says which, in its own spec table, using the manufacturer's rating and not ours.",
     nav: true,
   },
   {
     slug: "line-leader",
     name: "Line & Leader",
+    title: "Braid, Fluorocarbon Leader & Lead Core",
     blurb:
       "Eight-strand braid and true 100% fluorocarbon. The cheapest meaningful upgrade in fishing, and the one most anglers put off longest.",
     nav: true,
@@ -163,6 +189,7 @@ export const CATEGORIES: {
   {
     slug: "terminal-tackle",
     name: "Terminal Tackle",
+    title: "Hooks, Swivels & Weights for Bottom Rigs",
     blurb:
       "Hooks, swivels and weights — the small metal that decides whether a bite becomes a fish. This category sat empty for months because our marine distributor doesn't stock a single fishing hook. It is no longer empty.",
     nav: true,
@@ -170,6 +197,7 @@ export const CATEGORIES: {
   {
     slug: "lures",
     name: "Lures",
+    title: "Fishing Lures — Jigs, Plugs & Hard Baits",
     blurb:
       "Metal and plastic that gets down and stays down. Jigs built to rotate and flash on the fall, and trolling plugs that reach depth on the lip alone.",
     nav: true,
@@ -177,6 +205,7 @@ export const CATEGORIES: {
   {
     slug: "soft-baits",
     name: "Soft Baits",
+    title: "Soft Plastics — Worms, Flukes & Craws",
     blurb:
       "Worms, craws, creatures and stick baits — the plastic half of freshwater fishing. Almost everything here is under ten dollars and none of it justifies its own shipping label, so buy a handful at once and let them ride in the same box.",
     nav: true,
@@ -184,6 +213,7 @@ export const CATEGORIES: {
   {
     slug: "nets-landing",
     name: "Nets & Landing",
+    title: "Landing Nets, Handles & Gaffs",
     blurb:
       "Getting the fish out of the water is the part people skimp on and then regret. Nets, the handles that reach them, and the adapter that puts the hoop at a usable angle.",
     nav: true,
@@ -191,6 +221,7 @@ export const CATEGORIES: {
   {
     slug: "tools",
     name: "Tools",
+    title: "Pliers, Grippers & Scales",
     blurb:
       "Pliers, grippers, scales and somewhere to hang them. Everything here is chosen to survive salt and to work one-handed, because the other hand is usually holding a fish.",
     nav: true,
@@ -198,6 +229,7 @@ export const CATEGORIES: {
   {
     slug: "tackle-storage",
     name: "Tackle Storage",
+    title: "Tackle Boxes, Trays & Backpacks",
     blurb:
       "Boxes, trays and packs, mostly in the 3700 format that nearly every bag is built around. The point of good storage isn't tidiness, it's not losing ten minutes to a knot of jig heads.",
     nav: true,
@@ -205,18 +237,21 @@ export const CATEGORIES: {
   {
     slug: "trolling-rigging",
     name: "Trolling & Rigging",
+    title: "Trolling Gear — Divers, Flashers & Releases",
     blurb:
       "Release clips, snubbers, stops and outrigger hardware — the small parts that make a downrigger or a rigger actually work, and the ones that wear out, break or go over the side. This is the consumable end of trolling.",
   },
   {
     slug: "downriggers",
     name: "Downriggers",
+    title: "Downriggers, Cable & Weight Retrievers",
     blurb:
       "Precise depth, held there, instead of an educated guess. A manual downrigger and the parts that wear out on it — cable and terminal pulleys go before anything else does.",
   },
   {
     slug: "rod-holders",
     name: "Rod Holders",
+    title: "Rod Holders — Flush, Clamp & Rack Mounts",
     blurb:
       "Somewhere to put the rod that isn't your hand or the sand. Flush mounts for a gunwale, clamp-ons for a rail, racks for the garage wall — CWR is a marine distributor first, and this is the category where that shows.",
     nav: true,
@@ -224,30 +259,35 @@ export const CATEGORIES: {
   {
     slug: "kayak-paddle",
     name: "Kayak & Paddle",
+    title: "Kayak Fishing Gear — Anchors & Mounts",
     blurb:
       "Rigging for a fishing kayak: track-mount rod holders, anchor gear that works one-handed from a seated position, leashes, plugs and a finder mount stiff enough for chop. Nothing here needs you to drill a new hole below the waterline.",
   },
   {
     slug: "bait-live-wells",
     name: "Bait & Live Wells",
+    title: "Bait Buckets & Live-Well Aerators",
     blurb:
       "Keeping bait alive is most of the battle. A dead anchovy catches a fraction of what a lively one does, and an aerator is the cheapest thing on this site measured against the difference it makes.",
   },
   {
     slug: "lights",
     name: "Lights",
+    title: "Dock, Flood & Submersible Fishing Lights",
     blurb:
       "Green and blue submersible and dock lights. Light draws plankton, plankton draws bait, bait draws what you're after — it's the oldest trick in night fishing and it still works.",
   },
   {
     slug: "coolers",
     name: "Coolers",
+    title: "Fishing Coolers & Soft-Sided Packs",
     blurb:
       "Cold storage that actually ships well. We looked hard at big rotomolded hard coolers and decided against them: they cost more to freight than they do to make.",
   },
   {
     slug: "safety-flotation",
     name: "Safety & Flotation",
+    title: "Safety Gear — Strobes, Whistles & Throw Bags",
     blurb:
       "Whistles, strobes, a signalling mirror, a throw bag and a grab bag. We describe safety equipment using only what the manufacturer states — where a product carries no USCG or SOLAS approval, we say so rather than implying one.",
   },
@@ -275,7 +315,7 @@ export const PRODUCTS: Product[] = [
     features: [
       "Two-piece — ships as a parcel, fits in a car",
       "Fiberglass blank: forgiving, and very hard to break",
-      "Medium power, 8–20 lb line",
+      "10–20 lb line, 1–4 oz casting weight",
       "Daiwa's entry surf series, priced accordingly",
     ],
     gradient: ["#26364a", "#4a6a8c"],
@@ -394,10 +434,9 @@ export const PRODUCTS: Product[] = [
       "The circle hook does the work for you: no strike, just let the rod load and the hook finds the corner of the jaw on its own. That's why they're mandated in a lot of fisheries — fish that are released swim off unharmed. Sea Guard finish for salt, and fifty in the box so you stop rationing them.",
     specs: [
       { label: "Brand", value: "Eagle Claw" },
-      { label: "Color", value: "4/0" },
-      { label: "Quantity", value: "50-Pack" },
       { label: "Size", value: "4/0" },
-      { label: "Quantity", value: "50" },
+      { label: "Quantity", value: "50 per pack" },
+      { label: "Style", value: "Offset circle, sea hook" },
       { label: "Finish", value: "Sea Guard" },
       { label: "Ships in", value: "3–7 business days" },
     ],
@@ -984,12 +1023,13 @@ export const PRODUCTS: Product[] = [
   {
     key: "flasher",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Rainbow Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 22.99,
     tagline: "Attractor for trolled salmon rigs",
     blurb:
       "An eleven-inch rolling flasher for trolling. It does not catch fish itself — it makes the bait behind it findable from much further away. Standard kit for West Coast salmon, and the reason a slow troll works at all in colored water.",
     specs: [
+      { label: "Color", value: "Rainbow Crush" },
       { label: "Length", value: "11″" },
       { label: "Finish", value: "Rainbow Crush" },
       { label: "Action", value: "Rolling" },
@@ -2379,7 +2419,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "dipsy-small",
     name: "Luhr-Jensen 2¼″ Dipsy Diver — Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 11.99,
     tagline: "Takes your bait down and out to the side",
     blurb:
@@ -2410,7 +2450,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "jet-driver-20",
     name: "Luhr-Jensen 20 ft Jet Driver — Clear UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 12.49,
     tagline: "Twenty feet down, no weight needed",
     blurb:
@@ -2441,7 +2481,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "jet-driver-30",
     name: "Luhr-Jensen 30 ft Jet Driver — Purple UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 15.99,
     tagline: "Thirty feet on the same principle",
     blurb:
@@ -2503,7 +2543,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "dipsy-mid",
     name: "Luhr-Jensen 3¼″ Dipsy Diver — Clear UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 16.99,
     tagline: "The middle Dipsy, the one most people own",
     blurb:
@@ -2565,12 +2605,13 @@ export const PRODUCTS: Product[] = [
   {
     key: "flasher-small",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Brandon\u2019s Secret",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "The smaller flasher, for lighter gear",
     blurb:
       "Eight and a quarter inches rather than eleven, which matters more than it sounds: a big flasher pulls hard enough to dull the bite of a light rod. This one attracts without taking the feel out of the rod.",
     specs: [
+      { label: "Color", value: "Brandon’s Secret" },
       { label: "Length", value: "8.25″" },
       { label: "Finish", value: "Brandons Secret" },
       { label: "Type", value: "Rolling flasher" },
@@ -2596,7 +2637,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "dipsy-large",
     name: "Luhr-Jensen 4⅛″ Dipsy Diver — Clear UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 18.99,
     tagline: "The big one, for depth and distance",
     blurb:
@@ -3040,7 +3081,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-20-jet-driver-purple-uv-moon-jel",
     name: "Luhr-Jensen Jet Driver 20 ft — Purple UV Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 11.99,
     tagline: "Twenty feet down, no weight needed",
     blurb:
@@ -3069,7 +3110,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-20-jet-driver-blue-uv-moon-jelly",
     name: "Luhr-Jensen Jet Driver 20 ft — Blue UV Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 11.99,
     tagline: "Twenty feet down, no weight needed",
     blurb:
@@ -3098,7 +3139,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-20-jet-driver-black-moon-jelly",
     name: "Luhr-Jensen Jet Driver 20 ft — Black Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 12.49,
     tagline: "Twenty feet down, no weight needed",
     blurb:
@@ -3127,7 +3168,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-20-jet-driver-silver-crush",
     name: "Luhr-Jensen Jet Driver 20 ft — Silver Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 12.49,
     tagline: "Twenty feet down, no weight needed",
     blurb:
@@ -3156,7 +3197,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-black-black-bo",
     name: "Luhr-Jensen 3¼″ Dipsy Diver — Black/Black Bottom Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 18.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
@@ -3185,7 +3226,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-silver-silver-",
     name: "Luhr-Jensen 3¼″ Dipsy Diver — Silver/Silver Bottom Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 18.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
@@ -3214,7 +3255,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-3-1-4-dipsy-diver-chartreuse-sil",
     name: "Luhr-Jensen 3¼″ Dipsy Diver — Chartreuse/Silver Bottom Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 16.99,
     tagline: "The middle Dipsy — the one most people own",
     blurb:
@@ -3243,7 +3284,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-30-jet-driver-black-moon-jelly",
     name: "Luhr-Jensen Jet Driver 30 ft — Black Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 12.49,
     tagline: "Thirty feet, same principle",
     blurb:
@@ -3272,7 +3313,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-30-jet-driver-clear-uv-moon-jell",
     name: "Luhr-Jensen Jet Driver 30 ft — Clear UV Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 10.99,
     tagline: "Thirty feet, same principle",
     blurb:
@@ -3301,7 +3342,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-30-jet-driver-silver-uv-crush",
     name: "Luhr-Jensen Jet Driver 30 ft — Silver UV Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 12.99,
     tagline: "Thirty feet, same principle",
     blurb:
@@ -3330,7 +3371,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-black-black-bo",
     name: "Luhr-Jensen 4⅛″ Dipsy Diver — Black/Black Bottom Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 23.99,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
@@ -3359,7 +3400,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-fire-silver-bo",
     name: "Luhr-Jensen 4⅛″ Dipsy Diver — Fire/Silver Bottom Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.49,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
@@ -3388,7 +3429,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-4-1-8-dipsy-diver-kelly-green-si",
     name: "Luhr-Jensen 4⅛″ Dipsy Diver — Kelly Green/Silver Bottom Moon Jelly",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.49,
     tagline: "The big Dipsy, for depth and distance",
     blurb:
@@ -3417,7 +3458,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-blue-ka",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Blue Kamikaze UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3447,7 +3488,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-chrome-",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Chrome Ladder",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3477,7 +3518,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-citrus-",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Citrus Nugget",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3507,7 +3548,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-glow-bl",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Glow Blue Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3537,7 +3578,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-rainbow",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Rainbow Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 18.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3567,7 +3608,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-nuclear",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Nuclear Carbon Glow",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 17.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3597,7 +3638,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-razzle-",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Razzle Dazzle",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3627,7 +3668,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-pearl-b",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, Pearl Blue Skeleton",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3657,7 +3698,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-8-1-4-2-face-",
     name: "Luhr-Jensen Money Roll Flasher — 8¼″, 2 Face UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 19.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3687,7 +3728,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-blue-kamik",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Blue Kamikaze UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 25.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3717,7 +3758,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-brandon-s-",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Brandon's Secret",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3747,7 +3788,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-chrome-lad",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Chrome Ladder",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 23.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3777,7 +3818,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-chrome-sca",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Chrome Scale",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3807,7 +3848,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-citrus-nug",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Citrus Nugget",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3837,7 +3878,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-glow-blue-",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Glow Blue Crush",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3867,7 +3908,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-glow-bioha",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Glow Biohazard",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 25.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3897,7 +3938,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-nuclear-ca",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Nuclear Carbon Glow",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3927,7 +3968,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-razzle-daz",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Razzle Dazzle",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 23.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3957,7 +3998,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-pearl-blue",
     name: "Luhr-Jensen Money Roll Flasher — 11″, Pearl Blue Skeleton",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -3987,7 +4028,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "luhr-jensen-money-roll-flasher-11-2-face-uv",
     name: "Luhr-Jensen Money Roll Flasher — 11″, 2 Face UV",
-    category: "Lures",
+    category: "Trolling & Rigging",
     price: 24.99,
     tagline: "Rolling attractor for a trolled rig",
     blurb:
@@ -5266,6 +5307,7 @@ export const PRODUCTS: Product[] = [
     blurb:
       "A single 30-degree cutout that takes a rod while you're trolling and a can while you're not. The 3/8\" NPT drain fitting means it never sits full of rainwater, which is what kills the cheap ones. The least expensive way to put a proper drained gunwale tube in a small boat.",
     specs: [
+      { label: "Color", value: "White" },
       { label: "Brand", value: "Mate Series" },
       { label: "Angle", value: "30°" },
       { label: "Top", value: "Round, drained" },
@@ -6050,7 +6092,7 @@ export const PRODUCTS: Product[] = [
     features: [
       "Two-piece — ships as a parcel, fits in a car",
       "Fiberglass blank: forgiving, and very hard to break",
-      "Medium power, 8–20 lb line",
+      "8–20 lb line, 1–3 oz casting weight",
       "Daiwa's entry surf series, priced accordingly",
     ],
     gradient: ["#26364a", "#4a6a8c"],
@@ -6083,7 +6125,7 @@ export const PRODUCTS: Product[] = [
     features: [
       "Two-piece — ships as a parcel, fits in a car",
       "Fiberglass blank: forgiving, and very hard to break",
-      "Medium power, 8–20 lb line",
+      "10–25 lb line, 1–5 oz casting weight",
       "Daiwa's entry surf series, priced accordingly",
     ],
     gradient: ["#26364a", "#4a6a8c"],
@@ -7341,9 +7383,145 @@ export const PRODUCTS: Product[] = [
     shipsIn: "3–7 business days",
   },
   {
+    key: "dwave-combo-10",
+    name: "Daiwa D-Wave Saltwater Spinning Combo — 10 ft, 2-Piece Medium",
+    category: "Rod & Reel Combos",
+    price: 79.99,
+    tagline: "The whole surf setup, one box",
+    blurb:
+      "Daiwa's own description is the honest one: perfect for saltwater as well as heavy freshwater, for stripers, redfish, snook and baby tarpon. Ten feet is the length most surfcasters settle on, and this is the cheapest way to own that reach with a reel already matched to it — a 50-size spool holding 410 yards of 14 lb, which is a genuine surf reel rather than a bass reel with a long rod bolted to it.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "10 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Medium" },
+      { label: "Blank", value: "Fiberglass" },
+      { label: "Reel", value: "DWA-B 50, 1 ball bearing" },
+      { label: "Line capacity", value: "14 lb / 410 yd, 17 lb / 310 yd, 20 lb / 240 yd" },
+      { label: "Water", value: "Saltwater and heavy freshwater — Daiwa's own rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Rod and reel matched and balanced by Daiwa",
+      "Full fiberglass blank — forgiving, and hard to break",
+      "Aluminum oxide guides and a stainless hooded reel seat",
+      "Twist Buster II line roller and an ABS aluminum spool",
+      "50-size reel — 410 yd of 14 lb, enough for a long cast and a long run",
+    ],
+    gradient: ["#12384f", "#1f6a8e"],
+    glyph: "rod",
+    pairsWith: ["braided-line", "circle-hooks", "fluoro-leader", "sand-spike"],
+    whenToUse: "A first surf outfit, or a second rod to leave in a spike.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "dwave-combo-9",
+    name: "Daiwa D-Wave Saltwater Spinning Combo — 9 ft, 2-Piece Medium",
+    category: "Rod & Reel Combos",
+    price: 79.99,
+    tagline: "Nine feet, and easier to swing all day",
+    blurb:
+      "The same saltwater outfit as the ten-footer with a foot less rod, which is the trade most people should take on a steep beach or a crowded jetty: slightly less distance, noticeably less work over a long session. Daiwa rate it for saltwater and heavy freshwater — stripers, redfish, snook — and the 50-size reel carries 410 yards of 14 lb.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "9 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Medium" },
+      { label: "Blank", value: "Fiberglass" },
+      { label: "Reel", value: "DWA-B 50, 1 ball bearing" },
+      { label: "Line capacity", value: "14 lb / 410 yd, 17 lb / 310 yd, 20 lb / 240 yd" },
+      { label: "Water", value: "Saltwater and heavy freshwater — Daiwa's own rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Rod and reel matched and balanced by Daiwa",
+      "Full fiberglass blank — forgiving, and hard to break",
+      "Aluminum oxide guides and a stainless hooded reel seat",
+      "Twist Buster II line roller and an ABS aluminum spool",
+      "50-size reel — 410 yd of 14 lb, the same spool as the ten-footer",
+    ],
+    gradient: ["#12384f", "#1f6a8e"],
+    glyph: "rod",
+    pairsWith: ["braided-line", "circle-hooks", "fluoro-leader", "pliers"],
+    whenToUse: "Steep beaches, jetties, and anywhere a ten-footer is more rod than the spot needs.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "dwave-combo-8",
+    name: "Daiwa D-Wave Saltwater Spinning Combo — 8 ft, 2-Piece Medium",
+    category: "Rod & Reel Combos",
+    price: 59.99,
+    tagline: "Beach, pier or boat, without picking a side",
+    blurb:
+      "Eight feet is the honest middle: long enough to keep line above the wash on a gentle beach, short enough to fish from a pier or a boat without apologising to anyone. Daiwa rate the D-Wave for saltwater and heavy freshwater, and the 40-size reel takes 300 yards of 14 lb.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "8 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Medium" },
+      { label: "Blank", value: "Fiberglass" },
+      { label: "Reel", value: "DWA-B 40, 1 ball bearing" },
+      { label: "Line capacity", value: "12 lb / 350 yd, 14 lb / 300 yd, 17 lb / 220 yd" },
+      { label: "Water", value: "Saltwater and heavy freshwater — Daiwa's own rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Rod and reel matched and balanced by Daiwa",
+      "Full fiberglass blank — forgiving, and hard to break",
+      "Aluminum oxide guides and a stainless hooded reel seat",
+      "Twist Buster II line roller and an ABS aluminum spool",
+      "40-size reel — 300 yd of 14 lb",
+    ],
+    gradient: ["#12384f", "#1f6a8e"],
+    glyph: "rod",
+    pairsWith: ["braided-line", "circle-hooks", "landing-net", "pliers"],
+    whenToUse: "Piers, gentle beaches, and bay fishing where a surf rod is too much stick.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "dwave-combo-7",
+    name: "Daiwa D-Wave Saltwater Spinning Combo — 7 ft, 2-Piece Medium",
+    category: "Rod & Reel Combos",
+    price: 59.99,
+    tagline: "Bays, harbours and kelp edges",
+    blurb:
+      "The inshore length of the D-Wave range: seven feet of medium fiberglass on a 40-size reel, rated by Daiwa for saltwater as well as heavy freshwater. This is the one for bays, harbours and kelp edges rather than open beach — halibut and bass water, where casting distance matters less than being able to work a bait with one hand.",
+    specs: [
+      { label: "Brand", value: "Daiwa" },
+      { label: "Length", value: "7 ft" },
+      { label: "Pieces", value: "2" },
+      { label: "Power", value: "Medium" },
+      { label: "Blank", value: "Fiberglass" },
+      { label: "Reel", value: "DWA-B 40, 1 ball bearing" },
+      { label: "Line capacity", value: "12 lb / 350 yd, 14 lb / 300 yd, 17 lb / 220 yd" },
+      { label: "Water", value: "Saltwater and heavy freshwater — Daiwa's own rating" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Rod and reel matched and balanced by Daiwa",
+      "Full fiberglass blank — forgiving, and hard to break",
+      "Aluminum oxide guides and a stainless hooded reel seat",
+      "Twist Buster II line roller and an ABS aluminum spool",
+      "40-size reel — 300 yd of 14 lb",
+    ],
+    gradient: ["#12384f", "#1f6a8e"],
+    glyph: "rod",
+    pairsWith: ["braided-line", "fluoro-leader", "circle-hooks", "landing-net"],
+    whenToUse: "Bay bass, halibut and anywhere you're fishing structure rather than distance.",
+    featured: false,
+    role: "anchor",
+    shipsIn: "3–7 business days",
+  },
+  {
     key: "daiwa-d-shock-combo-7mh",
     name: "Daiwa D-Shock Spinning Combo — 7 ft, 2-Piece Medium-Heavy",
-    category: "Freshwater Rods & Combos",
+    category: "Rod & Reel Combos",
     price: 34.99,
     tagline: "Rod and reel, matched, thirty-five dollars",
     blurb:
@@ -7376,7 +7554,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "abu-max-x-combo",
     name: "Abu Garcia Max X Spinning Combo — 6 ft 6 in, Medium-Light",
-    category: "Freshwater Rods & Combos",
+    category: "Rod & Reel Combos",
     price: 64.99,
     tagline: "The Max X reel, on a rod built for it",
     blurb:
@@ -7445,7 +7623,7 @@ export const PRODUCTS: Product[] = [
   {
     key: "daiwa-laguna-ul",
     name: "Daiwa Laguna Spinning Rod — 6 ft 6 in, 2-Piece Ultralight",
-    category: "Freshwater Rods & Combos",
+    category: "Rod & Reel Combos",
     price: 49.99,
     tagline: "One to four pound line, and you feel everything",
     blurb:
@@ -7519,6 +7697,15 @@ export const UNSOURCED: ReadonlySet<string> = new Set([
   // Fishing Tackle opened — they are real, in-stock, priced products now.
   // The remaining five have no supplier behind them and the checkout refuses
   // them, so no one can be charged for something we cannot ship.
+  // The four Daiwa D-Wave saltwater combos are real, priced, and carry real
+  // Burch SKUs — but every one of them showed SOLD OUT on Burch's own product
+  // pages on 13 Aug 2026, even though their search index still listed them as
+  // in stock. We do not sell what we cannot ship. Delete these four lines the
+  // day Burch confirms stock and the whole range goes live as it stands.
+  "dwave-combo-10",
+  "dwave-combo-9",
+  "dwave-combo-8",
+  "dwave-combo-7",
   "inshore-combo",
   "carolina-kit",
   "swimbait-kit",
@@ -7559,6 +7746,125 @@ const NON_ATTRIBUTE_SPECS = new Set(["brand", "ships in"]);
 /** The visible spec table, as machine-readable attributes. */
 export function structuredSpecs(p: Product): { label: string; value: string }[] {
   return p.specs.filter((s) => !NON_ATTRIBUTE_SPECS.has(s.label.toLowerCase()));
+}
+
+/**
+ * The one or two specs that decide the purchase, for the product card.
+ *
+ * The Surf Rods page showed three rods at the same price with the same card
+ * line — "Fiberglass, two-piece, honestly priced" — and no way to tell a 9'
+ * from an 11'. The single decision a shopper makes on that page got no help
+ * until they clicked into each rod individually.
+ *
+ * These are the filter criteria anglers actually use, in the order they use
+ * them, per category. Nothing is invented: if a product has no spec from its
+ * category's list, its card shows none rather than a padded one.
+ */
+const CARD_SPECS: Partial<Record<Category, string[]>> = {
+  "Surf Rods": ["Length", "Line rating"],
+  "Rod & Reel Combos": ["Length", "Power"],
+  Reels: ["Size", "Gear ratio"],
+  "Line & Leader": ["Line rating", "Spool length"],
+  "Terminal Tackle": ["Size", "Quantity"],
+  Lures: ["Weight", "Length"],
+  "Soft Baits": ["Length", "Quantity"],
+  "Nets & Landing": ["Size", "Length"],
+  Tools: ["Length", "Capacity"],
+  "Tackle Storage": ["Size", "Capacity"],
+  "Trolling & Rigging": ["Size", "Type"],
+  Downriggers: ["Type", "Material"],
+  "Rod Holders": ["Mount", "Angle"],
+  "Kayak & Paddle": ["Type", "Length"],
+  "Bait & Live Wells": ["Type", "Power"],
+  Lights: ["Power", "Supply"],
+  Coolers: ["Capacity", "Ice retention"],
+  "Safety & Flotation": ["Size", "Quantity"],
+};
+
+/**
+ * COLOUR-ONLY VARIANTS.
+ *
+ * Eleven families here are the same product in different colours — twenty
+ * Luhr-Jensen Money Roll Flashers, the Dipsy Divers, the Jet Drivers. Their
+ * pages are 90% identical to each other by body text, and each one was a
+ * separate self-canonical URL competing with its own siblings for the same
+ * query. That is the classic way a small catalogue looks bigger and ranks
+ * worse.
+ *
+ * Detection is data-driven, not name-guessing: a product is a colour variant
+ * only if it has a Color spec AND that exact value is the tail of its name.
+ * That deliberately excludes "Sufix 832 — 20 lb, 300 yd", where the trailing
+ * segment is a length, not a colour — 20 lb braid and 8 lb braid are
+ * different products answering different questions and both stay indexable.
+ *
+ * The representative is the CHEAPEST in the family. Canonicalising six
+ * flashers onto a pricier one would land every searcher on the worst price we
+ * offer for the thing they searched for.
+ */
+function colorValue(p: Product): string | undefined {
+  return p.specs.find((s) => s.label === "Color" || s.label === "Colour")?.value;
+}
+
+export function colorFamilyKey(p: Product): string | null {
+  const c = colorValue(p);
+  if (!c) return null;
+  for (const sep of [", ", " — ", " - "]) {
+    if (p.name.endsWith(sep + c)) return p.name.slice(0, p.name.length - (sep + c).length);
+  }
+  return null;
+}
+
+let COLOR_FAMILIES: Map<string, Product[]> | null = null;
+
+function colorFamilies(): Map<string, Product[]> {
+  if (COLOR_FAMILIES) return COLOR_FAMILIES;
+  COLOR_FAMILIES = new Map();
+  for (const p of PRODUCTS) {
+    const k = colorFamilyKey(p);
+    if (!k) continue;
+    if (!COLOR_FAMILIES.has(k)) COLOR_FAMILIES.set(k, []);
+    COLOR_FAMILIES.get(k)!.push(p);
+  }
+  for (const [k, v] of COLOR_FAMILIES) {
+    if (v.length < 2) COLOR_FAMILIES.delete(k);
+    else v.sort((a, b) => a.price - b.price || a.key.localeCompare(b.key));
+  }
+  return COLOR_FAMILIES;
+}
+
+/** Every colour of this product, cheapest first. Empty if it has no siblings. */
+export function colorFamily(p: Product): Product[] {
+  const k = colorFamilyKey(p);
+  return (k && colorFamilies().get(k)) || [];
+}
+
+/** The page that should rank for this family — the cheapest colour. */
+export function colorCanonical(p: Product): Product {
+  return colorFamily(p)[0] ?? p;
+}
+
+/** Is this the page we ask search engines to index for its family? */
+export function isColorCanonical(p: Product): boolean {
+  return colorCanonical(p).key === p.key;
+}
+
+/**
+ * Listed products with colour duplicates folded away — for the sitemap and
+ * for browsing grids. Every colour still resolves and is still linked from
+ * its family's page; they just stop competing with each other.
+ */
+export function indexed(): Product[] {
+  return listed().filter(isColorCanonical);
+}
+
+export function cardSpecs(p: Product): { label: string; value: string }[] {
+  const wanted = CARD_SPECS[p.category] ?? [];
+  const out: { label: string; value: string }[] = [];
+  for (const label of wanted) {
+    const hit = p.specs.find((s) => s.label === label);
+    if (hit) out.push(hit);
+  }
+  return out.slice(0, 2);
 }
 
 /**
@@ -7796,12 +8102,22 @@ const FRESH_BRANDS = [
 ];
 
 export function waterOf(p: Product): Water {
+  // The visible Water row wins, where there is one. It quotes the
+  // manufacturer's own rating, so deriving something different from the
+  // category would mean the badge and the spec table disagreeing on the same
+  // screen — which is exactly the class of bug the audits kept finding.
+  const stated = p.specs.find((s) => s.label === "Water")?.value ?? "";
+  if (stated) {
+    if (/^freshwater\b/i.test(stated)) return "fresh";
+    if (/saltwater|surf/i.test(stated)) return /heavy freshwater|or fresh/i.test(stated) ? "both" : "salt";
+  }
   if (p.category === "Soft Baits") return "fresh";
   if (p.category === "Surf Rods") return "salt";
-  // Every reel and combo we stock is a freshwater model. Not one of these
-  // manufacturers publishes a saltwater rating or a sealed-bearing claim for
-  // them, and "both" would be us quietly implying one.
-  if (p.category === "Reels" || p.category === "Freshwater Rods & Combos") return "fresh";
+  // Every reel we stock is still a freshwater model — not one of these
+  // manufacturers publishes a saltwater rating or a sealed-bearing claim, and
+  // "both" would be us quietly implying one. Combos are no longer blanket
+  // freshwater: the Daiwa D-Wave outfits are rated for salt by Daiwa.
+  if (p.category === "Reels") return "fresh";
   const brand = p.specs.find((s) => s.label === "Brand")?.value ?? "";
   if (FRESH_BRANDS.some((b) => brand.startsWith(b))) return "fresh";
   // Circle and octopus hooks are bait-fishing hooks — sea and surf.
@@ -7913,7 +8229,7 @@ export function siblings(p: Product): Product[] {
 export const FISHABLE: readonly Category[] = [
   "Surf Rods",
   "Reels",
-  "Freshwater Rods & Combos",
+  "Rod & Reel Combos",
   "Line & Leader",
   "Terminal Tackle",
   "Lures",

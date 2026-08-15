@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { activeCategories } from "@/lib/products";
 import { useCart } from "./CartProvider";
+import { TIDE_NAV } from "@/lib/tide-links";
 
 function Logo() {
   return (
@@ -89,7 +90,7 @@ export function Header() {
 
         <div className="ml-auto flex items-center gap-3">
           <a
-            href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=nav"
+            href={TIDE_NAV}
             className="hidden text-sm link-quiet lg:inline"
            target="_blank" rel="noopener">
             Check the tides ↗
@@ -176,7 +177,7 @@ export function Header() {
             ))}
             <li>
               <a
-                href="https://ustidecharts.com?utm_source=theanglerstore&utm_medium=nav"
+                href={TIDE_NAV}
                 className="block rounded-lg px-2 py-2 text-sm link-quiet"
                target="_blank" rel="noopener">
                 Check the tides ↗

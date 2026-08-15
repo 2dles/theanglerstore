@@ -6,6 +6,7 @@ import {
   activeCategories,
   brandOf,
   byCategory,
+  isColorCanonical,
   categoryBySlug,
   isSourced,
 } from "@/lib/products";
@@ -27,7 +28,10 @@ export async function generateMetadata({
   const cat = categoryBySlug(slug);
   if (!cat) return { title: "Collection not found" };
   return {
-    title: cat.name,
+    // `absolute` for the same reason product pages use it: the layout appends
+    // " | TheAnglerStore", and 17 characters of brand is not what wins the
+    // click on a category page.
+    title: { absolute: `${cat.title} | TheAnglerStore` },
     description: cat.blurb.slice(0, 158),
     alternates: { canonical: `/collections/${cat.slug}` },
   };
@@ -42,7 +46,7 @@ export default async function CollectionPage({
   const cat = categoryBySlug(slug);
   if (!cat) notFound();
 
-  const items = byCategory(cat.name);
+  const items = byCategory(cat.name).filter(isColorCanonical);
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -121,6 +125,15 @@ export default async function CollectionPage({
 
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{cat.name}</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">{cat.blurb}</p>
+
+        {/* Where the catalogue can't do what the storefront implies, say so
+            here rather than letting someone find out at the bottom of a
+            product page — or worse, after it arrives. */}
+        {cat.notice && (
+          <div className="card mt-6 max-w-2xl border-l-2 border-l-amber-500/60 p-4">
+            <p className="text-sm leading-relaxed text-ink-dim">{cat.notice}</p>
+          </div>
+        )}
 
         {items.length > 0 ? (
           <div className="mt-9 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">

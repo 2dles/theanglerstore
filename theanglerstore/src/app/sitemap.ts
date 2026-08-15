@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { activeCategories, listed } from "@/lib/products";
+import { activeCategories, indexed } from "@/lib/products";
 
 const BASE = "https://theanglerstore.com";
 
@@ -30,7 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Only sourced products are submitted for discovery. The unsourced keys
   // still resolve for inbound USTideCharts links, but we do not ask Google to
   // index a page nobody can buy from.
-  const products: MetadataRoute.Sitemap = listed().map((p) => ({
+  // indexed(), not listed(): colour-only variants canonicalise onto the
+  // cheapest colour in their family, so submitting all twenty flashers would
+  // be asking Google to index nineteen pages we have told it to ignore.
+  const products: MetadataRoute.Sitemap = indexed().map((p) => ({
     url: `${BASE}/products/${p.key}`,
     lastModified: now,
     changeFrequency: "weekly",

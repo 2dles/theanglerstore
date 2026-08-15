@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPrice, type Product } from "@/lib/products";
+import { cardSpecs, colorFamily, formatPrice, type Product } from "@/lib/products";
 import { FLAT_SHIPPING } from "@/lib/stripe";
 
 /**
@@ -21,6 +21,9 @@ export function ProductCard({
   product: Product;
   priority?: boolean;
 }) {
+  const specs = cardSpecs(product);
+  const colors = colorFamily(product).length;
+
   return (
     <Link
       href={`/products/${product.key}`}
@@ -59,6 +62,28 @@ export function ProductCard({
           {product.tagline}
         </p>
 
+        {/* The deciding specs, on the card.
+
+            Three Daiwa surf rods sat on the Surf Rods page at the same price
+            with the same tagline — "Fiberglass, two-piece, honestly priced" —
+            and nothing to tell a 9-footer from an 11. The one question that
+            page exists to answer got no answer until you opened all three in
+            separate tabs. Length and line rating are the two numbers anglers
+            compare, and they belong where the comparison happens.
+
+            Shown on phones too, unlike the tagline: two short numbers are
+            worth more at 2-up than a sentence is. */}
+        {specs.length > 0 && (
+          <dl className="flex flex-wrap gap-x-3 gap-y-0.5 text-[0.625rem] text-ink-faint sm:text-[0.6875rem]">
+            {specs.map((s) => (
+              <div key={s.label} className="flex gap-1">
+                <dt className="sr-only">{s.label}</dt>
+                <dd className="tnum">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+
         {/* The add-on hint used to sit on ~90% of cards, on top of the photo,
             which made it both unreadable and meaningless. It now appears only
             where it tells you something you didn't know — genuinely small items
@@ -67,6 +92,14 @@ export function ProductCard({
         {product.role === "add-on" && product.price < ADD_ON_HINT_UNDER && (
           <p className="hidden text-[0.6875rem] text-ink-faint sm:block">
             Rides along in a bigger order
+          </p>
+        )}
+
+        {/* One card per colour family now, so say how many colours are behind
+            it rather than silently hiding nineteen flashers. */}
+        {colors > 1 && (
+          <p className="text-[0.625rem] text-ink-faint sm:text-[0.6875rem]">
+            {colors} colours
           </p>
         )}
 
