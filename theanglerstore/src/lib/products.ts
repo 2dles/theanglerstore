@@ -7697,15 +7697,13 @@ export const UNSOURCED: ReadonlySet<string> = new Set([
   // Fishing Tackle opened — they are real, in-stock, priced products now.
   // The remaining five have no supplier behind them and the checkout refuses
   // them, so no one can be charged for something we cannot ship.
-  // The four Daiwa D-Wave saltwater combos are real, priced, and carry real
-  // Burch SKUs — but every one of them showed SOLD OUT on Burch's own product
-  // pages on 13 Aug 2026, even though their search index still listed them as
-  // in stock. We do not sell what we cannot ship. Delete these four lines the
-  // day Burch confirms stock and the whole range goes live as it stands.
-  "dwave-combo-10",
-  "dwave-combo-9",
-  "dwave-combo-8",
-  "dwave-combo-7",
+  // The four Daiwa D-Wave combos were briefly listed here as unsourced,
+  // because their rendered product pages read "Sold out". That was a misread:
+  // Shopify's own search/suggest JSON and the collection feed both report
+  // available: true for all four SKUs, and the same page that misled us also
+  // showed a Fuego LT as sold out while its variant JSON said otherwise.
+  // Machine-readable inventory beats a scraped page. Only the 11 ft is
+  // genuinely out, and we never listed it.
   "inshore-combo",
   "carolina-kit",
   "swimbait-kit",
