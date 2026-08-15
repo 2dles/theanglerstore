@@ -329,6 +329,14 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "dwave-combo-8": { sku: "DWB40-B/F802M", mfgPart: "DWB40-B/F802M", cost: 42.09, supplier: "burch" },
   "dwave-combo-9": { sku: "DWB50-B/F902M", mfgPart: "DWB50-B/F902M", cost: 61.23, supplier: "burch" },
   "dwave-combo-10": { sku: "DWB50-B/F1002M", mfgPart: "DWB50-B/F1002M", cost: 61.23, supplier: "burch" },
+  // MO's bank sinkers. Burch stocks the full surf range (1-8 oz) but only in
+  // 5 lb boxes — there is no retail-pack option above 1 oz anywhere in their
+  // thirteen sinker collections, and no pyramid or sputnik at all. Costs and
+  // SKUs from Burch's collection JSON, 15 Aug 2026; all three confirmed
+  // available. Burch publish no UPCs, so these carry mpn only.
+  "bank-sinker-3oz": { sku: "MO-BS5-300", mfgPart: "MO-BS5-300", cost: 15.95, supplier: "burch" },
+  "bank-sinker-4oz": { sku: "MO-BS5-400", mfgPart: "MO-BS5-400", cost: 15.95, supplier: "burch" },
+  "bank-sinker-6oz": { sku: "MO-BS5-600", mfgPart: "MO-BS5-600", cost: 15.95, supplier: "burch" },
   "okuma-tundra-7": { sku: "OKTU-70", mfgPart: "OKTU-70", cost: 17.44, supplier: "burch" },
   "daiwa-laguna-ul": { sku: "LAG662ULFS", mfgPart: "LAG662ULFS", cost: 29.91, supplier: "burch" },
 };

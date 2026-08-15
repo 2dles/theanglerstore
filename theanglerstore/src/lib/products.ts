@@ -425,6 +425,99 @@ export const PRODUCTS: Product[] = [
     shipsIn: "3\u20137 business days",
   },
   {
+    key: "bank-sinker-3oz",
+    name: "MO's Bank Sinkers — 3 oz, 26-Pack",
+    category: "Terminal Tackle",
+    price: 29.99,
+    tagline: "Twenty-six of them, because you will lose them",
+    blurb:
+      "The everyday surf weight for moderate current — heavy enough to hold a bait through a push, light enough to cast on a medium rod all morning. Bank sinkers taper to a nose that digs into sand and resists the sideways roll that drags a rig into the next angler’s line. Sold as a 5 lb box, which works out cheaper per sinker than any blister pack and roughly matches what a season on the beach costs you.",
+    specs: [
+      { label: "Brand", value: "MO's" },
+      { label: "Weight", value: "3 oz" },
+      { label: "Quantity", value: "26 per box" },
+      { label: "Style", value: "Bank — teardrop, tapered nose" },
+      { label: "Material", value: "Lead" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Sold by the 5 lb box, which is how sinkers are actually bought",
+      "Tapered nose digs in and resists rolling in a side sweep",
+      "Bell eye takes a snap or ties direct",
+      "3 oz — the general-purpose surf weight",
+    ],
+    gradient: ["#2f2f38", "#55555f"],
+    glyph: "rig",
+    pairsWith: ["circle-hooks", "braided-line", "fluoro-leader", "surf-rod"],
+    whenToUse: "Moderate current, medium rods, most days on most Northern California beaches.",
+    featured: false,
+    prop65: true,
+    role: "add-on",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "bank-sinker-4oz",
+    name: "MO's Bank Sinkers — 4 oz, 20-Pack",
+    category: "Terminal Tackle",
+    price: 32.99,
+    tagline: "The one most surf rods are rated for",
+    blurb:
+      "Four ounces is the weight most 9 to 11 foot surf rods are built to throw, and the one to reach for when the water is moving hard enough that a 3 oz starts walking. The tapered bank profile holds bottom without the casting drag of a pyramid, and twenty of them is a genuine season’s supply for someone who fishes rocky ground and expects to leave a few behind.",
+    specs: [
+      { label: "Brand", value: "MO's" },
+      { label: "Weight", value: "4 oz" },
+      { label: "Quantity", value: "20 per box" },
+      { label: "Style", value: "Bank — teardrop, tapered nose" },
+      { label: "Material", value: "Lead" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Sold by the 5 lb box, which is how sinkers are actually bought",
+      "Tapered nose digs in and resists rolling in a side sweep",
+      "Bell eye takes a snap or ties direct",
+      "4 oz — matches the casting rating of most surf rods",
+    ],
+    gradient: ["#2f2f38", "#55555f"],
+    glyph: "rig",
+    pairsWith: ["circle-hooks", "braided-line", "fluoro-leader", "surf-rod"],
+    whenToUse: "A moving tide, a steep beach, or any day a lighter sinker won’t stay put.",
+    featured: false,
+    prop65: true,
+    role: "add-on",
+    shipsIn: "3–7 business days",
+  },
+  {
+    key: "bank-sinker-6oz",
+    name: "MO's Bank Sinkers — 6 oz, 13-Pack",
+    category: "Terminal Tackle",
+    price: 34.99,
+    tagline: "For the days the ocean is winning",
+    blurb:
+      "Six ounces is what you put on when a big swing is running and everything lighter is being swept off the spot. Heavy enough to hold through a strong lateral current and to punch a bait out through a headwind, and heavy enough that you want to check your rod’s casting rating before you launch it. Thirteen to a box.",
+    specs: [
+      { label: "Brand", value: "MO's" },
+      { label: "Weight", value: "6 oz" },
+      { label: "Quantity", value: "13 per box" },
+      { label: "Style", value: "Bank — teardrop, tapered nose" },
+      { label: "Material", value: "Lead" },
+      { label: "Ships in", value: "3–7 business days" },
+    ],
+    features: [
+      "Sold by the 5 lb box, which is how sinkers are actually bought",
+      "Tapered nose digs in and resists rolling in a side sweep",
+      "Bell eye takes a snap or ties direct",
+      "6 oz — for strong current; check your rod’s casting rating",
+    ],
+    gradient: ["#2f2f38", "#55555f"],
+    glyph: "rig",
+    pairsWith: ["circle-hooks", "braided-line", "fluoro-leader", "surf-rod"],
+    whenToUse: "Big spring tides, strong side currents, and headwinds that flatten a lighter cast.",
+    featured: false,
+    prop65: true,
+    role: "add-on",
+    shipsIn: "3–7 business days",
+  },
+  {
     key: "circle-hooks",
     name: "Eagle Claw Lazer Sharp Offset Circle Sea Hook — 4/0, 50-Pack",
     category: "Terminal Tackle",
@@ -8146,7 +8239,12 @@ export function speciesOf(p: Product): string[] {
   // "surface", and every topwater plug in the catalog was being tagged as
   // surf tackle — which is how a 130 mm offshore surface bait ended up
   // recommended for surfperch. It still matches surfcasting and surfperch.
-  if (p.category === "Surf Rods" || /\bcircle\b|\bsurf(?!ace)|\bpyramid\b/.test(n)) {
+  // `\bsinker\b` is here because tagging must not depend on whether a
+  // copywriter happened to use the word "surf" in a tagline. Three bank
+  // sinkers went in together and only the one whose tagline said "surf rods"
+  // got tagged — the other two were invisible to every species page, which is
+  // the kind of silent gap that makes a recommendation engine quietly wrong.
+  if (p.category === "Surf Rods" || /\bcircle\b|\bsurf(?!ace)|\bpyramid\b|\bsinker\b/.test(n)) {
     ["halibut", "surfperch", "perch", "corbina", "striped bass", "striper", "shark", "ray"].forEach((x) => out.add(x));
   }
   if (/flasher|dipsy|jet driver|lead core|downrigger|trolling|snubber|cannonball/.test(n)) {

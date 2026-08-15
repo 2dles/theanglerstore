@@ -118,15 +118,20 @@ const SPECIES_MAP: Record<string, string[]> = {
  * four of whatever they're given, so this ordering is what decides whether a
  * reader sees rod/line/hook/lure or four colours of the same lure.
  */
-const KIT_ORDER: string[][] = [
-  ["Surf Rods", "Rod & Reel Combos", "Reels"],
-  ["Line & Leader"],
-  ["Terminal Tackle"],
-  ["Lures", "Soft Baits"],
-  ["Nets & Landing"],
-  ["Tools"],
-  ["Trolling & Rigging"],
-  ["Tackle Storage", "Coolers"],
+const KIT_ORDER: { cats: string[]; match?: RegExp; not?: RegExp }[] = [
+  { cats: ["Surf Rods", "Rod & Reel Combos", "Reels"] },
+  { cats: ["Line & Leader"] },
+  // Hook and weight are two slots, not one. Both live in Terminal Tackle, so
+  // a single slot gave every surf page a hook and no way to cast it — the
+  // exact gap the audit named: you could buy the rod, the line and the hook
+  // here and still not be able to fish.
+  { cats: ["Terminal Tackle"], not: /sinker|weight/i },
+  { cats: ["Terminal Tackle"], match: /sinker|weight/i },
+  { cats: ["Lures", "Soft Baits"] },
+  { cats: ["Nets & Landing"] },
+  { cats: ["Tools"] },
+  { cats: ["Trolling & Rigging"] },
+  { cats: ["Tackle Storage", "Coolers"] },
 ];
 
 /** How many keys to emit per species. Pages slice to 4; the rest give variety. */
@@ -142,7 +147,7 @@ function keysForSpecies(terms: string[]): string[] {
   // gave them a rod, a hook and then two landing nets. Braid and pliers are
   // honest recommendations for any saltwater fish; using them to fill an empty
   // kit slot is not a claim that they were chosen for that species.
-  const groupOf = (p: Product) => KIT_ORDER.findIndex((g) => g.includes(p.category));
+  const groupOf = (p: Product) => KIT_ORDER.findIndex((g) => g.cats.includes(p.category));
 
   const picked: Product[] = [];
   const used = new Set<string>();
@@ -158,8 +163,11 @@ function keysForSpecies(terms: string[]): string[] {
 
   // Round one: one product per kit slot, species-tagged first, universal second.
   for (let i = 0; i < KIT_ORDER.length; i++) {
-    const group = KIT_ORDER[i];
-    const inGroup = (p: Product) => group.includes(p.category);
+    const slot = KIT_ORDER[i];
+    const inGroup = (p: Product) =>
+      slot.cats.includes(p.category) &&
+      (!slot.match || slot.match.test(p.name)) &&
+      (!slot.not || !slot.not.test(p.name));
     if (!take(pool.find((p) => !used.has(p.key) && inGroup(p)))) {
       take(salt.find((p) => !used.has(p.key) && inGroup(p)));
     }
