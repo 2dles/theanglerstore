@@ -23,7 +23,7 @@ export default function AboutPage() {
         </p>
         <p>
           The obvious next question is what to bring. That is this store. Every
-          product page here connects back to conditions — what the gear is for,
+          product page here connects back to conditions, what the gear is for,
           and when it earns its place in your bag.
         </p>
       </Section>
@@ -36,12 +36,12 @@ export default function AboutPage() {
           spotted bay bass. Most of what we stock is chosen against that water.
           We also carry a freshwater bass and crappie range, and a Great Lakes
           trolling range, because our suppliers are strong there and plenty of
-          you fish both — every product is tagged for the water it suits, so you
+          you fish both, every product is tagged for the water it suits, so you
           can shop yours and ignore the rest.
         </p>
         <p>
           Two rules govern the catalog. First, anything we call saltwater gear
-          has to meet salt-facing specs — sealed bearings, plated hooks,
+          has to meet salt-facing specs, sealed bearings, plated hooks,
           anodized aluminum. Untreated hardware fails in one season, and we
           will not sell it to you as something it isn&rsquo;t. Where a
           manufacturer publishes no saltwater rating, the product page says so
@@ -49,7 +49,7 @@ export default function AboutPage() {
           stay quiet about it. Second,
           if we think a product is a bad buy, we say so on the page rather than
           quietly leaving it out. Most of the small items here carry a note
-          telling you <em>not</em> to buy them on their own — they cost nearly as
+          telling you <em>not</em> to buy them on their own, they cost nearly as
           much to ship as they do to make, and they only earn their price riding
           along in a bigger box. And our{" "}
           <Link href="/collections/coolers" className="text-tide hover:text-teal">
@@ -64,7 +64,7 @@ export default function AboutPage() {
         <p>
           Right now we source from established manufacturers and ship from their
           warehouses. Over time the plan is to move the categories where it
-          matters most — braid, hooks, rig kits, and soft plastics — onto our own
+          matters most, braid, hooks, rig kits, and soft plastics, onto our own
           specifications, so we control the hook plating and the color palette
           rather than accepting whatever a generic supplier ships.
         </p>

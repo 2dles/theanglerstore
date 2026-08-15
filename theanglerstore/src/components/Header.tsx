@@ -74,9 +74,12 @@ export function Header() {
           <Link href="/products" className="link-quiet font-medium text-ink">
             All gear
           </Link>
+          <Link href="/bundles" className="link-quiet whitespace-nowrap">
+            Kits
+          </Link>
           {activeCategories()
             .filter((c) => c.nav)
-            .slice(0, 4)
+            .slice(0, 3)
             .map((c) => (
               <Link
                 key={c.slug}

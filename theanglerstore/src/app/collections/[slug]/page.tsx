@@ -128,7 +128,7 @@ export default async function CollectionPage({
 
         {/* Where the catalogue can't do what the storefront implies, say so
             here rather than letting someone find out at the bottom of a
-            product page — or worse, after it arrives. */}
+            product page, or worse, after it arrives. */}
         {cat.notice && (
           <div className="card mt-6 max-w-2xl border-l-2 border-l-amber-500/60 p-4">
             <p className="text-sm leading-relaxed text-ink-dim">{cat.notice}</p>

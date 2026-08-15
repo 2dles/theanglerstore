@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import {
   REDIRECTS,
   allKeys,
-  categoryBySlug,
   formatPrice,
   getProduct,
   isSourced,
   brandOf,
+  bundlePrice,
+  bundlesContaining,
   colorCanonical,
-  colorFamily,
   metaDescription,
   structuredSpecs,
   related,
@@ -126,6 +126,7 @@ export default async function ProductPage({
 
   const alsoBuy = related(product);
   const family = siblings(product);
+  const kits = bundlesContaining(product.key);
   const cat = CATEGORIES.find((c) => c.name === product.category);
   const water = waterOf(product);
   const walkthrough = getWalkthrough(product.key);
@@ -270,7 +271,7 @@ export default async function ProductPage({
             <p className="mt-3 text-xs text-ink-faint">
               {product.image
                 ? "Manufacturer photography, supplied through our distributor."
-                : "Our own illustration — real photography arrives with the next supplier shipment."}
+                : "Our own illustration, real photography arrives with the next supplier shipment."}
             </p>
           </div>
 
@@ -336,7 +337,7 @@ export default async function ProductPage({
                 <strong className="text-ink">Best bought alongside something else.</strong>{" "}
                 Small, light items like this cost nearly as much to ship as they
                 do to make. Add it to a rod or lure order and it rides along in
-                the same box — which is why the free-shipping threshold is
+                the same box, which is why the free-shipping threshold is
                 ${FREE_SHIPPING_OVER}.
               </p>
             )}
@@ -428,7 +429,7 @@ export default async function ProductPage({
               </p>
               {/* The single tide link on a product page, and only where tides
                   are relevant. Tides do not move a lake, and "find your tide
-                  window" under a crappie bait reads as automation — which
+                  window" under a crappie bait reads as automation, which
                   quietly undermines the water tag a few inches above it. */}
               {tideLink && (
                 <a
@@ -465,6 +466,43 @@ export default async function ProductPage({
                     </span>
                     <span className="tnum shrink-0 text-sm font-semibold">
                       {formatPrice(sib.price)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* The kits this product belongs to. Someone looking at a spool of
+            braid should be told it comes cheaper as part of a set BEFORE they
+            buy it on its own, not discover it afterwards on the homepage. */}
+        {kits.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Comes in {kits.length === 1 ? "a kit" : "these kits"}
+            </h2>
+            <p className="mt-1 text-sm text-ink-faint">
+              Buy it as part of a set and the whole set is{" "}
+              {Math.round(kits[0].discount * 100)}% off.
+            </p>
+            <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+              {kits.map((b) => (
+                <li key={b.id}>
+                  <Link
+                    href={`/bundles#${b.id}`}
+                    className="card card-hover flex items-center justify-between gap-3 px-4 py-3"
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-medium">
+                        {b.name}
+                      </span>
+                      <span className="block truncate text-xs text-ink-faint">
+                        {b.tagline}
+                      </span>
+                    </span>
+                    <span className="tnum shrink-0 text-sm font-semibold">
+                      {formatPrice(bundlePrice(b))}
                     </span>
                   </Link>
                 </li>

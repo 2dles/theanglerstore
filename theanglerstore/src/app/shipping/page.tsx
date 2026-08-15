@@ -25,12 +25,12 @@ export default function ShippingPage() {
     <Prose
       title="Shipping"
       updated="August 2026"
-      intro={`Most US orders arrive in 3–7 business days. Free over $${FREE_SHIPPING_OVER}, $${FLAT_SHIPPING.toFixed(2)} below that. Everything ships from a US warehouse — nothing on this site comes from overseas.`}
+      intro={`Most US orders arrive in 3–7 business days. Free over $${FREE_SHIPPING_OVER}, $${FLAT_SHIPPING.toFixed(2)} below that. Everything ships from a US warehouse, nothing on this site comes from overseas.`}
     >
       <Section heading="Rates">
         <ul className="space-y-2 text-ink-dim">
           <li>
-            ▸ <strong className="text-ink">Free</strong> — US orders of $
+            ▸ <strong className="text-ink">Free</strong>. US orders of $
             {FREE_SHIPPING_OVER} or more
           </li>
           <li>
@@ -40,7 +40,7 @@ export default function ShippingPage() {
         </ul>
         <p>
           One flat rate per order regardless of how many items are in it, which
-          is why it&rsquo;s worth adding the small stuff — hooks, leader, rigs —
+          is why it&rsquo;s worth adding the small stuff, hooks, leader, rigs —
           to an order rather than buying them on their own.
         </p>
       </Section>
@@ -57,7 +57,7 @@ export default function ShippingPage() {
         </p>
         <p>
           Every product page shows that item&rsquo;s own estimate, because they
-          genuinely differ — a spool of braid leaves the warehouse the next
+          genuinely differ, a spool of braid leaves the warehouse the next
           morning, while a rod travels further and takes longer. We&rsquo;d
           rather show you the real number per item than quote one average that is
           wrong for half the catalog.
@@ -109,7 +109,7 @@ export default function ShippingPage() {
           <Link href="/contact" className="text-tide hover:text-teal">
             tell us
           </Link>{" "}
-          and we&rsquo;ll chase the carrier — you shouldn&rsquo;t have to.
+          and we&rsquo;ll chase the carrier, you shouldn&rsquo;t have to.
         </p>
       </Section>
 
@@ -120,7 +120,7 @@ export default function ShippingPage() {
           </strong>{" "}
           Orders to Alaska and Hawaii are accepted but transit runs longer than
           the 3–7 day standard, and a few of the bulkier items can&rsquo;t be
-          sent there at all — we&rsquo;ll contact you before charging if that
+          sent there at all, we&rsquo;ll contact you before charging if that
           applies to something in your cart.
         </p>
 
@@ -133,7 +133,7 @@ export default function ShippingPage() {
               </strong>{" "}
               Tackle is the problem, not the ambition. Rods, nets and coolers are
               light but enormous, and international carriers charge by the space
-              a parcel occupies rather than its weight — a 7-foot surf rod can
+              a parcel occupies rather than its weight, a 7-foot surf rod can
               cost more to send abroad than the rod itself. Our distributors are
               domestic, so there is no honest way to quote you a rate we could
               actually honor.
@@ -142,7 +142,7 @@ export default function ShippingPage() {
               When international does open it will most likely open with
               apparel, because print-on-demand is produced regionally rather
               than shipped from the US. We don&rsquo;t sell any apparel yet, so
-              treat that as a plan rather than a promise — there is no date on
+              treat that as a plan rather than a promise, there is no date on
               it, and we would rather tell you that than list regions we
               can&rsquo;t serve.
             </p>
@@ -167,7 +167,7 @@ export default function ShippingPage() {
             <ul className="space-y-2 text-ink-dim">
               {ZONES.filter((z) => z.enabled).map((z) => (
                 <li key={z.id}>
-                  ▸ <strong className="text-ink">{z.label}</strong> —{" "}
+                  ▸ <strong className="text-ink">{z.label}</strong>, {" "}
                   {z.freeOver !== null
                     ? `free over $${z.freeOver}, otherwise $${z.flat.toFixed(2)}`
                     : `$${z.flat.toFixed(2)}`}
@@ -190,7 +190,7 @@ export default function ShippingPage() {
               </strong>{" "}
               and are the recipient&rsquo;s responsibility. Your country may
               charge them before releasing the parcel. We declare the true value
-              of every shipment — we won&rsquo;t mark an order as a gift or
+              of every shipment, we won&rsquo;t mark an order as a gift or
               under-declare it, and we&rsquo;d encourage you to check your own
               import thresholds before ordering so the bill isn&rsquo;t a
               surprise.
@@ -213,7 +213,7 @@ export default function ShippingPage() {
           We are registered to collect sales tax in{" "}
           <strong className="text-ink">California</strong>, where the business
           is based. California orders have tax calculated at checkout and shown
-          before you pay — on the goods and, as California requires, on the
+          before you pay, on the goods and, as California requires, on the
           shipping charge too.
         </p>
         <p>
@@ -221,7 +221,7 @@ export default function ShippingPage() {
           registered anywhere else yet. That is not a loophole and it is not
           permanent: once our volume in a state passes its threshold we have to
           register there, and we will. Depending on where you live you may
-          still owe use tax on the purchase — most states ask for it on the
+          still owe use tax on the purchase, most states ask for it on the
           annual return, and whether you pay it is between you and them.
         </p>
         <p>

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npx tsx src/lib/bundle.test.ts && npx tsx src/lib/schema.test.ts",
+    "bundles:margin": "npx tsx --conditions=react-server scripts/check-bundle-margin.ts",
     "gear": "npx tsx scripts/generate-gear.ts",
     "gear:check": "npx tsx scripts/generate-gear.ts --check"
   },

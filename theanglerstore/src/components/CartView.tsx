@@ -6,11 +6,11 @@ import { Suspense, useState } from "react";
 import { useCart } from "./CartProvider";
 import { ProductArt } from "./ProductArt";
 import {
-  BUNDLE,
   MAX_QTY,
+  allocateBundles,
   bundleDiscountAmount,
-  bundleSets,
-  cartEarnsBundle,
+  awardSaving,
+  bundleNamesFor,
   formatPrice,
   getProduct,
 } from "@/lib/products";
@@ -21,7 +21,7 @@ function CancelNotice() {
   if (!params.get("cancelled")) return null;
   return (
     <div className="card mt-6 border-l-2 border-l-[#fb923c] p-4 text-sm text-ink-dim">
-      Checkout was cancelled — your cart is exactly as you left it.
+      Checkout was cancelled, your cart is exactly as you left it.
     </div>
   );
 }
@@ -45,16 +45,15 @@ function CartInner() {
     );
   }
 
-  // Mirrors the server calculation in /api/checkout exactly. Shown here so the
-  // customer sees the discount before they commit — but the number that gets
-  // charged is always the one the server recomputes, never this one.
-  const earnsBundle = cartEarnsBundle(lines.map((l) => l.key));
-  const inBundle = (key: string) =>
-    (BUNDLE.keys as readonly string[]).includes(key);
-  // Per complete set. Mirrors the server exactly — /api/checkout recomputes
-  // this from the same function, and the number charged is always the
-  // server's.
-  const sets = bundleSets(lines);
+  // Mirrors the server calculation in /api/checkout exactly, because it is
+  // literally the same function. Shown here so the customer sees the discount
+  // before they commit — but the number that gets charged is always the one
+  // the server recomputes, never this one.
+  //
+  // Kits share parts and only one kit may claim a given unit, so this is an
+  // allocation rather than a lookup: `awards` is what the cart actually earned,
+  // and `bundleNamesFor` reports which kit ended up claiming each line.
+  const awards = allocateBundles(lines);
   const bundleSaving = bundleDiscountAmount(lines);
 
   const discountedSubtotal = subtotal - bundleSaving;
@@ -71,6 +70,7 @@ function CartInner() {
           {lines.map((line) => {
             const p = getProduct(line.key);
             if (!p) return null;
+            const kits = bundleNamesFor(line.key, lines);
             return (
               <li key={line.key} className="card relative flex gap-4 p-4">
                 <Link
@@ -89,9 +89,11 @@ function CartInner() {
                   </Link>
                   <p className="mt-0.5 text-sm text-ink-faint">
                     {p.category}
-                    {earnsBundle && inBundle(p.key) && (
-                      <span className="ml-2 text-teal">· {BUNDLE.name}</span>
-                    )}
+                    {kits.map((name) => (
+                      <span key={name} className="ml-2 text-teal">
+                        · {name}
+                      </span>
+                    ))}
                   </p>
                   <p className="mt-1 text-xs text-ink-faint">
                     Ships in {p.shipsIn}
@@ -120,10 +122,10 @@ function CartInner() {
                     <button
                       type="button"
                       onClick={() => {
-                        // Removing a bundle member quietly deletes the 12%
-                        // discount. The math was always right; the customer
-                        // just never found out until the total moved.
-                        if (earnsBundle && inBundle(p.key)) {
+                        // Removing a kit member quietly deletes the discount.
+                        // The math was always right; the customer just never
+                        // found out until the total moved.
+                        if (kits.length > 0) {
                           setConfirmKey(p.key);
                         } else {
                           remove(p.key);
@@ -144,9 +146,19 @@ function CartInner() {
                   <div className="absolute inset-0 flex flex-col justify-center gap-3 rounded-[1.25rem] bg-abyss/95 p-4 backdrop-blur-sm">
                     <p className="text-sm leading-relaxed text-ink">
                       Removing this breaks up{" "}
-                      <strong>{BUNDLE.name}</strong> — you&rsquo;ll lose the{" "}
-                      {Math.round(BUNDLE.discount * 100)}% bundle discount
-                      ({formatPrice(bundleSaving)}).
+                      <strong>{kits.join(" and ")}</strong>. You&rsquo;ll lose{" "}
+                      {formatPrice(
+                        // The ACTUAL cost of removing it, not the whole
+                        // discount. With kits that share parts, dropping one
+                        // item sometimes just hands its slot to another kit,
+                        // and quoting the full saving in that case would be a
+                        // scare tactic rather than a warning.
+                        bundleSaving -
+                          bundleDiscountAmount(
+                            lines.filter((l) => l.key !== p.key),
+                          ),
+                      )}{" "}
+                      off this order.
                     </p>
                     <div className="flex gap-2">
                       <button
@@ -164,7 +176,7 @@ function CartInner() {
                         onClick={() => setConfirmKey(null)}
                         className="btn btn-primary !py-2 !text-sm"
                       >
-                        Keep the bundle
+                        Keep the kit
                       </button>
                     </div>
                   </div>
@@ -183,15 +195,19 @@ function CartInner() {
               <dd className="tnum">{formatPrice(subtotal)}</dd>
             </div>
 
-            {earnsBundle && (
-              <div className="flex justify-between text-teal">
+            {/* One line per kit earned, so a cart that qualifies for two can
+                see both rather than a single unexplained number. */}
+            {awards.map((a) => (
+              <div key={a.id} className="flex justify-between text-teal">
                 <dt>
-                  {BUNDLE.name} · {Math.round(BUNDLE.discount * 100)}% off
-                  {sets > 1 ? ` × ${sets}` : ""}
+                  {a.name} · {Math.round(a.discount * 100)}% off
+                  {a.sets > 1 ? ` × ${a.sets}` : ""}
                 </dt>
-                <dd className="tnum">−{formatPrice(bundleSaving)}</dd>
+                <dd className="tnum">
+                  −{formatPrice(awardSaving(a))}
+                </dd>
               </div>
-            )}
+            ))}
 
             <div className="flex justify-between">
               <dt className="text-ink-dim">Shipping</dt>
@@ -207,7 +223,7 @@ function CartInner() {
 
           <p className="mt-2 text-xs text-ink-faint">
             California orders have sales tax added at checkout. Other states,
-            none &mdash; see{" "}
+            none, see{" "}
             <Link href="/shipping" className="hover:text-ink">
               shipping &amp; tax
             </Link>
@@ -232,7 +248,7 @@ function CartInner() {
           </Link>
 
           <p className="mt-5 text-center text-xs text-ink-faint">
-            Secure checkout happens on this site — you won&rsquo;t be redirected.
+            Secure checkout happens on this site, you won&rsquo;t be redirected.
           </p>
         </aside>
       </div>

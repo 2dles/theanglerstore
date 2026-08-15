@@ -171,7 +171,7 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
     <>
       {/* ── control bar ──────────────────────────────────────────────────
           Sticks under the 4rem header so filters stay reachable while you
-          scroll a long result list — the moment you most want to change them. */}
+          scroll a long result list, the moment you most want to change them. */}
       <div className="z-30 -mx-4 mt-8 border-y border-line bg-abyss/85 px-4 py-4 backdrop-blur-xl sm:-mx-6 sm:px-6 md:sticky md:top-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -204,7 +204,7 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
                 onChange={(e) =>
                   setFilters((f) => ({ ...f, query: e.target.value }))
                 }
-                placeholder={`Search ${total} products — "braid", "kayak", "senko"`}
+                placeholder={`Search ${total} products, "braid", "kayak", "senko"`}
                 aria-label="Search products"
                 className="w-full rounded-xl border border-line bg-card/70 py-2.5 pl-10 pr-10 text-[0.9375rem] text-ink placeholder:text-ink-faint focus:border-line-hi focus:outline-none focus:ring-2 focus:ring-tide/30"
               />
@@ -242,7 +242,7 @@ export function ProductFinder({ children }: { children: React.ReactNode }) {
             </label>
           </div>
 
-          {/* category chips — counts are live against the other filters, so a
+          {/* category chips, counts are live against the other filters, so a
               chip showing 0 tells you the truth before you click it */}
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {visibleCats.map((c) => {
@@ -418,7 +418,7 @@ function EmptyState({
       <p className="text-lg font-semibold">Nothing matches all of that.</p>
       <p className="mt-2 text-sm leading-relaxed text-ink-dim">
         {filters.query.trim()
-          ? `We don't carry anything for “${filters.query.trim()}” — or not with the other filters on.`
+          ? `We don't carry anything for “${filters.query.trim()}”, or not with the other filters on.`
           : "That combination of filters is empty."}
       </p>
 

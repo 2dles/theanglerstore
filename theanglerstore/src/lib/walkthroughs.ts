@@ -26,31 +26,31 @@ export interface Walkthrough {
 export const WALKTHROUGHS: Record<string, Walkthrough> = {
   "surf-rod": {
     intro:
-      "A surf rod is only as good as the way it's set up. The reels we stock are freshwater models, so for surf work assume the reel is your own — a 5000–8000 size spinning reel with sealed bearings is the right pairing for this blank. Twenty minutes at the kitchen table saves you a wasted session.",
+      "A surf rod is only as good as the way it's set up. The reels we stock are freshwater models, so for surf work assume the reel is your own, a 5000–8000 size spinning reel with sealed bearings is the right pairing for this blank. Twenty minutes at the kitchen table saves you a wasted session.",
     steps: [
       {
         heading: "Spool it properly",
-        body: "Twenty pound braid, straight onto the spool — this rod is rated 10–20 lb, and going heavier doesn't make you stronger, it just means the blank becomes the weakest thing in the system. Braid has no stretch, so on a snag or a hard cast something has to give, and you want that to be the line rather than the rod. On a 4000–6000 size spinning reel you won't need mono backing if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
+        body: "Twenty pound braid, straight onto the spool, this rod is rated 10–20 lb, and going heavier doesn't make you stronger, it just means the blank becomes the weakest thing in the system. Braid has no stretch, so on a snag or a hard cast something has to give, and you want that to be the line rather than the rod. On a 4000–6000 size spinning reel you won't need mono backing if you're filling it. Run the line through the first guide before you start winding, keep firm tension with a cloth, and stop about 1/8\" below the spool lip. Overfilling is the single most common cause of wind knots on a surf reel.",
       },
       {
         heading: "Join the two pieces correctly",
-        body: "Line up the guides by eye before you push the ferrule together, then seat it firmly with a slight twist. Guides that are even a few degrees out of line will cost you distance and wear a groove in your braid. Check the alignment again after every few casts on the first trip — ferrules settle.",
+        body: "Line up the guides by eye before you push the ferrule together, then seat it firmly with a slight twist. Guides that are even a few degrees out of line will cost you distance and wear a groove in your braid. Check the alignment again after every few casts on the first trip, ferrules settle.",
       },
       {
         heading: "Add a shock leader",
-        body: "This rod is rated to cast 1–4 oz, and that rating is the whole payload — lead plus bait. Two to three ounces of lead with a bait chunk is where it works; four is the ceiling, not the target. At those weights a shock leader is optional rather than essential, but if you're punching a full 4 oz out there, tie about 25 feet of 30 lb mono or fluoro to your braid with an FG or double-uni knot, enough that you have five or six turns on the spool at the start of the cast. The old surfcaster's rule is roughly 10 lb of shock leader per ounce of lead — which is also why a 50 lb leader belongs on a heaver throwing 5 oz, not on this rod.",
+        body: "This rod is rated to cast 1–4 oz, and that rating is the whole payload, lead plus bait. Two to three ounces of lead with a bait chunk is where it works; four is the ceiling, not the target. At those weights a shock leader is optional rather than essential, but if you're punching a full 4 oz out there, tie about 25 feet of 30 lb mono or fluoro to your braid with an FG or double-uni knot, enough that you have five or six turns on the spool at the start of the cast. The old surfcaster's rule is roughly 10 lb of shock leader per ounce of lead, which is also why a 50 lb leader belongs on a heaver throwing 5 oz, not on this rod.",
       },
       {
         heading: "Set the drag before you cast, not after",
-        body: "Roughly a third of your line's breaking strain. Pull line off the spool by hand — it should come steadily, not in jerks. A drag set too tight is how you break a rod tip on a surprise run.",
+        body: "Roughly a third of your line's breaking strain. Pull line off the spool by hand, it should come steadily, not in jerks. A drag set too tight is how you break a rod tip on a surprise run.",
       },
       {
         heading: "Cast with your body, not your arms",
-        body: "Let the sinker hang about 3–4 feet below the tip. Rotate your hips and shoulders through the cast rather than punching with your arms. A smooth pendulum beats brute force every time, and this rod loads properly with bait — you don't need to muscle it.",
+        body: "Let the sinker hang about 3–4 feet below the tip. Rotate your hips and shoulders through the cast rather than punching with your arms. A smooth pendulum beats brute force every time, and this rod loads properly with bait, you don't need to muscle it.",
       },
     ],
     tips: [
-      "Rated 1–4 oz and 10–20 lb — the 9 ft sibling is 1–3 oz, the 11 ft is 1–5 oz, so match the rod to the lead you actually throw",
+      "Rated 1–4 oz and 10–20 lb, the 9 ft sibling is 1–3 oz, the 11 ft is 1–5 oz, so match the rod to the lead you actually throw",
       "Rinse the reel with a light freshwater spray after every session — never a pressure hose, which drives salt past the seals",
       "Back the drag off completely when you store it, so the washers don't take a set",
       "Two-piece means you can leave it made up in the truck; break it down for long storage",
@@ -65,7 +65,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
     steps: [
       {
         heading: "Match line to the water",
-        body: "15–20 lb braid is the sweet spot for this reel. Bays and harbors are cleaner than open beach, so you can drop lighter and cast further. Add a 3–4 foot fluorocarbon leader — clear inshore water is exactly where leader visibility costs you bites.",
+        body: "15–20 lb braid is the sweet spot for this reel. Bays and harbors are cleaner than open beach, so you can drop lighter and cast further. Add a 3–4 foot fluorocarbon leader, clear inshore water is exactly where leader visibility costs you bites.",
       },
       {
         heading: "Learn the 6.2:1 retrieve",
@@ -73,7 +73,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Rig a swimbait right",
-        body: "Thread the bait onto the jighead so the body sits perfectly straight — any curve makes it spin and it'll be ignored. The hook point should exit through the top of the bait, not the side. Sink your thumbnail into the plastic where the hook exits so it seats flush.",
+        body: "Thread the bait onto the jighead so the body sits perfectly straight, any curve makes it spin and it'll be ignored. The hook point should exit through the top of the bait, not the side. Sink your thumbnail into the plastic where the hook exits so it seats flush.",
       },
       {
         heading: "Work the structure edges",
@@ -85,9 +85,9 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Two-piece breaks down to about 45\" — it fits a kayak hatch and most car boots made up",
+      "Two-piece breaks down to about 45\", it fits a kayak hatch and most car boots made up",
       "Cork grips clean up with warm soapy water and a light scrub; don't varnish them",
-      "On a jetty, keep the drag slightly lighter than you think — barnacles cut line under load",
+      "On a jetty, keep the drag slightly lighter than you think, barnacles cut line under load",
     ],
     timing:
       "Moving water is everything inshore. An outgoing tide pulling bait out of a bay is the classic window, and the last two hours of the ebb often outfish the whole rest of the day.",
@@ -103,11 +103,11 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Stop a fingernail below the lip",
-        body: "Braid is thin and limp, so an overfilled spool sheds loops the moment tension drops. About 1/8\" below the spool lip. If you have line left over, keep it — you'll want it for a top-up mid-season.",
+        body: "Braid is thin and limp, so an overfilled spool sheds loops the moment tension drops. About 1/8\" below the spool lip. If you have line left over, keep it, you'll want it for a top-up mid-season.",
       },
       {
         heading: "Tie the right knots",
-        body: "Braid slips in knots designed for mono. Use a Palomar to terminal tackle, and an FG knot or double-uni to join it to leader. Wet every knot before you cinch it — friction burn genuinely weakens braid, and you'll never see the damage.",
+        body: "Braid slips in knots designed for mono. Use a Palomar to terminal tackle, and an FG knot or double-uni to join it to leader. Wet every knot before you cinch it, friction burn genuinely weakens braid, and you'll never see the damage.",
       },
       {
         heading: "Always run a leader",
@@ -119,12 +119,12 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Never set a hook with braid the way you would with mono — no stretch means a hard strike pulls hooks straight out",
+      "Never set a hook with braid the way you would with mono, no stretch means a hard strike pulls hooks straight out",
       "Cut braid with carbide cutters or dedicated braid scissors; ordinary nail clippers just crush and fray it",
       "If you get a wind knot, stop immediately. Picking it out takes two minutes; casting through it costs you the spool.",
     ],
     timing:
-      "Nothing tide-specific, but braid's zero stretch is most valuable in deep water or long casts — exactly where a subtle bite at distance would otherwise go unnoticed.",
+      "Nothing tide-specific, but braid's zero stretch is most valuable in deep water or long casts, exactly where a subtle bite at distance would otherwise go unnoticed.",
   },
 
   "fluoro-leader": {
@@ -137,7 +137,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Tie the braid-to-leader connection",
-        body: "The FG knot is the best — thin enough to pass through guides on the cast and stronger than the line around it. If you can't tie one in the dark yet, a double-uni is perfectly good and far easier. Practice at home, not on the beach.",
+        body: "The FG knot is the best, thin enough to pass through guides on the cast and stronger than the line around it. If you can't tie one in the dark yet, a double-uni is perfectly good and far easier. Practice at home, not on the beach.",
       },
       {
         heading: "Wet it and cinch slowly",
@@ -145,20 +145,20 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Check it after every fish",
-        body: "Run the leader through your fingers. Any roughness or nicks and you re-tie — it costs two minutes. Fluorocarbon is abrasion-resistant, not abrasion-proof, and a nicked leader always fails on the best fish of the day.",
+        body: "Run the leader through your fingers. Any roughness or nicks and you re-tie, it costs two minutes. Fluorocarbon is abrasion-resistant, not abrasion-proof, and a nicked leader always fails on the best fish of the day.",
       },
       {
         heading: "Use the sink to your advantage",
-        body: "Fluoro sinks and mono floats. On a Carolina rig or a jighead that keeps your bait pinned in the strike zone rather than lifting it. On topwater, that same property works against you — use mono there instead.",
+        body: "Fluoro sinks and mono floats. On a Carolina rig or a jighead that keeps your bait pinned in the strike zone rather than lifting it. On topwater, that same property works against you, use mono there instead.",
       },
     ],
     tips: [
-      "50 yards is roughly 25 surf leaders — a full season for most people",
+      "50 yards is roughly 25 surf leaders, a full season for most people",
       "Store the spool out of sunlight; UV degrades fluorocarbon over time",
       "Step up a size if you're fishing structure. 15 lb is fine on sand; go heavier around rock",
     ],
     timing:
-      "Matters most in bright sun and clear water — midday low tide on a calm day is when fluorocarbon earns its money.",
+      "Matters most in bright sun and clear water, midday low tide on a calm day is when fluorocarbon earns its money.",
   },
 
   "circle-hooks": {
@@ -171,7 +171,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Hook the bait shallow",
-        body: "The hook gap has to stay clear for the circle to rotate. Nick the bait once through the edge — never bury the point or thread the bait up the shank. A buried point on a circle hook catches nothing.",
+        body: "The hook gap has to stay clear for the circle to rotate. Nick the bait once through the edge, never bury the point or thread the bait up the shank. A buried point on a circle hook catches nothing.",
       },
       {
         heading: "Match hook size to bait, not to fish",
@@ -179,7 +179,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Fish with the rod in a holder",
-        body: "This is where circle hooks come into their own. In a sand spike with the drag light, the fish hooks itself while you're pouring coffee. It's also why they're mandated in a lot of fisheries — hookups are almost always in the jaw.",
+        body: "This is where circle hooks come into their own. In a sand spike with the drag light, the fish hooks itself while you're pouring coffee. It's also why they're mandated in a lot of fisheries, hookups are almost always in the jaw.",
       },
       {
         heading: "Unhook and release cleanly",
@@ -187,9 +187,9 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Non-offset is legal in more places and honestly works better — offset points can foul-hook",
+      "Non-offset is legal in more places and honestly works better, offset points can foul-hook",
       "Rinse hooks in fresh water and dry them before they go back in the box; black nickel is a coating, not immunity",
-      "Check local regulations — circle hooks are required for some species in some states",
+      "Check local regulations, circle hooks are required for some species in some states",
     ],
     timing:
       "Any bait fishing, but they shine when you're fishing two rods and can't watch both. Set them out on a rising tide and let them work.",
@@ -201,27 +201,27 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
     steps: [
       {
         heading: "Understand what the rig does",
-        body: "The weight sits on the bottom and stays there. The bait, on a leader behind it, drifts and waves in the current above the sand. That separation is why it outfishes a fixed weight — the fish feels no resistance when it picks the bait up.",
+        body: "The weight sits on the bottom and stays there. The bait, on a leader behind it, drifts and waves in the current above the sand. That separation is why it outfishes a fixed weight, the fish feels no resistance when it picks the bait up.",
       },
       {
         heading: "Attach it to your main line",
-        body: "Tie your shock leader (or main line) directly to the top swivel with a Palomar. The rig arrives ready — you're adding one knot and nothing else. Check the swivel spins freely before you cast.",
+        body: "Tie your shock leader (or main line) directly to the top swivel with a Palomar. The rig arrives ready, you're adding one knot and nothing else. Check the swivel spins freely before you cast.",
       },
       {
         heading: "Bait it for the target",
-        body: "Sand crab or mole crab for corbina and perch. Cut anchovy or squid for croaker and rays. Bloodworm where you can get it. Hook it shallow so the circle hook can rotate — the same rule as the hooks themselves.",
+        body: "Sand crab or mole crab for corbina and perch. Cut anchovy or squid for croaker and rays. Bloodworm where you can get it. Hook it shallow so the circle hook can rotate, the same rule as the hooks themselves.",
       },
       {
         heading: "Cast, then let it settle",
-        body: "Cast, let the weight hit bottom, then wind down until the line is just tight — no slack, no drag on the weight. Put the rod in a spike or hold it with a light drag. Now wait. The rig fishes itself.",
+        body: "Cast, let the weight hit bottom, then wind down until the line is just tight, no slack, no drag on the weight. Put the rod in a spike or hold it with a light drag. Now wait. The rig fishes itself.",
       },
       {
         heading: "Read the rod tip",
-        body: "A tap-tap is a small fish or a crab. A slow steady pull that keeps going is what you want — that's a fish that's turned away with the bait. Wind down into it steadily; the circle hook does the rest.",
+        body: "A tap-tap is a small fish or a crab. A slow steady pull that keeps going is what you want, that's a fish that's turned away with the bait. Wind down into it steadily; the circle hook does the rest.",
       },
     ],
     tips: [
-      "Reposition every 15–20 minutes if nothing happens — a surf trough is a moving target",
+      "Reposition every 15–20 minutes if nothing happens, a surf trough is a moving target",
       "Heavier weight in a strong sideways current; you want it to hold, not roll",
       "The cable leader version is for toothy fish; the fluoro version for clear water and spooky ones",
     ],
@@ -247,7 +247,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Retrieve slow, with pauses",
-        body: "Cast, let it sink to the bottom, then a slow steady wind with a pause every few turns. ElaZtech floats, so on the pause the tail stands up off the sand — that's exactly what a halibut lying in the sand is looking at. Most takes come on the pause or the first turn after it.",
+        body: "Cast, let it sink to the bottom, then a slow steady wind with a pause every few turns. ElaZtech floats, so on the pause the tail stands up off the sand, that's exactly what a halibut lying in the sand is looking at. Most takes come on the pause or the first turn after it.",
       },
       {
         heading: "Fish the whole retrieve",
@@ -255,7 +255,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "ElaZtech is far tougher than standard plastic — one bait often survives several fish",
+      "ElaZtech is far tougher than standard plastic, one bait often survives several fish",
       "Don't store ElaZtech in the same compartment as ordinary soft plastics; they react and both melt",
       "Pearl and smelt patterns for clear water, darker patterns when it's stirred up",
     ],
@@ -273,7 +273,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Add a trailer if you like",
-        body: "A bucktail works bare, but a soft plastic trailer on the hook adds profile and a bit of scent. A 4\" paddle tail from the swimbait kit is a natural pairing. Don't overdo the length — it can foul the hook gap.",
+        body: "A bucktail works bare, but a soft plastic trailer on the hook adds profile and a bit of scent. A 4\" paddle tail from the swimbait kit is a natural pairing. Don't overdo the length, it can foul the hook gap.",
       },
       {
         heading: "Hop it along the bottom",
@@ -281,7 +281,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Stay in contact on the fall",
-        body: "Semi-slack, not fully slack. You want to feel the jig land. If the line goes slack early or twitches sideways, a fish has it — wind down and lean into it rather than striking hard.",
+        body: "Semi-slack, not fully slack. You want to feel the jig land. If the line goes slack early or twitches sideways, a fish has it, wind down and lean into it rather than striking hard.",
       },
       {
         heading: "Work current seams and structure",
@@ -289,7 +289,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Trokar points are extremely sharp — check them against a thumbnail regularly and touch up or replace",
+      "Trokar points are extremely sharp, check them against a thumbnail regularly and touch up or replace",
       "Rinse and dry the hair after use, then fluff it out; matted bucktail loses most of its action",
       "⚠️ Contains lead. Wash your hands after handling, and keep them away from children.",
     ],
@@ -311,11 +311,11 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Net head-first, always",
-        body: "Sink the hoop, lead the fish over it head-first, then lift. Fish swim forwards — chase one from behind and it accelerates away every time. Move the fish to the net, not the net to the fish.",
+        body: "Sink the hoop, lead the fish over it head-first, then lift. Fish swim forwards, chase one from behind and it accelerates away every time. Move the fish to the net, not the net to the fish.",
       },
       {
         heading: "Lift with the frame vertical",
-        body: "Once the fish is in, lift smoothly and let the bag take the weight. Don't scoop sideways at the surface — that's how frames bend and fish escape over the rim.",
+        body: "Once the fish is in, lift smoothly and let the bag take the weight. Don't scoop sideways at the surface, that's how frames bend and fish escape over the rim.",
       },
       {
         heading: "Handle and release",
@@ -323,12 +323,12 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Wet the mesh before the first fish — dry mesh is far harsher on a fish you intend to release",
+      "Wet the mesh before the first fish, dry mesh is far harsher on a fish you intend to release",
       "Rinse in fresh water and hang it to dry; a folded wet net grows mildew fast",
       "Check the handle lock periodically. It's the part that fails on every folding net eventually.",
     ],
     timing:
-      "Any time you can't slide a fish up a beach — jetties, kayaks, harbor walls, and anywhere with a drop between you and the water.",
+      "Any time you can't slide a fish up a beach, jetties, kayaks, harbor walls, and anywhere with a drop between you and the water.",
   },
 
   "sand-spike": {
@@ -353,12 +353,12 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Space your spread",
-        body: "Two rods, ten to fifteen feet apart, fishing different distances — one in the near trough, one further out. You're finding the depth the fish are working, and doubling your chances of finding it fast.",
+        body: "Two rods, ten to fifteen feet apart, fishing different distances, one in the near trough, one further out. You're finding the depth the fish are working, and doubling your chances of finding it fast.",
       },
     ],
     tips: [
       "Push them in before you rig up, so you have somewhere to put a rod while your hands are busy",
-      "Mark them with reflective tape or a glow band — they're genuinely hard to find in the dark",
+      "Mark them with reflective tape or a glow band, they're genuinely hard to find in the dark",
       "Rinse the sand out before they go in the truck; grit gets everywhere",
     ],
     timing:
@@ -383,7 +383,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Open split rings properly",
-        body: "The notched tip slides between the coils. Twist slightly to open a gap, slide the new ring or hook on, then release. Don't lever the coils apart — that deforms the ring and it never closes properly again.",
+        body: "The notched tip slides between the coils. Twist slightly to open a gap, slide the new ring or hook on, then release. Don't lever the coils apart, that deforms the ring and it never closes properly again.",
       },
       {
         heading: "Rinse and oil",
@@ -391,7 +391,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Carbide cutters go through 80 lb braid cleanly — if they're crushing rather than slicing, it's time to replace the inserts",
+      "Carbide cutters go through 80 lb braid cleanly, if they're crushing rather than slicing, it's time to replace the inserts",
       "The knot-cinch hole gives you something to pull against without cutting your hands on braid",
       "Keep the sheath rinsed too; salt trapped in the fabric will corrode the jaws that sit in it",
     ],
@@ -413,7 +413,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Use the molded base",
-        body: "The waterproof base is why this bag suits surf fishing. Put it down on wet sand without a second thought — that's what it's for. A soft-bottomed bag wicks salt water straight up into your trays and rusts everything inside.",
+        body: "The waterproof base is why this bag suits surf fishing. Put it down on wet sand without a second thought, that's what it's for. A soft-bottomed bag wicks salt water straight up into your trays and rusts everything inside.",
       },
       {
         heading: "Front pockets for what you need constantly",
@@ -425,7 +425,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Keep a spare leader spool and a few pre-tied rigs permanently in the bag — you'll need them at the worst moment",
+      "Keep a spare leader spool and a few pre-tied rigs permanently in the bag, you'll need them at the worst moment",
       "Chest and waist straps aren't decoration; do them up for a long walk in",
       "A small dry bag inside for phone and keys costs nothing and saves a very bad day",
     ],
@@ -443,11 +443,11 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Use more ice than feels reasonable",
-        body: "Roughly two parts ice to one part contents by volume. Block ice lasts far longer than cubes; a mix of both is ideal — blocks for duration, cubes to fill air gaps. Air is what kills ice retention.",
+        body: "Roughly two parts ice to one part contents by volume. Block ice lasts far longer than cubes; a mix of both is ideal, blocks for duration, cubes to fill air gaps. Air is what kills ice retention.",
       },
       {
         heading: "Bleed and chill fish immediately",
-        body: "Cut the gills and let the fish bleed out in the water for a minute, then straight into the ice. The quality difference between a fish iced immediately and one that sat in a bucket for an hour is enormous — this matters far more than the cooler itself.",
+        body: "Cut the gills and let the fish bleed out in the water for a minute, then straight into the ice. The quality difference between a fish iced immediately and one that sat in a bucket for an hour is enormous, this matters far more than the cooler itself.",
       },
       {
         heading: "Keep the meltwater",
@@ -459,7 +459,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "Store it open at home so it doesn't grow mildew — the leakproof zip seals in damp as well as cold",
+      "Store it open at home so it doesn't grow mildew, the leakproof zip seals in damp as well as cold",
       "A wet towel over the top in direct sun makes a genuine difference through evaporation",
       "Rinse the zip with fresh water and lubricate it occasionally; the zip is the part that fails on any soft cooler",
     ],
@@ -477,7 +477,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Start in red and stay there",
-        body: "Press and hold for 1.5 seconds to go straight to red without cycling through white. Red preserves your night vision — after about 20 minutes in the dark your eyes are properly adapted, and one flash of white resets that completely.",
+        body: "Press and hold for 1.5 seconds to go straight to red without cycling through white. Red preserves your night vision, after about 20 minutes in the dark your eyes are properly adapted, and one flash of white resets that completely.",
       },
       {
         heading: "Angle it down",
@@ -485,7 +485,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
       {
         heading: "Save white for real tasks",
-        body: "Unhooking a fish, finding something dropped in the sand, walking a rocky section. Then straight back to red. White light on the water in shallow conditions genuinely puts fish down — that's not folklore.",
+        body: "Unhooking a fish, finding something dropped in the sand, walking a rocky section. Then straight back to red. White light on the water in shallow conditions genuinely puts fish down, that's not folklore.",
       },
       {
         heading: "Rinse the strap, not the lamp",
@@ -493,7 +493,7 @@ export const WALKTHROUGHS: Record<string, Walkthrough> = {
       },
     ],
     tips: [
-      "40 hours of runtime is a season of dawn patrols for most people — but check it before a trip, not on the beach",
+      "40 hours of runtime is a season of dawn patrols for most people, but check it before a trip, not on the beach",
       "2.4 oz means it lives on a hat brim comfortably; keep it there rather than in the bag",
       "Carry a spare small light. Every headlamp fails eventually, always in the dark.",
     ],

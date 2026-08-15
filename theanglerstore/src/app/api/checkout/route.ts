@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import {
-  BUNDLE,
-  bundleUnitPrice,
-  cartEarnsBundle,
-  discountedUnitsFor,
+  allocateBundles,
+  discountSplitFor,
   getProduct,
   isSourced,
+  mergeLines,
 } from "@/lib/products";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 import {
@@ -101,18 +100,22 @@ export async function POST(req: Request) {
   }[] = [];
   let subtotal = 0;
 
-  // The bundle discount is decided HERE, from the keys the cart contains —
+  // The bundle discounts are decided HERE, from the keys the cart contains —
   // never from anything the client claims. Same rule as pricing: the browser
   // sends keys and quantities, the server decides what they cost.
-  // Clamp quantities before anything reads them, so the set count and the
-  // per-line maths can never disagree.
-  const normalised = lines.map((l) => ({
-    key: String(l.key),
-    qty: Math.min(Math.max(Math.floor(Number(l.qty) || 0), 1), 99),
-  }));
-  const earnsBundle = cartEarnsBundle(normalised.map((l) => l.key));
+  //
+  // mergeLines() collapses repeated keys and clamps quantities before anything
+  // reads them, and the billing loop below runs over the MERGED list rather
+  // than the raw one. It used to run over the raw one while the discount was
+  // computed from a deduplicated view, which meant a cart that listed braid
+  // twice could collect the discount on both lines.
+  const merged = mergeLines(lines);
+  if (merged.length === 0) {
+    return NextResponse.json({ error: "Your cart is empty." }, { status: 400 });
+  }
+  const awards = allocateBundles(merged);
 
-  for (const line of lines) {
+  for (const line of merged) {
     const product = getProduct(String(line.key));
     if (!product) {
       return NextResponse.json(
@@ -141,23 +144,9 @@ export async function POST(req: Request) {
       );
     }
 
-    const qty = Math.min(Math.max(Math.floor(Number(line.qty) || 0), 1), 99);
+    const qty = line.qty;
 
-    // How many of THIS line are actually part of a complete bundle. The rest
-    // are a normal purchase at the normal price.
-    //
-    // Previously the discounted unit price was applied to the whole line, so
-    // a cart with the bundle plus two spare spools of braid got 12% off all
-    // three spools. Splitting the line is the only honest way to express
-    // "one at the bundle price, two at full" through Stripe's API.
-    const atBundlePrice = earnsBundle
-      ? Math.min(qty, discountedUnitsFor(product.key, normalised))
-      : 0;
-    const atFullPrice = qty - atBundlePrice;
-
-    const bundleUnit = bundleUnitPrice(product.price);
-
-    const push = (quantity: number, unit: number, bundled: boolean) => {
+    const push = (quantity: number, unit: number, bundleName: string | null) => {
       if (quantity <= 0) return;
       subtotal += unit * quantity;
       items.push({
@@ -170,7 +159,7 @@ export async function POST(req: Request) {
           tax_behavior: "exclusive",
           unit_amount: Math.round(unit * 100),
           product_data: {
-            name: bundled ? `${product.name} — ${BUNDLE.name}` : product.name,
+            name: bundleName ? `${product.name} — ${bundleName}` : product.name,
             description: product.tagline,
             metadata: { product_key: product.key },
           },
@@ -178,8 +167,22 @@ export async function POST(req: Request) {
       });
     };
 
-    push(atBundlePrice, bundleUnit, true);
-    push(atFullPrice, product.price, false);
+    // How many of THIS line belong to a complete kit, and to which one. The
+    // rest are a normal purchase at the normal price.
+    //
+    // The discounted unit price used to be applied to the whole line, so a
+    // cart with the bundle plus two spare spools of braid got 12% off all
+    // three spools. Splitting the line is the only honest way to express "one
+    // at the kit price, two at full" through Stripe's API — and now that kits
+    // share parts, a single spool can only ever appear in one slice, because
+    // the allocator spent that unit when it awarded the kit.
+    let discounted = 0;
+    for (const slice of discountSplitFor(product.key, merged)) {
+      const take = Math.min(slice.qty, qty - discounted);
+      push(take, slice.unit, slice.bundleName);
+      discounted += take;
+    }
+    push(qty - discounted, product.price, null);
   }
 
   const shipping = rateFor(zone, subtotal);
@@ -201,9 +204,15 @@ export async function POST(req: Request) {
         utm_campaign: attribution.utm_campaign ?? "",
         landing_path: attribution.landing_path ?? "",
         referrer: (attribution.referrer ?? "").slice(0, 400),
-        product_keys: lines.map((l) => l.key).join(","),
+        product_keys: merged.map((l) => l.key).join(","),
         ship_zone: zone.id,
-        bundle: earnsBundle ? BUNDLE.name : "",
+        // Every kit earned, with its set count. Stripe caps a metadata value
+        // at 500 characters; seven kits at once cannot reach that, and the
+        // slice is there so a future eighth can't silently fail the session.
+        bundle: awards
+          .map((a) => (a.sets > 1 ? `${a.name} ×${a.sets}` : a.name))
+          .join(", ")
+          .slice(0, 480),
       },
       return_url: `${base}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       // The statement descriptor is set at the ACCOUNT level in Stripe as
@@ -216,7 +225,7 @@ export async function POST(req: Request) {
       // The description below is internal: it shows on the payment in the
       // Stripe dashboard, not on the customer's statement.
       payment_intent_data: {
-        description: `TheAnglerStore order — ${lines.length} item${lines.length === 1 ? "" : "s"}`,
+        description: `TheAnglerStore order — ${merged.length} item${merged.length === 1 ? "" : "s"}`,
       },
       // Stripe Tax. Calculation happens only where we hold a registration —
       // Stripe's own wording: "Without a registration in the customer's

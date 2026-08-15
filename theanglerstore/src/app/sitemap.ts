@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // by even a slash is a URL the sitemap is asking Google not to index.
     { url: `${BASE}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/products`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/bundles`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE}/shipping`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE}/returns`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },

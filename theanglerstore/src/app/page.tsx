@@ -1,13 +1,12 @@
 import Link from "next/link";
 import {
-  BUNDLE,
+  activeBundles,
   activeCategories,
-  bundleAvailable,
-  bundleItems,
+  featuredBundle,
   listed,
   featured,
 } from "@/lib/products";
-import { AddBundle } from "@/components/AddBundle";
+import { BundleCard } from "@/components/BundleCard";
 import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ProductCard } from "@/components/ProductCard";
 import { ProductArt } from "@/components/ProductArt";
@@ -17,7 +16,7 @@ export const metadata = {
   // absolute: the layout template would otherwise render this as
   // "TheAnglerStore — … | TheAnglerStore".
   title: {
-    absolute: "TheAnglerStore — Surf & Inshore Fishing Tackle",
+    absolute: "TheAnglerStore. Surf & Inshore Fishing Tackle",
   },
   description:
     "Surf and inshore fishing gear chosen by people who fish the same beaches you do. Free US shipping over $75. Sister site to USTideCharts.",
@@ -26,10 +25,8 @@ export const metadata = {
 
 export default function HomePage() {
   const picks = featured();
-  const starter = bundleItems();
-  const starterTotal = starter.reduce((s, p) => s + p.price, 0);
-  const bundlePrice = Math.round(starterTotal * (1 - BUNDLE.discount) * 100) / 100;
-  const showBundle = bundleAvailable();
+  const hero = featuredBundle();
+  const otherKits = activeBundles().length - 1;
 
   return (
     <>
@@ -136,47 +133,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Starter bundle ---------------- */}
-      {showBundle && (
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="card overflow-hidden">
-          <div className="grid gap-8 p-6 sm:p-9 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <span className="badge">
-                Bundle · save {Math.round(BUNDLE.discount * 100)}%
-              </span>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight sm:text-3xl">
-                {BUNDLE.name}
-              </h2>
-              <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
-                Braid, leader, pliers and a net. Bring your own rod and this is
-                everything else a session actually needs &mdash; the line that
-                connects you to the fish, the tool that gets the hook out, and
-                something to land it in.
-              </p>
-              <ul className="mt-5 grid gap-2 text-sm sm:grid-cols-2">
-                {starter.map((p) => (
-                  <li key={p.key} className="flex items-baseline gap-2 text-ink-dim">
-                    <span className="text-teal">▸</span>
-                    <Link href={`/products/${p.key}`} className="hover:text-tide">
-                      {p.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="shrink-0 lg:text-right">
-              <p className="tnum text-sm text-ink-faint line-through">
-                ${starterTotal.toFixed(2)}
-              </p>
-              <p className="tnum text-4xl font-semibold">${bundlePrice.toFixed(2)}</p>
-              <p className="mt-1 text-xs text-ink-faint">Ships free</p>
-              <AddBundle keys={starter.map((p) => p.key)} />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ---------------- Bundles ---------------- */}
+      {hero && (
+        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+          <BundleCard bundle={hero} featured />
+          {otherKits > 0 && (
+            <p className="mt-5 text-sm text-ink-dim">
+              {otherKits} more kit{otherKits === 1 ? "" : "s"} for other kinds of
+              day: big surf, the jetty, rockfish, a salmon troll, a day on the
+              bass lake.{" "}
+              <Link href="/bundles" className="link-quiet">
+                See all the kits →
+              </Link>
+            </p>
+          )}
+        </section>
       )}
 
       {/* ---------------- Cross-promo ---------------- */}
@@ -189,7 +160,7 @@ export default function HomePage() {
             <p className="mt-2 max-w-2xl leading-relaxed text-ink-dim">
               Our sister site runs live NOAA tide charts, a fishing score, and the
               best two-hour windows for every spot we cover. The right gear matters
-              less than showing up on the right tide &mdash; so start there.
+              less than showing up on the right tide, so start there.
             </p>
           </div>
           <a

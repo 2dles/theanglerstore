@@ -2,7 +2,7 @@ import { Prose, Section } from "@/components/Prose";
 
 export const metadata = {
   title: "Contact",
-  description: "Questions about gear or an order — how to reach TheAnglerStore.",
+  description: "Questions about gear or an order, how to reach TheAnglerStore.",
   alternates: { canonical: "/contact" },
 };
 
@@ -32,7 +32,7 @@ export default function ContactPage() {
       <Section heading="Include this and we will be faster">
         <ul className="space-y-2 text-ink-dim">
           <li>▸ Your order number, if it is about an order</li>
-          <li>▸ Where you fish — it changes almost every gear recommendation</li>
+          <li>▸ Where you fish, it changes almost every gear recommendation</li>
           <li>▸ Photos, for anything damaged or defective</li>
         </ul>
       </Section>

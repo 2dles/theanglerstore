@@ -1,0 +1,10 @@
+# Sync tarballs and archived copies. These are transfer artifacts, not source.
+# A commit picked up ~700 KB of them once because there was no .gitignore at
+# the repo root and `git add -A` was run from here.
+*.tgz
+*.zip
+_superseded/
+_to_delete/
+
+# npm run from the repo root instead of theanglerstore/ leaves a stub here.
+/package-lock.json

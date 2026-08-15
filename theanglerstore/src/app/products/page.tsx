@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { ProductFinder } from "@/components/ProductFinder";
 
 export const metadata = {
-  title: "All Gear — Surf & Inshore Fishing Tackle",
+  title: "All Gear: Surf & Inshore Fishing Tackle",
   description:
     "Every product we carry: braid and fluorocarbon leader, jigs, landing nets, pliers, tackle packs and coolers. Real gear from US distributors, shipped in 3-7 business days.",
   alternates: { canonical: "/products" },
@@ -41,7 +41,7 @@ export default function AllProductsPage() {
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">All gear</h1>
         <p className="mt-3 max-w-2xl leading-relaxed text-ink-dim">
           {indexed().length} products. Everything here is something we&rsquo;d
-          actually carry down the beach &mdash; and where we think a product is a
+          actually carry down the beach, and where we think a product is a
           bad buy, we say so on its page instead of quietly not selling it.
         </p>
 
@@ -53,7 +53,7 @@ export default function AllProductsPage() {
           <ProductFinder>
             {/* Most Popular leads, because a first-time visitor from the tide site
                 should meet the things almost every angler needs before they meet
-                a category index. Ranked editorially in products.ts — see APPEAL. */}
+                a category index. Ranked editorially in products.ts, see APPEAL. */}
             <section className="mt-14">
               <div className="flex items-end justify-between gap-4">
                 <div>
@@ -78,7 +78,7 @@ export default function AllProductsPage() {
               A PREVIEW per category, not the whole shelf.
 
               This used to render a card for all 233 products, which is what
-              made this page 504 KB of payload — every card's props serialised
+              made this page 504 KB of payload, every card's props serialised
               into the RSC stream, and the heaviest page on the site by an
               order of magnitude, mostly on phones. Four cards is enough to
               show what a category looks like; the collection page is one
@@ -114,7 +114,7 @@ export default function AllProductsPage() {
         </Suspense>
 
         {/*
-          THE CRAWLABLE INDEX — deliberately outside the Suspense boundary.
+          THE CRAWLABLE INDEX, deliberately outside the Suspense boundary.
 
           ProductFinder reads searchParams, so everything inside that boundary
           renders as the fallback skeleton in the server response and only
@@ -126,7 +126,7 @@ export default function AllProductsPage() {
           JavaScript saw an empty catalogue.
 
           A paginated card grid would fix the letter of that (24 links on page
-          one) but not the substance — products on page 6 stay three hops from
+          one) but not the substance, products on page 6 stay three hops from
           the hub. Plain text links cost almost nothing to render, so every
           product gets a server-rendered link one hop from the nav instead.
           It's also just a useful page: people who know what they want can

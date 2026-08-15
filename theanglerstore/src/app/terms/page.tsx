@@ -17,8 +17,8 @@ export default function TermsPage() {
       <Section heading="Orders and pricing">
         <p>
           Prices are in US dollars and are calculated on our server at checkout,
-          not in your browser. If a price is listed in obvious error — a decimal
-          in the wrong place — we may cancel the order and refund you in full
+          not in your browser. If a price is listed in obvious error, a decimal
+          in the wrong place, we may cancel the order and refund you in full
           rather than honor it. We will tell you if that happens.
         </p>
         <p>
@@ -72,7 +72,7 @@ export default function TermsPage() {
       <Section heading="Governing law">
         <p>
           These terms are between you and Augustus Muse, sole proprietor,
-          trading as TheAnglerStore, of Sebastopol, California — a fictitious
+          trading as TheAnglerStore, of Sebastopol, California, a fictitious
           business name registered in Sonoma County. They are governed by the
           laws of the State of California.
           Nothing here limits any right you have under consumer protection law

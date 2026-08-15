@@ -40,6 +40,11 @@ export function Footer() {
               Shop
             </p>
             <ul className="mt-3 space-y-2 text-sm">
+              <li>
+                <Link href="/bundles" className="link-quiet">
+                  Kits &amp; bundles
+                </Link>
+              </li>
               {activeCategories().filter((c) => c.nav).map((c) => (
                 <li key={c.slug}>
                   <Link href={`/collections/${c.slug}`} className="link-quiet">
@@ -87,7 +92,7 @@ export function Footer() {
 
         <div className="hairline mt-10 flex flex-col gap-2 pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} TheAnglerStore — Augustus Muse, sole
+            © {new Date().getFullYear()} TheAnglerStore. Augustus Muse, sole
             proprietor, Sebastopol, California.{" "}
             <a href="tel:+17075087118" className="hover:text-ink">
               (707) 508-7118
