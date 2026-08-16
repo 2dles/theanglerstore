@@ -426,6 +426,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "bank-sinker-3oz",
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/27482_5ac4310f-a1f8-4f9b-9eb2-40d9386d20d9.jpg",
     name: "MO's Bank Sinkers — 3 oz, 26-Pack",
     category: "Terminal Tackle",
     price: 29.99,
@@ -457,6 +458,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "bank-sinker-4oz",
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/27482_bc0c34bd-e78b-4789-977b-75d72b9131c8.jpg",
     name: "MO's Bank Sinkers — 4 oz, 20-Pack",
     category: "Terminal Tackle",
     price: 32.99,
@@ -488,6 +490,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "bank-sinker-6oz",
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/27482.jpg",
     name: "MO's Bank Sinkers — 6 oz, 13-Pack",
     category: "Terminal Tackle",
     price: 34.99,
@@ -6590,6 +6593,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "zoom-trick-worm-wrt",
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/30595.jpg",
     name: "Zoom Trick Worm 6½\" — Watermelon Red Tomato, 20-Pack",
     category: "Soft Baits",
     price: 6.99,
@@ -7619,6 +7623,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     key: "daiwa-d-shock-combo-7mh",
+    image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/786122_bfc8e673-fd7f-4516-b3c1-f43538fcb9f4.jpg",
     name: "Daiwa D-Shock Spinning Combo — 7 ft, 2-Piece Medium-Heavy",
     category: "Rod & Reel Combos",
     price: 34.99,
