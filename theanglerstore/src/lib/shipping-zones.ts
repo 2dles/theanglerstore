@@ -65,7 +65,11 @@ export const ZONES: ShippingZone[] = [
     countries: ["US"],
     freeOver: FREE_SHIPPING_OVER,
     flat: FLAT_SHIPPING,
-    transit: { min: 2, max: 7 },
+    // Measured, not estimated. See STANDARD_SHIPS_IN in products.ts: the
+    // first real order ran 1 business day of handling and 8 of transit, East
+    // Coast distributor to California. Stripe quotes this range at checkout,
+    // so it has to agree with the product pages rather than flatter them.
+    transit: { min: 2, max: 9 },
     enabled: true,
   },
   {

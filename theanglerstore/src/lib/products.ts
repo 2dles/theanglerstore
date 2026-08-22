@@ -293,6 +293,44 @@ export const CATEGORIES: {
   },
 ];
 
+/**
+ * THE DELIVERY WINDOW, MEASURED.
+ *
+ * Door to door, order to doorstep, including the day the distributor takes to
+ * pick and hand over. Quoted on everything that has no specific reason to
+ * differ, which today is every product we can actually sell.
+ *
+ * This used to say 3-7 business days, and that number was never measured. It
+ * was an estimate made before we had a dealer account, and the first real
+ * order blew straight through it:
+ *
+ *     ordered Mon 10 Aug -> shipped Tue 11 Aug -> arrived Sat 22 Aug
+ *     handling 1 business day, transit 8, DOOR TO DOOR 9
+ *
+ * The interesting half of that is which number was wrong. CWR shipped the
+ * next morning, so the one-day handling assumption baked into
+ * shippingDetails() is correct and stays. What is slow is the carrier: CWR is
+ * on the East Coast, this store sells to the West Coast, and coast-to-coast
+ * ground is simply a long way. That is not a fluke to be averaged out; it is
+ * the most predictable fact in the whole supply chain, and it will be true of
+ * every California order we ever take.
+ *
+ * So 3 to 10. The bottom of the range is what an East Coast buyer should
+ * genuinely see and the top is what we measured to California, which is where
+ * most of our traffic comes from, because our sister site is a West Coast
+ * tide chart. Quoting 7 and delivering 9 is how a store gets chargebacks, bad
+ * reviews, and an FTC Mail Order Rule problem, which requires a reasonable
+ * basis for an advertised window and a delay notice with the option to cancel
+ * when you miss it.
+ *
+ * SHIPPING-OBSERVED.md holds the log. Tighten this the moment there are
+ * enough real orders to do it from evidence rather than from one parcel.
+ */
+export const STANDARD_SHIPS_IN = "3\u201310 business days";
+
+/** The top of the standard window, in business days. */
+export const STANDARD_SHIPS_MAX = 10;
+
 export const PRODUCTS: Product[] = [
   {
     key: "surf-rod",
@@ -325,7 +363,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/533338.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "inshore-combo",
@@ -390,7 +428,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/90822XL.jpg",
     prop65: true,
     role: "anchor",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "fluoro-leader",
@@ -422,7 +460,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110924XL.jpg",
     role: "add-on",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "bank-sinker-3oz",
@@ -454,7 +492,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "bank-sinker-4oz",
@@ -486,7 +524,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "bank-sinker-6oz",
@@ -518,7 +556,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "circle-hooks",
@@ -549,7 +587,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/4378_c106da28-2af5-4b19-886f-88dcadc01272.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "carolina-kit",
@@ -645,7 +683,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/101149XL.jpg",
     prop65: true,
     role: "add-on",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "landing-net",
@@ -676,7 +714,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/103114XL.jpg",
     role: "add-on",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "sand-spike",
@@ -739,7 +777,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/110902XL.jpg",
     prop65: true,
     role: "anchor",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tackle-bag",
@@ -771,7 +809,7 @@ export const PRODUCTS: Product[] = [
     featured: true,
     image: "https://productimageserver.com/product/xl/105698XL.jpg",
     role: "anchor",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "cooler",
@@ -803,7 +841,7 @@ export const PRODUCTS: Product[] = [
     featured: true,
     image: "https://productimageserver.com/product/xl/98875XL.jpg",
     role: "anchor",
-    shipsIn: "3\u20137 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "headlamp",
@@ -835,7 +873,7 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Dawn patrol, night sessions, pre-sunrise walks in.",
     featured: true,
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "braid-hivis",
@@ -866,7 +904,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90826XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "braid-light",
@@ -897,7 +935,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90752XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "stowaway-4pack",
@@ -928,7 +966,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110067XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "rapstack-tray",
@@ -959,7 +997,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101115XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tool-holder",
@@ -990,7 +1028,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96776XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "net-handle",
@@ -1021,7 +1059,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34613XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "crab-net",
@@ -1052,7 +1090,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32955XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "rod-rack",
@@ -1083,7 +1121,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/77711XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jig-box",
@@ -1114,7 +1152,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90224XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flasher",
@@ -1146,7 +1184,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110805XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jig-mid",
@@ -1178,7 +1216,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105293XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flush-mount-0",
@@ -1209,7 +1247,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/108260XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flush-mount-70",
@@ -1240,7 +1278,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102565XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flush-mount-ss",
@@ -1271,7 +1309,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/30232XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "track-holder",
@@ -1302,7 +1340,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/104193XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "three-pole-holder",
@@ -1333,7 +1371,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/99422XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flush-mount-ss-top",
@@ -1364,7 +1402,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/77702XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "clamp-on-holder",
@@ -1395,7 +1433,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/62246XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "net-handle-5",
@@ -1426,7 +1464,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34612XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "curved-adapter",
@@ -1457,7 +1495,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32958XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tool-holder-3",
@@ -1488,7 +1526,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/88961XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "cup-holder-box",
@@ -1519,7 +1557,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/108208XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "lead-core",
@@ -1551,7 +1589,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/96824XL.jpg",
     prop65: true,
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "braid-10",
@@ -1582,7 +1620,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90766XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "braid-15",
@@ -1613,7 +1651,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110908XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "fluoro-100",
@@ -1644,7 +1682,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110926XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xrap-magnum",
@@ -1675,7 +1713,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/89811XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "side-mount-rack",
@@ -1706,7 +1744,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/78045XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "rod-hanger",
@@ -1737,7 +1775,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/45916XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dock-light",
@@ -1768,7 +1806,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/64976XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flood-light",
@@ -1799,7 +1837,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/64987XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xrap-30",
@@ -1830,7 +1868,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/89851XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xrap-20",
@@ -1861,7 +1899,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/89835XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xplode-170",
@@ -1892,7 +1930,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96763XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tuna-catcher",
@@ -1923,7 +1961,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105346XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "edge-deep",
@@ -1954,7 +1992,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/79717XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "edge-thin",
@@ -1985,7 +2023,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/79715XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "angled-system",
@@ -2016,7 +2054,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/66576XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "side-mount-4",
@@ -2047,7 +2085,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/78044XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "rod-hanger-single",
@@ -2078,7 +2116,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/63719XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tool-holder-2",
@@ -2109,7 +2147,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/88960XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mag-spring-pliers",
@@ -2140,7 +2178,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96773XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gripper-scale",
@@ -2171,7 +2209,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96767XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "cull-tags",
@@ -2202,7 +2240,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/85650XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "leader-spool-holder",
@@ -2233,7 +2271,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/108209XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "downrigger",
@@ -2263,7 +2301,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34281XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "weight-retriever",
@@ -2293,7 +2331,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/35531XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "pulley-kit",
@@ -2323,7 +2361,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/99579XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "downrigger-cable",
@@ -2353,7 +2391,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34299XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "aerator-floating",
@@ -2384,7 +2422,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/66342XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "bait-bucket",
@@ -2415,7 +2453,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/71462XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "aerator-110",
@@ -2446,7 +2484,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/71480XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dock-light-blue",
@@ -2477,7 +2515,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/64977XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "submersible-light",
@@ -2510,7 +2548,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/86180XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dipsy-small",
@@ -2541,7 +2579,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102261XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jet-driver-20",
@@ -2572,7 +2610,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102252XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jet-driver-30",
@@ -2603,7 +2641,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102255XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "tuna-catcher-5",
@@ -2634,7 +2672,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105318XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dipsy-mid",
@@ -2665,7 +2703,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102268XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "big-game-catcher",
@@ -2696,7 +2734,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105314XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "flasher-small",
@@ -2728,7 +2766,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110783XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dipsy-large",
@@ -2759,7 +2797,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102274XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jig-220-mack",
@@ -2791,7 +2829,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105297XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "jig-280-candy",
@@ -2823,7 +2861,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105304XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xplode-130",
@@ -2854,7 +2892,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105359XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "xrap-20-hot",
@@ -2885,7 +2923,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/89837XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "attwood-2-in-1-non-adjustable-rod-holders-2-",
@@ -2912,7 +2950,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/103109XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -2940,7 +2978,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52323XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -2969,7 +3007,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/103113XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -2999,7 +3037,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/50994XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3027,7 +3065,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52282XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3055,7 +3093,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52283XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3083,7 +3121,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52317XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3113,7 +3151,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52300XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3142,7 +3180,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/52304XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3171,7 +3209,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/71555XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3200,7 +3238,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102249XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3229,7 +3267,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102250XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3258,7 +3296,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102251XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3287,7 +3325,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102253XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3316,7 +3354,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102267XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3345,7 +3383,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102269XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3374,7 +3412,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102270XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3403,7 +3441,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102257XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3432,7 +3470,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102258XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3461,7 +3499,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102259XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3490,7 +3528,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102273XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3519,7 +3557,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102277XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3548,7 +3586,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102278XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3578,7 +3616,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110782XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3608,7 +3646,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110784XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3638,7 +3676,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110786XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3668,7 +3706,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110787XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3698,7 +3736,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110790XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3728,7 +3766,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110792XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3758,7 +3796,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110793XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3788,7 +3826,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110794XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3818,7 +3856,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110795XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3848,7 +3886,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110796XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3878,7 +3916,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110797XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3908,7 +3946,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110798XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3938,7 +3976,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110799XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3968,7 +4006,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110800XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -3998,7 +4036,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110801XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4028,7 +4066,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110804XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4058,7 +4096,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110806XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4088,7 +4126,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110807XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4118,7 +4156,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110808XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4148,7 +4186,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110809XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4176,7 +4214,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/79718XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4204,7 +4242,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/79714XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4232,7 +4270,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/66603XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
 
@@ -4261,7 +4299,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/109932XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4290,7 +4328,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/66587XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4318,7 +4356,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/109119XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4346,7 +4384,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/109117XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4376,7 +4414,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105273XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4404,7 +4442,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96772XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4432,7 +4470,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110901XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4461,7 +4499,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/66347XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4489,7 +4527,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110904XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4518,7 +4556,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/96769XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4547,7 +4585,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/96771XL.jpg",
     familyKey: "Rapala Fish Gripper Scale Combo",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4575,7 +4613,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/88209XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4603,7 +4641,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101113XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4631,7 +4669,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101112XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
 
@@ -4660,7 +4698,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/51144XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4688,7 +4726,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32953XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4717,7 +4755,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32954XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4746,7 +4784,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32956XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4774,7 +4812,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/32957XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4806,7 +4844,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/96812XL.jpg",
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4838,7 +4876,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/110915XL.jpg",
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4869,7 +4907,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110910XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4900,7 +4938,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90744XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4931,7 +4969,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90745XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4962,7 +5000,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90746XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -4993,7 +5031,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90788XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5024,7 +5062,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90847XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5055,7 +5093,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90765XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5086,7 +5124,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90793XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5117,7 +5155,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90823XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5149,7 +5187,7 @@ export const PRODUCTS: Product[] = [
     image: "https://productimageserver.com/product/xl/96826XL.jpg",
     prop65: true,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5180,7 +5218,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/110921XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5210,7 +5248,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90980XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5240,7 +5278,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90982XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5270,7 +5308,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/90975XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5300,7 +5338,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105325XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5330,7 +5368,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105348XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5361,7 +5399,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105296XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 
   {
@@ -5392,7 +5430,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105303XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mate-30-rod-cup-holder",
@@ -5423,7 +5461,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/77189XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-245-rail-mount",
@@ -5453,7 +5491,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34348XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-405-orca-kit",
@@ -5483,7 +5521,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/37812XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mate-15-rod-cup-holder-ss",
@@ -5513,7 +5551,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/72502XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "ce-smith-swivel-flush-mount-80",
@@ -5543,7 +5581,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/30231XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mate-backing-plate",
@@ -5572,7 +5610,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/103694XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-1170-release",
@@ -5602,7 +5640,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34313XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-370-snubber",
@@ -5632,7 +5670,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34297XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-1176-stacker",
@@ -5662,7 +5700,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/35527XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-1148-weight-hook",
@@ -5691,7 +5729,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/39627XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-377-sure-stop",
@@ -5722,7 +5760,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/73732XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-358-rodmaster-ii",
@@ -5753,7 +5791,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/34373XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "taco-outrigger-clips",
@@ -5783,7 +5821,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/60571XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "harken-229f-block",
@@ -5813,7 +5851,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/78687XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yakgear-drain-plug-kit",
@@ -5842,7 +5880,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101697XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yakgear-paddle-leash",
@@ -5871,7 +5909,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101684XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yakgear-scupper-plugs",
@@ -5900,7 +5938,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101702XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yakgear-grapnel-anchor",
@@ -5930,7 +5968,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/101690XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "railblaza-rod-holder-ii",
@@ -5959,7 +5997,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/105801XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "scotty-276-anchor-lock",
@@ -5988,7 +6026,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/35507XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "railblaza-hexx-mount",
@@ -6016,7 +6054,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/102209XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "orion-safety-whistle",
@@ -6046,7 +6084,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/77049XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "orion-signal-mirror",
@@ -6076,7 +6114,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/70981XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "acr-c-strobe-h2o",
@@ -6106,7 +6144,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/59880XL.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mustang-throw-bag-75",
@@ -6135,7 +6173,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/93013XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "acr-rapidditch-express",
@@ -6165,7 +6203,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://productimageserver.com/product/xl/50058XL.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-ft-surf-9",
@@ -6198,7 +6236,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/533342.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-ft-surf-11",
@@ -6231,7 +6269,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/533340.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gamakatsu-octopus-circle-3-0",
@@ -6261,7 +6299,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/5294.gif",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gamakatsu-octopus-circle-1-0",
@@ -6291,7 +6329,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/5323.gif",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gamakatsu-worm-hook-3-0",
@@ -6320,7 +6358,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/5241_1709f0ce-78d5-491d-9f43-81906077f3a0.gif",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gamakatsu-worm-hook-2-0",
@@ -6349,7 +6387,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/5326_3af39903-7d56-4958-bd0c-3d64bc0abee2.gif",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "gamakatsu-offset-worm-hook-1",
@@ -6378,7 +6416,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/5262_da24372f-e526-44fb-be3f-0c687c23a4f9.gif",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mustad-barrel-swivel-4",
@@ -6408,7 +6446,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/25555_17981431-bf71-4f6c-9e48-0b3b32e57e3c.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mustad-barrel-swivel-2-0",
@@ -6438,7 +6476,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/6544.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mustad-snap-swivel-12",
@@ -6467,7 +6505,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/899478_adb8d278-09b9-48b8-bd4c-10fc5d8e8a57.png",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "strike-king-tungsten-weight-18",
@@ -6498,7 +6536,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/21215.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "mustad-tungsten-worm-weight",
@@ -6529,7 +6567,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/899597_a069fbd7-5af8-4e99-b539-150f374bce09.png",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yamamoto-senko-gp",
@@ -6559,7 +6597,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/910670_41fd265d-3c01-422e-ab5a-17f766e9228d.png",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "yamamoto-senko-smoke",
@@ -6589,7 +6627,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/910665.png",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zoom-trick-worm-wrt",
@@ -6619,7 +6657,7 @@ export const PRODUCTS: Product[] = [
     whenToUse: "Post-spawn shallow water, and any time fish are looking up.",
     featured: false,
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zoom-trick-worm-pc",
@@ -6649,7 +6687,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/12779.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zoom-super-fluke-jr",
@@ -6679,7 +6717,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/18614.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zoom-fluke-smokin-shad",
@@ -6709,7 +6747,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/12399.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zoom-brush-hog-junebug",
@@ -6739,7 +6777,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/152850.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "rage-bug",
@@ -6768,7 +6806,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/37496.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "baby-rage-bug",
@@ -6797,7 +6835,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/37508.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zman-big-trd-gp",
@@ -6828,7 +6866,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/523894_0eee356a-0204-4dcf-bcc9-f4b42c118f63.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zman-big-trd-bb",
@@ -6859,7 +6897,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/27357_e29d5add-0d12-48d4-8ede-240df9f68673.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "powerbait-general",
@@ -6889,7 +6927,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/898448.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "powerbait-chigger-craw",
@@ -6919,7 +6957,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897555_0025619b-0c5d-4104-90fe-173430ac38f0.png",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "crappie-magnet-bw",
@@ -6949,7 +6987,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/26168.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "kvd-squarebill-sexy-shad",
@@ -6979,7 +7017,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/17402.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "kvd-squarebill-bbc",
@@ -7009,7 +7047,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/28956_b9942b1a-b147-4405-96bd-3da471ca8380.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "red-eye-shad-34",
@@ -7039,7 +7077,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/27968.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "red-eye-shad-12",
@@ -7069,7 +7107,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/789366_6f9080f0-85bf-4df3-a4d4-ab1c068f4dba.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "strike-king-3xd-wrc",
@@ -7099,7 +7137,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/807031.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "strike-king-3xd-bbc",
@@ -7129,7 +7167,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/37325.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "war-eagle-spinnerbait",
@@ -7159,7 +7197,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/760717.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "sk-tour-grade-spinnerbait",
@@ -7189,7 +7227,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/525722.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "booyah-super-shad",
@@ -7219,7 +7257,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/2828_c66c6893-27de-4b9b-b7af-e918ca658d33.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zman-finesse-shroomz",
@@ -7250,7 +7288,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/12093.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zman-shroomz-weedless",
@@ -7281,7 +7319,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/12107.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "zman-nedlockz-ewg",
@@ -7312,7 +7350,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/890359.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "crappie-magnet-minnow-heads",
@@ -7343,7 +7381,7 @@ export const PRODUCTS: Product[] = [
     prop65: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/802336_247e81b0-db85-4739-9ac5-a1abfa68c733.jpg",
     role: "add-on",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-crossfire-lt-2000",
@@ -7377,7 +7415,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/133910.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-crossfire-lt-3000",
@@ -7411,7 +7449,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/133924.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "abu-max-x-2500",
@@ -7445,7 +7483,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_b1b63532-32b9-4d59-8c76-6e98f4aaee33.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "abu-max-x-3000",
@@ -7479,7 +7517,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897518_d451df4c-ae88-4f30-92f3-9fddc9e99781.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dwave-combo-10",
@@ -7514,7 +7552,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/748816_11d714fc-9440-4b61-a716-302e677aaf4b.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dwave-combo-9",
@@ -7549,7 +7587,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/533339.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dwave-combo-8",
@@ -7584,7 +7622,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/748815.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "dwave-combo-7",
@@ -7619,7 +7657,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/748814.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-d-shock-combo-7mh",
@@ -7652,7 +7690,7 @@ export const PRODUCTS: Product[] = [
     whenToUse: "A first outfit, or a spare you don't mind lending.",
     featured: false,
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "abu-max-x-combo",
@@ -7686,7 +7724,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/897415_8a11f533-f9d3-4cbb-ae09-eee201ea354f.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "okuma-tundra-7",
@@ -7721,7 +7759,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/362064_c7df0fb1-c7ea-4a9f-b785-fc59546fe82f.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
   {
     key: "daiwa-laguna-ul",
@@ -7755,7 +7793,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/31177.jpg",
     role: "anchor",
-    shipsIn: "3–7 business days",
+    shipsIn: STANDARD_SHIPS_IN,
   },
 ];
 
@@ -7831,6 +7869,24 @@ export function isSourced(p: Product | string): boolean {
  * Read from the spec table on purpose, so the two can never disagree again —
  * the visible row IS the source. Never guess a brand out of the product name.
  */
+/** The upper bound of a product's own quoted window. */
+export function shipsInMax(p: Product): number {
+  const m = p.shipsIn.match(/(\d+)\s*[\u2013-]\s*(\d+)/);
+  return m ? Number(m[2]) : STANDARD_SHIPS_MAX;
+}
+
+/**
+ * Products quoted BEYOND the standard window, for the callout on /shipping.
+ *
+ * Derived from STANDARD_SHIPS_MAX rather than a hardcoded 7. When the standard
+ * moved from 7 to 10 the old test (max > 7) would have promoted the entire
+ * catalogue to "the exception, stated plainly" and listed 240 products under a
+ * heading promising a short list.
+ */
+export function slowerThanStandard(): Product[] {
+  return listed().filter((p) => shipsInMax(p) > STANDARD_SHIPS_MAX);
+}
+
 export function brandOf(p: Product): string | undefined {
   return p.specs.find((s) => s.label.toLowerCase() === "brand")?.value;
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Prose, Section } from "@/components/Prose";
-import { listed } from "@/lib/products";
+import { STANDARD_SHIPS_IN, slowerThanStandard } from "@/lib/products";
 import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ZONES, shipsInternationally } from "@/lib/shipping-zones";
 
@@ -12,12 +12,9 @@ export const metadata = {
 };
 
 export default function ShippingPage() {
-  // Anything quoted beyond 7 business days gets called out by name rather than
-  // hidden behind an average.
-  const slower = listed().filter((p) => {
-    const max = Number(p.shipsIn.split("–")[1]?.split(" ")[0] ?? 0);
-    return max > 7;
-  });
+  // Anything quoted beyond the standard window gets called out by name rather
+  // than hidden behind an average.
+  const slower = slowerThanStandard();
 
   const international = shipsInternationally();
 
@@ -48,26 +45,33 @@ export default function ShippingPage() {
       <Section heading="Delivery time">
         <p>
           <strong className="text-ink">
-            Our standard is 3–7 business days from order to doorstep, anywhere in
-            the contiguous US.
+            Our standard is {STANDARD_SHIPS_IN} from order to doorstep, anywhere
+            in the contiguous US.
           </strong>{" "}
-          That covers both the time we take to get your order to the warehouse
-          and the carrier&rsquo;s transit time. Business days exclude weekends
-          and public holidays.
+          That covers both the time the distributor takes to pick and hand over
+          your order and the carrier&rsquo;s transit time. Business days exclude
+          weekends and public holidays.
         </p>
         <p>
-          Every product page shows that item&rsquo;s own estimate, because they
-          genuinely differ, a spool of braid leaves the warehouse the next
-          morning, while a rod travels further and takes longer. We&rsquo;d
-          rather show you the real number per item than quote one average that is
-          wrong for half the catalog.
+          <strong className="text-ink">Where you live decides where you land in
+          that range,</strong> and it is not a small difference. Our
+          distributors are on the East Coast. If you are fishing the Atlantic or
+          the Gulf, your parcel has a short run and you should see the fast end.
+          If you are on the West Coast, it crosses the country on the ground and
+          you should plan on the slow end.
         </p>
         <p>
-          One thing worth being straight about: our distributors are on the East
-          Coast. If you&rsquo;re fishing the Atlantic or the Gulf you&rsquo;ll
-          usually see the fast end of that range. On the West Coast you should
-          expect the slow end. We&rsquo;d rather tell you that up front than let
-          you discover it from a tracking page.
+          That is measured rather than guessed. Our own first order was placed
+          on a Monday, left the distributor the next morning, and reached
+          California nine business days after we placed it. The picking was
+          quick; the distance was the whole story. We would rather publish the
+          number we actually saw than the shorter one we would prefer to
+          advertise.
+        </p>
+        <p>
+          So: if you need something for a specific tide, order well before it.
+          We would rather you had the gear a week early than watch a tracking
+          page on the morning of a trip.
         </p>
 
         {slower.length > 0 && (
@@ -77,7 +81,7 @@ export default function ShippingPage() {
                 The exception, stated plainly:
               </strong>{" "}
               {slower.length === 1 ? "one item is" : `${slower.length} items are`}{" "}
-              bulkier than parcel carriers like, and can run past the 7-day mark:
+              bulkier than parcel carriers like, and can run past even that:
             </p>
             <ul className="space-y-2 text-ink-dim">
               {slower.map((p) => (
