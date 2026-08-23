@@ -13,6 +13,7 @@ import {
   shippableToZone,
   zoneForCountry,
 } from "@/lib/shipping-zones";
+import { enabledMethods, priceForMethod } from "@/lib/shipping-methods";
 import type { Attribution } from "@/lib/attribution";
 
 export const runtime = "nodejs";
@@ -185,7 +186,57 @@ export async function POST(req: Request) {
     push(qty - discounted, product.price, null);
   }
 
-  const shipping = rateFor(zone, subtotal);
+  /*
+   * SHIPPING OPTIONS, not a shipping option.
+   *
+   * Embedded Checkout fixes these at session creation, so every method the
+   * buyer is allowed to choose has to be built here, priced here, and have its
+   * delivery estimate attached here. The buyer picks inside Stripe's own UI
+   * from this list, which means they cannot invent a rate or an ETA: the worst
+   * they can do is choose one we offered.
+   *
+   * US only for now. No other zone is enabled, and the flat rates these are
+   * built from are CWR's domestic card.
+   */
+  const methods = zone.id === "us" ? enabledMethods() : [];
+  const shippingOptions = methods.length
+    ? methods.map((m) => ({
+        shipping_rate_data: {
+          type: "fixed_amount" as const,
+          // California taxes shipping on physical goods in most cases;
+          // letting Stripe decide is the point of enabling Tax at all.
+          tax_behavior: "exclusive" as const,
+          display_name:
+            priceForMethod(m, subtotal) === 0 ? `${m.label} (free)` : m.label,
+          fixed_amount: {
+            amount: Math.round(priceForMethod(m, subtotal) * 100),
+            currency: "usd",
+          },
+          delivery_estimate: {
+            minimum: { unit: "business_day" as const, value: m.transit.min },
+            maximum: { unit: "business_day" as const, value: m.transit.max },
+          },
+        },
+      }))
+    : [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount" as const,
+            tax_behavior: "exclusive" as const,
+            display_name:
+              rateFor(zone, subtotal) === 0 ? "Free shipping" : "Standard shipping",
+            fixed_amount: {
+              amount: Math.round(rateFor(zone, subtotal) * 100),
+              currency: "usd",
+            },
+            delivery_estimate: {
+              minimum: { unit: "business_day" as const, value: zone.transit.min },
+              maximum: { unit: "business_day" as const, value: zone.transit.max },
+            },
+          },
+        },
+      ];
+
   const attribution = body.attribution ?? {};
   const base = siteUrl(req);
 
@@ -245,26 +296,7 @@ export async function POST(req: Request) {
         allowed_countries:
           zone.countries as Stripe.Checkout.SessionCreateParams.ShippingAddressCollection["allowed_countries"],
       },
-      shipping_options: [
-        {
-          shipping_rate_data: {
-            type: "fixed_amount",
-            // California taxes shipping on physical goods in most cases;
-            // letting Stripe decide is the point of enabling Tax at all.
-            tax_behavior: "exclusive",
-            display_name:
-              shipping === 0 ? "Free shipping" : "Standard shipping",
-            fixed_amount: {
-              amount: Math.round(shipping * 100),
-              currency: "usd",
-            },
-            delivery_estimate: {
-              minimum: { unit: "business_day", value: zone.transit.min },
-              maximum: { unit: "business_day", value: zone.transit.max },
-            },
-          },
-        },
-      ],
+      shipping_options: shippingOptions,
     });
 
     if (!session.client_secret) {

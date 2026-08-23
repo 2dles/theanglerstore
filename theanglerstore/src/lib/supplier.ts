@@ -46,6 +46,16 @@ export const SUPPLIERS: Record<
      * shipping rather than sitting on top of it.
      */
     freight: number;
+    /**
+     * Every flat rate this supplier offers us, keyed by the MethodId the
+     * storefront sells. `freight` above is the cheapest of these and remains
+     * the figure used for margin estimates, because economy is what an order
+     * ships on unless the customer pays to upgrade.
+     *
+     * These are DEALER COSTS and belong in this file, which is server-only.
+     * What the customer pays lives in shipping-methods.ts, which is not.
+     */
+    freightByMethod?: Record<string, number>;
     howToOrder: string;
   }
 > = {
@@ -53,6 +63,14 @@ export const SUPPLIERS: Record<
     name: "CWR Distribution",
     orderUrl: "https://www.cwrdistribution.com",
     freight: 9.95,
+    // CWR's "Flat Rate Promotions" block, read off their order form. The
+    // storefront charges each of these plus $3.00.
+    freightByMethod: {
+      economy: 9.95,
+      standard: 13.95,
+      "two-day": 24.95,
+      overnight: 49.95,
+    },
     howToOrder: 'Paste into Quick Add (SKU/MFG #/UPC).',
   },
   burch: {

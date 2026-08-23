@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { Prose, Section } from "@/components/Prose";
 import { STANDARD_SHIPS_IN, slowerThanStandard } from "@/lib/products";
-import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "@/lib/stripe";
+import { FREE_SHIPPING_OVER } from "@/lib/stripe";
 import { ZONES, shipsInternationally } from "@/lib/shipping-zones";
+import { SHIPPING_METHODS, enabledMethods } from "@/lib/shipping-methods";
 
 export const metadata = {
   title: "Shipping",
   description:
-    "Free US shipping over $75. Most orders arrive in 3–7 business days, shipped from US warehouses. Exact delivery estimate on every product page.",
+    "Free economy shipping over $75, or pay for two-day or overnight at cost. Every service priced, with the delivery window we actually measured.",
   alternates: { canonical: "/shipping" },
 };
 
@@ -22,24 +23,77 @@ export default function ShippingPage() {
     <Prose
       title="Shipping"
       updated="August 2026"
-      intro={`Most US orders arrive in 3–7 business days. Free over $${FREE_SHIPPING_OVER}, $${FLAT_SHIPPING.toFixed(2)} below that. Everything ships from a US warehouse, nothing on this site comes from overseas.`}
+      intro={`Economy is ${STANDARD_SHIPS_IN} and free over $${FREE_SHIPPING_OVER}. If you need it sooner, faster services are offered at checkout at what they cost us. Everything ships from a US warehouse, nothing on this site comes from overseas.`}
     >
       <Section heading="Rates">
+        <p>
+          Four services. Each is priced at what our distributor charges us plus
+          $3.00, which covers the card fee and the handling. We do not make
+          money on shipping, and we are not going to pretend the fast ones are
+          cheap.
+        </p>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[26rem] text-left text-sm">
+            <thead>
+              <tr className="border-b border-line text-ink-faint">
+                <th className="py-2 pr-4 font-medium">Service</th>
+                <th className="py-2 pr-4 font-medium">Cost</th>
+                <th className="py-2 font-medium">Order to doorstep</th>
+              </tr>
+            </thead>
+            <tbody>
+              {enabledMethods().map((m) => (
+                <tr key={m.id} className="border-b border-line/60">
+                  <td className="py-2.5 pr-4 font-medium text-ink">{m.label}</td>
+                  <td className="py-2.5 pr-4 text-ink-dim">
+                    {m.freeOverThreshold ? (
+                      <>
+                        <span className="text-teal">
+                          Free over ${FREE_SHIPPING_OVER}
+                        </span>
+                        , else ${m.price.toFixed(2)}
+                      </>
+                    ) : (
+                      <>${m.price.toFixed(2)}</>
+                    )}
+                  </td>
+                  <td className="py-2.5 text-ink-dim">
+                    {m.transit.min}&ndash;{m.transit.max} business days
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <ul className="space-y-2 text-ink-dim">
-          <li>
-            ▸ <strong className="text-ink">Free</strong>. US orders of $
-            {FREE_SHIPPING_OVER} or more
-          </li>
-          <li>
-            ▸ <strong className="text-ink">${FLAT_SHIPPING.toFixed(2)} flat</strong>{" "}
-            on US orders under ${FREE_SHIPPING_OVER}
-          </li>
+          {enabledMethods().map((m) => (
+            <li key={m.id}>
+              ▸ <strong className="text-ink">{m.label}.</strong> {m.note}
+            </li>
+          ))}
         </ul>
         <p>
-          One flat rate per order regardless of how many items are in it,
-          which is why it&rsquo;s worth adding the small stuff (hooks, leader,
-          rigs) to an order rather than buying them on their own.
+          One rate per order regardless of how many items are in it, which is
+          why it&rsquo;s worth adding the small stuff (hooks, leader, rigs) to
+          an order rather than buying them on their own.
         </p>
+        <p>
+          The free-shipping threshold applies to Economy. An upgrade is charged
+          in full even on a large order, because we pay for it in full.
+        </p>
+
+        {SHIPPING_METHODS.filter((m) => !m.enabled && m.blockedReason).map((m) => (
+          <p key={m.id} className="text-sm text-ink-faint">
+            <strong className="text-ink">
+              One service we are not offering yet:
+            </strong>{" "}
+            our distributor sells a {m.label} rate that sits between Economy and
+            two-day. We have left it off deliberately. We have never run an
+            order on it, so we cannot tell you how long it takes, and a delivery
+            window we have not measured is how this page came to be wrong once
+            already.
+          </p>
+        ))}
       </Section>
 
       <Section heading="Delivery time">

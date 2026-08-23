@@ -44,6 +44,8 @@
 import { BUNDLES, bundleItems, bundleUnitPrice } from "../src/lib/products";
 import { inboundFreight, supplierFor } from "../src/lib/supplier";
 import { FLAT_SHIPPING, FREE_SHIPPING_OVER } from "../src/lib/stripe";
+import { SUPPLIERS } from "../src/lib/supplier";
+import { enabledMethods } from "../src/lib/shipping-methods";
 
 const STRIPE_PCT = 0.029;
 const STRIPE_FIXED = 0.3;
@@ -103,3 +105,42 @@ console.log(
     : `\n${failures} bundle(s) below the floor. Fix the composition or the discount before shipping.`,
 );
 if (failures > 0) process.exit(1);
+
+/*
+ * SHIPPING METHODS. Every service we offer has to cover what CWR bills us for
+ * it plus Stripe's cut of the shipping line, or the fast options quietly lose
+ * money on every order that picks them. The convention is cost + $3.00; this
+ * checks the convention still holds rather than trusting that it does.
+ *
+ * Economy is exempt from the free-shipping case on purpose: above the
+ * threshold we KNOWINGLY absorb it, and that cost is already carried in the
+ * per-kit maths above.
+ */
+console.log("\nShipping methods, charged vs what CWR bills us\n");
+let shipFailures = 0;
+for (const m of enabledMethods()) {
+  const cost = SUPPLIERS.cwr.freightByMethod?.[m.id];
+  if (cost == null) {
+    shipFailures++;
+    console.log(`FAIL  ${m.label.padEnd(10)} no dealer freight recorded for this method`);
+    continue;
+  }
+  const fee = m.price * STRIPE_PCT;
+  const net = m.price - cost - fee;
+  const bad = net < 0;
+  if (bad) shipFailures++;
+  console.log(
+    `${bad ? "FAIL" : "ok  "}  ${m.label.padEnd(10)}` +
+      ` charge $${m.price.toFixed(2).padStart(6)}` +
+      ` cost $${cost.toFixed(2).padStart(6)}` +
+      ` card fee $${fee.toFixed(2).padStart(5)}` +
+      ` → $${net.toFixed(2).padStart(5)}` +
+      `   ${m.transit.min}-${m.transit.max} business days`,
+  );
+}
+console.log(
+  shipFailures === 0
+    ? "\nEvery shipping method covers its own cost."
+    : `\n${shipFailures} shipping method(s) sold below cost.`,
+);
+if (shipFailures > 0) process.exit(1);

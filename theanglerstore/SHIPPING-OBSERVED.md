@@ -12,9 +12,11 @@ that is quoted 241 times and measured zero times is a liability, not a policy.
 
 | Ordered | Shipped | Arrived | Handling | Transit | Door to door | Supplier | To | Notes |
 |---|---|---|---|---|---|---|---|---|
-| Mon 10 Aug 2026 | Tue 11 Aug | Sat 22 Aug | 1 bd | 8 bd | **9 bd** (12 cal) | CWR | CA | First order on the account. No verification hold. |
+| Mon 10 Aug 2026 | Tue 11 Aug | Sat 22 Aug | 1 bd | 8 bd | **9 bd** (12 cal) | CWR | CA | **Economy $9.95.** First order on the account, no verification hold. |
 
-`bd` = business days, weekends and public holidays excluded.
+`bd` = business days, weekends and public holidays excluded. **Always record
+which service was bought** — the first row was logged without it and nearly led
+us to treat a purchasing choice as a fact about the supply chain.
 
 ## What the first order settled
 
@@ -38,6 +40,22 @@ be true of every California order we ever take.
 So the window moved to **3–10 business days**: the bottom is what an Atlantic
 or Gulf buyer should genuinely see, the top is what we measured to California,
 which is where most customers are.
+
+## The correction: this measured a CHOICE, not a limit
+
+Worth being blunt about, because the first read of this data was wrong.
+
+CWR's order form offers four flat rates: Economy $9.95, Standard $13.95, Two
+Days $24.95, Overnight $49.95. We bought the cheapest and then published its
+transit time as though it were the speed of the business. It is not. Nine days
+is what $9.95 buys. The distributor can have a parcel in California tomorrow
+for $49.95.
+
+That does not make the 3-10 window wrong — it is the honest number for the
+service a customer gets by default, and it stays. What it makes wrong is
+quoting it as the ONLY number. So the faster services are now sold at
+checkout at cost plus $3.00, and the customer decides whether Saturday's tide
+is worth $52.95. See `src/lib/shipping-methods.ts`.
 
 ## Why not wait for more data
 
@@ -70,6 +88,16 @@ Tighten the window when there is real evidence to tighten it from. Specifically:
   to the West Coast than CWR is. Every row so far is CWR. If Burch is
   consistently faster, `shipsIn` should vary by supplier rather than sitting as
   one site-wide constant.
+- **One order on CWR Standard ($13.95).** This is the gap that is costing us
+  money right now. It is the obvious middle tier and it is switched OFF in
+  `shipping-methods.ts`, because we have never bought it and refuse to
+  advertise a window we have not seen. Buy one, log it here, set the transit
+  from the result, flip `enabled: true`. It is very likely the option most
+  customers would actually want.
+- **Any order at all on Two-day or Overnight.** Their windows are derived from
+  the service names plus our measured handling day, which is reasonable but is
+  still not a measurement. If Overnight turns out to mean ordered-Monday
+  arrives-Wednesday rather than Tuesday, the window here needs a day added.
 
 ## Where the number lives
 
