@@ -115,12 +115,17 @@ export default function ShippingPage() {
           you should plan on the slow end.
         </p>
         <p>
-          That is measured rather than guessed. Our own first order was placed
-          on a Monday, left the distributor the next morning, and reached
-          California nine business days after we placed it. The picking was
-          quick; the distance was the whole story. We would rather publish the
-          number we actually saw than the shorter one we would prefer to
-          advertise.
+          For most of the country, Economy is 3 to 7 business days. The reason
+          the range on this page runs to 10 is the West Coast, and that number
+          is measured rather than guessed: our own first order was placed on a
+          Monday, left the distributor the next morning, and reached California
+          nine business days after we placed it. The picking was quick. The
+          distance was the whole story.
+        </p>
+        <p>
+          We quote the longer figure in the small print a checkout holds us to,
+          and tell you the common one here, because being early is a nice
+          surprise and being late is a ruined trip.
         </p>
         <p>
           So: if you need something for a specific tide, order well before it.

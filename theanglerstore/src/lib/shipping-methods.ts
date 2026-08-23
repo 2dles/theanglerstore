@@ -72,14 +72,25 @@ export const SHIPPING_METHODS: ShippingMethod[] = [
     id: "economy",
     label: "Economy",
     price: 12.95,
-    // MEASURED. Ordered Mon 10 Aug 2026, shipped Tue 11 Aug, arrived Sat 22
-    // Aug in California: 1 business day of handling, 8 of transit. The bottom
-    // of the range is what an East Coast address should see, since CWR ships
-    // from New Jersey and Florida. See SHIPPING-OBSERVED.md.
+    // MEASURED, and the range is geography rather than uncertainty.
+    //
+    // Ordered Mon 10 Aug 2026, shipped Tue 11 Aug, arrived Sat 22 Aug in
+    // California: 1 business day of handling, 8 of transit, 9 door to door.
+    // CWR ships from New Jersey and Florida, so 3 to 7 is a fair figure for
+    // most of the country and the 10 is what the West Coast actually gets.
+    //
+    // Keep the MAX at 10 even though the copy leads with 3 to 7. This number
+    // feeds schema.org and the Stripe delivery estimate, and those two should
+    // state the worst case we have actually seen, not the common one. The
+    // place to be reassuring is the prose; the place to be conservative is the
+    // machine-readable promise a buyer can hold us to.
     transit: { min: 3, max: 10 },
     freeOverThreshold: true,
     enabled: true,
-    note: "Our default, and free on orders over $" + FREE_SHIPPING_OVER + ". Fine if you are stocking up rather than fishing this weekend.",
+    note:
+      "Free over $" +
+      FREE_SHIPPING_OVER +
+      ", and 3 to 7 business days to most of the country. The West Coast is the exception: our distributor is on the East Coast, so a parcel crossing the whole country can take up to 10. Fine if you are stocking up rather than fishing this weekend.",
   },
   {
     id: "standard",
