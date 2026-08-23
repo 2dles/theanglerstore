@@ -1,0 +1,30 @@
+# LINE ENDINGS
+#
+# Every text file is stored in the repository with LF and checked out with LF,
+# on every machine. Without this the repo had no opinion at all: core.autocrlf
+# was unset, something had written CRLF into the working tree, and git reported
+# 27 files as modified whose diffs were entirely invisible characters. That is
+# not cosmetic. It hid real changes in the noise, it made `git add -A` sweep up
+# files nobody had touched, and it meant the honest way to see what had actually
+# changed was `git diff --ignore-cr-at-eol --numstat`, which nobody remembers.
+#
+# eol=lf rather than bare `text=auto` on purpose: this repo is edited from a
+# Windows machine and from a Linux container, and "whatever the platform
+# prefers" is how the two ended up disagreeing in the first place.
+* text=auto eol=lf
+
+# Binaries, which must never be transformed. `text=auto` detects most of these
+# on content, but being explicit costs nothing and a corrupted image is an
+# annoying way to learn the detection was wrong.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.tgz   binary
+*.zip   binary
