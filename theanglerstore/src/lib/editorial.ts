@@ -117,6 +117,255 @@ export interface Species {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "free-fishing-piers-san-diego",
+    title: "Free Fishing Piers in San Diego (No License Needed)",
+    description:
+      "Every public pier in San Diego County you can fish without a license, which ones are actually open right now, and what the rules still are once you get there.",
+    published: "2026-08-25",
+    sections: [
+      {
+        body: [
+          "San Diego is one of the few places where you can walk out over deep water, catch dinner, and not pay a cent for the privilege. California doesn't require a fishing licence on a public pier, and the county has a string of them from Imperial Beach up to Oceanside.",
+          "The catch, and there's always one, is that half the pier lists you'll find online are out of date. Two of the biggest piers in the county are not in the state those articles think they are. Here's what's actually true as of August 2026.",
+        ],
+      },
+      {
+        heading: "Do you need a fishing license on a San Diego pier?",
+        body: [
+          "No, not on a public pier. California Fish and Wildlife puts it plainly: \"When recreationally fishing from a 'public pier' in ocean or bay waters, a fishing license is not required.\"",
+          "What counts as a public pier is narrower than people assume. CDFW says it has to be connected to the shoreline, allow \"free, unrestricted public access,\" and have been built or currently function primarily for fishing. Jetties and breakwaters only qualify if they form the most seaward protective boundary of an ocean harbour.",
+          "That definition is worth reading twice before you rely on it at a privately operated pier with gates and opening hours. If in doubt, buy the licence.",
+        ],
+      },
+      {
+        heading: "What rules still apply without a license?",
+        body: [
+          "All of them except the licence itself. CDFW is explicit: \"Even though a fishing license is not required on a public pier, all other regulations (including minimum size, bag limits, report cards, and seasons) apply while fishing from a public pier.\"",
+          "So size limits, bag limits, closed seasons and report cards are all still on you. There's also a gear limit specific to piers: two rods and lines per person, and salmon may only be taken on one rod in ocean waters.",
+          "Regulations change and we're a tackle shop, not the state. Check the current CDFW rules for the species you're targeting before you go.",
+        ],
+      },
+      {
+        heading: "Which San Diego piers are open right now?",
+        table: {
+          head: ["Pier", "Where", "Hours", "Status"],
+          rows: [
+            ["Imperial Beach Pier", "Imperial Beach", "7:00am to 8:30pm", "Open, 1,491 ft, restrooms and fish-cleaning stations"],
+            ["Coronado Ferry Landing", "Coronado", "5:00am to 11:00pm", "Open, 377 ft, bay fishing"],
+            ["Embarcadero Marina Park South", "Downtown", "6:00am to 10:30pm", "Open, short pier with a wide T end"],
+            ["Shelter Island Pier", "Point Loma", "24 hours", "Open, bait and tackle on site"],
+            ["Oceanside Pier", "Oceanside", "4:00am to 10:00pm", "Mostly open, far west end still closed"],
+            ["Ocean Beach Pier", "Ocean Beach", "Closed", "Permanently closed since Oct 2023"],
+            ["Crystal Pier", "Pacific Beach", "Restricted, hotel operated", "Check access and licence status first"],
+          ],
+        },
+      },
+      {
+        heading: "Why is Ocean Beach Pier closed?",
+        body: [
+          "Because it's falling down, and it isn't coming back soon. The longest pier in the county closed permanently in October 2023 after 57 years, and it's being replaced rather than repaired.",
+          "As of August 2026 the replacement is still in permitting and environmental review. The city's own projection has environmental review finishing around spring 2027, design and bidding through 2028, and construction starting in early 2029. A city spokesman noted the review process alone \"can typically take anywhere from two to five years.\"",
+          "If you read a guide that tells you to fish OB Pier, that guide hasn't been updated in three years. It's a good test for whether the rest of it is worth trusting.",
+        ],
+      },
+      {
+        heading: "Can you still fish Oceanside Pier after the fire?",
+        body: [
+          "Yes, most of it. The April 2024 fire took out the far western end, and about 90 percent of the pier reopened in May 2024. You can walk out past the bait shop, the restrooms and the fish-cleaning station.",
+          "The far west end, the hammerhead where the restaurant was, is still closed and will stay closed until reconstruction finishes. The city awarded the engineering contract in April 2026, with construction possibly starting spring 2027.",
+          "Practically, that means you lose the deepest water at the very end. Everything shoreward of that is fishable and always held fish anyway.",
+        ],
+      },
+      {
+        heading: "What gear do you need for pier fishing?",
+        body: [
+          "Shorter than you'd use on the beach. You're fishing more or less straight down or lobbing short, so a 7 foot rod is easier to handle in a crowd than a 10 footer, and you don't need the length to hold line over surf.",
+          "Bank sinkers are the right shape here. On sand they roll, which is why we say so on the sinker guide, but dropped vertically off a pier there's nothing to roll and their teardrop shape comes through pilings and rock better than a pyramid would.",
+          "Go lighter on line and hooks than surf gear. Most pier fish are perch, croaker, mackerel and bass, and 15 lb braid with a small circle hook covers nearly all of it.",
+        ],
+        products: ["okuma-tundra-7", "dwave-combo-7", "sufix-832-advanced-superline-braid-15lb-low-", "gamakatsu-octopus-circle-1-0"],
+      },
+      {
+        heading: "The one thing we can't sell you",
+        body: [
+          "A pier drop net. On a high pier, a decent fish will break off if you try to lift it straight up on the line, and the answer is a hoop net you lower on a rope. We don't stock one, and the folding net we do sell is a wading and small-fish net, not a pier net.",
+          "Buy one locally. Shelter Island and Oceanside both have tackle shops on the pier itself, which is the easiest place to get the right thing.",
+        ],
+      },
+      {
+        heading: "Sources, and when this was last checked",
+        body: [
+          "Licence rules and the public pier definition: California Department of Fish and Wildlife. Ocean Beach Pier status: Times of San Diego, 18 August 2026. Oceanside Pier status: City of Oceanside pier fire recap. Pier lengths, hours and amenities: San Diego Tourism Authority.",
+          "Checked August 2026. Hours change seasonally, piers close for storms and repairs, and the two examples above show how fast a pier list goes stale. Call ahead or check the operator before you drive.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you need a fishing license on a pier in California?",
+        a: "Not on a public pier in ocean or bay waters. You do need one on a private pier, from a boat, or from shore away from a public pier. Every other regulation, including size and bag limits, still applies.",
+      },
+      {
+        q: "Is Ocean Beach Pier open for fishing?",
+        a: "No. It closed permanently in October 2023 and is being replaced. City projections have construction starting around early 2029, so it will be closed for years yet.",
+      },
+      {
+        q: "How many rods can you use on a California pier?",
+        a: "Two rods and lines per person on a public pier, per CDFW. Salmon is the exception and may only be taken on one rod in ocean waters.",
+      },
+      {
+        q: "What's the best San Diego pier for a beginner?",
+        a: "Shelter Island is open 24 hours, has a tackle shop on the pier and sits on protected bay water, so it's the most forgiving place to learn. Imperial Beach gives you more open ocean species if you want variety.",
+      },
+    ],
+    related: ["surf-fishing-sinker-size", "beginner-surf-fishing-setup", "how-to-catch-sand-crabs-for-bait"],
+  },
+  {
+    slug: "how-to-catch-sand-crabs-for-bait",
+    title: "How to Catch Sand Crabs for Bait",
+    description:
+      "Sand crabs are the best surfperch bait on the West Coast and they're free, sitting in the sand at your feet. Here's how to find them, which ones to keep, and how to hook them.",
+    published: "2026-08-25",
+    sections: [
+      {
+        body: [
+          "If you're fishing the California surf for perch and buying bait, you're doing it the hard way. The thing perch eat most is a sand crab, also called a mole crab, and there are thousands of them in the swash at your feet.",
+          "They're free, they're fresh, and they're what the fish are already looking for. It takes about ten minutes to get a session's worth.",
+        ],
+      },
+      {
+        heading: "Where do you find sand crabs?",
+        body: [
+          "In the swash zone, the strip of wet sand where waves run up and drain back. They move up and down the beach with the tide, so they're always somewhere in that band rather than in one fixed spot.",
+          "Look for a V-shaped ripple in the thin sheet of water draining back down the sand. That's water breaking around a crab's antennae just under the surface. Where you see a cluster of those Vs, there's a colony.",
+          "Wait for a wave to recede, then dig fast with both hands or a scoop about two to four inches down, right where you saw the ripples. Lift the sand and let it sieve through your fingers. They'll be wriggling in what's left.",
+        ],
+      },
+      {
+        heading: "Which sand crabs should you keep?",
+        body: [
+          "Soft ones. A crab that's recently moulted has a shell you can dent with a thumbnail, and those are worth more than the hard ones. Softer shell means more scent in the water and a hook that sets cleanly instead of skidding off a hard back.",
+          "Size matters less than most people think. Small crabs catch plenty of perch, and a couple of small ones on a hook often beats one big one. If you find crabs carrying orange egg masses underneath, those are excellent bait, though plenty of anglers put the egg-bearing females back on principle.",
+          "Keep them in damp sand in a bucket or a bait pouch, out of standing water and out of the sun. They'll live for hours that way and die quickly in a sealed container of seawater.",
+        ],
+      },
+      {
+        heading: "How do you hook a sand crab?",
+        body: [
+          "Point the hook up through the underside, entering at the rear where the tail tucks under, and bring it out through the top of the shell. That way the crab sits naturally, and the hook point is exposed where it needs to be.",
+          "Use a small hook. A 1/0 or smaller is plenty for perch, and a big surf hook just tears the crab apart on the cast. Two small crabs on one hook is a normal presentation.",
+          "Cast gently. A crab is a soft bait and a full-power cast will fling it off. If you keep losing bait in the air, you're casting too hard rather than hooking wrong.",
+        ],
+        products: ["gamakatsu-octopus-circle-1-0", "gamakatsu-octopus-circle-3-0"],
+      },
+      {
+        heading: "When is the best time to collect them?",
+        body: [
+          "A dropping tide, and the lower the better. As the water pulls back it exposes more of the band they live in, and you can work sand that was under three feet of water an hour ago.",
+          "Which is convenient, because a dropping tide is also when a lot of perch fishing turns on. Collect on the way down, fish through the run.",
+          "They're seasonal too. Numbers are highest through the warmer months and thin out in winter on a lot of beaches, which is when a bag of frozen bait earns its place in the cooler.",
+        ],
+      },
+      {
+        heading: "Do you need a license to collect sand crabs?",
+        body: [
+          "Take this one seriously rather than taking our word for it. California regulates the take of invertebrates, and the rules differ depending on where you are and whether you're on a public pier.",
+          "Check the current CDFW regulations before you fill a bucket. It's a two minute job and it's your responsibility, not ours.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "What do sand crabs catch?",
+        a: "Barred surfperch above all, which eat them as a staple. Corbina, croaker and a range of other surf species take them too. It's the closest thing to a default bait on a California beach.",
+      },
+      {
+        q: "Do you need a sand crab rake?",
+        a: "No. Your hands work fine and most people never buy one. A rake or a mesh scoop speeds things up if you're collecting for a group or working coarse sand.",
+      },
+      {
+        q: "Can you freeze sand crabs?",
+        a: "You can, and plenty of people do for the winter months. They're noticeably softer and less effective than live ones, so use fresh when you can get them.",
+      },
+      {
+        q: "Why can't I find any sand crabs?",
+        a: "You're probably looking in the wrong band or at the wrong tide. Work the wet sand where waves are actively draining, on a falling tide, and watch for the V ripples rather than digging at random.",
+      },
+    ],
+    related: ["surf-fishing-rigs", "free-fishing-piers-san-diego", "how-to-read-a-tide-chart"],
+  },
+  {
+    slug: "how-to-keep-fish-fresh",
+    title: "How to Keep a Fish Fresh: Bleed It, Ice It, Eat It",
+    description:
+      "Most fish that tastes muddy or mushy was ruined in the first ten minutes on the beach, not in the kitchen. Here's what to do the moment you decide to keep one.",
+    published: "2026-08-25",
+    sections: [
+      {
+        body: [
+          "The difference between a fish that tastes clean and one that tastes like the bottom of a bucket is almost never the cooking. It's what happened in the first ten minutes after it came out of the water.",
+          "This is the part of fishing nobody teaches beginners, and it's the part that experienced anglers do without thinking.",
+        ],
+      },
+      {
+        heading: "Should you bleed a fish?",
+        body: [
+          "If you're keeping it, yes, and do it straight away while the heart's still pumping. Blood left in the flesh is what turns it dark, strong-tasting and quick to spoil.",
+          "Cut through the gill arches on one side, or make a cut just behind the pectoral fin, then put the fish head down in a bucket of seawater for a couple of minutes. The heart does the work for you. A fish bled in the first minute empties out properly; one bled ten minutes later barely bleeds at all.",
+          "You need something sharp and something to hold the fish with. Bleeding a live fish with a blunt knife and bare hands is how people end up in urgent care.",
+        ],
+        products: ["pliers"],
+      },
+      {
+        heading: "What's the fastest way to cool a fish?",
+        body: [
+          "An ice slurry, which is ice and seawater mixed to a slush. Not dry ice in a bag, not a fish laid on top of a block.",
+          "The reason is contact. Slurry touches every surface of the fish at once and pulls the temperature down in minutes. Dry ice in a cooler chills the fish nearest it and leaves the rest sitting in its own warmth, which is exactly where spoilage starts.",
+          "Aim to get the fish cold within minutes of bleeding it, not at the end of the session when you pack up. On a warm beach the difference is enormous.",
+        ],
+        products: ["cooler"],
+      },
+      {
+        heading: "How long does fish keep on ice?",
+        body: [
+          "Properly bled and held in slurry, a day or two comfortably, and that's a whole fish rather than fillets. Once you've cut it, you're on a shorter clock.",
+          "Keep it drained though. A fish sitting in a bath of meltwater goes soft and waterlogged, so a cooler with the plug cracked open, or a rack that keeps it above the water, is better than a sealed bucket of slush.",
+        ],
+      },
+      {
+        heading: "How should you handle a fish you're releasing?",
+        body: [
+          "Opposite of everything above. Wet your hands first, because dry hands strip the slime coat that protects it from infection. Keep it in the water if you can, support its weight rather than hanging it by the jaw, and get the hook out fast.",
+          "If it's hooked deep, cut the leader and leave the hook rather than digging for it. A hook rusts out; a torn throat doesn't heal.",
+          "This is where circle hooks earn their keep. They catch in the jaw corner instead of the gut, so the fish you didn't plan to keep goes back with a real chance.",
+        ],
+        products: ["pliers", "circle-hooks"],
+      },
+      {
+        heading: "One thing worth knowing before you keep anything",
+        body: [
+          "Some fish carry consumption advisories, and they vary by species, by water body and sometimes by who's eating them. That's a public health matter and it changes.",
+          "Check your state's current advisories for where you're fishing rather than assuming. Size and bag limits are your responsibility too.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Do you have to bleed fish right away?",
+        a: "As close to immediately as you can manage. The heart is what pushes the blood out, so bleeding in the first minute empties the fish properly. Wait ten minutes and you'll barely get anything.",
+      },
+      {
+        q: "Is an ice slurry better than ice?",
+        a: "Much. Slurry contacts the whole fish at once and cools it in minutes. Ice on its own only chills what it touches, leaving the rest warm.",
+      },
+      {
+        q: "Should I gut a fish on the beach?",
+        a: "If you can do it cleanly and get it on ice, gutting early helps, since the guts are where spoilage starts. Check local rules on cleaning fish where you are, and never leave the waste on the sand.",
+      },
+    ],
+    related: ["beginner-surf-fishing-setup", "free-fishing-piers-san-diego"],
+  },
+  {
     slug: "surf-fishing-rigs",
     title: "Surf Fishing Rigs: The Two You Actually Need",
     description:
