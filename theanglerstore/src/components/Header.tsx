@@ -79,9 +79,12 @@ export function Header() {
           <Link href="/bundles" className="nav-tab whitespace-nowrap">
             Kits
           </Link>
+          <Link href="/guides" className="link-quiet whitespace-nowrap">
+            Guides
+          </Link>
           {activeCategories()
             .filter((c) => c.nav)
-            .slice(0, 3)
+            .slice(0, 2)
             .map((c) => (
               <Link
                 key={c.slug}
@@ -167,6 +170,24 @@ export function Header() {
                 className="block rounded-lg px-2 py-2 text-sm font-medium text-ink"
               >
                 All gear: search &amp; filter
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/bundles"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-2 py-2 text-sm font-semibold text-gold"
+              >
+                Kits &amp; bundles
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/guides"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-2 py-2 text-sm link-quiet"
+              >
+                Guides
               </Link>
             </li>
             {activeCategories().map((c) => (

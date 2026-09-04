@@ -45,6 +45,11 @@ export function Footer() {
                   Kits &amp; bundles
                 </Link>
               </li>
+              <li>
+                <Link href="/guides" className="link-quiet">
+                  Guides
+                </Link>
+              </li>
               {activeCategories().filter((c) => c.nav).map((c) => (
                 <li key={c.slug}>
                   <Link href={`/collections/${c.slug}`} className="link-quiet">
