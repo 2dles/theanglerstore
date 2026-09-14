@@ -521,7 +521,7 @@ export const PRODUCTS: Product[] = [
     glyph: "rig",
     pairsWith: ["circle-hooks", "braided-line", "fluoro-leader", "surf-rod"],
     whenToUse: "A moving tide, a steep beach, or any day a lighter sinker won’t stay put.",
-    featured: false,
+    featured: true,
     prop65: true,
     role: "add-on",
     shipsIn: STANDARD_SHIPS_IN,
@@ -584,7 +584,7 @@ export const PRODUCTS: Product[] = [
     glyph: "hook",
     pairsWith: ["surf-rod", "mustad-barrel-swivel-2-0"],
     whenToUse: "Bait fishing from beach, pier or boat, anywhere you release fish.",
-    featured: false,
+    featured: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/4378_c106da28-2af5-4b19-886f-88dcadc01272.jpg",
     role: "add-on",
     shipsIn: STANDARD_SHIPS_IN,
@@ -711,7 +711,7 @@ export const PRODUCTS: Product[] = [
     glyph: "net",
     pairsWith: ["pliers", "tackle-bag", "braided-line"],
     whenToUse: "Anywhere you plan to release fish, and any time you're fishing alone.",
-    featured: false,
+    featured: true,
     image: "https://productimageserver.com/product/xl/103114XL.jpg",
     role: "add-on",
     shipsIn: STANDARD_SHIPS_IN,
@@ -806,7 +806,7 @@ export const PRODUCTS: Product[] = [
     glyph: "bag",
     pairsWith: ["pliers", "braided-line", "jig-assort"],
     whenToUse: "Any session you walk into. Beach, jetty, kayak.",
-    featured: true,
+    featured: false,
     image: "https://productimageserver.com/product/xl/105698XL.jpg",
     role: "anchor",
     shipsIn: STANDARD_SHIPS_IN,
@@ -838,7 +838,7 @@ export const PRODUCTS: Product[] = [
     glyph: "cooler",
     pairsWith: ["tackle-bag", "pliers", "landing-net"],
     whenToUse: "Long sessions, hot days, and any trip you intend to keep fish.",
-    featured: true,
+    featured: false,
     image: "https://productimageserver.com/product/xl/98875XL.jpg",
     role: "anchor",
     shipsIn: STANDARD_SHIPS_IN,
@@ -7619,7 +7619,7 @@ export const PRODUCTS: Product[] = [
     glyph: "rod",
     pairsWith: ["braided-line", "circle-hooks", "landing-net", "pliers"],
     whenToUse: "Piers, gentle beaches, and bay fishing where a surf rod is too much stick.",
-    featured: false,
+    featured: true,
     image: "https://cdn.shopify.com/s/files/1/0033/5442/7456/files/748815.jpg",
     role: "anchor",
     shipsIn: STANDARD_SHIPS_IN,
@@ -8575,7 +8575,13 @@ export function bundleNamesFor(
  * silently fill up with unranked items at the top.
  */
 const APPEAL: Record<string, number> = {
-  "braided-line": 1, pliers: 2, "landing-net": 3, "fluoro-leader": 4,
+  // The homepage row is the first thing a visitor sees, so it should read as
+  // a surf setup rather than a camping trip: rod, line, hook, weight, then
+  // the tool and the net. It used to open with braid, pliers, a backpack and
+  // a beer cooler, because three of the seven featured keys were unsourced
+  // placeholders that got filtered out before the row was built.
+  "dwave-combo-8": 0.1, "braided-line": 1, "circle-hooks": 1.1,
+  "bank-sinker-4oz": 1.2, pliers: 2, "landing-net": 3, "fluoro-leader": 4,
   "tackle-bag": 5, cooler: 6, "stowaway-4pack": 7, "jig-assort": 8,
   "tool-holder": 9, "braid-hivis": 10,
 

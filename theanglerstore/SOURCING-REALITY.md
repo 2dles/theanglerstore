@@ -1,17 +1,29 @@
-# Sourcing reality — what the CWR catalog actually contains
+# Sourcing reality — what we can actually buy from CWR
 
-Written 10 Aug 2026, from the real 29,471-SKU CWR export. This supersedes the
-estimates in SOURCING.md, which were built before we had dealer access.
+Written 10 Aug 2026 from the 29,471-SKU CWR export. Revised 14 Sep 2026.
+
+**Read the title literally.** Everything below describes what our account can
+purchase, not what CWR stocks. The export is account-scoped and omits every
+brand-gated line. CWR's printed 2026 Buyer's Guide has full sections for
+Abu Garcia (p16), Daiwa (p139), PENN (p520) and Pflueger (p529), and our
+export returns 0, 1, 0 and 0 rows for them respectively. Section 6 explains
+why. See TERMINAL-TACKLE-GAP.md for the reconciliation.
+
+This supersedes the estimates in SOURCING.md, which were built before we had
+dealer access.
 
 ---
 
-## 1. Half the catalog has no source at CWR
+## 1. Half the catalog has no source we can buy from at CWR
+
+Status column means "available to our account today", not "CWR does not have
+it". Anything marked gated is a paperwork problem, not a supply problem.
 
 | Key | Status at CWR |
 |---|---|
-| `surf-rod` | **None.** Zero fishing rods in 29,471 SKUs. Every "rod" match is a rod *holder*. |
-| `inshore-combo` | **None.** Two reels in the entire catalog, no combos. |
-| `circle-hooks` | **None.** The 130 "hook" matches are boat hooks, S-hooks, utility hooks. |
+| `surf-rod` | **Gated.** No Rods category in our export; every "rod" match is a rod *holder*. The guide has Abu Garcia, PENN and Pflueger rod sections we cannot see. |
+| `inshore-combo` | **Gated.** Two reels visible to us (13 Fishing, both out of stock), no combos. Same three gated brands carry them. |
+| `circle-hooks` | **None.** The 130 "hook" matches are boat hooks, S-hooks, utility hooks. VMC is ungated and has 15 SKUs. |
 | `swimbait-kit` | **None.** One match, and it is a Plano storage box. |
 | `sand-spike` | **None.** Zero. |
 | `headlamp` | **Not viable.** One match, a $67.50-cost helmet lamp against $37.99 retail. |
@@ -24,13 +36,21 @@ estimates in SOURCING.md, which were built before we had dealer access.
 | `tackle-bag` | ✅ 63 SKUs, Plano. |
 | `cooler` | ✅ 65 SKUs, Coleman / LAKA. |
 
-CWR is a **marine and boat-outfitting distributor** that carries some tackle,
-not a tackle house. That is not a mistake — it is what they are, and their
-depth is real: 468 lines & leaders, 356 rod holders, 287 hard & soft baits,
-153 tackle storage, 44 coolers.
+**To our account** CWR reads as a marine and boat-outfitting distributor that
+carries some tackle. Its ungated depth is real: 468 lines & leaders, 356 rod
+holders, 287 hard & soft baits, 153 tackle storage, 44 coolers.
 
-**Burch Fishing Tackle fills the gap** — rods, reels, hooks, terminal tackle,
-soft plastics, and the mainstream brands. Two suppliers, one catalog.
+The printed guide shows a different company. CWR does carry rods and reels;
+we simply are not authorised for the brands they carry them in. Fixing that
+is the highest-value sourcing action available, and it costs nothing but an
+application.
+
+Two brand names in the guide are traps. **Shakespeare** (p682) is 100 SKUs of
+VHF antenna, a different company from Shakespeare Fishing. **Lee's Tackle**
+(p375) is 192 SKUs of outriggers and rod holders, not terminal tackle.
+
+Until authorisation lands, **Burch Fishing Tackle fills the gap**: rods,
+reels, hooks, terminal tackle, soft plastics, and the mainstream brands.
 
 ---
 
@@ -122,12 +142,24 @@ Bayville NJ is not the same promise as one from Tampa.
 
 ---
 
-## 6. Gated brands
+## 6. Gated brands, and why this is the main event
 
 CWR will not sell these until the manufacturer authorises you directly:
 Abu Garcia, Berkley, Daiwa, PENN, Pflueger, Minn Kota, Humminbird, Garmin,
 Lowrance, Cannon, Furuno, Raymarine, Simrad.
 
-Apply to those makers separately once there is order history to point at.
-Burch carries several of them and may have its own authorisation already —
-worth asking.
+Confirmed against the printed guide on 14 Sep 2026. Abu Garcia (p16),
+PENN (p520) and Pflueger (p529) have full guide sections and **zero** rows in
+our export. Daiwa (p139) has a section and **one** row. Berkley has a section
+and 10 rows, mostly Gulp baits, mostly out of stock. The gate is real and it
+is the reason the storefront has four rods.
+
+**Abu Garcia, PENN, Pflueger, Berkley, SpiderWire, Stren, Ugly Stik and
+Fenwick are all Pure Fishing.** One application covers the entire rod, reel
+and terminal side of the gap. That is the single highest-leverage sourcing
+move on the list. Daiwa is Globeride America and needs its own application.
+
+Ask the CWR rep to sponsor the Pure Fishing application rather than applying
+cold; there is order history to point at now. Burch carries several of these
+brands and may already hold authorisation, which is worth asking about while
+the application runs.
