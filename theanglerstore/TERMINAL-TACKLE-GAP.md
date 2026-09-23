@@ -1,51 +1,64 @@
 # The surf terminal tackle gap
 
-Our own guides tell people to build a fish-finder rig. Half of it isn't
-purchasable here:
+Revised 23 Sep 2026. Two earlier versions of this file were wrong in opposite
+directions. The first said neither supplier serves surf fishing, which was
+overstated. The second blamed brand authorisation, which was also wrong. This
+one is written against the full Burch feed, all 7,423 in-stock items, and the
+full CWR export, rather than against either supplier's category menu.
+
+**The gap is mostly closed.** Five of the six fish-finder rig components are
+stocked and sourced as of today.
+
+## The fish-finder rig, component by component
+
+Our own guides tell people to build one. Here is what we can actually sell
+them:
 
 | Component | Status |
 |---|---|
-| Sinker slide | **not sold** |
-| Bead | **not sold** |
-| Pyramid or sputnik sinker (holds on sand) | **not sold** |
-| Barrel swivel | in stock |
-| Fluorocarbon leader | in stock |
-| Circle hook | in stock |
+| Sinker slide | **stocked.** Eagle Claw CC-SNKSLIDE, $1.06 cost |
+| Bead | **stocked**, included in that same Eagle Claw pack |
+| Barrel swivel | stocked, 82 in stock at Burch to choose from |
+| Fluorocarbon leader | stocked, and now in castable 12 and 20 lb as well as the old 50 and 100 lb wind-on material |
+| Circle hook | stocked, 1/0 through 8/0, in 5-count packs |
+| Pyramid or sputnik sinker | **still not sold anywhere** |
 
-Also missing and bought every trip by surf anglers: sand spikes, headlamps,
-gloves, a fillet knife, a bait bag, pre-tied surf rigs, bait thread.
+Bank sinkers in 3, 4, 6 and 8 oz are the substitute. Bank holds fine off a
+pier and in calm surf. It will not hold in a real sweep, and the sinker guide
+says so on the page rather than hiding it.
 
-This is not an oversight in product selection. **Neither supplier serves surf
-fishing**, and that was checked rather than assumed.
+## Also now stocked, having been written off
 
-## What the suppliers actually have
+Sand spikes, a fillet knife and a chain stringer were all on the old
+"unobtainable" list. All three are in stock at Burch and all three are now
+listed. The sand spike in particular was a fabricated listing with an invented
+$34.99 price; it is now the real Eagle Claw at $12.99.
 
-**CWR** (29,471 SKUs, searched directly against their own export, Sep 2026):
+Still missing: headlamps, gloves, a bait bag, bait thread. Pre-tied rigs we
+have stopped chasing on purpose, because the parts cost under a dollar, we
+stock all of them, and tying your own lets you match leader and hook to
+conditions in a way a bagged rig cannot.
 
-| Searched | Matches | In stock |
-|---|---|---|
-| pyramid sinker | 0 | 0 |
-| sputnik / spider / breakaway | 0 | 0 |
-| surf sinker, any wording | 0 | 0 |
-| sinker slide / fish-finder | 0 | 0 |
-| bank sinker | 0 | 0 |
-| sand spike | 0 | 0 |
-| circle hook | 2 (VMC 8/0, 9/0) | 0 |
-| beads | 3 | 2, and they are sailing parrel beads and car wax |
+## Why there are no pyramid sinkers
 
-CWR has no terminal tackle category at all. Its "Hooks & Clamps" is marine
-hardware and its "Terminals" are electrical. It is a boat outfitter.
+Checked twice, both suppliers, against machine-readable feeds rather than
+category navigation.
 
-**Burch**: 270 sinkers, every one a freshwater shape. Their sinker
-subcategories are bank, bass casting, crappie, drop shot, egg, nail, no-snag,
-pinch-on, split shot, tungsten and worm. No pyramid, no sputnik, no surf.
-They stock exactly two sinker slides and **both are sold out**
-(Eagle Claw CC-SNKSLIDE, Tru Turn Boss Kat).
+**Burch** has 164 sinkers in stock: bank, bass casting, egg, split shot,
+pinch-on, drop shot, tungsten, nail, trolling spin, cannon ball and Carolina.
+No pyramid. No sputnik. The only two "pyramid" hits anywhere in their 13,778
+products are Do-It casting moulds at $38.88, which would mean melting and
+pouring our own lead.
 
-So: CWR is a marine distributor, Burch is a freshwater tackle house, and surf
-fishing falls between them.
+**CWR** has no Sinkers category at all. Their own Hunting & Fishing navigation
+lists twenty categories and Rods, Hooks, Sinkers and Terminal Tackle are not
+among them. They are a boat outfitter.
 
-## Suppliers who do carry it, and why each is blocked
+Sea Striker was worth chasing, since they are a surf brand that makes pyramid
+sinkers. Burch carries exactly two Sea Striker SKUs and both are coastlock
+swivels.
+
+## Suppliers who do carry pyramids, and why each is blocked
 
 | Supplier | Carries it | Blocker |
 |---|---|---|
@@ -55,31 +68,22 @@ fishing falls between them.
 
 Every route needs either a physical shop or held inventory.
 
-## The decision this actually comes down to
+## What this now comes down to
 
-Nicklow's is the closest fit, and the only thing standing in the way is that
-they will not dropship. Which makes this an inventory question rather than a
-sourcing one.
+It is a small inventory decision, not a sourcing problem, and it is the last
+piece of the rig.
 
-Sinkers are the best possible first thing to stock:
+Sinkers are the best possible first thing to hold: highest margin in the
+catalogue, they do not spoil or go out of fashion, a month of stock is a shelf
+rather than a garage, and our own guides already send people out to buy them.
+Against that, it ends pure dropship, because somebody has to pack and post.
 
-- Highest margin in the catalogue. Our bank sinkers run 47 to 54 percent.
-- They do not spoil, expire or go out of fashion. A box sits until it sells.
-- They are small. A month of stock is a shelf, not a garage.
-- They are what our own guides already send people to buy, so demand is
-  already being created and currently sent elsewhere.
+Worth a call to Nicklow's on **814-395-3931** to ask whether an online-only
+retailer can open an account and what the minimum opening order is. Sea
+Striker on **252-499-9440** for the same reason, since Big Rock is a
+15,000-retailer distributor and the brick-and-mortar rule may be softer in
+practice than the FAQ.
 
-Against that: it ends pure dropship. Somebody has to pack and post, which is
-the model change, not the money.
-
-Worth a call to Nicklow's on **814-395-3931** to ask two questions: whether an
-online-only retailer can open an account, and what the minimum opening order
-is. Sea Striker is worth a call on **252-499-9440** for the same reason, since
-Big Rock is a 15,000-retailer distributor and the brick-and-mortar rule may be
-softer than the FAQ.
-
-Until one of those happens, the honest position is the one the sinker guide
-already takes: tell people pyramids hold better, tell them we do not sell
-them, and sell them the line and the hooks.
-
-Checked September 2026.
+Until then the honest position is the one the sinker guide already takes: tell
+people pyramids hold better, tell them we do not sell them, and sell them the
+slide, the swivel, the leader and the hook, which we now do.

@@ -357,6 +357,41 @@ const SUPPLIER: Record<string, SupplierItem> = {
   "bank-sinker-6oz": { sku: "MO-BS5-600", mfgPart: "MO-BS5-600", cost: 15.95, supplier: "burch" },
   "okuma-tundra-7": { sku: "OKTU-70", mfgPart: "OKTU-70", cost: 17.44, supplier: "burch" },
   "daiwa-laguna-ul": { sku: "LAG662ULFS", mfgPart: "LAG662ULFS", cost: 29.91, supplier: "burch" },
+
+  // ── Added 23 Sep 2026. Burch Fishing Tackle, from their full product feed.
+  // Burch charge no per-order freight and their storefront prices ARE our
+  // dealer cost, verified by matching the Daiwa FT Surf 10' at $22.33 against
+  // the figure already recorded above. SKU and manufacturer part are the same
+  // string on their system, so both columns match.
+  "sinker-slide-glow": { sku: "CC-SNKSLIDE", mfgPart: "CC-SNKSLIDE", cost: 1.06, supplier: "burch" },
+  "sinker-slide-boss": { sku: "BKSS-5", mfgPart: "BKSS-5", cost: 2.27, supplier: "burch" },
+  "circle-hook-6-0": { sku: "L2004GH-6/0", mfgPart: "L2004GH-6/0", cost: 5.26, supplier: "burch" },
+  "circle-hook-7-0": { sku: "L2004GH-7/0", mfgPart: "L2004GH-7/0", cost: 5.26, supplier: "burch" },
+  "circle-hook-8-0": { sku: "L2004GH-8/0", mfgPart: "L2004GH-8/0", cost: 5.26, supplier: "burch" },
+  "oshaughnessy-8-0": { sku: "3407-DT-8/0-5", mfgPart: "3407-DT-8/0-5", cost: 1.43, supplier: "burch" },
+  "bank-sinker-8oz": { sku: "MO-BS5-800", mfgPart: "MO-BS5-800", cost: 15.95, supplier: "burch" },
+  "sabiki-4": { sku: "PMS-4", mfgPart: "PMS-4", cost: 1.27, supplier: "burch" },
+  "sabiki-6": { sku: "PMS-6", mfgPart: "PMS-6", cost: 1.27, supplier: "burch" },
+  "piscator-rig": { sku: "SPR5G-6", mfgPart: "SPR5G-6", cost: 1.49, supplier: "burch" },
+  "vicious-mono-30": { sku: "VCL30-330", mfgPart: "VCL30-330", cost: 5.72, supplier: "burch" },
+  "vicious-mono-25": { sku: "VCL25-330", mfgPart: "VCL25-330", cost: 5.72, supplier: "burch" },
+  "vicious-mono-20": { sku: "VCL20-330", mfgPart: "VCL20-330", cost: 5.72, supplier: "burch" },
+  "vicious-mono-lovis-25": { sku: "VGN25-330", mfgPart: "VGN25-330", cost: 5.72, supplier: "burch" },
+  "stren-hivis-25": { sku: "STFS25-26", mfgPart: "STFS25-26", cost: 6.34, supplier: "burch" },
+  "floroclear-20": { sku: "FCCF-20", mfgPart: "FCCF-20", cost: 9.48, supplier: "burch" },
+  "floroclear-12": { sku: "FCCF-12", mfgPart: "FCCF-12", cost: 7.71, supplier: "burch" },
+  "okuma-tundra-9": { sku: "TXP-S-902MH", mfgPart: "TXP-S-902MH", cost: 37.59, supplier: "burch" },
+  "eagle-claw-glass-8": { sku: "CG8MHS2", mfgPart: "CG8MHS2", cost: 32.76, supplier: "burch" },
+  "cat-claw-2-76": { sku: "ECCAT76S", mfgPart: "ECCAT76S", cost: 60.15, supplier: "burch" },
+  "daiwa-sweepfire-3000": { sku: "SWF3000-2B", mfgPart: "SWF3000-2B", cost: 21.54, supplier: "burch" },
+  "abu-max-pro-3000": { sku: "MAXPROSP3000H", mfgPart: "MAXPROSP3000H", cost: 53.69, supplier: "burch" },
+  "pflueger-president-xt": { sku: "PRESXT20X", mfgPart: "PRESXT20X", cost: 66.91, supplier: "burch" },
+  "pucci-sand-spike": { sku: "PU-400S", mfgPart: "PU-400S", cost: 2.17, supplier: "burch" },
+  "fillet-knife-5": { sku: "FK2", mfgPart: "FK2", cost: 9.29, supplier: "burch" },
+  "stringer-chain": { sku: "04300-005", mfgPart: "04300-005", cost: 2.53, supplier: "burch" },
+  "cast-net-4": { sku: "BCM40", mfgPart: "BCM40", cost: 24.33, supplier: "burch" },
+  "cast-net-5": { sku: "BCM50", mfgPart: "BCM50", cost: 32.33, supplier: "burch" },
+  "sand-spike": { sku: "04100-002", mfgPart: "04100-002", cost: 4.77, supplier: "burch" },
 };
 
 export function supplierFor(key: string): SupplierItem | undefined {

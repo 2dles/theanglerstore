@@ -7,9 +7,8 @@ import { CATEGORIES, getProduct, isSourced, type Product } from "@/lib/products"
  * WHAT MAY BE WRITTEN HERE, AND WHAT MAY NOT
  *
  * Two independent audits found the same hole: the site answered 6 of the 100
- * questions anglers actually ask, and had nothing worth citing. Five guides
- * now fill part of that. SPECIES is still empty and the same rules apply to it
- * when it stops being.
+ * questions anglers actually ask, and had nothing worth citing. Eight guides
+ * and four species pages now fill part of that, under the same rules.
  *
  * These pages carry a real person's byline. That sets the standard for what
  * can go in them:
@@ -112,7 +111,7 @@ export interface Species {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CONTENT. GUIDES is written; SPECIES is not yet. Rules are in the note above.
+// CONTENT. Both GUIDES and SPECIES are written. Rules are in the note above.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const GUIDES: Guide[] = [
@@ -722,7 +721,341 @@ export const GUIDES: Guide[] = [
   },
 ];
 
-export const SPECIES: Species[] = [];
+export const SPECIES: Species[] = [
+  {
+    slug: "barred-surfperch",
+    name: "Barred surfperch",
+    scientificName: "Amphistichus argenteus",
+    description:
+      "The fish most people actually catch from a California beach. What to put on the end of your line, how to read the trough they sit in, and why light gear beats heavy gear for them.",
+    published: "2026-09-23",
+    sections: [
+      {
+        body: [
+          "If you walk onto a sand beach anywhere on the California coast with a rod, the fish you're most likely to catch is a barred surfperch. They're there year round, they feed within a cast of dry sand, and they don't require a dawn start or a secret spot.",
+          "They're also the best fish to learn on. Everything that works for perch teaches you something that transfers to bigger fish later: reading a trough, timing a tide, keeping a bait moving in moving water.",
+        ],
+      },
+      {
+        heading: "Where are barred surfperch on a beach?",
+        body: [
+          "Closer than you think. The mistake almost everyone makes is casting as far as they can, which puts the bait past the fish and into empty water.",
+          "Perch sit in the trough, which is the deeper channel of water that runs parallel to the beach between the dry sand and the first sandbar. At low tide you can see it: a darker band of water where the waves aren't breaking, with white water on either side of it. That band is where you're fishing.",
+          "On many beaches the trough is inside thirty yards. Some days it's inside ten. A long cast is a wasted cast if it clears the trough entirely.",
+        ],
+      },
+      {
+        heading: "What's the best rig for surfperch?",
+        body: [
+          "A Carolina rig, which most surf anglers call a fish-finder rig. Slide a sinker slide onto your main line, thread on a bead, tie on a swivel, then add a leader of eighteen inches to three feet and a hook.",
+          "The point of the slide is that the line runs free through it. A perch picks up a bait, moves off with it, and feels almost nothing because it isn't dragging the sinker. With a fixed sinker they feel the weight and drop the bait, and you never know they were there.",
+          "Keep the sinker as light as the conditions allow. Three ounces holds in most calm surf. Go heavier only when the sweep is moving your rig down the beach faster than you can fish it.",
+        ],
+        products: ["sinker-slide-glow", "bank-sinker-3oz", "mustad-barrel-swivel-4"],
+      },
+      {
+        heading: "What hook size for surfperch?",
+        body: [
+          "Smaller than you'd guess. A barred surfperch has a small mouth built for picking sand crabs out of the wash, and a big hook simply won't fit in it.",
+          "Size 4 through 1/0 covers almost all perch fishing. If you're getting rattles and taps that never turn into a hooked fish, your hook is too big before it's anything else.",
+        ],
+        products: ["gamakatsu-octopus-circle-1-0"],
+      },
+      {
+        heading: "What bait works best for barred surfperch?",
+        body: [
+          "Sand crabs, and it isn't close. Perch eat them almost exclusively through the warmer months, and you can dig them out of the wash on the same beach you're fishing, for free. Look for the little V-shaped ripples in the receding water and scoop the sand underneath.",
+          "If you can't find crabs, a strip of market shrimp or a small piece of bloodworm will get bites. Soft plastics work too, particularly a small paddle tail or grub worked slowly along the bottom of the trough.",
+          "We've a guide on catching and keeping sand crabs if you want the detail.",
+        ],
+      },
+      {
+        heading: "What rod and reel do I need?",
+        body: [
+          "Less than the tackle shop will sell you. Perch are a one to two pound fish, so the rod is about casting a three ounce sinker and handling surf, not about fighting power.",
+          "A nine or ten foot two piece rod and a 3000 size spinning reel covers it comfortably. Fifteen to twenty pound braid or twenty five pound mono, and a fluorocarbon leader if the water's clear.",
+          "Being straight with you: every spinning reel our suppliers carry tops out at size 3000, and they're all rated by their manufacturers for freshwater. They work fine in surf if you rinse them properly after every trip. If you want a sealed saltwater reel in a 4000 or 5000, you'll need to buy that elsewhere, and we'd rather say so than pretend.",
+        ],
+        products: ["daiwa-ft-surf-9", "daiwa-sweepfire-3000", "vicious-mono-25"],
+      },
+      {
+        heading: "When is the best tide for surfperch?",
+        body: [
+          "Moving water, more than any particular height. A tide that's actively pushing or pulling stirs sand crabs out of the sand and puts them in the wash, which is when perch feed.",
+          "The two hours either side of low tide are popular because that's when the trough is easiest to see and easiest to reach. A pushing tide over a shallow beach also works well because it opens up water that was dry an hour before.",
+          "Slack water, at the top or bottom of the tide, is usually the slowest hour of the day.",
+        ],
+      },
+    ],
+    setup: [
+      { part: "Rod", choice: "9 to 10 ft, two piece, medium", productKey: "daiwa-ft-surf-9" },
+      { part: "Reel", choice: "3000 size spinning", productKey: "daiwa-sweepfire-3000" },
+      { part: "Line", choice: "25 lb mono, or 15 lb braid", productKey: "vicious-mono-25" },
+      { part: "Leader", choice: "12 lb fluorocarbon, 18 in to 3 ft", productKey: "floroclear-12" },
+      { part: "Hook", choice: "Size 1/0 octopus circle", productKey: "gamakatsu-octopus-circle-1-0" },
+      { part: "Weight", choice: "3 oz bank, on a sinker slide", productKey: "bank-sinker-3oz" },
+      { part: "Bait", choice: "Sand crabs, dug on the beach", weDontStock: "Free from the wash in front of you. Nobody sells these and nobody should." },
+      { part: "Rod holder", choice: "A sand spike, so you can rig the second rod", productKey: "sand-spike" },
+    ],
+    faqs: [
+      {
+        q: "Do I need a fishing license for surfperch?",
+        a: "From a beach, yes, in California. From a public pier, no. Rules vary by state and change, so check your own state's wildlife agency before you go rather than trusting a tackle shop's website.",
+      },
+      {
+        q: "Can you eat barred surfperch?",
+        a: "Yes, they're good eating, and they're commonly kept. Size and bag limits apply and vary by state and sometimes by county, so look up the current limits where you fish.",
+      },
+      {
+        q: "Why am I getting bites but not hooking anything?",
+        a: "Almost always a hook that's too big. Drop to a size 4 or 1 and the same bites start converting. After that, check that you're letting a circle hook load rather than striking at it.",
+      },
+    ],
+  },
+
+  {
+    slug: "california-halibut",
+    name: "California halibut",
+    scientificName: "Paralichthys californicus",
+    description:
+      "The best fish you can catch from the sand on the West Coast. Where they lie, why a slow retrieve matters more than the lure, and the honest gaps in what we can sell you for them.",
+    published: "2026-09-23",
+    sections: [
+      {
+        body: [
+          "A halibut is what turns a beach session into a story. They're flat, they're ambush feeders, and a good one from the sand will take line off a 3000 reel in a way a perch never will.",
+          "They're also catchable from shore far more often than people assume. You don't need a boat, you need to be fishing the right water slowly enough.",
+        ],
+      },
+      {
+        heading: "Where do halibut sit on a beach?",
+        body: [
+          "Flat on the bottom, buried, waiting for something to swim over them. That single fact drives everything else about how you fish for them.",
+          "They favour the edges of structure rather than open sand: the lip of a trough, the slope of a sandbar, the mouth of a bay or harbour where current pushes bait through. Anywhere a moving bait gets funnelled past a place a flat fish can hide.",
+          "Because they're lying on the bottom looking up, your bait or lure needs to pass above them, close, and slowly.",
+        ],
+      },
+      {
+        heading: "What's the best way to catch halibut from shore?",
+        body: [
+          "Two methods, and they suit different days.",
+          "A live bait on a fish-finder rig, fished on the bottom, is the highest percentage approach. Smelt, anchovies or small shiner perch, hooked through the nose and given room to swim. This is why a sabiki rig is worth carrying: you catch your own bait first, and live bait out-fishes anything frozen.",
+          "The second method is a soft plastic on a jig head, cast out and retrieved slowly along the bottom with the occasional lift and drop. Slow is the whole trick. If you think you're going too slowly, go slower.",
+        ],
+        products: ["sabiki-6", "sinker-slide-glow", "circle-hook-6-0"],
+      },
+      {
+        heading: "What lure do halibut hit?",
+        body: [
+          "A paddle tail or jerk shad in a light, baitfish colour, three to five inches, on a lead head heavy enough to stay in contact with the bottom.",
+          "Here's where we'll be straight with you. Our lure range is honest about what it is: mostly freshwater bass plastics and offshore trolling lures. A four inch Zoom Fluke on a jig head does catch halibut and plenty of people use exactly that. But we don't currently stock a dedicated saltwater swimbait range, and if you want one you'll do better at a coastal tackle shop than here.",
+          "We'd rather tell you that than sell you a bass crankbait and let you find out.",
+        ],
+        products: ["zoom-super-fluke-jr"],
+      },
+      {
+        heading: "What gear do I need for halibut?",
+        body: [
+          "Heavier than perch gear, but not by much. The fish isn't the problem; the sinker and the surf are.",
+          "A nine to ten foot rod with a medium or medium heavy rating, a 3000 reel, and twenty to thirty pound line. Fluorocarbon leader of fifteen to twenty pound, because halibut have real teeth and a light leader gets sawn through.",
+          "A net matters more here than for perch. A halibut in the wash is a slab of muscle that will throw a hook in six inches of water, and most fish are lost in the last two seconds.",
+        ],
+        products: ["okuma-tundra-9", "abu-max-pro-3000", "floroclear-20"],
+      },
+      {
+        heading: "What time of day is best for halibut?",
+        body: [
+          "First and last light, as with most ambush predators, and around a moving tide.",
+          "Halibut feed by sight, so they want enough light to see a silhouette above them but not so much that they're exposed. Dawn and dusk give them both. A tide pushing bait through a harbour mouth or along a bar at either of those times is the classic window.",
+        ],
+      },
+    ],
+    setup: [
+      { part: "Rod", choice: "9 to 10 ft, medium-heavy", productKey: "okuma-tundra-9" },
+      { part: "Reel", choice: "3000 size, best drag you can get", productKey: "abu-max-pro-3000" },
+      { part: "Line", choice: "30 lb mono, or 20 lb braid", productKey: "vicious-mono-30" },
+      { part: "Leader", choice: "20 lb fluorocarbon, 2 to 3 ft", productKey: "floroclear-20" },
+      { part: "Hook", choice: "6/0 circle for a live bait", productKey: "circle-hook-6-0" },
+      { part: "Weight", choice: "4 oz bank on a sinker slide", productKey: "bank-sinker-4oz" },
+      { part: "Bait", choice: "Live smelt or anchovy, caught on a sabiki", productKey: "sabiki-6" },
+      { part: "Net", choice: "Get one under it before the last wave", productKey: "landing-net" },
+      { part: "Lure", choice: "4 in soft plastic on a lead head", weDontStock: "We don't carry a proper saltwater swimbait range. A Zoom Fluke on a jig head works; a dedicated coastal shop will do better." },
+    ],
+    faqs: [
+      {
+        q: "What size halibut can you keep?",
+        a: "There's a legal minimum and it differs between northern and southern California, with separate bag limits. Those numbers change, so check the current CDFW regulations rather than a tackle shop page.",
+      },
+      {
+        q: "Do I need a leader for halibut?",
+        a: "Yes. They have a mouth full of small sharp teeth and a straight braid-to-hook connection gets cut. Two to three feet of 20 lb fluorocarbon is standard.",
+      },
+      {
+        q: "Can you catch halibut on a pier?",
+        a: "Yes, and piers over sand near a harbour mouth are among the better places to try from shore. Same rig, same slow presentation, and a drop net to get one up the rail.",
+      },
+    ],
+  },
+
+  {
+    slug: "california-corbina",
+    name: "California corbina",
+    scientificName: "Menticirrhus undulatus",
+    description:
+      "The hardest fish to catch from a California beach on purpose, and the most rewarding. Sight fishing in a foot of water, why they spook, and what to use.",
+    published: "2026-09-23",
+    sections: [
+      {
+        body: [
+          "Corbina are the surf fish that experienced beach anglers get obsessive about. They feed in water shallow enough that you can watch them do it, they eat one thing almost exclusively, and they'll refuse a bait for reasons that make no sense until they suddenly don't.",
+          "If perch teach you to fish the surf, corbina teach you to hunt.",
+        ],
+      },
+      {
+        heading: "How do you sight fish for corbina?",
+        body: [
+          "You walk and look before you cast. On a calm day with decent light, corbina show themselves in the wash as a dark shape or a tail breaking the surface while they root in the sand.",
+          "The technique is to spot a fish, get ahead of where it's moving, and place a bait in its path without landing the sinker on its head. Then you leave it there.",
+          "This is the opposite of most surf fishing. You're not covering water, you're waiting for a specific fish to find a specific bait.",
+        ],
+      },
+      {
+        heading: "What do corbina eat?",
+        body: [
+          "Sand crabs, to the point of near obsession. They're built for it, with a mouth angled down for rooting through sand and a single chin barbel for finding what's buried.",
+          "A soft shell sand crab, which is one that's recently moulted and feels squashy rather than hard, is the single best bait. They're worth picking out of a scoop and keeping separate.",
+          "Some people catch them on ghost shrimp or a small piece of mussel. Almost nobody catches them consistently on anything else.",
+        ],
+      },
+      {
+        heading: "Why do corbina spook so easily?",
+        body: [
+          "Because they're feeding in a foot of clear water with nowhere to hide, and everything above them is a threat.",
+          "That means your line, your leader and your shadow all matter more than they do for any other surf fish. Light fluorocarbon, the smallest sinker that will hold, and standing back from the water rather than wading into it.",
+          "It also means a heavy splash from a four ounce sinker landing near a fish ends that opportunity. Lighter is better in every part of this rig.",
+        ],
+        products: ["floroclear-12", "bank-sinker-3oz"],
+      },
+      {
+        heading: "What rig for corbina?",
+        body: [
+          "The same fish-finder rig as surfperch, scaled down. Sinker slide, bead, swivel, then a long light fluorocarbon leader of two to four feet and a small hook.",
+          "Hook size 4 to 2 is right. Corbina have soft mouths and small ones at that, and a big hook pulls or simply doesn't get taken.",
+          "Some anglers fish no weight at all in very shallow calm water, just a hook and a crab, letting the wash carry it. It's a difficult way to fish and it catches fish that a weighted rig won't.",
+        ],
+        products: ["sinker-slide-glow", "gamakatsu-octopus-circle-1-0"],
+      },
+    ],
+    setup: [
+      { part: "Rod", choice: "8 to 9 ft, lighter than you'd use for perch", productKey: "eagle-claw-glass-8" },
+      { part: "Reel", choice: "2500 or 3000 spinning", productKey: "abu-max-x-2500" },
+      { part: "Line", choice: "20 lb mono, or light braid", productKey: "vicious-mono-20" },
+      { part: "Leader", choice: "12 lb fluorocarbon, 2 to 4 ft, and go lighter if refused", productKey: "floroclear-12" },
+      { part: "Hook", choice: "Size 4 to 2, small and sharp", productKey: "gamakatsu-octopus-circle-1-0" },
+      { part: "Weight", choice: "As little as holds. 3 oz maximum, often less", productKey: "bank-sinker-3oz" },
+      { part: "Bait", choice: "Soft shell sand crab", weDontStock: "Dig them yourself from the wash. The soft ones are worth separating out." },
+    ],
+    faqs: [
+      {
+        q: "What's the best tide for corbina?",
+        a: "A pushing tide over a shallow beach, which floods sand that was dry and gets crabs moving. Calm water and good light matter more than the specific tide height, because you need to be able to see fish.",
+      },
+      {
+        q: "Can you keep corbina?",
+        a: "There are bag and size rules, and in California it's illegal to take them by spear or net. Regulations change, so check the current rules for where you fish.",
+      },
+      {
+        q: "Why won't corbina take my bait?",
+        a: "Usually leader or weight. Drop your leader test, lengthen it, and use the lightest sinker that will stay put. After that, check your crab is fresh and hooked so it looks natural.",
+      },
+    ],
+  },
+
+  {
+    slug: "striped-bass",
+    name: "Striped bass",
+    scientificName: "Morone saxatilis",
+    description:
+      "Stripers from the shore, on either coast. How to read structure and current, when to fish bait against lures, and the gear that actually holds up.",
+    published: "2026-09-23",
+    sections: [
+      {
+        body: [
+          "Striped bass are the reason a lot of people fish from shore at night. They're big, they hunt in the wash, and a good one on a surf rod is about as much fun as shore fishing gets.",
+          "They're an East Coast fish by origin and a West Coast fish by introduction, so the advice below holds on both coasts even though the seasons and the regulations do not.",
+        ],
+      },
+      {
+        heading: "Where do striped bass feed from shore?",
+        body: [
+          "Wherever current pushes bait into a place they can ambush it. Stripers are structure and current fish before they're anything else.",
+          "That means rips, the edges of jetties and rock walls, river and creek mouths on a dropping tide, and the white water where waves break over a bar. On a featureless beach, look for the cut in the bar where water drains back out.",
+          "The pattern is always the same: bait gets disorganised by moving water, and stripers sit where that happens.",
+        ],
+      },
+      {
+        heading: "Bait or lures for striped bass?",
+        body: [
+          "Both work and they suit different situations.",
+          "Bait on a fish-finder rig is the approach for a beach at night with a big bait sitting still. Bunker, mackerel chunks, clams or a live eel depending on what's around. Big bait, big hook, and patience.",
+          "Lures are for when you can see or hear fish working, or when you're covering a rip or a jetty and want to find them. Here we'll be honest again: our lure range is heavy on offshore trolling plugs and freshwater bass baits, not on the swimming plugs and bucktails that shore stripers are usually caught on. A coastal shop will serve you better for that.",
+        ],
+        products: ["circle-hook-7-0", "sinker-slide-boss"],
+      },
+      {
+        heading: "What hook size for striped bass?",
+        body: [
+          "Big, and circle rather than J where you can. A 6/0 to 8/0 circle handles a chunk of bunker or a whole mackerel fillet, and a circle hooks a striper in the jaw corner almost every time, which matters because plenty of them get released.",
+          "Don't strike a circle hook. Let the rod load and start winding. Striking pulls it straight out of the fish's mouth, which is the single most common way beginners lose them.",
+        ],
+        products: ["circle-hook-7-0", "circle-hook-8-0"],
+      },
+      {
+        heading: "What gear holds up for shore stripers?",
+        body: [
+          "The heaviest end of what we sell, and honestly the edge of it.",
+          "A ten or eleven foot rod for a beach, or seven to eight feet on a jetty where a long rod is a liability. Thirty pound mono or braid. A leader of thirty to fifty pound fluorocarbon, because a big striper in rocks will test everything.",
+          "The gap we can't fill is the reel. Every spinning reel either of our suppliers stocks tops out at size 3000, and a serious striper angler on the East Coast is usually running a 5000 or larger with a sealed saltwater drag. A 3000 will land fish, and it will also wear out faster doing it. We'd rather you knew.",
+        ],
+        products: ["daiwa-ft-surf-11", "abu-max-pro-3000", "vicious-mono-30"],
+      },
+      {
+        heading: "Why fish for stripers at night?",
+        body: [
+          "Because they feed then, and because they come shallower in the dark than they ever will in daylight.",
+          "Fish you'd need a long cast to reach at noon will be in the first wave at midnight. That changes the gear too: a shorter rod is fine, and a high visibility line is genuinely useful when you can't see anything.",
+          "Night fishing means a head torch is the most important thing in your bag, and we don't currently stock one. Buy a decent rechargeable one with a red mode before you go.",
+        ],
+        products: ["stren-hivis-25"],
+      },
+    ],
+    setup: [
+      { part: "Rod", choice: "10 to 11 ft on a beach, 7 to 8 ft on a jetty", productKey: "daiwa-ft-surf-11" },
+      { part: "Reel", choice: "3000, the largest we can get", productKey: "abu-max-pro-3000" },
+      { part: "Line", choice: "30 lb mono, or 30 lb braid", productKey: "vicious-mono-30" },
+      { part: "Leader", choice: "20 lb plus fluorocarbon, heavier around rock", productKey: "floroclear-20" },
+      { part: "Hook", choice: "7/0 circle for chunk bait", productKey: "circle-hook-7-0" },
+      { part: "Weight", choice: "4 to 8 oz depending on current", productKey: "bank-sinker-6oz" },
+      { part: "Rig", choice: "Heavy sinker slide, not the light one", productKey: "sinker-slide-boss" },
+      { part: "Light", choice: "Rechargeable head torch with a red mode", weDontStock: "Neither of our suppliers carries a headlamp worth selling. Buy one elsewhere before you fish at night." },
+      { part: "Pliers", choice: "For unhooking in the dark", productKey: "pliers" },
+    ],
+    faqs: [
+      {
+        q: "What's the best tide for striped bass from shore?",
+        a: "Moving water, and usually the two hours either side of a tide change. A dropping tide draining a creek or a bay mouth concentrates bait and is a classic window.",
+      },
+      {
+        q: "Should I use a circle hook for stripers?",
+        a: "Yes for bait, and in some places it's required rather than optional. Circles hook in the jaw corner, which means a released fish swims off in better shape. Check whether your state mandates them.",
+      },
+      {
+        q: "Can I catch stripers on the same gear I use for surfperch?",
+        a: "You can start there, but a perch setup is light for a big striper. Move up to 30 lb line and a 7/0 hook before you go looking for a serious fish.",
+      },
+    ],
+  },
+];
 
 // ── lookups ──────────────────────────────────────────────────────────────────
 

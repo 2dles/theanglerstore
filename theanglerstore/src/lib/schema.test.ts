@@ -16,6 +16,7 @@ import {
   PRODUCTS,
   UNSOURCED,
   brandOf,
+  isSourced,
   listed,
   metaDescription,
   structuredSpecs,
@@ -31,7 +32,11 @@ function check(name: string, ok: boolean, detail = "") {
 }
 
 // ── brand ──────────────────────────────────────────────────────────────────
-const noBrand = PRODUCTS.filter((p) => !brandOf(p));
+// Only products we actually offer. The four keys we cannot source carry no
+// Brand spec on purpose: they are not offers, and naming a manufacturer on a
+// page we cannot fulfil is how the invented PENN and Z-Man spec tables got
+// published in the first place.
+const noBrand = PRODUCTS.filter((p) => isSourced(p) && !brandOf(p));
 check(
   "every product has a visible Brand spec",
   noBrand.length === 0,

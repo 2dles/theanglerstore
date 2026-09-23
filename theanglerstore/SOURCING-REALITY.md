@@ -142,24 +142,50 @@ Bayville NJ is not the same promise as one from Tampa.
 
 ---
 
-## 6. Gated brands, and why this is the main event
+## 6. Gated brands, and why they are not the main event
 
 CWR will not sell these until the manufacturer authorises you directly:
 Abu Garcia, Berkley, Daiwa, PENN, Pflueger, Minn Kota, Humminbird, Garmin,
 Lowrance, Cannon, Furuno, Raymarine, Simrad.
 
-Confirmed against the printed guide on 14 Sep 2026. Abu Garcia (p16),
-PENN (p520) and Pflueger (p529) have full guide sections and **zero** rows in
-our export. Daiwa (p139) has a section and **one** row. Berkley has a section
-and 10 rows, mostly Gulp baits, mostly out of stock. The gate is real and it
-is the reason the storefront has four rods.
+That list is real but it mattered far less than an earlier revision of this
+file claimed. Corrected 23 Sep 2026:
 
-**Abu Garcia, PENN, Pflueger, Berkley, SpiderWire, Stren, Ugly Stik and
-Fenwick are all Pure Fishing.** One application covers the entire rod, reel
-and terminal side of the gap. That is the single highest-leverage sourcing
-move on the list. Daiwa is Globeride America and needs its own application.
+- **Garmin is not gated in practice.** 1,135 Garmin rows, 383 Raymarine and
+  302 Furuno are all in our export and buyable today, despite sitting on that
+  list.
+- **PENN, Abu Garcia and Pflueger show APPLY NOW** on the B2B site with MSRP
+  and no dealer price. The application is a Pure Fishing reseller form, and it
+  states in bold: "Pure Fishing requires a physical store in order to purchase
+  their products." We are online only, so this route is closed, and filling
+  the form in claiming a storefront we do not have would risk the CWR account
+  as well.
+- **It does not matter much**, because Burch already sells us Abu Garcia,
+  Berkley, Daiwa, Okuma and Pflueger. Every rod, reel and combo on the site
+  already comes from them.
+- **Shimano and Ugly Stik are not carried by either supplier.** Not gated,
+  simply absent. Searching Shimano at CWR returns 15 results, all Abu Garcia
+  reels and Lee's rod hangers sized for Shimano reels.
 
-Ask the CWR rep to sponsor the Pure Fishing application rather than applying
-cold; there is order history to point at now. Burch carries several of these
-brands and may already hold authorisation, which is worth asking about while
-the application runs.
+An earlier revision called Pure Fishing authorisation "the single
+highest-leverage sourcing move on the list." It is not. It is closed to us,
+and it would add only PENN.
+
+---
+
+## 7. The finding that actually mattered
+
+```
+Our 245 products, before 23 Sep 2026:
+  CWR   (boat outfitter)   189    77%
+  Burch (tackle house)      56    23%
+```
+
+Burch had 7,423 items in stock and we listed 56 of them. CWR has no Rods,
+Hooks or Sinkers category anywhere in its navigation and supplied three
+quarters of the shelf. That is why the store was 25 rod holders deep and 15
+terminal tackle items shallow, and it was a buying problem rather than a
+supply problem.
+
+See `BURCH-CATALOGUE-MAP.md` for the full department map and `BUY-LIST.md`
+for what was added.
