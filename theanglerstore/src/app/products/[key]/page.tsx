@@ -176,8 +176,12 @@ export default async function ProductPage({
     offers: {
       "@type": "Offer",
       url: `https://theanglerstore.com/products/${product.key}`,
-      priceCurrency: "USD",
-      price: product.price.toFixed(2),
+      // Price only where there is something to buy. The four unsourced keys
+      // have price: 0, and emitting price "0.00" told every crawler and
+      // assistant that a rod and reel combo was free. An OutOfStock offer
+      // without a price is not eligible for product rich results, which is
+      // the correct outcome for something we cannot ship.
+      ...(sourced ? { priceCurrency: "USD", price: product.price.toFixed(2) } : {}),
       // priceValidUntil deliberately absent. It was hardcoded to next
       // December on all 233 products — a date we invented, describing a
       // commitment we never made. A missing field is better than a false one.
@@ -296,21 +300,28 @@ export default async function ProductPage({
             </h1>
             <p className="mt-2 text-lg text-teal">{product.tagline}</p>
 
-            <div className="mt-5 flex items-baseline gap-3">
-              <span className="tnum text-3xl font-semibold">
-                {formatPrice(product.price)}
-              </span>
-              {product.compareAt && (
-                <>
-                  <span className="tnum text-lg text-ink-faint line-through">
-                    {formatPrice(product.compareAt)}
-                  </span>
-                  <span className="badge">
-                    Save {Math.round((1 - product.price / product.compareAt) * 100)}%
-                  </span>
-                </>
-              )}
-            </div>
+            {/* No price on a product we cannot sell. These four carried
+                price: 0, so the page rendered "$0.00" in 3xl type directly
+                above "Pricing shown is indicative until we confirm a
+                supplier" — which reads as free, or as broken. There is no
+                price here because there is no offer here. */}
+            {sourced && (
+              <div className="mt-5 flex items-baseline gap-3">
+                <span className="tnum text-3xl font-semibold">
+                  {formatPrice(product.price)}
+                </span>
+                {product.compareAt && (
+                  <>
+                    <span className="tnum text-lg text-ink-faint line-through">
+                      {formatPrice(product.compareAt)}
+                    </span>
+                    <span className="badge">
+                      Save {Math.round((1 - product.price / product.compareAt) * 100)}%
+                    </span>
+                  </>
+                )}
+              </div>
+            )}
 
             {/* One line, not two. This used to print "In stock at our
                 distributor · ships in 3–7 business days" directly above
