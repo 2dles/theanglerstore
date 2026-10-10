@@ -9,8 +9,8 @@
  * and all 184 of those were fine.
  *
  * So this is not a one-off fix, it is rot that will happen again. Run it
- * before a deploy. When it fails, look the SKU up in the supplier's feed and
- * repoint the URL.
+ * before a deploy. When it fails, refresh-burch-images.ts looks the SKU up in
+ * Burch's own feed and prints the replacement URL.
  *
  *   npx tsx --conditions=react-server scripts/check-images.ts
  *
@@ -21,20 +21,44 @@
  */
 import { PRODUCTS, isSourced } from "../src/lib/products";
 
+/**
+ * Six at a time, not all 269 at once.
+ *
+ * This file originally fired every request in parallel. Twenty-nine of them
+ * timed out under the load and were reported as dead images; the real number
+ * that round was five. A false alarm on a quarter of the catalogue is worse
+ * than a slow check.
+ */
+async function pooled<T, R>(xs: T[], n: number, f: (x: T) => Promise<R>): Promise<R[]> {
+  const out: R[] = new Array(xs.length);
+  let i = 0;
+  await Promise.all(
+    Array.from({ length: Math.min(n, xs.length) }, async () => {
+      for (;;) {
+        const j = i++;
+        if (j >= xs.length) return;
+        out[j] = await f(xs[j]);
+      }
+    }),
+  );
+  return out;
+}
+
 const withImage = PRODUCTS.filter((p) => isSourced(p) && p.image);
 const missing = PRODUCTS.filter((p) => isSourced(p) && !p.image);
 
 async function main() {
-  const results = await Promise.all(
-    withImage.map(async (p) => {
-      try {
-        const r = await fetch(p.image!, { method: "GET" });
-        return { key: p.key, url: p.image!, ok: r.ok, status: r.status };
-      } catch {
-        return { key: p.key, url: p.image!, ok: false, status: 0 };
-      }
-    }),
-  );
+  const results = await pooled(withImage, 6, async (p) => {
+    try {
+      const r = await fetch(p.image!, {
+        method: "GET",
+        signal: AbortSignal.timeout(15_000),
+      });
+      return { key: p.key, url: p.image!, ok: r.ok, status: r.status };
+    } catch {
+      return { key: p.key, url: p.image!, ok: false, status: 0 };
+    }
+  });
 
   const broken = results.filter((r) => !r.ok);
   for (const b of broken) console.log(`BROKEN  ${b.status}  ${b.key}\n        ${b.url}`);
