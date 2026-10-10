@@ -7,6 +7,7 @@ const HELP = [
   { href: "/returns", label: "Returns" },
   { href: "/contact", label: "Contact" },
   { href: "/about", label: "About" },
+  { href: "/what-we-dont-sell", label: "What we don't sell" },
 ];
 
 const LEGAL = [

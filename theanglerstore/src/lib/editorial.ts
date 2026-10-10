@@ -116,6 +116,145 @@ export interface Species {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "circle-hook-vs-j-hook",
+    title: "Circle Hook vs J Hook: Which Should You Use?",
+    description:
+      "The two hook shapes do different jobs and you fight them differently. When a circle is the right call, when a J still wins, and why striking a circle hook pulls it straight out.",
+    published: "2026-10-10",
+    sections: [
+      {
+        body: [
+          "This is the question that trips up more new surf anglers than any other, because the two hooks look similar in a packet and behave nothing alike once a fish picks up the bait.",
+          "The short version: circle hooks for bait you leave sitting, J hooks for anything you're actively working. The longer version is worth two minutes.",
+        ],
+      },
+      {
+        heading: "What's the actual difference?",
+        body: [
+          "A J hook is the shape you drew as a kid: a straight shank, a bend, a point aimed roughly back up the shank. It hooks a fish because you drive it in.",
+          "A circle hook curls the point inward, nearly perpendicular to the shank. It can't be driven in by a strike, because the point isn't facing the direction you're pulling. Instead, as the fish turns away with the bait, the hook slides to the corner of the jaw and the inward point catches there.",
+          "That's why the retrieve is different, and why most people get it wrong the first time.",
+        ],
+      },
+      {
+        heading: "How do you set a circle hook?",
+        body: [
+          "You don't. Let the rod load, then start winding steadily until it comes tight.",
+          "Striking a circle hook pulls it straight out of the fish's mouth before the geometry has a chance to work. If you're getting takes on circles and not connecting, this is almost always why, and it's a habit that takes a few trips to unlearn.",
+        ],
+      },
+      {
+        heading: "Which hook for which situation?",
+        table: {
+          head: ["Situation", "Hook", "Why"],
+          rows: [
+            ["Bait in a sand spike, rod unattended", "Circle", "Hooks itself when the fish turns. A J hook on an unattended rod usually means a gut-hooked fish or no fish."],
+            ["Bait fished in hand, striking yourself", "Either", "A J gives a faster, more certain hookset if you're paying attention."],
+            ["Anything you intend to release", "Circle", "Jaw-corner hookups are far cleaner to unhook and the fish swims off in better shape."],
+            ["Soft plastics on a jig head", "J", "The hook is moulded in and you're working the lure, so you set it."],
+            ["Live bait you want swimming naturally", "Circle", "Lighter wire through the nose, nothing for the bait to fight against."],
+            ["Sabiki or bait rig", "Neither, they come rigged", "Tiny dressed hooks sized for bait, not a choice you make."],
+          ],
+        },
+      },
+      {
+        heading: "What size circle hook do I need?",
+        body: [
+          "Match the bait, not the fish. A hook has to sit inside the bait without crowding it, and a bait that can't move naturally doesn't get eaten.",
+          "For surfperch and corbina on sand crabs, size 4 to 1/0 is the range, and smaller is usually the fix when you're getting rattles that never connect. For bigger baits on the bottom, 5/0 through 8/0. Striped bass on a chunk of bunker is 6/0 to 8/0 territory.",
+        ],
+        products: ["gamakatsu-octopus-circle-1-0", "circle-hook-6-0", "circle-hook-7-0"],
+      },
+      {
+        heading: "Is one more legal than the other?",
+        body: [
+          "In some places and for some species, circle hooks are required rather than recommended, particularly for billfish and in parts of the striped bass fishery. Rules vary by state and change, so check your own state's wildlife agency rather than a tackle shop page.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Do circle hooks work on soft plastics?",
+        a: "Badly. A circle needs to slide to the jaw corner, and a plastic moulded onto the shank blocks that. Use a J-shaped worm or swimbait hook for plastics.",
+      },
+      {
+        q: "Why did my circle hook gut-hook a fish?",
+        a: "Almost always because the hook was buried too deep in the bait, or you waited too long before winding. A circle only works if it can slide, and a hook point packed inside a bait can't.",
+      },
+      {
+        q: "Are offset circle hooks still circle hooks?",
+        a: "Functionally they sit between the two. The offset makes them hook more aggressively, which also means they gut-hook more often. Where circle hooks are legally required it is usually non-offset ones that qualify.",
+      },
+    ],
+    related: ["surf-fishing-rigs", "best-line-for-surf-fishing"],
+  },
+  {
+    slug: "what-size-reel-for-surf-rod",
+    title: "What Size Reel for a Surf Rod?",
+    description:
+      "How reel sizes actually map to surf rod lengths, what the numbers mean, and an honest note about the ceiling on what we can sell you.",
+    published: "2026-10-10",
+    sections: [
+      {
+        body: [
+          "Reel sizing is one of the few places in fishing where the numbers almost mean something. Almost, because every manufacturer numbers slightly differently, but a 3000 from one brand is close enough to a 3000 from another that you can plan around it.",
+          "What the number tracks is spool size, which really means line capacity and, loosely, drag.",
+        ],
+      },
+      {
+        heading: "What do the reel numbers mean?",
+        table: {
+          head: ["Size", "Rough line capacity", "Pairs with", "Typical use"],
+          rows: [
+            ["1000 to 2000", "4 to 8 lb mono, 150 to 200 yd", "6 to 7 ft light rod", "Trout, panfish, calm bays"],
+            ["2500", "8 to 10 lb mono, 200 yd", "7 ft medium", "Bass, light inshore, jetty work"],
+            ["3000", "8 to 12 lb mono, 200 to 240 yd", "7 to 9 ft medium", "Inshore, light surf, perch and small halibut"],
+            ["4000 to 5000", "12 to 20 lb mono, 250 to 300 yd", "9 to 11 ft medium-heavy", "Real surf fishing, heavy sinkers, bigger fish"],
+            ["6000 and up", "20 lb plus", "11 ft plus, or boat", "Distance casting, large surf species"],
+          ],
+        },
+      },
+      {
+        heading: "So what should I actually buy?",
+        body: [
+          "For a 9 to 11 foot surf rod throwing four ounces or more, the standard answer is a 4000 or 5000 with a sealed drag. More line capacity for a fish that runs, more drag for a fish that doesn't stop, and a sealed body because sand and salt will get into anything that isn't.",
+          "For a 7 to 8 foot rod on a jetty, in a harbour, or fishing lighter baits, a 2500 or 3000 is correct and a 5000 would just be heavy.",
+        ],
+      },
+      {
+        heading: "The honest part",
+        body: [
+          "We can't sell you a 4000 or a 5000. Every spinning reel either of our distributors carries runs from size 750 up to 3000 and stops there, and all of them are rated by their own manufacturers for freshwater use.",
+          "That's not a judgement about those reels. A 3000 will fish surf for years if you rinse it in fresh water after every single trip, and a lot of people fish nothing else. But if you're buying a reel specifically to pair with an 11 foot rod and six ounces of lead, you want a sealed 4000 or 5000 and you should buy it from a coastal shop.",
+          "Where we can help: our Daiwa D-Wave combos arrive as a matched saltwater rod and reel, which removes the decision for a first setup.",
+        ],
+        products: ["daiwa-sweepfire-3000", "abu-max-pro-3000", "dwave-combo-10"],
+      },
+      {
+        heading: "Does gear ratio matter?",
+        body: [
+          "Less than people think for bait fishing, and quite a bit for lures. A higher ratio like 6.2:1 picks up slack fast, which matters when a fish runs at you or when you're working a lure back and need to stay in contact. A lower ratio gives a bit more cranking power under load.",
+          "If you're putting a bait in a sand spike and waiting, the ratio is close to irrelevant. Buy on drag and build quality instead.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "Can I use a 3000 reel on an 11 foot surf rod?",
+        a: "Yes, and people do. You'll have less line capacity than ideal for a long run and the rod will feel slightly tip-heavy. Rinse it after every trip and it will last.",
+      },
+      {
+        q: "Is a sealed drag worth paying for?",
+        a: "In surf, yes. Sand is the thing that kills reels, not salt water alone, and a sealed drag is the part that keeps working after sand gets everywhere else.",
+      },
+      {
+        q: "How much line should I put on?",
+        a: "To about an eighth of an inch below the spool lip. Underfilled costs you casting distance; overfilled throws loops off the spool on the cast.",
+      },
+    ],
+    related: ["beginner-surf-fishing-setup", "best-line-for-surf-fishing"],
+  },
+  {
     slug: "free-fishing-piers-san-diego",
     title: "Free Fishing Piers in San Diego (No License Needed)",
     description:
@@ -786,6 +925,24 @@ export const SPECIES: Species[] = [
           "Slack water, at the top or bottom of the tide, is usually the slowest hour of the day.",
         ],
       },
+      {
+        heading: "What conditions are worth going in?",
+        body: [
+          "Perch are the most forgiving surf fish on this coast, which is why they are the ones to learn on. They feed through the day and they feed in water most species would leave. This is roughly how to read a morning.",
+        ],
+        table: {
+          head: ["Conditions", "Worth going?", "What to change"],
+          rows: [
+            ["Pushing tide over a shallow beach", "Best window", "Fish the trough, lightest lead that holds"],
+            ["Two hours either side of low", "Very good", "Trough is visible and reachable, read it before you cast"],
+            ["Slack water at the top or bottom", "Slowest hour of the day", "Rest, re-bait, walk and look for structure"],
+            ["Clear, calm water", "Good", "Drop to 12 lb fluorocarbon leader and a smaller hook"],
+            ["Big swell, churned sand", "Still worth it", "Heavier lead, shorter casts, fish the edges of the white water"],
+            ["Bright midday sun", "Fine", "Unlike halibut, perch keep feeding. Don't skip the middle of the day"],
+            ["Strong lateral sweep", "Hard", "Bank sinkers walk. This is where a pyramid would help and we don't sell one"],
+          ],
+        },
+      },
     ],
     setup: [
       { part: "Rod", choice: "9 to 10 ft, two piece, medium", productKey: "daiwa-ft-surf-9" },
@@ -869,6 +1026,24 @@ export const SPECIES: Species[] = [
           "Halibut feed by sight, so they want enough light to see a silhouette above them but not so much that they're exposed. Dawn and dusk give them both. A tide pushing bait through a harbour mouth or along a bar at either of those times is the classic window.",
         ],
       },
+      {
+        heading: "What conditions are worth going in?",
+        body: [
+          "Halibut are ambush feeders that hunt by sight from the bottom. Almost everything about when to go follows from those two facts.",
+        ],
+        table: {
+          head: ["Conditions", "Worth going?", "What to change"],
+          rows: [
+            ["First or last light on a moving tide", "Best window", "Live bait on a fish-finder rig, or a slow plastic along the bottom"],
+            ["Tide pushing through a harbour or bay mouth", "Best window", "Fish the edge where bait gets funnelled past structure"],
+            ["Clear water, light chop", "Good", "They hunt by sight. Visibility is working for you"],
+            ["Dirty water after a swell", "Poor", "A sight feeder that cannot see is a fish that is not eating"],
+            ["Bright midday, flat calm", "Poor", "Exposed on open sand in full light. Go at the edges of the day"],
+            ["Slack water", "Poor", "No current means no bait moving past the ambush"],
+            ["Edge of a trough or sandbar slope", "Always check it", "Structure matters more than depth. Flat open sand holds fewer fish"],
+          ],
+        },
+      },
     ],
     setup: [
       { part: "Rod", choice: "9 to 10 ft, medium-heavy", productKey: "okuma-tundra-9" },
@@ -944,6 +1119,23 @@ export const SPECIES: Species[] = [
           "Some anglers fish no weight at all in very shallow calm water, just a hook and a crab, letting the wash carry it. It's a difficult way to fish and it catches fish that a weighted rig won't.",
         ],
         products: ["sinker-slide-glow", "gamakatsu-octopus-circle-1-0"],
+      },
+      {
+        heading: "What conditions are worth going in?",
+        body: [
+          "Corbina are the one surf fish where the conditions decide whether the day is even possible, because you are hunting individual fish you can see.",
+        ],
+        table: {
+          head: ["Conditions", "Worth going?", "What to change"],
+          rows: [
+            ["Calm, clear, good overhead light, pushing tide", "The only ideal", "Walk and look before you cast. Place the bait, then leave it"],
+            ["Flat calm but overcast", "Hard", "You lose the ability to spot fish. Fish blind in the wash instead"],
+            ["Any chop or coloured water", "Not worth it", "If you cannot see them you cannot target them. Go for perch"],
+            ["Big swell", "No", "They move off the shallow sand entirely"],
+            ["Bright sun high overhead", "Good", "Best spotting light of the day, which is unusual among surf species"],
+            ["Low tide, exposed flats", "Wait", "Fish the push as it floods sand that was dry an hour ago"],
+          ],
+        },
       },
     ],
     setup: [
@@ -1027,6 +1219,24 @@ export const SPECIES: Species[] = [
           "Night fishing means a head torch is the most important thing in your bag, and we don't currently stock one. Buy a decent rechargeable one with a red mode before you go.",
         ],
         products: ["stren-hivis-25"],
+      },
+      {
+        heading: "What conditions are worth going in?",
+        body: [
+          "Stripers are structure and current fish before they are anything else, and they come shallower in the dark than they ever will in daylight.",
+        ],
+        table: {
+          head: ["Conditions", "Worth going?", "What to change"],
+          rows: [
+            ["Night, moving water", "Best window", "They feed in the first wave after dark. Shorter rod is fine, hi-vis line helps"],
+            ["Dropping tide at a creek or bay mouth", "Best window", "Bait gets flushed out and disorganised. Sit where it lands"],
+            ["A rip, or white water over a bar", "Very good", "Fish the seam, not the middle of the turbulence"],
+            ["Two hours either side of a tide change", "Good", "Movement matters more than height"],
+            ["Bright midday, flat calm", "Poor", "They are out deep. Come back at dusk"],
+            ["Slack water", "Poor", "No current, no ambush"],
+            ["Jetty or rock wall on any moving tide", "Always check it", "Heavier leader, because a big fish in rock tests everything"],
+          ],
+        },
       },
     ],
     setup: [

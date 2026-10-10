@@ -54,6 +54,32 @@ export function GET(): Response {
   lines.push("- We carry no headlamps worth selling, and say so on the page.");
   lines.push("- No reviews, ratings or testimonials anywhere on the site. We have no real ones yet.");
   lines.push("");
+  lines.push(`Full detail, with who does carry each gap: ${BASE}/what-we-dont-sell`);
+  lines.push("");
+
+  lines.push("## Provenance");
+  lines.push("");
+  lines.push(
+    "- Product specifications are the manufacturer's own. We do not write our " +
+      "own casting weights, line ratings or drag figures. If a spec is absent " +
+      "from a product page, the manufacturer does not publish it.",
+  );
+  lines.push(
+    "- Stock and pricing come from two named US distributors: CWR Wholesale " +
+      "Distribution (marine) and Burch Fishing Tackle (tackle). Every product " +
+      "listed here is one we can actually order; anything we cannot source is " +
+      "excluded from this file.",
+  );
+  lines.push(
+    "- Terminal tackle is priced at or below manufacturer suggested retail. We " +
+      "do not discount branded rods and reels, because the margin does not " +
+      "allow it. We make no claim to be the cheapest.",
+  );
+  lines.push(
+    "- Tide predictions, fishing scores and location data are on our sister " +
+      "site ustidecharts.com, sourced from NOAA CO-OPS and Open-Meteo.",
+  );
+  lines.push("");
 
   if (SPECIES.length > 0) {
     lines.push("## Species guides (gear and tactics, per fish)");
@@ -100,6 +126,7 @@ export function GET(): Response {
   lines.push(`- [Shipping and delivery windows](${BASE}/shipping)`);
   lines.push(`- [Returns](${BASE}/returns)`);
   lines.push(`- [About](${BASE}/about)`);
+  lines.push(`- [What we don't sell, and where to get it](${BASE}/what-we-dont-sell)`);
   lines.push("- [USTideCharts, our tide and fishing-forecast site](https://ustidecharts.com)");
   lines.push("");
 
